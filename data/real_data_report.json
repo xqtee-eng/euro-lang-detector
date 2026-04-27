@@ -1,0 +1,263 @@
+{
+  "input": "sentences.tar.bz2",
+  "mode": "replace",
+  "total_lines_scanned": 13404281,
+  "used_lines": 40600,
+  "raw_per_language_target": 1000,
+  "benchmark_per_language_target": 15,
+  "frequency_words_per_language_target": 2000,
+  "languages": 40,
+  "raw": {
+    "sq": {
+      "name": "Albanian",
+      "rows": 1000
+    },
+    "hy": {
+      "name": "Armenian",
+      "rows": 1000
+    },
+    "az": {
+      "name": "Azerbaijani",
+      "rows": 1000
+    },
+    "eu": {
+      "name": "Basque",
+      "rows": 1000
+    },
+    "be": {
+      "name": "Belarusian",
+      "rows": 1000
+    },
+    "bs": {
+      "name": "Bosnian",
+      "rows": 1000
+    },
+    "bg": {
+      "name": "Bulgarian",
+      "rows": 1000
+    },
+    "ca": {
+      "name": "Catalan",
+      "rows": 1000
+    },
+    "hr": {
+      "name": "Croatian",
+      "rows": 1000
+    },
+    "cs": {
+      "name": "Czech",
+      "rows": 1000
+    },
+    "da": {
+      "name": "Danish",
+      "rows": 1000
+    },
+    "nl": {
+      "name": "Dutch",
+      "rows": 1000
+    },
+    "en": {
+      "name": "English",
+      "rows": 1000
+    },
+    "et": {
+      "name": "Estonian",
+      "rows": 1000
+    },
+    "fi": {
+      "name": "Finnish",
+      "rows": 1000
+    },
+    "fr": {
+      "name": "French",
+      "rows": 1000
+    },
+    "ka": {
+      "name": "Georgian",
+      "rows": 1000
+    },
+    "de": {
+      "name": "German",
+      "rows": 1000
+    },
+    "el": {
+      "name": "Greek",
+      "rows": 1000
+    },
+    "hu": {
+      "name": "Hungarian",
+      "rows": 1000
+    },
+    "is": {
+      "name": "Icelandic",
+      "rows": 1000
+    },
+    "ga": {
+      "name": "Irish",
+      "rows": 1000
+    },
+    "it": {
+      "name": "Italian",
+      "rows": 1000
+    },
+    "lv": {
+      "name": "Latvian",
+      "rows": 1000
+    },
+    "lt": {
+      "name": "Lithuanian",
+      "rows": 1000
+    },
+    "mk": {
+      "name": "Macedonian",
+      "rows": 1000
+    },
+    "nb": {
+      "name": "Norwegian Bokmal",
+      "rows": 1000
+    },
+    "nn": {
+      "name": "Norwegian Nynorsk",
+      "rows": 1000
+    },
+    "pl": {
+      "name": "Polish",
+      "rows": 1000
+    },
+    "pt": {
+      "name": "Portuguese",
+      "rows": 1000
+    },
+    "ro": {
+      "name": "Romanian",
+      "rows": 1000
+    },
+    "ru": {
+      "name": "Russian",
+      "rows": 1000
+    },
+    "sr": {
+      "name": "Serbian",
+      "rows": 1000
+    },
+    "sk": {
+      "name": "Slovak",
+      "rows": 1000
+    },
+    "sl": {
+      "name": "Slovene",
+      "rows": 1000
+    },
+    "es": {
+      "name": "Spanish",
+      "rows": 1000
+    },
+    "sv": {
+      "name": "Swedish",
+      "rows": 1000
+    },
+    "tr": {
+      "name": "Turkish",
+      "rows": 1000
+    },
+    "uk": {
+      "name": "Ukrainian",
+      "rows": 1000
+    },
+    "cy": {
+      "name": "Welsh",
+      "rows": 1000
+    }
+  },
+  "benchmark": {
+    "path": "D:\\euro-lang-detector\\data\\benchmark.jsonl",
+    "rows": 600,
+    "by_language": {
+      "sq": 15,
+      "hy": 15,
+      "az": 15,
+      "eu": 15,
+      "be": 15,
+      "bs": 15,
+      "bg": 15,
+      "ca": 15,
+      "hr": 15,
+      "cs": 15,
+      "da": 15,
+      "nl": 15,
+      "en": 15,
+      "et": 15,
+      "fi": 15,
+      "fr": 15,
+      "ka": 15,
+      "de": 15,
+      "el": 15,
+      "hu": 15,
+      "is": 15,
+      "ga": 15,
+      "it": 15,
+      "lv": 15,
+      "lt": 15,
+      "mk": 15,
+      "nb": 15,
+      "nn": 15,
+      "pl": 15,
+      "pt": 15,
+      "ro": 15,
+      "ru": 15,
+      "sr": 15,
+      "sk": 15,
+      "sl": 15,
+      "es": 15,
+      "sv": 15,
+      "tr": 15,
+      "uk": 15,
+      "cy": 15
+    }
+  },
+  "frequency": {
+    "directory": "D:\\euro-lang-detector\\data\\frequency",
+    "by_language": {
+      "sq": 2000,
+      "hy": 2000,
+      "az": 2000,
+      "eu": 2000,
+      "be": 2000,
+      "bs": 2000,
+      "bg": 2000,
+      "ca": 2000,
+      "hr": 2000,
+      "cs": 2000,
+      "da": 2000,
+      "nl": 2000,
+      "en": 2000,
+      "et": 2000,
+      "fi": 2000,
+      "fr": 2000,
+      "ka": 2000,
+      "de": 2000,
+      "el": 2000,
+      "hu": 2000,
+      "is": 2000,
+      "ga": 2000,
+      "it": 2000,
+      "lv": 2000,
+      "lt": 2000,
+      "mk": 2000,
+      "nb": 2000,
+      "nn": 2000,
+      "pl": 2000,
+      "pt": 2000,
+      "ro": 2000,
+      "ru": 2000,
+      "sr": 2000,
+      "sk": 2000,
+      "sl": 2000,
+      "es": 2000,
+      "sv": 2000,
+      "tr": 2000,
+      "uk": 2000,
+      "cy": 2000
+    }
+  }
+}
