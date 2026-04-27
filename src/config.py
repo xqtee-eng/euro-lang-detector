@@ -9,7 +9,12 @@ MODEL_SNAPSHOT_DIR = MODELS_DIR / "snapshots"
 
 APP_HOST = os.environ.get("ELD_HOST", "127.0.0.1")
 APP_PORT = int(os.environ.get("ELD_PORT", "5000"))
-APP_DEBUG = os.environ.get("ELD_DEBUG", "1").strip().lower() in {"1", "true", "yes", "on"}
+APP_DEBUG = os.environ.get("ELD_DEBUG", "1").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
 
 NGRAM_MIN = 1
 NGRAM_MAX = 5

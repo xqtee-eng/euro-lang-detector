@@ -1,6 +1,11 @@
 from src.build_dataset import RAW_DATA_DIR, build_dataset
 from src.close_language_pack import apply_close_language_pack
-from src.config import CLOSE_PACK_DIR, DATASET_PATH, TEST_DATASET_PATH, TRAIN_DATASET_PATH
+from src.config import (
+    CLOSE_PACK_DIR,
+    DATASET_PATH,
+    TEST_DATASET_PATH,
+    TRAIN_DATASET_PATH,
+)
 from src.european_languages import SUPPORTED_LANGUAGE_CODES, get_language_name
 from src.utils import ensure_dir, fast_count_lines
 
@@ -43,7 +48,9 @@ def save_corpus_text(language, text, mode="append"):
     if language not in SUPPORTED_LANGUAGE_CODES:
         raise ValueError(f"Unsupported language code: {language}")
 
-    cleaned_lines = [line.strip() for line in str(text or "").splitlines() if line.strip()]
+    cleaned_lines = [
+        line.strip() for line in str(text or "").splitlines() if line.strip()
+    ]
     if not cleaned_lines:
         raise ValueError("Text file has no reviewed non-empty lines.")
 
@@ -79,7 +86,9 @@ def rebuild_corpus_dataset(max_samples_per_language=5000, test_ratio=0.2, seed=4
 
 
 def apply_curated_close_language_pack(mode="append", languages=None):
-    result = apply_close_language_pack(mode=mode, output_dir=CLOSE_PACK_DIR, languages=languages)
+    result = apply_close_language_pack(
+        mode=mode, output_dir=CLOSE_PACK_DIR, languages=languages
+    )
     return {**result, **dataset_stats()}
 
 

@@ -3,7 +3,6 @@ import shutil
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
-from hmac import compare_digest
 from pathlib import Path
 
 from src.config import (
@@ -42,8 +41,7 @@ def connect():
 
 def init_db():
     with connect() as db:
-        db.executescript(
-            """
+        db.executescript("""
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL UNIQUE,
@@ -136,8 +134,7 @@ def init_db():
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
             );
-            """
-        )
+            """)
         db.execute(
             """
             INSERT OR IGNORE INTO users(username, role, created_at)
@@ -233,7 +230,9 @@ def resolve_unknowns(texts=None, action="resolved"):
             )
             return cursor.rowcount
 
-        normalized = [str(text or "").strip() for text in texts if str(text or "").strip()]
+        normalized = [
+            str(text or "").strip() for text in texts if str(text or "").strip()
+        ]
         removed = 0
         for text in normalized:
             cursor = db.execute(
@@ -266,7 +265,12 @@ def add_feedback(text, lang, source="manual"):
             INSERT INTO feedback_samples(text, lang, source, created_at)
             VALUES (?, ?, ?, ?)
             """,
-            (str(text or "").strip(), str(lang or "").strip().lower(), source, utc_now()),
+            (
+                str(text or "").strip(),
+                str(lang or "").strip().lower(),
+                source,
+                utc_now(),
+            ),
         )
 
 
@@ -295,7 +299,9 @@ def mark_feedback_promoted(ids):
     return cursor.rowcount
 
 
-def upsert_lexicon_word(language, word, enabled=True, source="user", frequency=1, notes=""):
+def upsert_lexicon_word(
+    language, word, enabled=True, source="user", frequency=1, notes=""
+):
     init_db()
     language = str(language or "").strip().lower()
     word = str(word or "").strip().lower()
@@ -315,7 +321,16 @@ def upsert_lexicon_word(language, word, enabled=True, source="user", frequency=1
                 notes = excluded.notes,
                 updated_at = excluded.updated_at
             """,
-            (language, word, frequency, int(enabled), source, str(notes or "").strip(), now, now),
+            (
+                language,
+                word,
+                frequency,
+                int(enabled),
+                source,
+                str(notes or "").strip(),
+                now,
+                now,
+            ),
         )
     return {"language": language, "word": word, "frequency": frequency}
 
@@ -504,8 +519,12 @@ def create_model_snapshot(label="model"):
     if not MODEL_PATH.exists():
         return ""
     MODEL_SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-    safe_label = "".join(char if char.isalnum() or char in ("-", "_") else "_" for char in label)
-    snapshot_path = MODEL_SNAPSHOT_DIR / f"{_safe_timestamp()}_{safe_label}.profiles.json"
+    safe_label = "".join(
+        char if char.isalnum() or char in ("-", "_") else "_" for char in label
+    )
+    snapshot_path = (
+        MODEL_SNAPSHOT_DIR / f"{_safe_timestamp()}_{safe_label}.profiles.json"
+    )
     shutil.copy2(MODEL_PATH, snapshot_path)
     return str(snapshot_path)
 
@@ -562,7 +581,9 @@ def list_training_runs(limit=100):
     for row in rows:
         item = dict(row)
         snapshot_path = item.get("model_snapshot_path") or ""
-        item["rollback_available"] = bool(snapshot_path and Path(snapshot_path).exists())
+        item["rollback_available"] = bool(
+            snapshot_path and Path(snapshot_path).exists()
+        )
         result.append(item)
     return result
 
@@ -597,7 +618,11 @@ def rollback_model_to_run(run_id):
         model_snapshot_path=str(snapshot_path),
         notes=f"Rolled back to run {run_id}. Previous model backup: {backup_path}",
     )
-    return {"run_id": int(run_id), "snapshot": str(snapshot_path), "backup": backup_path}
+    return {
+        "run_id": int(run_id),
+        "snapshot": str(snapshot_path),
+        "backup": backup_path,
+    }
 
 
 def _candidate_gap(candidates):
@@ -608,7 +633,9 @@ def _candidate_gap(candidates):
         key=lambda item: float(item.get("confidence", 0.0)),
         reverse=True,
     )
-    return float(ordered[0].get("confidence", 0.0)) - float(ordered[1].get("confidence", 0.0))
+    return float(ordered[0].get("confidence", 0.0)) - float(
+        ordered[1].get("confidence", 0.0)
+    )
 
 
 def active_learning_priority(result):
@@ -732,7 +759,9 @@ def clear_active_learning_items(include_resolved=False):
         if include_resolved:
             cursor = db.execute("DELETE FROM active_learning_items")
         else:
-            cursor = db.execute("DELETE FROM active_learning_items WHERE status = 'active'")
+            cursor = db.execute(
+                "DELETE FROM active_learning_items WHERE status = 'active'"
+            )
     return cursor.rowcount
 
 
@@ -741,14 +770,30 @@ def storage_summary():
     with connect() as db:
         return {
             "database": str(DATABASE_PATH),
-            "unknown": db.execute("SELECT COALESCE(SUM(count), 0) FROM unknown_texts WHERE status = 'active'").fetchone()[0],
-            "resolved_unknown": db.execute("SELECT COUNT(*) FROM unknown_texts WHERE status != 'active'").fetchone()[0],
-            "feedback": db.execute("SELECT COUNT(*) FROM feedback_samples WHERE promoted = 0").fetchone()[0],
-            "feedback_total": db.execute("SELECT COUNT(*) FROM feedback_samples").fetchone()[0],
-            "active_learning": db.execute("SELECT COUNT(*) FROM active_learning_items WHERE status = 'active'").fetchone()[0],
-            "lexicon_words": db.execute("SELECT COUNT(*) FROM lexicon_words WHERE enabled = 1").fetchone()[0],
-            "name_hints": db.execute("SELECT COUNT(*) FROM name_hints WHERE enabled = 1").fetchone()[0],
-            "training_runs": db.execute("SELECT COUNT(*) FROM training_runs").fetchone()[0],
+            "unknown": db.execute(
+                "SELECT COALESCE(SUM(count), 0) FROM unknown_texts WHERE status = 'active'"
+            ).fetchone()[0],
+            "resolved_unknown": db.execute(
+                "SELECT COUNT(*) FROM unknown_texts WHERE status != 'active'"
+            ).fetchone()[0],
+            "feedback": db.execute(
+                "SELECT COUNT(*) FROM feedback_samples WHERE promoted = 0"
+            ).fetchone()[0],
+            "feedback_total": db.execute(
+                "SELECT COUNT(*) FROM feedback_samples"
+            ).fetchone()[0],
+            "active_learning": db.execute(
+                "SELECT COUNT(*) FROM active_learning_items WHERE status = 'active'"
+            ).fetchone()[0],
+            "lexicon_words": db.execute(
+                "SELECT COUNT(*) FROM lexicon_words WHERE enabled = 1"
+            ).fetchone()[0],
+            "name_hints": db.execute(
+                "SELECT COUNT(*) FROM name_hints WHERE enabled = 1"
+            ).fetchone()[0],
+            "training_runs": db.execute(
+                "SELECT COUNT(*) FROM training_runs"
+            ).fetchone()[0],
             "users": db.execute("SELECT COUNT(*) FROM users").fetchone()[0],
         }
 
@@ -766,30 +811,23 @@ def admin_dashboard_stats():
     evaluation = _latest_evaluation_report()
 
     with connect() as db:
-        recent_feedback = [
-            dict(row)
-            for row in db.execute(
-                """
+        recent_feedback = [dict(row) for row in db.execute("""
                 SELECT id, text, lang, source, promoted, created_at
                 FROM feedback_samples
                 ORDER BY id DESC
                 LIMIT 10
-                """
-            )
-        ]
+                """)]
         recent_unknowns = [
             {
                 **dict(row),
                 "details": json.loads(row["details_json"] or "{}"),
             }
-            for row in db.execute(
-                """
+            for row in db.execute("""
                 SELECT text, count, details_json, status, action, updated_at
                 FROM unknown_texts
                 ORDER BY updated_at DESC
                 LIMIT 10
-                """
-            )
+                """)
         ]
         recent_training_runs = list_training_runs(limit=10)
         recent_learning_items = [
@@ -797,58 +835,80 @@ def admin_dashboard_stats():
                 **dict(row),
                 "candidates": json.loads(row["candidates_json"] or "[]"),
             }
-            for row in db.execute(
-                """
+            for row in db.execute("""
                 SELECT id, text, suggested_language, confidence, source, reason,
                        candidates_json, priority, count, updated_at
                 FROM active_learning_items
                 WHERE status = 'active'
                 ORDER BY priority DESC, count DESC, updated_at DESC
                 LIMIT 10
-                """
-            )
+                """)
         ]
-        lexicon_by_language = [
-            dict(row)
-            for row in db.execute(
-                """
+        lexicon_by_language = [dict(row) for row in db.execute("""
                 SELECT language, COUNT(*) AS count
                 FROM lexicon_words
                 WHERE enabled = 1
                 GROUP BY language
                 ORDER BY language
-                """
-            )
-        ]
-        names_by_language = [
-            dict(row)
-            for row in db.execute(
-                """
+                """)]
+        names_by_language = [dict(row) for row in db.execute("""
                 SELECT language, COUNT(*) AS count
                 FROM name_hints
                 WHERE enabled = 1
                 GROUP BY language
                 ORDER BY language
-                """
-            )
-        ]
+                """)]
 
     dataset = {
         "dataset_rows": fast_count_lines(DATASET_PATH),
         "train_rows": fast_count_lines(TRAIN_DATASET_PATH),
         "test_rows": fast_count_lines(TEST_DATASET_PATH),
-        "raw_language_files": len(list((DATABASE_PATH.parent / "raw").glob("*.txt")))
-        if (DATABASE_PATH.parent / "raw").exists()
-        else 0,
+        "raw_language_files": (
+            len(list((DATABASE_PATH.parent / "raw").glob("*.txt")))
+            if (DATABASE_PATH.parent / "raw").exists()
+            else 0
+        ),
     }
 
     files = {
-        "database": {"path": str(DATABASE_PATH), "exists": DATABASE_PATH.exists(), "size_bytes": DATABASE_PATH.stat().st_size if DATABASE_PATH.exists() else 0},
-        "profiles": {"path": str(MODEL_PATH), "exists": MODEL_PATH.exists(), "size_bytes": MODEL_PATH.stat().st_size if MODEL_PATH.exists() else 0},
-        "evaluation_report": {"path": str(EVALUATION_REPORT_PATH), "exists": EVALUATION_REPORT_PATH.exists(), "size_bytes": EVALUATION_REPORT_PATH.stat().st_size if EVALUATION_REPORT_PATH.exists() else 0},
-        "dataset": {"path": str(DATASET_PATH), "exists": DATASET_PATH.exists(), "size_bytes": DATASET_PATH.stat().st_size if DATASET_PATH.exists() else 0},
-        "train": {"path": str(TRAIN_DATASET_PATH), "exists": TRAIN_DATASET_PATH.exists(), "size_bytes": TRAIN_DATASET_PATH.stat().st_size if TRAIN_DATASET_PATH.exists() else 0},
-        "test": {"path": str(TEST_DATASET_PATH), "exists": TEST_DATASET_PATH.exists(), "size_bytes": TEST_DATASET_PATH.stat().st_size if TEST_DATASET_PATH.exists() else 0},
+        "database": {
+            "path": str(DATABASE_PATH),
+            "exists": DATABASE_PATH.exists(),
+            "size_bytes": DATABASE_PATH.stat().st_size if DATABASE_PATH.exists() else 0,
+        },
+        "profiles": {
+            "path": str(MODEL_PATH),
+            "exists": MODEL_PATH.exists(),
+            "size_bytes": MODEL_PATH.stat().st_size if MODEL_PATH.exists() else 0,
+        },
+        "evaluation_report": {
+            "path": str(EVALUATION_REPORT_PATH),
+            "exists": EVALUATION_REPORT_PATH.exists(),
+            "size_bytes": (
+                EVALUATION_REPORT_PATH.stat().st_size
+                if EVALUATION_REPORT_PATH.exists()
+                else 0
+            ),
+        },
+        "dataset": {
+            "path": str(DATASET_PATH),
+            "exists": DATASET_PATH.exists(),
+            "size_bytes": DATASET_PATH.stat().st_size if DATASET_PATH.exists() else 0,
+        },
+        "train": {
+            "path": str(TRAIN_DATASET_PATH),
+            "exists": TRAIN_DATASET_PATH.exists(),
+            "size_bytes": (
+                TRAIN_DATASET_PATH.stat().st_size if TRAIN_DATASET_PATH.exists() else 0
+            ),
+        },
+        "test": {
+            "path": str(TEST_DATASET_PATH),
+            "exists": TEST_DATASET_PATH.exists(),
+            "size_bytes": (
+                TEST_DATASET_PATH.stat().st_size if TEST_DATASET_PATH.exists() else 0
+            ),
+        },
     }
 
     latest_accuracy = evaluation.get("accuracy")
@@ -874,7 +934,9 @@ def admin_dashboard_stats():
     }
 
 
-def clear_review_storage(include_resolved=False, include_feedback=False, include_learning=False):
+def clear_review_storage(
+    include_resolved=False, include_feedback=False, include_learning=False
+):
     init_db()
     before = storage_summary()
     with connect() as db:
@@ -938,7 +1000,9 @@ def import_jsonl_backup(force=False):
                 for line in handle:
                     word = line.strip().lower()
                     if word and not word.startswith("#"):
-                        upsert_lexicon_word(language, word, enabled=True, source="jsonl")
+                        upsert_lexicon_word(
+                            language, word, enabled=True, source="jsonl"
+                        )
 
     if NAME_DIR.exists():
         for path in NAME_DIR.glob("*.jsonl"):
@@ -970,7 +1034,9 @@ def export_jsonl_backup():
     unknown_rows = []
     resolved_rows = []
     with connect() as db:
-        for row in db.execute("SELECT text, count, details_json, status, action FROM unknown_texts ORDER BY text"):
+        for row in db.execute(
+            "SELECT text, count, details_json, status, action FROM unknown_texts ORDER BY text"
+        ):
             if row["status"] == "active":
                 for _ in range(max(1, int(row["count"]))):
                     unknown_rows.append(
@@ -980,7 +1046,9 @@ def export_jsonl_backup():
                         }
                     )
             else:
-                resolved_rows.append({"text": row["text"], "action": row["action"] or "resolved"})
+                resolved_rows.append(
+                    {"text": row["text"], "action": row["action"] or "resolved"}
+                )
 
         feedback_rows = [
             {
@@ -988,7 +1056,9 @@ def export_jsonl_backup():
                 "lang": row["lang"],
                 "source": row["source"],
             }
-            for row in db.execute("SELECT text, lang, source FROM feedback_samples WHERE promoted = 0 ORDER BY id")
+            for row in db.execute(
+                "SELECT text, lang, source FROM feedback_samples WHERE promoted = 0 ORDER BY id"
+            )
         ]
 
     write_jsonl(UNKNOWN_PATH, unknown_rows)
@@ -1000,21 +1070,30 @@ def export_jsonl_backup():
         "feedback": len(feedback_rows),
     }
 
+
 def reset_application_data():
     """
     Destructive action: Clears all dynamic application data except for the core datasets.
     """
     from src.config import (
-        DATABASE_PATH, MODEL_PATH, RELATED_MODEL_PATH, 
-        EVALUATION_REPORT_PATH, LOG_DIR, UNKNOWN_PATH,
-        FEEDBACK_PATH, RESOLVED_UNKNOWN_PATH, BENCHMARK_PATH,
-        LEXICON_DIR, NAME_DIR, MODEL_SNAPSHOT_DIR
+        DATABASE_PATH,
+        MODEL_PATH,
+        RELATED_MODEL_PATH,
+        EVALUATION_REPORT_PATH,
+        LOG_DIR,
+        UNKNOWN_PATH,
+        FEEDBACK_PATH,
+        RESOLVED_UNKNOWN_PATH,
+        BENCHMARK_PATH,
+        LEXICON_DIR,
+        NAME_DIR,
+        MODEL_SNAPSHOT_DIR,
     )
-    
+
     # 1. Database
     if DATABASE_PATH.exists():
         DATABASE_PATH.unlink()
-    
+
     # 2. Models
     if MODEL_PATH.exists():
         MODEL_PATH.unlink()
@@ -1025,23 +1104,28 @@ def reset_application_data():
     if MODEL_SNAPSHOT_DIR.exists():
         shutil.rmtree(MODEL_SNAPSHOT_DIR)
         MODEL_SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-    
+
     # 3. JSONL files (non-dataset)
-    paths_to_clear = [UNKNOWN_PATH, FEEDBACK_PATH, RESOLVED_UNKNOWN_PATH, BENCHMARK_PATH]
+    paths_to_clear = [
+        UNKNOWN_PATH,
+        FEEDBACK_PATH,
+        RESOLVED_UNKNOWN_PATH,
+        BENCHMARK_PATH,
+    ]
     for p in paths_to_clear:
         if p.exists():
             p.unlink()
-    
+
     # 4. User-added files in Lexicon and Names
     if LEXICON_DIR.exists():
         for path in LEXICON_DIR.glob("*.txt"):
             if not path.name.startswith("_"):
                 path.unlink()
-    
+
     if NAME_DIR.exists():
         for path in NAME_DIR.glob("*.jsonl"):
             path.unlink()
-            
+
     # 5. Logs
     if LOG_DIR.exists():
         for path in LOG_DIR.glob("*.log"):
@@ -1049,7 +1133,7 @@ def reset_application_data():
                 path.write_text("")
             except Exception:
                 pass
-                
+
     # Re-initialize DB
     init_db()
     return {"ok": True, "message": "Application data has been reset."}

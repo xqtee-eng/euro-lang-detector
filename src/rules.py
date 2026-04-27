@@ -81,7 +81,12 @@ def has_mixed_latin_cyrillic(text):
 
 def is_command_like(text):
     lowered = (text or "").strip().lower()
-    return lowered.startswith(COMMAND_HINTS) or ".py" in lowered or "http://" in lowered or "https://" in lowered
+    return (
+        lowered.startswith(COMMAND_HINTS)
+        or ".py" in lowered
+        or "http://" in lowered
+        or "https://" in lowered
+    )
 
 
 def is_short_ambiguous_cyrillic(text, max_length=7):

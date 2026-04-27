@@ -17,9 +17,7 @@ def get_app_logger():
             backupCount=3,
             encoding="utf-8",
         )
-        handler.setFormatter(
-            logging.Formatter("%(asctime)s %(levelname)s %(message)s")
-        )
+        handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
         logger.addHandler(handler)
     return logger
 
@@ -29,4 +27,4 @@ def tail_log(limit=200):
         return []
     with open(APP_LOG_PATH, "r", encoding="utf-8") as handle:
         lines = handle.readlines()
-    return [line.rstrip("\n") for line in lines[-max(1, int(limit or 200)):]]
+    return [line.rstrip("\n") for line in lines[-max(1, int(limit or 200)) :]]

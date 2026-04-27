@@ -9,8 +9,28 @@ DISABLED_PATH = LEXICON_DIR / "_disabled.jsonl"
 
 STARTER_WORDS = {
     "en": {"hello", "friend", "dog", "cat", "house", "world", "language", "word"},
-    "uk": {"привіт", "світ", "мова", "слово", "речення", "абетки", "козак", "коза", "собака", "паляниця"},
-    "be": {"добры", "дзень", "мова", "слова", "гэта", "беларускай", "вызначэння", "коза"},
+    "uk": {
+        "привіт",
+        "світ",
+        "мова",
+        "слово",
+        "речення",
+        "абетки",
+        "козак",
+        "коза",
+        "собака",
+        "паляниця",
+    },
+    "be": {
+        "добры",
+        "дзень",
+        "мова",
+        "слова",
+        "гэта",
+        "беларускай",
+        "вызначэння",
+        "коза",
+    },
     "ru": {"привет", "мир", "язык", "слово", "предложение", "собака", "коза"},
     "pl": {"dzien", "dzień", "slowo", "słowo", "jezyk", "język"},
     "fr": {"bonjour", "merci", "monde", "langue", "mot"},
@@ -51,7 +71,9 @@ def _write_disabled(disabled):
     LEXICON_DIR.mkdir(parents=True, exist_ok=True)
     with open(DISABLED_PATH, "w", encoding="utf-8") as handle:
         for language, word in sorted(disabled):
-            handle.write(json.dumps({"lang": language, "word": word}, ensure_ascii=False) + "\n")
+            handle.write(
+                json.dumps({"lang": language, "word": word}, ensure_ascii=False) + "\n"
+            )
 
 
 def _read_user_words(language):
@@ -138,14 +160,18 @@ def list_lexicon_entries(query="", language=None):
     index = load_lexicons()
     stored = {
         (row["language"], row["word"]): row
-        for row in list_lexicon_rows(query=query, language=language or None, enabled_only=True)
+        for row in list_lexicon_rows(
+            query=query, language=language or None, enabled_only=True
+        )
     }
     entries = []
     for word, languages in sorted(index.items()):
         if query and query not in word:
             continue
         selected_languages = sorted(
-            item_language for item_language in languages if not language or item_language == language
+            item_language
+            for item_language in languages
+            if not language or item_language == language
         )
         for item_language in selected_languages:
             meta = stored.get((item_language, word), {})

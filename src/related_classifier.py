@@ -8,7 +8,6 @@ from src.ngram import build_profile, generate_ngrams
 from src.preprocessing import clean_text
 from src.related_languages import RELATED_LANGUAGE_GROUPS, related_group_for
 
-
 RELATED_PROFILE_SIZE = 2500
 RELATED_TOKEN_PROFILE_SIZE = 800
 RELATED_MARKER_LIMIT = 18
@@ -115,9 +114,7 @@ def _input_profile(text):
 
 def _tokenize(text):
     return [
-        token
-        for token in re.findall(r"[\w'-]+", clean_text(text))
-        if len(token) >= 2
+        token for token in re.findall(r"[\w'-]+", clean_text(text)) if len(token) >= 2
     ]
 
 
@@ -235,7 +232,10 @@ def _distinctive_markers(group_token_counts, limit=RELATED_MARKER_LIMIT):
                 }
             )
 
-        ranked.sort(key=lambda item: (item["score"], item["count"], len(item["token"])), reverse=True)
+        ranked.sort(
+            key=lambda item: (item["score"], item["count"], len(item["token"])),
+            reverse=True,
+        )
         results[language] = ranked[:limit]
 
     return results
@@ -246,7 +246,16 @@ def _profile_markers(profile):
         return []
     markers = profile.get("markers", [])
     if markers and isinstance(markers[0], str):
-        return [{"kind": "token", "value": token, "label": token, "weight": 0.04, "source": "legacy"} for token in markers]
+        return [
+            {
+                "kind": "token",
+                "value": token,
+                "label": token,
+                "weight": 0.04,
+                "source": "legacy",
+            }
+            for token in markers
+        ]
     return markers
 
 
@@ -301,7 +310,8 @@ def _merge_marker_lists(manual_markers, learned_markers, limit=RELATED_MARKER_LI
                 {
                     "kind": kind,
                     "value": value,
-                    "label": marker.get("label") or _marker_label({"kind": kind, "value": value}),
+                    "label": marker.get("label")
+                    or _marker_label({"kind": kind, "value": value}),
                     "weight": round(float(marker.get("weight", 0.04)), 4),
                     "source": marker.get("source", "learned"),
                 }
@@ -313,7 +323,13 @@ def _merge_marker_lists(manual_markers, learned_markers, limit=RELATED_MARKER_LI
             if not value or key in seen:
                 continue
             merged.append(
-                {"kind": "token", "value": value, "label": value, "weight": 0.04, "source": "learned"}
+                {
+                    "kind": "token",
+                    "value": value,
+                    "label": value,
+                    "weight": 0.04,
+                    "source": "learned",
+                }
             )
             seen.add(key)
         if len(merged) >= limit:
@@ -344,7 +360,9 @@ def _marker_bonus(language, text, group_id, marker_map=None):
             bonus += weight
 
     if group_id == "serbo_croatian":
-        if language == "sr" and any(char in lowered for char in "\u0459\u045a\u0452\u045b\u045f"):
+        if language == "sr" and any(
+            char in lowered for char in "\u0459\u045a\u0452\u045b\u045f"
+        ):
             bonus += 0.10
         if language == "hr" and "ije" in lowered:
             bonus += 0.01
@@ -371,14 +389,14 @@ def load_related_profiles(path=RELATED_MODEL_PATH):
         return {}
 
 
-def train_related_classifiers(dataset_path=TRAIN_DATASET_PATH, save_path=RELATED_MODEL_PATH):
+def train_related_classifiers(
+    dataset_path=TRAIN_DATASET_PATH, save_path=RELATED_MODEL_PATH
+):
     grouped_texts = {
-        group_id: defaultdict(list)
-        for group_id in RELATED_LANGUAGE_GROUPS
+        group_id: defaultdict(list) for group_id in RELATED_LANGUAGE_GROUPS
     }
     grouped_token_counts = {
-        group_id: defaultdict(dict)
-        for group_id in RELATED_LANGUAGE_GROUPS
+        group_id: defaultdict(dict) for group_id in RELATED_LANGUAGE_GROUPS
     }
 
     if not dataset_path.exists():
@@ -400,7 +418,9 @@ def train_related_classifiers(dataset_path=TRAIN_DATASET_PATH, save_path=RELATED
         group_profiles = {}
         for language, texts in sorted(language_texts.items()):
             if texts:
-                token_counts = _merge_counts(_token_counts(texts), _load_frequency_tokens(language))
+                token_counts = _merge_counts(
+                    _token_counts(texts), _load_frequency_tokens(language)
+                )
                 grouped_token_counts[group_id][language] = token_counts
                 group_profiles[language] = {
                     "char": build_profile(texts, size=RELATED_PROFILE_SIZE),
@@ -408,7 +428,11 @@ def train_related_classifiers(dataset_path=TRAIN_DATASET_PATH, save_path=RELATED
                     "script": _dominant_script(" ".join(texts)),
                 }
 
-        marker_map = _distinctive_markers(grouped_token_counts[group_id]) if group_profiles else {}
+        marker_map = (
+            _distinctive_markers(grouped_token_counts[group_id])
+            if group_profiles
+            else {}
+        )
         for language, profile in group_profiles.items():
             manual_markers = _manual_markers(group_id, language)
             learned_markers = [
@@ -448,8 +472,14 @@ def rank_related_languages(text, group_id, top_k=3):
         if "char" in profile:
             char_profile = profile.get("char") or {}
             token_profile = profile.get("token") or {}
-            char_score = cosine_similarity(input_profile, char_profile) if char_profile else 0.0
-            token_score = cosine_similarity(input_token_profile, token_profile) if token_profile else 0.0
+            char_score = (
+                cosine_similarity(input_profile, char_profile) if char_profile else 0.0
+            )
+            token_score = (
+                cosine_similarity(input_token_profile, token_profile)
+                if token_profile
+                else 0.0
+            )
         else:
             char_profile = profile
             token_profile = {}
@@ -467,9 +497,15 @@ def rank_related_languages(text, group_id, top_k=3):
             if language in {"bs", "hr"}:
                 score += 0.02
         elif group_id == "norwegian" and token_profile:
-            if language == "nn" and any(token in input_token_profile for token in {"ikkje", "eg", "kva", "me", "dei"}):
+            if language == "nn" and any(
+                token in input_token_profile
+                for token in {"ikkje", "eg", "kva", "me", "dei"}
+            ):
                 score += 0.08
-            if language == "nb" and any(token in input_token_profile for token in {"ikke", "jeg", "hva", "vi", "dere"}):
+            if language == "nb" and any(
+                token in input_token_profile
+                for token in {"ikke", "jeg", "hva", "vi", "dere"}
+            ):
                 score += 0.08
 
         score += _marker_bonus(language, text, group_id, marker_map=marker_map)
@@ -481,8 +517,14 @@ def rank_related_languages(text, group_id, top_k=3):
                 "char_confidence": round(float(char_score), 4),
                 "token_confidence": round(float(token_score), 4),
                 "script": profile.get("script") if isinstance(profile, dict) else None,
-                "markers": _profile_markers(profile)[:6] if isinstance(profile, dict) else [],
-                "marker_labels": [_marker_label(item) for item in _profile_markers(profile)[:6]] if isinstance(profile, dict) else [],
+                "markers": (
+                    _profile_markers(profile)[:6] if isinstance(profile, dict) else []
+                ),
+                "marker_labels": (
+                    [_marker_label(item) for item in _profile_markers(profile)[:6]]
+                    if isinstance(profile, dict)
+                    else []
+                ),
             }
         )
     ranked.sort(key=lambda item: item["confidence"], reverse=True)
@@ -495,7 +537,9 @@ def refine_related_language_result(result, text):
     if not group_id or result.get("source") == "rule":
         return result
 
-    ranked = rank_related_languages(text, group_id, top_k=len(RELATED_LANGUAGE_GROUPS[group_id]["languages"]))
+    ranked = rank_related_languages(
+        text, group_id, top_k=len(RELATED_LANGUAGE_GROUPS[group_id]["languages"])
+    )
     if not ranked:
         return result
 
@@ -525,7 +569,9 @@ def refine_related_language_result(result, text):
     ):
         original_language = language
         result["language"] = best["language"]
-        result["confidence"] = max(float(result.get("confidence", 0.0) or 0.0), float(best["confidence"]))
+        result["confidence"] = max(
+            float(result.get("confidence", 0.0) or 0.0), float(best["confidence"])
+        )
         result["source"] = f"{result.get('source', 'detector')}+related"
         result["reason"] = "related_classifier_refinement"
         result["original_language"] = original_language

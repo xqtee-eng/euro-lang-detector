@@ -4,7 +4,6 @@ from pathlib import Path
 from src.config import CLOSE_PACK_DIR
 from src.european_languages import SUPPORTED_LANGUAGE_CODES
 
-
 CLOSE_LANGUAGE_PACK = {
     "bs": [
         "Ovdje uvijek pijemo kahvu prije posla.",
@@ -131,9 +130,16 @@ def apply_close_language_pack(mode="append", output_dir=CLOSE_PACK_DIR, language
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Apply curated close-language corpus sentences.")
+    parser = argparse.ArgumentParser(
+        description="Apply curated close-language corpus sentences."
+    )
     parser.add_argument("--mode", default="append", choices=("append", "replace"))
-    parser.add_argument("--languages", nargs="*", default=None, help="Optional subset, e.g. bs hr sr nb nn")
+    parser.add_argument(
+        "--languages",
+        nargs="*",
+        default=None,
+        help="Optional subset, e.g. bs hr sr nb nn",
+    )
     args = parser.parse_args()
     result = apply_close_language_pack(mode=args.mode, languages=args.languages)
     print(result)

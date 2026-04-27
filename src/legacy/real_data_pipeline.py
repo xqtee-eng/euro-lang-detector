@@ -7,13 +7,12 @@ from src.benchmark import run_benchmark
 from src.build_dataset import RAW_DATA_DIR, build_dataset
 from src.config import BENCHMARK_PATH, DATA_DIR, FREQUENCY_DIR
 from src.evaluate import evaluate
-from src.external_import import ISO3_TO_CODE, _clean_text, _open_text
+from src.legacy.external_import import ISO3_TO_CODE, _clean_text, _open_text
 from src.frequency import import_frequency_lists
 from src.european_languages import SUPPORTED_LANGUAGE_CODES, get_language_name
 from src.rules import WORD_RE
 from src.train import train
 from src.utils import ensure_dir, write_jsonl
-
 
 REAL_DATA_REPORT_PATH = DATA_DIR / "real_data_report.json"
 
@@ -102,7 +101,9 @@ def build_real_data_resources(
     raw_per_language = max(1, int(raw_per_language))
     benchmark_per_language = max(1, int(benchmark_per_language))
     frequency_words_per_language = max(1, int(frequency_words_per_language))
-    frequency_source_per_language = max(raw_per_language, int(frequency_source_per_language))
+    frequency_source_per_language = max(
+        raw_per_language, int(frequency_source_per_language)
+    )
     min_length = max(1, int(min_length))
     mode = "replace" if mode == "replace" else "append"
 
@@ -149,7 +150,10 @@ def build_real_data_resources(
             if len(text) < min_length:
                 continue
 
-            if len(benchmark_lines[language]) < benchmark_per_language and text not in benchmark_seen[language]:
+            if (
+                len(benchmark_lines[language]) < benchmark_per_language
+                and text not in benchmark_seen[language]
+            ):
                 benchmark_lines[language].append(text)
                 benchmark_seen[language].add(text)
                 used_lines += 1
@@ -158,7 +162,10 @@ def build_real_data_resources(
             if text in benchmark_seen[language]:
                 continue
 
-            if len(raw_lines[language]) < raw_per_language and text not in raw_seen[language]:
+            if (
+                len(raw_lines[language]) < raw_per_language
+                and text not in raw_seen[language]
+            ):
                 raw_lines[language].append(text)
                 raw_seen[language].add(text)
                 used_lines += 1
@@ -168,7 +175,9 @@ def build_real_data_resources(
                     frequency_counters[language][token] += 1
                 frequency_source_counts[language] += 1
 
-            if total_lines % 500000 == 0 and _targets_met(raw_lines, benchmark_lines, frequency_source_counts, args):
+            if total_lines % 500000 == 0 and _targets_met(
+                raw_lines, benchmark_lines, frequency_source_counts, args
+            ):
                 break
 
     for language, lines in raw_lines.items():
@@ -187,7 +196,9 @@ def build_real_data_resources(
             )
     _write_benchmark(benchmark_rows, path=benchmark_path)
 
-    frequency_summary = write_frequency_files(frequency_counters, frequency_dir, frequency_words_per_language)
+    frequency_summary = write_frequency_files(
+        frequency_counters, frequency_dir, frequency_words_per_language
+    )
 
     report = {
         "input": str(input_path),
@@ -208,7 +219,10 @@ def build_real_data_resources(
         "benchmark": {
             "path": str(benchmark_path),
             "rows": len(benchmark_rows),
-            "by_language": {language: len(benchmark_lines[language]) for language in SUPPORTED_LANGUAGE_CODES},
+            "by_language": {
+                language: len(benchmark_lines[language])
+                for language in SUPPORTED_LANGUAGE_CODES
+            },
         },
         "frequency": {
             "directory": str(frequency_dir),
@@ -221,7 +235,9 @@ def build_real_data_resources(
         train()
         evaluate()
         report["benchmark_result"] = run_benchmark()
-        report["lexicon_import"] = import_frequency_lists(limit_per_language=frequency_words_per_language)
+        report["lexicon_import"] = import_frequency_lists(
+            limit_per_language=frequency_words_per_language
+        )
 
     _write_json(report_path, report)
     return report
@@ -231,7 +247,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="Build real raw corpora, independent benchmark, and frequency TSV files from Tatoeba sentences."
     )
-    parser.add_argument("input", help="Path to Tatoeba sentences TSV, .bz2, or .tar.bz2")
+    parser.add_argument(
+        "input", help="Path to Tatoeba sentences TSV, .bz2, or .tar.bz2"
+    )
     parser.add_argument("--raw-per-language", type=int, default=1000)
     parser.add_argument("--benchmark-per-language", type=int, default=15)
     parser.add_argument("--frequency-words-per-language", type=int, default=2000)

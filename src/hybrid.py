@@ -85,19 +85,21 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
 
     rule_result = detect_by_rules(original_text)
     if rule_result:
-        return _finalize_result({
-            "text": original_text,
-            "language": rule_result["language"],
-            "confidence": rule_result["confidence"],
-            "source": rule_result["source"],
-            "reason": rule_result["reason"],
-            "candidates": [
-                {
-                    "language": rule_result["language"],
-                    "confidence": rule_result["confidence"],
-                }
-            ],
-        })
+        return _finalize_result(
+            {
+                "text": original_text,
+                "language": rule_result["language"],
+                "confidence": rule_result["confidence"],
+                "source": rule_result["source"],
+                "reason": rule_result["reason"],
+                "candidates": [
+                    {
+                        "language": rule_result["language"],
+                        "confidence": rule_result["confidence"],
+                    }
+                ],
+            }
+        )
 
     name_result = detect_name(original_text)
     if name_result:
@@ -125,8 +127,15 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
         result = _unknown_result(original_text)
         result["source"] = "rule"
         result["reason"] = "single_cyrillic_proper_name"
+        result["entity_type"] = "person_name"
         if record_unknown:
-            queue_unknown(original_text, details={"reason": "single_cyrillic_proper_name"})
+            queue_unknown(
+                original_text,
+                details={
+                    "reason": "single_cyrillic_proper_name",
+                    "entity_type": "person_name",
+                },
+            )
         return _track_learning(result, record_unknown)
 
     language, confidence, candidates = detect_with_lingua(normalized, top_k=top_k)
@@ -138,7 +147,10 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             "source": "lingua",
             "candidates": candidates,
         }
-        return _track_learning(_finalize_result(refine_related_language_result(result, normalized)), record_unknown)
+        return _track_learning(
+            _finalize_result(refine_related_language_result(result, normalized)),
+            record_unknown,
+        )
 
     profile_language, profile_confidence = detect_with_profile(normalized)
     profile_candidates = rank_languages(normalized, top_k=top_k)
@@ -150,7 +162,10 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             "source": "profile",
             "candidates": profile_candidates,
         }
-        return _track_learning(_finalize_result(refine_related_language_result(result, normalized)), record_unknown)
+        return _track_learning(
+            _finalize_result(refine_related_language_result(result, normalized)),
+            record_unknown,
+        )
 
     unknown = _unknown_result(original_text, candidates or profile_candidates)
     if record_unknown:

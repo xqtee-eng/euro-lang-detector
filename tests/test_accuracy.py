@@ -9,7 +9,7 @@ from src.benchmark import run_benchmark
 from src.build_dataset import split_rows
 from src.character_profiles import character_candidates, generate_character_profiles
 from src.close_language_pack import apply_close_language_pack
-from src.external_import import import_tatoeba_sentences
+from src.legacy.external_import import import_tatoeba_sentences
 from src.frequency import generate_frequency_lists, list_frequency_files
 from src.hybrid import smart_detect, smart_detect_details
 from src.name_detector import list_name_hints
@@ -17,7 +17,6 @@ from src.legacy.real_data_pipeline import build_real_data_resources
 from src.related_classifier import train_related_classifiers
 from src.seeding.seed_dataset import expand_seed_texts
 from src.word_lexicon import list_lexicon_words
-
 
 UKRAINIAN_GREETING = "\u041f\u0440\u0438\u0432\u0456\u0442, \u044f\u043a \u0442\u0432\u043e\u0457 \u0441\u043f\u0440\u0430\u0432\u0438?"
 BELARUSIAN_GREETING = "\u0414\u043e\u0431\u0440\u044b \u0434\u0437\u0435\u043d\u044c"
@@ -29,7 +28,9 @@ KNOWN_WORD = "\u043a\u043e\u0437\u0430\u043a"
 AMBIGUOUS_WORD = "\u043a\u043e\u0437\u0430"
 GREEK_TEXT = "\u039a\u03b1\u03bb\u03b7\u03bc\u03ad\u03c1\u03b1 \u03c3\u03b1\u03c2"
 GEORGIAN_TEXT = "\u10e5\u10d0\u10e0\u10d7\u10e3\u10da\u10d8 \u10d4\u10dc\u10d0"
-ARMENIAN_TEXT = "\u0540\u0561\u0575\u0565\u0580\u0565\u0576 \u056c\u0565\u0566\u0578\u0582"
+ARMENIAN_TEXT = (
+    "\u0540\u0561\u0575\u0565\u0580\u0565\u0576 \u056c\u0565\u0566\u0578\u0582"
+)
 KNOWN_UKRAINIAN_NAME_QUERY = "\u043e\u0441\u0442\u0430\u043f"
 KNOWN_WORD_QUERY = "\u043a\u043e\u0437\u0430\u043a"
 BROKEN_NAME_ENDPOINT_QUERY = "\u041e\u0441\u0442\u0430\u043f"
@@ -70,24 +71,24 @@ class DetectorSmokeTests(unittest.TestCase):
     def test_single_cyrillic_proper_name_returns_unknown(self):
         result = smart_detect_details(AMBIGUOUS_NAME, record_unknown=False)
         self.assertEqual(result["language"], "unknown")
-        self.assertEqual(result["reason"], "ambiguous_name")
-        self.assertEqual(result["entity_type"], "person_name")
+        self.assertEqual(result["reason"], "single_cyrillic_proper_name")
+        self.assertEqual(result.get("entity_type"), "person_name")
 
     def test_known_ukrainian_name_returns_name_entity(self):
         result = smart_detect_details(KNOWN_NAME)
         self.assertEqual(result["language"], "uk")
-        self.assertEqual(result["entity_type"], "person_name")
+        self.assertEqual(result.get("entity_type"), "person_name")
 
     def test_known_ukrainian_word_returns_word_entity(self):
         result = smart_detect_details(KNOWN_WORD)
         self.assertEqual(result["language"], "uk")
-        self.assertEqual(result["entity_type"], "word")
+        self.assertEqual(result.get("entity_type"), "word")
 
     def test_ambiguous_word_returns_candidates(self):
         result = smart_detect_details(AMBIGUOUS_WORD, record_unknown=False)
         self.assertEqual(result["language"], "unknown")
         self.assertEqual(result["reason"], "ambiguous_word")
-        self.assertEqual(result["entity_type"], "word")
+        self.assertEqual(result.get("entity_type"), "word")
 
     def test_details_response_has_candidates(self):
         result = smart_detect_details("Bonjour tout le monde")
@@ -185,7 +186,9 @@ class DetectorSmokeTests(unittest.TestCase):
                 "3\tzzz\tIgnored language.\n",
                 encoding="utf-8",
             )
-            result = import_tatoeba_sentences(input_path, output_dir=output_dir, mode="replace")
+            result = import_tatoeba_sentences(
+                input_path, output_dir=output_dir, mode="replace"
+            )
             self.assertEqual(result["by_language"]["en"], 1)
             self.assertEqual(result["by_language"]["uk"], 1)
             self.assertTrue((output_dir / "en.txt").exists())
@@ -209,7 +212,9 @@ class DetectorSmokeTests(unittest.TestCase):
             )
             with tarfile.open(archive_path, "w:bz2") as archive:
                 archive.add(source_path, arcname="sentences.tsv")
-            result = import_tatoeba_sentences(archive_path, output_dir=output_dir, mode="replace")
+            result = import_tatoeba_sentences(
+                archive_path, output_dir=output_dir, mode="replace"
+            )
             self.assertEqual(result["by_language"]["en"], 1)
             self.assertEqual(result["by_language"]["fr"], 1)
         finally:
@@ -268,7 +273,11 @@ class DetectorSmokeTests(unittest.TestCase):
         if temp_dir.exists():
             shutil.rmtree(temp_dir)
         try:
-            result = apply_close_language_pack(mode="replace", output_dir=temp_dir, languages=["bs", "hr", "sr", "nb", "nn"])
+            result = apply_close_language_pack(
+                mode="replace",
+                output_dir=temp_dir,
+                languages=["bs", "hr", "sr", "nb", "nn"],
+            )
             self.assertEqual(set(result["languages"]), {"bs", "hr", "sr", "nb", "nn"})
             self.assertGreaterEqual(result["languages"]["bs"]["total_lines"], 10)
             self.assertTrue((temp_dir / "bs.txt").exists())
@@ -310,7 +319,9 @@ class DetectorSmokeTests(unittest.TestCase):
             self.assertIn("norwegian", profiles)
             self.assertTrue(profiles["serbo_croatian"]["hr"]["markers"])
             self.assertTrue(profiles["norwegian"]["nn"]["markers"])
-            self.assertEqual(profiles["serbo_croatian"]["hr"]["markers"][0]["source"], "manual")
+            self.assertEqual(
+                profiles["serbo_croatian"]["hr"]["markers"][0]["source"], "manual"
+            )
         finally:
             if temp_dir.exists():
                 shutil.rmtree(temp_dir)
@@ -322,7 +333,9 @@ class DetectorSmokeTests(unittest.TestCase):
 
     def test_name_search_lists_known_name(self):
         names = list_name_hints(query=KNOWN_UKRAINIAN_NAME_QUERY, language="uk")
-        self.assertTrue(any(item["name"] == KNOWN_UKRAINIAN_NAME_QUERY for item in names))
+        self.assertTrue(
+            any(item["name"] == KNOWN_UKRAINIAN_NAME_QUERY for item in names)
+        )
 
     def test_api_pages_and_json_endpoints_work(self):
         client = app.test_client()
@@ -375,7 +388,10 @@ class DetectorSmokeTests(unittest.TestCase):
 
         analyze_response = client.post(
             "/analyze",
-            json={"text": "hello \u043f\u0440\u0438\u0432\u0456\u0442 bonjour", "top_k": 3},
+            json={
+                "text": "hello \u043f\u0440\u0438\u0432\u0456\u0442 bonjour",
+                "top_k": 3,
+            },
         )
         self.assertEqual(analyze_response.status_code, 200)
         self.assertEqual(analyze_response.get_json()["language"], "mixed")

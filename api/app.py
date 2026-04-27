@@ -16,8 +16,19 @@ from flask import Flask, jsonify, redirect, request, session
 from src.analyzer import analyze_words
 from src.app_logging import get_app_logger, tail_log
 from src.benchmark import run_benchmark
-from src.character_profiles import character_candidates, character_profile_summary, generate_character_profiles
-from src.config import ADMIN_PASSWORD, APP_DEBUG, APP_HOST, APP_PORT, EVALUATION_REPORT_PATH, SECRET_KEY
+from src.character_profiles import (
+    character_candidates,
+    character_profile_summary,
+    generate_character_profiles,
+)
+from src.config import (
+    ADMIN_PASSWORD,
+    APP_DEBUG,
+    APP_HOST,
+    APP_PORT,
+    EVALUATION_REPORT_PATH,
+    SECRET_KEY,
+)
 from src.corpus import (
     apply_curated_close_language_pack,
     dataset_stats,
@@ -28,11 +39,21 @@ from src.corpus import (
 )
 from src.data_quality import data_quality_report
 from src.evaluate import evaluate
-from src.frequency import generate_frequency_lists, import_frequency_lists, list_frequency_files, save_frequency_text
+from src.frequency import (
+    generate_frequency_lists,
+    import_frequency_lists,
+    list_frequency_files,
+    save_frequency_text,
+)
 from src.european_languages import EUROPEAN_LANGUAGE_SPECS, SUPPORTED_LANGUAGE_CODES
 from src.hybrid import smart_detect_details
 from src.model_card import model_card
-from src.name_detector import add_name_hint, delete_name_hint, detect_name, list_name_hints
+from src.name_detector import (
+    add_name_hint,
+    delete_name_hint,
+    detect_name,
+    list_name_hints,
+)
 from src.openapi import openapi_spec
 from src.related_report import related_language_report
 from src.retrain import retrain
@@ -101,7 +122,10 @@ def admin_authenticated():
 
 
 def wants_json_response():
-    return request.path.endswith(".json") or request.accept_mimetypes.best == "application/json"
+    return (
+        request.path.endswith(".json")
+        or request.accept_mimetypes.best == "application/json"
+    )
 
 
 @app.before_request
@@ -162,12 +186,12 @@ def page(title, body, area="public"):
         ]
         shell_class = "public-shell"
         eyebrow = "Public app"
-    
+
     nav_html = "\n      ".join(
         f'<a href="{href}" class="{"active" if request.path == href else ""}" title="{label}"><i data-lucide="{icon}"></i> <span>{label}</span></a>'
         for href, label, icon in nav_items
     )
-    
+
     template = """
 <!doctype html>
 <html lang="en">
@@ -378,12 +402,13 @@ def page(title, body, area="public"):
 </body>
 </html>
 """
-    return (template
-            .replace("{{title}}", str(title))
-            .replace("{{body}}", str(body))
-            .replace("{{nav_html}}", nav_html)
-            .replace("{{shell_class}}", shell_class)
-            .replace("{{eyebrow}}", eyebrow))
+    return (
+        template.replace("{{title}}", str(title))
+        .replace("{{body}}", str(body))
+        .replace("{{nav_html}}", nav_html)
+        .replace("{{shell_class}}", shell_class)
+        .replace("{{eyebrow}}", eyebrow)
+    )
 
 
 @app.get("/admin/login")
@@ -411,11 +436,16 @@ def login_form():
 @app.post("/admin/login")
 def login_action():
     password = request.form.get("password")
-    if password and compare_digest(password.encode("utf-8"), ADMIN_PASSWORD.encode("utf-8")):
+    if password and compare_digest(
+        password.encode("utf-8"), ADMIN_PASSWORD.encode("utf-8")
+    ):
         session["admin_authenticated"] = True
         session.permanent = True
         return redirect(request.form.get("next", "/admin"))
-    return page("Login", "<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Access Denied</h2><p>Incorrect password.</p><a href='/admin/login'>Try again</a></div>")
+    return page(
+        "Login",
+        "<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Access Denied</h2><p>Incorrect password.</p><a href='/admin/login'>Try again</a></div>",
+    )
 
 
 @app.get("/admin/logout")
@@ -430,19 +460,22 @@ def admin_status_api():
     stats = admin_dashboard_stats()
     summary = stats["summary"]
     db_path = Path("data/app.db")
-    db_size = f"{db_path.stat().st_size / 1024 / 1024:.1f} MB" if db_path.exists() else "0 MB"
-    return jsonify({
-        "lexicon_words": summary.get("lexicon_words", 0),
-        "name_hints": summary.get("name_hints", 0),
-        "db_size": db_size,
-        "uptime": "99.9%",
-    })
+    db_size = (
+        f"{db_path.stat().st_size / 1024 / 1024:.1f} MB" if db_path.exists() else "0 MB"
+    )
+    return jsonify(
+        {
+            "lexicon_words": summary.get("lexicon_words", 0),
+            "name_hints": summary.get("name_hints", 0),
+            "db_size": db_size,
+            "uptime": "99.9%",
+        }
+    )
 
 
 @app.get("/")
 def index():
     return redirect("/detect")
-
 
 
 @app.get("/health")
@@ -544,7 +577,6 @@ def model_card_page():
 
 @app.get("/api-docs")
 def api_docs_page():
-    spec = openapi_spec()
     return page(
         "API Docs",
         f"""
@@ -576,7 +608,9 @@ def quality_json_api():
 def quality_page():
     report = data_quality_report()
     scores = report["scores"]
-    recommendations = "".join(f"<li>{escape(item)}</li>" for item in report["recommendations"])
+    recommendations = "".join(
+        f"<li>{escape(item)}</li>" for item in report["recommendations"]
+    )
     dataset_rows = _rows(
         [
             {
@@ -717,7 +751,12 @@ def benchmark_page():
             {"category": category, **stats}
             for category, stats in report["by_category"].items()
         ],
-        [("category", "Category"), ("samples", "Samples"), ("correct", "Correct"), ("accuracy", "Accuracy")],
+        [
+            ("category", "Category"),
+            ("samples", "Samples"),
+            ("correct", "Correct"),
+            ("accuracy", "Accuracy"),
+        ],
     )
     rows = _rows(
         report["rows"],
@@ -993,14 +1032,18 @@ def frequency_upload_api():
 @app.post("/frequency/generate")
 def frequency_generate_api():
     payload = request.get_json(silent=True) or {}
-    result = generate_frequency_lists(max_words_per_language=payload.get("max_words_per_language", 1000))
+    result = generate_frequency_lists(
+        max_words_per_language=payload.get("max_words_per_language", 1000)
+    )
     return jsonify({"ok": True, **result})
 
 
 @app.post("/frequency/import")
 def frequency_import_api():
     payload = request.get_json(silent=True) or {}
-    result = import_frequency_lists(limit_per_language=payload.get("limit_per_language", 1000))
+    result = import_frequency_lists(
+        limit_per_language=payload.get("limit_per_language", 1000)
+    )
     return jsonify({"ok": True, **result})
 
 
@@ -1021,18 +1064,23 @@ def _admin_card(label, value, note="", icon="activity"):
 
 def _rows(items, columns):
     if not items:
-        return "<tr><td colspan='%d' class='muted'>No data yet.</td></tr>" % len(columns)
+        return "<tr><td colspan='%d' class='muted'>No data yet.</td></tr>" % len(
+            columns
+        )
     output = []
     for item in items:
         cells = []
         for key, label in columns:
             value = item.get(key, "")
             cell_content = escape(str(value))
-            
+
             # Visual bar logic for accuracy/confidence/ratios
             try:
                 # If key contains 'accuracy', 'confidence', 'margin' or value is a float between 0 and 1
-                is_metric = any(m in key.lower() for m in ["accuracy", "confidence", "margin", "ratio"])
+                is_metric = any(
+                    m in key.lower()
+                    for m in ["accuracy", "confidence", "margin", "ratio"]
+                )
                 if is_metric and isinstance(value, (float, int)):
                     val = float(value)
                     if 0 <= val <= 1:
@@ -1044,7 +1092,7 @@ def _rows(items, columns):
 
             if isinstance(value, (dict, list)):
                 cell_content = f"<pre style='max-height:100px;font-size:11px'>{escape(json.dumps(value, ensure_ascii=False, indent=2))}</pre>"
-            
+
             cells.append(f"<td>{cell_content}</td>")
         output.append("<tr>" + "".join(cells) + "</tr>")
     return "".join(output)
@@ -1066,24 +1114,59 @@ def admin_dashboard():
 
     cards = "".join(
         [
-            _admin_card("Accuracy", evaluation.get("accuracy", 0), "latest evaluation", icon="target"),
-            _admin_card("Unknown", summary.get("unknown", 0), "active items", icon="help-circle"),
-            _admin_card("Learning Queue", summary.get("active_learning", 0), "needs human label", icon="brain"),
-            _admin_card("Feedback", summary.get("feedback", 0), "waiting for retrain", icon="message-square"),
-            _admin_card("Lexicon", summary.get("lexicon_words", 0), "enabled words", icon="book"),
-            _admin_card("Names", summary.get("name_hints", 0), "enabled hints", icon="users"),
-            _admin_card("Training Runs", summary.get("training_runs", 0), "saved in SQLite", icon="database"),
-            _admin_card("Dataset", dataset.get("dataset_rows", 0), "all rows", icon="layers"),
-            _admin_card("Train / Test", f"{dataset.get('train_rows', 0)} / {dataset.get('test_rows', 0)}", "split ratio", icon="git-branch"),
+            _admin_card(
+                "Accuracy",
+                evaluation.get("accuracy", 0),
+                "latest evaluation",
+                icon="target",
+            ),
+            _admin_card(
+                "Unknown", summary.get("unknown", 0), "active items", icon="help-circle"
+            ),
+            _admin_card(
+                "Learning Queue",
+                summary.get("active_learning", 0),
+                "needs human label",
+                icon="brain",
+            ),
+            _admin_card(
+                "Feedback",
+                summary.get("feedback", 0),
+                "waiting for retrain",
+                icon="message-square",
+            ),
+            _admin_card(
+                "Lexicon", summary.get("lexicon_words", 0), "enabled words", icon="book"
+            ),
+            _admin_card(
+                "Names", summary.get("name_hints", 0), "enabled hints", icon="users"
+            ),
+            _admin_card(
+                "Training Runs",
+                summary.get("training_runs", 0),
+                "saved in SQLite",
+                icon="database",
+            ),
+            _admin_card(
+                "Dataset", dataset.get("dataset_rows", 0), "all rows", icon="layers"
+            ),
+            _admin_card(
+                "Train / Test",
+                f"{dataset.get('train_rows', 0)} / {dataset.get('test_rows', 0)}",
+                "split ratio",
+                icon="git-branch",
+            ),
         ]
     )
 
     file_rows = _rows(
+        [{"name": name, **info} for name, info in stats["files"].items()],
         [
-            {"name": name, **info}
-            for name, info in stats["files"].items()
+            ("name", "Name"),
+            ("exists", "Exists"),
+            ("size_bytes", "Size"),
+            ("path", "Path"),
         ],
-        [("name", "Name"), ("exists", "Exists"), ("size_bytes", "Size"), ("path", "Path")],
     )
 
     body = f"""
@@ -1205,10 +1288,13 @@ def admin_rebuild_dataset_api():
 @admin_required
 def admin_seed_api():
     from src.seeding.seed_dataset import seed_raw_dataset
+
     try:
+
         def action():
             seed_raw_dataset(overwrite=True)
             return {"message": "Seed data created successfully."}
+
         result = _capture_admin_action(action)
     except Exception as exc:
         return jsonify({"ok": False, "error": str(exc)}), 500
@@ -1219,13 +1305,12 @@ def admin_seed_api():
 @admin_required
 def admin_train_api():
     try:
+
         def action():
             profiles = train(kind="admin_train")
             accuracy = evaluate()
-            return {
-                "profiles": len(profiles),
-                "accuracy": f"{accuracy:.2%}"
-            }
+            return {"profiles": len(profiles), "accuracy": f"{accuracy:.2%}"}
+
         result = _capture_admin_action(action)
     except Exception as exc:
         return jsonify({"ok": False, "error": str(exc)}), 500
@@ -1277,11 +1362,13 @@ def training_runs_page():
         accuracy = f"{run.get('accuracy', 0):.2%}"
         created = str(run.get("created_at", ""))
         snapshot = str(run.get("model_snapshot_path", "") or "")
-        
+
         rollback_button = ""
         if run.get("rollback_available"):
-            rollback_button = f"<button onclick='rollbackRun({run_id})'>Rollback</button>"
-            
+            rollback_button = (
+                f"<button onclick='rollbackRun({run_id})'>Rollback</button>"
+            )
+
         rows.append(
             "<tr>"
             f"<td>{escape(run_id)}</td>"
@@ -1337,6 +1424,7 @@ def languages():
 @admin_required
 def admin_reset_api():
     from src.storage import reset_application_data
+
     try:
         result = reset_application_data()
     except Exception as exc:
@@ -1740,7 +1828,9 @@ def clear_review_items_api():
         removed = clear_unknown_items()
     else:
         removed = clear_unknown_items(payload.get("texts", []))
-    return jsonify({"ok": True, "removed": removed, "storage": review_storage_summary()})
+    return jsonify(
+        {"ok": True, "removed": removed, "storage": review_storage_summary()}
+    )
 
 
 @app.get("/review/storage")
@@ -1872,7 +1962,13 @@ def save_corpus_file_api():
         result = save_corpus_text(lang, text, mode=mode)
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
-    return jsonify({"ok": True, "message": f"Saved {result['total_lines']} reviewed line(s) for {lang}.", **result})
+    return jsonify(
+        {
+            "ok": True,
+            "message": f"Saved {result['total_lines']} reviewed line(s) for {lang}.",
+            **result,
+        }
+    )
 
 
 @app.post("/corpus/build")
@@ -1886,7 +1982,13 @@ def corpus_build_api():
         )
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
-    return jsonify({"ok": True, "message": f"Dataset built: {result['built_rows']} row(s).", **result})
+    return jsonify(
+        {
+            "ok": True,
+            "message": f"Dataset built: {result['built_rows']} row(s).",
+            **result,
+        }
+    )
 
 
 @app.post("/corpus/close-pack")
@@ -2053,7 +2155,13 @@ def add_lexicon_item_api():
         items = import_lexicon_words(lang, words)
         for item in items:
             clear_unknown_items([item["word"]])
-        return jsonify({"ok": True, "message": f"Imported {len(items)} word(s) as {lang}.", "items": items})
+        return jsonify(
+            {
+                "ok": True,
+                "message": f"Imported {len(items)} word(s) as {lang}.",
+                "items": items,
+            }
+        )
 
     item = add_lexicon_word(lang, word, frequency=frequency, notes=notes)
     clear_unknown_items([word])
@@ -2162,7 +2270,15 @@ def names_items_api():
 @app.get("/names/analyze")
 def names_analyze_api():
     name = request.args.get("name", "")
-    return jsonify(detect_name(name) or {"language": "unknown", "source": "name", "entity_type": "unknown_name", "text": name})
+    return jsonify(
+        detect_name(name)
+        or {
+            "language": "unknown",
+            "source": "name",
+            "entity_type": "unknown_name",
+            "text": name,
+        }
+    )
 
 
 @app.post("/names/items")
@@ -2179,7 +2295,9 @@ def add_name_item_api():
     if not name:
         return jsonify({"error": "Name is required."}), 400
 
-    item = add_name_hint(name, lang, country=country, confidence=confidence, name_type=name_type)
+    item = add_name_hint(
+        name, lang, country=country, confidence=confidence, name_type=name_type
+    )
     clear_unknown_items([name])
     return jsonify({"ok": True, "message": f"Saved {name} as {lang}.", "item": item})
 
@@ -2202,7 +2320,9 @@ def report_form():
         with open(EVALUATION_REPORT_PATH, "r", encoding="utf-8") as handle:
             report = json.load(handle)
     else:
-        report = {"message": "Run python -m src.evaluate to create models/evaluation_report.json."}
+        report = {
+            "message": "Run python -m src.evaluate to create models/evaluation_report.json."
+        }
 
     rows = ""
     for language, stats in report.get("by_language", {}).items():
@@ -2233,7 +2353,10 @@ def report_form():
 @app.get("/report.json")
 def report_json_api():
     if not EVALUATION_REPORT_PATH.exists():
-        return jsonify({"error": "Report not found. Run python -m src.evaluate first."}), 404
+        return (
+            jsonify({"error": "Report not found. Run python -m src.evaluate first."}),
+            404,
+        )
     with open(EVALUATION_REPORT_PATH, "r", encoding="utf-8") as handle:
         return jsonify(json.load(handle))
 

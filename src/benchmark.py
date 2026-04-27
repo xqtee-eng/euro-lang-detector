@@ -5,7 +5,6 @@ from src.config import BENCHMARK_PATH
 from src.hybrid import smart_detect_details
 from src.related_languages import same_related_group
 
-
 BENCHMARK_SAMPLES = [
     {"text": "Привіт", "expected": "uk", "category": "short_greeting"},
     {"text": "Добры дзень", "expected": "be", "category": "short_greeting"},
@@ -68,7 +67,9 @@ def run_benchmark(samples=None):
         result = smart_detect_details(sample["text"], record_unknown=False)
         prediction = result.get("language", "unknown")
         is_correct = prediction == sample["expected"]
-        is_group_correct = is_correct or same_related_group(sample["expected"], prediction)
+        is_group_correct = is_correct or same_related_group(
+            sample["expected"], prediction
+        )
         correct += int(is_correct)
         group_correct += int(is_group_correct)
         by_category[sample["category"]]["samples"] += 1
@@ -97,8 +98,12 @@ def run_benchmark(samples=None):
         samples_count = stats["samples"]
         categories[category] = {
             **stats,
-            "accuracy": round(stats["correct"] / samples_count, 4) if samples_count else 0,
-            "group_accuracy": round(stats["group_correct"] / samples_count, 4) if samples_count else 0,
+            "accuracy": (
+                round(stats["correct"] / samples_count, 4) if samples_count else 0
+            ),
+            "group_accuracy": (
+                round(stats["group_correct"] / samples_count, 4) if samples_count else 0
+            ),
         }
 
     return {

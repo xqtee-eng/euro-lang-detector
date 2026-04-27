@@ -1,9 +1,14 @@
 import argparse
-import json
 import random
 from pathlib import Path
 
-from src.config import CLOSE_PACK_DIR, DATA_DIR, DATASET_PATH, TEST_DATASET_PATH, TRAIN_DATASET_PATH
+from src.config import (
+    CLOSE_PACK_DIR,
+    DATA_DIR,
+    DATASET_PATH,
+    TEST_DATASET_PATH,
+    TRAIN_DATASET_PATH,
+)
 from src.european_languages import SUPPORTED_LANGUAGE_CODES
 
 RAW_DATA_DIR = DATA_DIR / "raw"
@@ -17,7 +22,9 @@ def load_txt(path, min_length=10):
 from src.utils import write_jsonl
 
 
-def _sample_rows_from_dir(directory, max_samples_per_language, rng, min_length=10, source="raw"):
+def _sample_rows_from_dir(
+    directory, max_samples_per_language, rng, min_length=10, source="raw"
+):
     rows = []
     if not Path(directory).exists():
         return rows
@@ -65,18 +72,26 @@ def build_dataset(max_samples_per_language=5000, test_ratio=0.2, seed=42):
     if not RAW_DATA_DIR.exists():
         RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
         print(f"Created raw data directory: {RAW_DATA_DIR}")
-        print("Add reviewed files like data/raw/uk.txt, data/raw/fr.txt, data/raw/de.txt and run again.")
+        print(
+            "Add reviewed files like data/raw/uk.txt, data/raw/fr.txt, data/raw/de.txt and run again."
+        )
         return []
 
     rng = random.Random(seed)
-    base_rows = _sample_rows_from_dir(RAW_DATA_DIR, max_samples_per_language, rng, source="raw")
-    train_only_rows = _sample_rows_from_dir(CLOSE_PACK_DIR, max_samples_per_language, rng, source="close_pack")
+    base_rows = _sample_rows_from_dir(
+        RAW_DATA_DIR, max_samples_per_language, rng, source="raw"
+    )
+    train_only_rows = _sample_rows_from_dir(
+        CLOSE_PACK_DIR, max_samples_per_language, rng, source="close_pack"
+    )
     rng.shuffle(base_rows)
 
     if not base_rows:
         print(f"No reviewed rows found in {RAW_DATA_DIR}.")
         print("Dataset was not changed.")
-        print("Add files like data/raw/uk.txt, data/raw/fr.txt, data/raw/de.txt and run again.")
+        print(
+            "Add files like data/raw/uk.txt, data/raw/fr.txt, data/raw/de.txt and run again."
+        )
         return []
 
     train_rows, test_rows = split_rows(base_rows, test_ratio=test_ratio, seed=seed)
@@ -97,7 +112,9 @@ def build_dataset(max_samples_per_language=5000, test_ratio=0.2, seed=42):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Build reviewed dataset and train/test split.")
+    parser = argparse.ArgumentParser(
+        description="Build reviewed dataset and train/test split."
+    )
     parser.add_argument("--max-samples-per-language", type=int, default=5000)
     parser.add_argument("--test-ratio", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)

@@ -18,7 +18,9 @@ def evaluate(dataset_path=None, save_report=True):
     group_correct = 0
     total = 0
     unknown = 0
-    by_language = defaultdict(lambda: {"samples": 0, "correct": 0, "group_correct": 0, "unknown": 0})
+    by_language = defaultdict(
+        lambda: {"samples": 0, "correct": 0, "group_correct": 0, "unknown": 0}
+    )
     confusion = defaultdict(Counter)
     low_confidence = []
 
@@ -73,7 +75,9 @@ def evaluate(dataset_path=None, save_report=True):
         language_rows[language] = {
             **stats,
             "accuracy": round(stats["correct"] / samples, 4) if samples else 0.0,
-            "group_accuracy": round(stats.get("group_correct", 0) / samples, 4) if samples else 0.0,
+            "group_accuracy": (
+                round(stats.get("group_correct", 0) / samples, 4) if samples else 0.0
+            ),
         }
 
     report = {
@@ -98,7 +102,9 @@ def evaluate(dataset_path=None, save_report=True):
     print(f"Group-correct: {group_correct}")
     print(f"Unknown: {unknown}")
     if total == 0:
-        print("Dataset is empty. Add samples to data/dataset.jsonl or data/raw/*.txt first.")
+        print(
+            "Dataset is empty. Add samples to data/dataset.jsonl or data/raw/*.txt first."
+        )
     print(f"Accuracy: {accuracy:.4f}")
     print(f"Group accuracy: {group_accuracy:.4f}")
     print("By language:")
@@ -129,8 +135,14 @@ def evaluate(dataset_path=None, save_report=True):
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate the detector.")
-    parser.add_argument("--dataset", default=None, help="Optional path to a jsonl dataset.")
-    parser.add_argument("--no-report", action="store_true", help="Do not write models/evaluation_report.json.")
+    parser.add_argument(
+        "--dataset", default=None, help="Optional path to a jsonl dataset."
+    )
+    parser.add_argument(
+        "--no-report",
+        action="store_true",
+        help="Do not write models/evaluation_report.json.",
+    )
     args = parser.parse_args()
     evaluate(dataset_path=args.dataset, save_report=not args.no_report)
 

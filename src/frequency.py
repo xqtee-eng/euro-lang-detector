@@ -118,7 +118,9 @@ def save_frequency_text(language, text, mode="replace"):
     path = FREQUENCY_DIR / f"{language}.tsv"
     existing = []
     if mode == "append" and path.exists():
-        existing = [(row["word"], row["frequency"]) for row in read_frequency_file(language)]
+        existing = [
+            (row["word"], row["frequency"]) for row in read_frequency_file(language)
+        ]
 
     merged = {}
     for word, frequency in existing + parsed:
@@ -159,19 +161,35 @@ def import_frequency_lists(limit_per_language=1000):
             )
     imported = bulk_upsert_lexicon_words(rows_to_import)
     clear_lexicon_cache()
-    return {"languages": languages, "imported": imported, "directory": str(FREQUENCY_DIR)}
+    return {
+        "languages": languages,
+        "imported": imported,
+        "directory": str(FREQUENCY_DIR),
+    }
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate and import word frequency lists.")
-    parser.add_argument("--generate", action="store_true", help="Generate data/frequency/*.tsv from data/raw/*.txt.")
-    parser.add_argument("--import-lexicon", action="store_true", help="Import frequency lists into SQLite lexicon_words.")
+    parser = argparse.ArgumentParser(
+        description="Generate and import word frequency lists."
+    )
+    parser.add_argument(
+        "--generate",
+        action="store_true",
+        help="Generate data/frequency/*.tsv from data/raw/*.txt.",
+    )
+    parser.add_argument(
+        "--import-lexicon",
+        action="store_true",
+        help="Import frequency lists into SQLite lexicon_words.",
+    )
     parser.add_argument("--max-words-per-language", type=int, default=1000)
     parser.add_argument("--limit-per-language", type=int, default=1000)
     args = parser.parse_args()
 
     if args.generate or not args.import_lexicon:
-        print(generate_frequency_lists(max_words_per_language=args.max_words_per_language))
+        print(
+            generate_frequency_lists(max_words_per_language=args.max_words_per_language)
+        )
     if args.import_lexicon:
         print(import_frequency_lists(limit_per_language=args.limit_per_language))
 

@@ -90,7 +90,10 @@ def _write_disabled(disabled):
     NAME_DIR.mkdir(parents=True, exist_ok=True)
     with open(DISABLED_PATH, "w", encoding="utf-8") as handle:
         for language, name in sorted(disabled):
-            handle.write(json.dumps({"language": language, "name": name}, ensure_ascii=False) + "\n")
+            handle.write(
+                json.dumps({"language": language, "name": name}, ensure_ascii=False)
+                + "\n"
+            )
 
 
 def _read_user_hints():
@@ -167,9 +170,7 @@ def load_name_hints():
             if (language, name) in disabled:
                 continue
             hints.setdefault(name, [])
-            hints[name] = [
-                item for item in hints[name] if item["language"] != language
-            ]
+            hints[name] = [item for item in hints[name] if item["language"] != language]
             hints[name].append(candidate)
 
     for row in list_name_rows(enabled_only=False):
@@ -177,9 +178,7 @@ def load_name_hints():
         language = row["language"]
         if row["enabled"]:
             hints.setdefault(name, [])
-            hints[name] = [
-                item for item in hints[name] if item["language"] != language
-            ]
+            hints[name] = [item for item in hints[name] if item["language"] != language]
             hints[name].append(
                 {
                     "language": language,
@@ -189,9 +188,7 @@ def load_name_hints():
                 }
             )
         elif name in hints:
-            hints[name] = [
-                item for item in hints[name] if item["language"] != language
-            ]
+            hints[name] = [item for item in hints[name] if item["language"] != language]
             if not hints[name]:
                 del hints[name]
 
@@ -224,7 +221,9 @@ def list_name_hints(query="", language=None):
     return rows
 
 
-def add_name_hint(name, language, country="", confidence=0.9, name_type="person", notes=""):
+def add_name_hint(
+    name, language, country="", confidence=0.9, name_type="person", notes=""
+):
     name = _normalize_name(name)
     language = str(language or "").strip().lower()
     country = str(country or "").strip()

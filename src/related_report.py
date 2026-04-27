@@ -18,7 +18,13 @@ def _group_stats_from_languages(by_language, language_codes):
     languages = [code for code in language_codes if code in by_language]
     samples = sum(int(by_language[code].get("samples", 0) or 0) for code in languages)
     correct = sum(int(by_language[code].get("correct", 0) or 0) for code in languages)
-    group_correct = sum(int(by_language[code].get("group_correct", by_language[code].get("correct", 0)) or 0) for code in languages)
+    group_correct = sum(
+        int(
+            by_language[code].get("group_correct", by_language[code].get("correct", 0))
+            or 0
+        )
+        for code in languages
+    )
     unknown = sum(int(by_language[code].get("unknown", 0) or 0) for code in languages)
     exact_accuracy = round(correct / samples, 4) if samples else 0.0
     group_accuracy = round(group_correct / samples, 4) if samples else 0.0
@@ -113,7 +119,11 @@ def _group_low_margin_cases(low_confidence_rows, language_codes, group_id, limit
         expected = row.get("expected")
         predicted = row.get("predicted")
         language_group = row.get("language_group")
-        if expected not in language_set and predicted not in language_set and language_group != group_id:
+        if (
+            expected not in language_set
+            and predicted not in language_set
+            and language_group != group_id
+        ):
             continue
         cases.append(
             {
@@ -147,8 +157,12 @@ def related_language_report():
         low_confidence_rows = evaluation.get("low_confidence", [])
         group_summary = {}
         for group_id, group in RELATED_LANGUAGE_GROUPS.items():
-            confusions = _group_confusions_from_evaluation(confusion, group["languages"], group_id)
-            internal_confusions, external_confusions = _split_confusions(confusions, group["languages"])
+            confusions = _group_confusions_from_evaluation(
+                confusion, group["languages"], group_id
+            )
+            internal_confusions, external_confusions = _split_confusions(
+                confusions, group["languages"]
+            )
             summary = _group_stats_from_languages(by_language, group["languages"])
             summary.update(
                 {
@@ -159,24 +173,34 @@ def related_language_report():
                     "confusions": confusions,
                     "internal_confusions": internal_confusions,
                     "external_confusions": external_confusions,
-                    "low_margin_cases": _group_low_margin_cases(low_confidence_rows, group["languages"], group_id),
+                    "low_margin_cases": _group_low_margin_cases(
+                        low_confidence_rows, group["languages"], group_id
+                    ),
                 }
             )
             group_summary[group_id] = summary
         total = {
             "samples": evaluation.get("samples", 0),
             "correct": evaluation.get("correct", 0),
-            "group_correct": evaluation.get("group_correct", evaluation.get("correct", 0)),
+            "group_correct": evaluation.get(
+                "group_correct", evaluation.get("correct", 0)
+            ),
             "unknown": evaluation.get("unknown", 0),
             "accuracy": evaluation.get("accuracy", 0),
-            "group_accuracy": evaluation.get("group_accuracy", evaluation.get("accuracy", 0)),
+            "group_accuracy": evaluation.get(
+                "group_accuracy", evaluation.get("accuracy", 0)
+            ),
         }
     else:
         benchmark = run_benchmark()
         by_group = {}
         for group_id, group in RELATED_LANGUAGE_GROUPS.items():
-            confusions = _group_confusions_from_rows(benchmark.get("rows", []), group["languages"], group_id)
-            internal_confusions, external_confusions = _split_confusions(confusions, group["languages"])
+            confusions = _group_confusions_from_rows(
+                benchmark.get("rows", []), group["languages"], group_id
+            )
+            internal_confusions, external_confusions = _split_confusions(
+                confusions, group["languages"]
+            )
             by_group[group_id] = {
                 "group": group_id,
                 "name": group["name"],
@@ -204,27 +228,40 @@ def related_language_report():
                     group_row["unknown"] += int(row.get("predicted") == "unknown")
         for group_row in by_group.values():
             samples = group_row["samples"]
-            group_row["accuracy"] = round(group_row["correct"] / samples, 4) if samples else 0.0
-            group_row["group_accuracy"] = round(group_row["group_correct"] / samples, 4) if samples else 0.0
+            group_row["accuracy"] = (
+                round(group_row["correct"] / samples, 4) if samples else 0.0
+            )
+            group_row["group_accuracy"] = (
+                round(group_row["group_correct"] / samples, 4) if samples else 0.0
+            )
         group_summary = by_group
         total = {
             "samples": benchmark.get("samples", 0),
             "correct": benchmark.get("correct", 0),
-            "group_correct": benchmark.get("group_correct", benchmark.get("correct", 0)),
-            "unknown": benchmark.get("rows", 0) and sum(1 for row in benchmark.get("rows", []) if row.get("predicted") == "unknown"),
+            "group_correct": benchmark.get(
+                "group_correct", benchmark.get("correct", 0)
+            ),
+            "unknown": benchmark.get("rows", 0)
+            and sum(
+                1
+                for row in benchmark.get("rows", [])
+                if row.get("predicted") == "unknown"
+            ),
             "accuracy": benchmark.get("accuracy", 0),
-            "group_accuracy": benchmark.get("group_accuracy", benchmark.get("accuracy", 0)),
+            "group_accuracy": benchmark.get(
+                "group_accuracy", benchmark.get("accuracy", 0)
+            ),
         }
 
-    ordered_groups = sorted(group_summary.values(), key=lambda item: (item["group"], item["name"]))
+    ordered_groups = sorted(
+        group_summary.values(), key=lambda item: (item["group"], item["name"])
+    )
     return {
         "source": source,
         "total": total,
         "groups": ordered_groups,
         "confusions": [
-            item
-            for group in ordered_groups
-            for item in group.get("confusions", [])
+            item for group in ordered_groups for item in group.get("confusions", [])
         ],
         "internal_confusions": [
             item

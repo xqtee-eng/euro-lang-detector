@@ -1661,3 +1661,9 @@
 2026-04-28 01:36:33,382 INFO detect language=unknown confidence=0.0 source=rule reliability=unknown text_length=20
 2026-04-28 01:36:33,556 INFO detect language=unknown confidence=0.0 source=rule reliability=unknown text_length=20
 2026-04-28 01:36:36,384 INFO detect language=unknown confidence=0.0 source=rule reliability=unknown text_length=11
+2026-04-28 02:27:46,020 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7
+2026-04-28 02:29:23,831 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7
+2026-04-28 02:30:44,277 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7
+2026-04-28 02:33:25,061 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7
+2026-04-28 02:35:33,404 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7
+2026-04-28 02:40:24,608 INFO detect language=fr confidence=0.99 source=rule reliability=high text_length=7

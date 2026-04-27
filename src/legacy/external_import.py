@@ -68,7 +68,10 @@ ISO3_TO_CODE = {
 
 def _open_text(path):
     path = Path(path)
-    if path.suffixes[-2:] in ([".tar", ".bz2"], [".tar", ".gz"], [".tar", ".xz"]) or path.suffix == ".tar":
+    if (
+        path.suffixes[-2:] in ([".tar", ".bz2"], [".tar", ".gz"], [".tar", ".xz"])
+        or path.suffix == ".tar"
+    ):
         archive = tarfile.open(path, "r:*")
         for member in archive.getmembers():
             if member.isfile():
@@ -85,7 +88,9 @@ def _open_text(path):
 class _ArchiveTextReader:
     def __init__(self, archive, binary_handle):
         self.archive = archive
-        self.text_handle = io.TextIOWrapper(binary_handle, encoding="utf-8", errors="ignore")
+        self.text_handle = io.TextIOWrapper(
+            binary_handle, encoding="utf-8", errors="ignore"
+        )
 
     def __enter__(self):
         return self.text_handle
@@ -113,7 +118,13 @@ def _write_lines(path, lines):
             handle.write(line + "\n")
 
 
-def import_tatoeba_sentences(input_path, output_dir=RAW_DATA_DIR, max_per_language=5000, min_length=12, mode="append"):
+def import_tatoeba_sentences(
+    input_path,
+    output_dir=RAW_DATA_DIR,
+    max_per_language=5000,
+    min_length=12,
+    mode="append",
+):
     output_dir = Path(output_dir)
     max_per_language = max(1, int(max_per_language or 5000))
     min_length = max(1, int(min_length or 12))
@@ -164,8 +175,12 @@ def import_tatoeba_sentences(input_path, output_dir=RAW_DATA_DIR, max_per_langua
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Import real external corpora into data/raw/*.txt.")
-    parser.add_argument("input", help="Tatoeba-style TSV or TSV.BZ2: sentence_id<TAB>iso3<TAB>text")
+    parser = argparse.ArgumentParser(
+        description="Import real external corpora into data/raw/*.txt."
+    )
+    parser.add_argument(
+        "input", help="Tatoeba-style TSV or TSV.BZ2: sentence_id<TAB>iso3<TAB>text"
+    )
     parser.add_argument("--max-per-language", type=int, default=5000)
     parser.add_argument("--min-length", type=int, default=12)
     parser.add_argument("--mode", choices=["append", "replace"], default="append")

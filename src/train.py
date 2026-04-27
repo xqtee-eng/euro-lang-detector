@@ -12,7 +12,9 @@ from src.storage import create_model_snapshot, record_training_run
 
 
 def train(dataset_path=None, kind="train", notes=""):
-    dataset_path = dataset_path or (TRAIN_DATASET_PATH if TRAIN_DATASET_PATH.exists() else DATASET_PATH)
+    dataset_path = dataset_path or (
+        TRAIN_DATASET_PATH if TRAIN_DATASET_PATH.exists() else DATASET_PATH
+    )
     language_texts = defaultdict(list)
 
     if not dataset_path.exists():

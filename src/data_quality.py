@@ -48,9 +48,15 @@ def data_quality_report():
     lexicon_entries = list_lexicon_entries()
     name_hints = list_name_hints()
 
-    missing_dataset = [code for code in SUPPORTED_LANGUAGE_CODES if dataset_counts.get(code, 0) == 0]
-    min_dataset = min((dataset_counts.get(code, 0) for code in SUPPORTED_LANGUAGE_CODES), default=0)
-    min_test = min((test_counts.get(code, 0) for code in SUPPORTED_LANGUAGE_CODES), default=0)
+    missing_dataset = [
+        code for code in SUPPORTED_LANGUAGE_CODES if dataset_counts.get(code, 0) == 0
+    ]
+    min_dataset = min(
+        (dataset_counts.get(code, 0) for code in SUPPORTED_LANGUAGE_CODES), default=0
+    )
+    min_test = min(
+        (test_counts.get(code, 0) for code in SUPPORTED_LANGUAGE_CODES), default=0
+    )
 
     education_score = 70
     if len(dataset_counts) == len(SUPPORTED_LANGUAGE_CODES):
@@ -127,13 +133,19 @@ def data_quality_report():
     if min_dataset < 100:
         recommendations.append("Add at least 100 reviewed corpus lines per language.")
     if min_test < 20:
-        recommendations.append("Keep at least 20 independent test examples per language.")
+        recommendations.append(
+            "Keep at least 20 independent test examples per language."
+        )
     if len(lexicon_entries) < 500 and frequency_entries < 500:
         recommendations.append("Import word frequency lists into the lexicon.")
     if len(name_hints) < 100:
-        recommendations.append("Seed the name manager with editable country/language name hints.")
+        recommendations.append(
+            "Seed the name manager with editable country/language name hints."
+        )
     if missing_dataset:
-        recommendations.append("Fill missing dataset languages: " + ", ".join(missing_dataset))
+        recommendations.append(
+            "Fill missing dataset languages: " + ", ".join(missing_dataset)
+        )
 
     return {
         "scores": {
@@ -161,7 +173,9 @@ def data_quality_report():
         },
         "corpus": {
             "raw_files": len(corpus_files),
-            "min_lines_per_language": min(corpus_counts.values()) if corpus_counts else 0,
+            "min_lines_per_language": (
+                min(corpus_counts.values()) if corpus_counts else 0
+            ),
             "by_language": dict(sorted(corpus_counts.items())),
         },
         "knowledge": {

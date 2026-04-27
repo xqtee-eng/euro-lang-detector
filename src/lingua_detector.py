@@ -39,7 +39,9 @@ def get_detector():
 
     builder = LanguageDetectorBuilder.from_languages(*languages)
     if LINGUA_MINIMUM_RELATIVE_DISTANCE > 0:
-        builder = builder.with_minimum_relative_distance(LINGUA_MINIMUM_RELATIVE_DISTANCE)
+        builder = builder.with_minimum_relative_distance(
+            LINGUA_MINIMUM_RELATIVE_DISTANCE
+        )
     return builder.build()
 
 

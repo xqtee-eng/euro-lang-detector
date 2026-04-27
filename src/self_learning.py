@@ -51,7 +51,9 @@ def review_storage_summary():
     return storage_summary()
 
 
-def clear_review_storage(include_resolved=False, include_feedback=False, include_learning=False):
+def clear_review_storage(
+    include_resolved=False, include_feedback=False, include_learning=False
+):
     result = clear_review_storage_db(
         include_resolved=include_resolved,
         include_feedback=include_feedback,

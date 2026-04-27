@@ -1,0 +1,13 @@
+# pyproject.toml
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"api/app.py" = ["E402"]
+"src/build_dataset.py" = ["E402"]
+"src/frequency.py" = ["E402"]

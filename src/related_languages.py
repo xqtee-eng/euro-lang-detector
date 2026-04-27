@@ -51,7 +51,9 @@ def enrich_related_language_result(result):
         group_candidates = [
             {
                 "language": item,
-                "confidence": result.get("confidence", 0.0) if item == language else 0.0,
+                "confidence": (
+                    result.get("confidence", 0.0) if item == language else 0.0
+                ),
             }
             for item in group_languages
         ]
@@ -63,7 +65,11 @@ def enrich_related_language_result(result):
         if candidate.get("language") != language
     ]
     nearest_competitor = max(competing, default=0.0)
-    ambiguous = top_confidence < 0.95 or nearest_competitor >= 0.12 or (top_confidence - nearest_competitor) <= 0.35
+    ambiguous = (
+        top_confidence < 0.95
+        or nearest_competitor >= 0.12
+        or (top_confidence - nearest_competitor) <= 0.35
+    )
 
     result["language_group"] = group_id
     result["language_group_name"] = group["name"]

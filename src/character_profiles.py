@@ -28,8 +28,7 @@ def _count_raw_language(language):
 
 def generate_character_profiles(top_n=30):
     language_counts = {
-        language: _count_raw_language(language)
-        for language in SUPPORTED_LANGUAGE_CODES
+        language: _count_raw_language(language) for language in SUPPORTED_LANGUAGE_CODES
     }
     global_presence = Counter()
     for counts in language_counts.values():
@@ -39,16 +38,18 @@ def generate_character_profiles(top_n=30):
     profiles = {}
     for language, counts in language_counts.items():
         total = sum(counts.values())
-        unique_chars = sorted(
-            char for char in counts if global_presence[char] == 1
-        )
+        unique_chars = sorted(char for char in counts if global_presence[char] == 1)
         profiles[language] = {
             "language": language,
             "name": get_language_name(language),
             "total_letters": total,
             "alphabet_size": len(counts),
             "top_characters": [
-                {"char": char, "count": count, "share": round(count / total, 4) if total else 0}
+                {
+                    "char": char,
+                    "count": count,
+                    "share": round(count / total, 4) if total else 0,
+                }
                 for char, count in counts.most_common(max(1, int(top_n or 30)))
             ],
             "unique_characters": unique_chars,
@@ -111,4 +112,6 @@ def character_candidates(text, top_k=5):
                     "top_character_hits": top_hits,
                 }
             )
-    return sorted(candidates, key=lambda item: item["score"], reverse=True)[: max(1, int(top_k or 5))]
+    return sorted(candidates, key=lambda item: item["score"], reverse=True)[
+        : max(1, int(top_k or 5))
+    ]

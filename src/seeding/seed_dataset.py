@@ -299,6 +299,8 @@ def seed_raw_dataset(overwrite=False):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create starter raw language files.")
-    parser.add_argument("--overwrite", action="store_true", help="Replace existing seed files.")
+    parser.add_argument(
+        "--overwrite", action="store_true", help="Replace existing seed files."
+    )
     args = parser.parse_args()
     seed_raw_dataset(overwrite=args.overwrite)
