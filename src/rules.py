@@ -43,15 +43,22 @@ def detect_by_rules(text):
         }
 
     for lang_code, hints in LEXICAL_LANGUAGE_HINTS.items():
-        if any(
-            hint == compact or (" " in hint and (hint in lowered or hint in compact))
-            for hint in hints
-        ):
+        matched_hint = None
+
+        for hint in hints:
+            if hint == compact or (
+                " " in hint and (hint in lowered or hint in compact)
+            ):
+                matched_hint = hint
+                break
+
+        if matched_hint:
             return {
                 "language": lang_code,
-                "confidence": 0.98,
+                "confidence": 0.75 if " " in matched_hint else 0.70,
                 "source": "rule",
                 "reason": "lexical_hint",
+                "matched_hint": matched_hint,
             }
 
     for lang_code, chars in UNIQUE_CHAR_LANGUAGE_HINTS.items():

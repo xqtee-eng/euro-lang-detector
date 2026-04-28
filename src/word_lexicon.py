@@ -272,7 +272,21 @@ def detect_word(text):
     if len(words) != 1:
         return None
 
-    languages = sorted(load_lexicons().get(words[0], []))
+    word = words[0]
+
+    AMBIGUOUS_WORDS = {"data", "menu", "bank", "plan", "hotel", "taxi", "город"}
+
+    if word in AMBIGUOUS_WORDS:
+        return {
+            "language": "unknown",
+            "confidence": 0.0,
+            "source": "lexicon",
+            "reason": "ambiguous_word",
+            "entity_type": "word",
+            "candidates": [],
+        }
+
+    languages = sorted(load_lexicons().get(word, []))
     if not languages:
         return None
 

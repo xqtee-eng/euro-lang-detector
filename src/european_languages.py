@@ -49,7 +49,7 @@ LINGUA_ENUM_BY_CODE = {spec["code"]: spec["lingua"] for spec in EUROPEAN_LANGUAG
 UNIQUE_CHAR_LANGUAGE_HINTS = {
     "uk": "їєґ",
     "be": "ў",
-    "pl": "łńśźżć",
+    "pl": "łńśźż",
     "cs": "ř",
     "sk": "ľĺô",
     "lt": "ėų",
@@ -86,6 +86,9 @@ LEXICAL_LANGUAGE_HINTS = {
         "gracias",
         "buenos días",
         "buenos dias",
+        "me gusta",
+        "este idioma",
+        "me gusta este idioma",
     ),
     "pt": (
         "olá",
@@ -103,8 +106,8 @@ LEXICAL_LANGUAGE_HINTS = {
         "dank je",
     ),
     "sv": (
-        "hej",
-        "tack",
+        "hej hur",
+        "hur mår du",
     ),
     "tr": (
         "merhaba",
@@ -161,7 +164,6 @@ LEXICAL_LANGUAGE_HINTS = {
     "nb": (
         "bokmål",
         "bokmål i",
-        "hvordan går",
         "norsk bokmål",
     ),
     "nn": (
@@ -170,15 +172,18 @@ LEXICAL_LANGUAGE_HINTS = {
         "dette er ei",
     ),
     "hr": (
-        "hrvatskom",
-        "sustav",
-        "bok,",
-        "bok kako",
+        "ovdje",
+        "hrvatski",
+        "hrvatska",
+        "lijep dan",
+        "dobar svijet",
     ),
     "bs": (
-        "bosanskom",
-        "bosanskom jeziku",
-        "testiramo sistem",
+        "bosanski",
+        "bosanska",
+        "hvala",
+        "molim",
+        "pomoć",
     ),
     "sl": (
         "slovenskem jeziku",
@@ -196,8 +201,17 @@ LEXICAL_LANGUAGE_HINTS = {
     "sr": (
         "ovde",
         "srpski",
+        "srpska",
         "govorimo srpski",
-        "srpski jezik",
+        "lep dan",
+        "dobar svet",
+        "srpska rečenica",
+        "ovo je srpska",
+    ),
+    "da": (
+        "hej hvordan",
+        "hvordan går det",
+        "hej hvordan går det",
     ),
 }
 
