@@ -115,6 +115,18 @@ def evaluate(dataset_path=None, save_report=True):
             f"group_accuracy={stats['group_accuracy']:.4f} unknown={stats['unknown']}"
         )
 
+    if low_confidence:
+        print("\nWrong / low-confidence cases:")
+        for item in low_confidence[:100]:
+            print(
+                f"  {item['text']!r} "
+                f"expected={item['expected']} "
+                f"got={item['predicted']} "
+                f"confidence={item['confidence']} "
+                f"source={item['source']} "
+                f"reason={item['reason']}"
+            )
+
     if save_report:
         EVALUATION_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
         with open(EVALUATION_REPORT_PATH, "w", encoding="utf-8") as handle:

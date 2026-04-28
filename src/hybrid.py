@@ -10,6 +10,7 @@ from src.rules import (
     detect_by_rules,
     has_mixed_latin_cyrillic,
     is_command_like,
+    is_keyboard_garbage,
     is_short_ambiguous_cyrillic,
     is_single_cyrillic_proper_name,
 )
@@ -74,6 +75,14 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
         result["source"] = "rule"
         result["reason"] = "command_like_text"
         return result
+
+    if is_keyboard_garbage(original_text):
+        result = _unknown_result(original_text)
+        result["source"] = "rule"
+        result["reason"] = "keyboard_garbage"
+        if record_unknown:
+            queue_unknown(original_text, details={"reason": "keyboard_garbage"})
+        return _track_learning(result, record_unknown)
 
     if has_mixed_latin_cyrillic(original_text):
         result = _unknown_result(original_text)

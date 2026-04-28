@@ -110,3 +110,25 @@ def is_single_cyrillic_proper_name(text):
     if word.isupper() or word.islower():
         return False
     return word[:1].isupper()
+
+
+def is_keyboard_garbage(text):
+    cleaned = (text or "").strip().lower()
+
+    if len(cleaned) >= 6 and " " not in cleaned:
+        letters = [char for char in cleaned if char.isalpha()]
+        if len(letters) < 6:
+            return False
+
+        vowels = sum(1 for char in letters if char in "aeiouаеєиіїоуюя")
+        vowel_ratio = vowels / len(letters)
+
+        keyboard_runs = ("asdf", "qwer", "zxcv", "jkl", "ghj", "dfgh")
+
+        if vowel_ratio <= 0.2:
+            return True
+
+        if any(run in cleaned for run in keyboard_runs):
+            return True
+
+    return False

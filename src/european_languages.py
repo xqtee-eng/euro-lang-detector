@@ -193,6 +193,12 @@ LEXICAL_LANGUAGE_HINTS = {
         "català",
         "catala",
     ),
+    "sr": (
+        "ovde",
+        "srpski",
+        "govorimo srpski",
+        "srpski jezik",
+    ),
 }
 
 EXACT_PHRASE_LANGUAGE_HINTS = {

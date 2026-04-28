@@ -1,463 +1,114 @@
 {
-  "dataset": "D:\\euro-lang-detector\\data\\test.jsonl",
-  "samples": 320,
-  "correct": 320,
-  "group_correct": 320,
-  "unknown": 0,
-  "accuracy": 1.0,
-  "group_accuracy": 1.0,
+  "dataset": "data/hard_test.jsonl",
+  "samples": 16,
+  "correct": 11,
+  "group_correct": 12,
+  "unknown": 5,
+  "accuracy": 0.6875,
+  "group_accuracy": 0.75,
   "by_language": {
-    "az": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
     "be": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "bg": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "bs": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "ca": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "cs": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "cy": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "da": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "de": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "el": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "en": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "es": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "et": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "eu": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "fi": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "fr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "ga": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "hr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "hu": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "hy": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "is": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "it": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "ka": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "lt": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "lv": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "mk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "nb": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "nl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "nn": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "pl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "pt": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "ro": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "ru": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "sk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "sl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "sq": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "sr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 0,
+      "group_correct": 1,
       "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "sv": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
-    },
-    "tr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
-      "unknown": 0,
-      "accuracy": 1.0,
+      "accuracy": 0.0,
       "group_accuracy": 1.0
     },
     "uk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 1,
+      "correct": 1,
+      "group_correct": 1,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
+    },
+    "unknown": {
+      "samples": 9,
+      "correct": 5,
+      "group_correct": 5,
+      "unknown": 5,
+      "accuracy": 0.5556,
+      "group_accuracy": 0.5556
     }
   },
   "confusion": {
-    "az": {
-      "az": 8
-    },
     "be": {
-      "be": 8
-    },
-    "bg": {
-      "bg": 8
-    },
-    "bs": {
-      "bs": 8
-    },
-    "ca": {
-      "ca": 8
-    },
-    "cs": {
-      "cs": 8
-    },
-    "cy": {
-      "cy": 8
-    },
-    "da": {
-      "da": 8
-    },
-    "de": {
-      "de": 8
-    },
-    "el": {
-      "el": 8
-    },
-    "en": {
-      "en": 8
-    },
-    "es": {
-      "es": 8
-    },
-    "et": {
-      "et": 8
-    },
-    "eu": {
-      "eu": 8
-    },
-    "fi": {
-      "fi": 8
-    },
-    "fr": {
-      "fr": 8
-    },
-    "ga": {
-      "ga": 8
+      "be": 1
     },
     "hr": {
-      "hr": 8
-    },
-    "hu": {
-      "hu": 8
-    },
-    "hy": {
-      "hy": 8
-    },
-    "is": {
-      "is": 8
-    },
-    "it": {
-      "it": 8
-    },
-    "ka": {
-      "ka": 8
-    },
-    "lt": {
-      "lt": 8
-    },
-    "lv": {
-      "lv": 8
-    },
-    "mk": {
-      "mk": 8
+      "hr": 1
     },
     "nb": {
-      "nb": 8
-    },
-    "nl": {
-      "nl": 8
+      "nb": 1
     },
     "nn": {
-      "nn": 8
-    },
-    "pl": {
-      "pl": 8
-    },
-    "pt": {
-      "pt": 8
-    },
-    "ro": {
-      "ro": 8
+      "nn": 1
     },
     "ru": {
-      "ru": 8
-    },
-    "sk": {
-      "sk": 8
-    },
-    "sl": {
-      "sl": 8
-    },
-    "sq": {
-      "sq": 8
+      "ru": 1
     },
     "sr": {
-      "sr": 8
-    },
-    "sv": {
-      "sv": 8
-    },
-    "tr": {
-      "tr": 8
+      "bs": 1
     },
     "uk": {
-      "uk": 8
+      "uk": 1
+    },
+    "unknown": {
+      "en": 2,
+      "unknown": 5,
+      "nb": 1,
+      "uk": 1
     }
   },
   "low_confidence": [
     {
-      "text": "God dag, hur mår du idag? God dag, hur mår du idag? God dag, hur mår du idag?",
-      "expected": "sv",
-      "predicted": "sv",
-      "confidence": 0.2339,
-      "source": "lingua",
-      "reason": null,
+      "text": "friend",
+      "expected": "unknown",
+      "predicted": "en",
+      "confidence": 0.99,
+      "source": "rule",
+      "reason": "exact_phrase_hint",
       "language_group": null,
       "group_reliability": null,
       "ambiguous_group": false,
@@ -466,12 +117,12 @@
       "related_applied": false
     },
     {
-      "text": "Goddag, hvordan har du det i dag? Goddag, hvordan har du det i dag?",
-      "expected": "da",
-      "predicted": "da",
-      "confidence": 0.4282,
-      "source": "lingua",
-      "reason": null,
+      "text": "work",
+      "expected": "unknown",
+      "predicted": "en",
+      "confidence": 0.96,
+      "source": "lexicon",
+      "reason": "exact_word",
       "language_group": null,
       "group_reliability": null,
       "ambiguous_group": false,
@@ -480,17 +131,101 @@
       "related_applied": false
     },
     {
-      "text": "Dobar dan, kako ste danas? Dobar dan, kako ste danas?",
-      "expected": "bs",
+      "text": "копати",
+      "expected": "unknown",
+      "predicted": "unknown",
+      "confidence": 0.0,
+      "source": "rule",
+      "reason": "short_ambiguous_cyrillic",
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Ovde govorimo srpski.",
+      "expected": "sr",
       "predicted": "bs",
-      "confidence": 0.2935,
+      "confidence": 0.6106,
       "source": "lingua",
       "reason": null,
       "language_group": "serbo_croatian",
       "group_reliability": "ambiguous",
       "ambiguous_group": true,
-      "related_margin": 0.0689,
-      "related_suggested_language": "bs",
+      "related_margin": 0.0507,
+      "related_suggested_language": "sr",
+      "related_applied": false
+    },
+    {
+      "text": "asdfghjkl",
+      "expected": "unknown",
+      "predicted": "nb",
+      "confidence": 0.2763,
+      "source": "lingua",
+      "reason": null,
+      "language_group": "norwegian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.0008,
+      "related_suggested_language": "nn",
+      "related_applied": false
+    },
+    {
+      "text": "123456",
+      "expected": "unknown",
+      "predicted": "unknown",
+      "confidence": 0.0,
+      "source": "unknown",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "!!!???",
+      "expected": "unknown",
+      "predicted": "unknown",
+      "confidence": 0.0,
+      "source": "unknown",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Dobry дзень",
+      "expected": "unknown",
+      "predicted": "unknown",
+      "confidence": 0.0,
+      "source": "rule",
+      "reason": "mixed_latin_cyrillic",
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Остап",
+      "expected": "unknown",
+      "predicted": "uk",
+      "confidence": 0.95,
+      "source": "name",
+      "reason": "name_hint",
+      "language_group": "east_slavic",
+      "group_reliability": "specific",
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
       "related_applied": false
     }
   ]
