@@ -9,11 +9,9 @@ from src.benchmark import run_benchmark
 from src.build_dataset import split_rows
 from src.character_profiles import character_candidates, generate_character_profiles
 from src.close_language_pack import apply_close_language_pack
-from src.legacy.external_import import import_tatoeba_sentences
 from src.frequency import generate_frequency_lists, list_frequency_files
 from src.hybrid import smart_detect, smart_detect_details
 from src.name_detector import list_name_hints
-from src.legacy.real_data_pipeline import build_real_data_resources
 from src.related_classifier import train_related_classifiers
 from src.seeding.seed_dataset import expand_seed_texts
 from src.word_lexicon import list_lexicon_words
@@ -168,97 +166,6 @@ class DetectorSmokeTests(unittest.TestCase):
         self.assertGreaterEqual(report["accuracy"], 0.85)
         self.assertGreater(report["samples"], 10)
 
-    def test_external_tatoeba_importer_maps_languages(self):
-        temp_dir = Path("tests_tmp_external_import")
-        if temp_dir.exists():
-            shutil.rmtree(temp_dir)
-        try:
-            temp_dir.mkdir()
-            input_path = temp_dir / "sentences.tsv"
-            output_dir = temp_dir / "raw"
-            input_path.write_text(
-                "1\teng\tThis is a real English sentence.\n"
-                "2\tukr\t\u0426\u0435 \u0440\u0435\u0430\u043b\u044c\u043d\u0435 \u0443\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0435 \u0440\u0435\u0447\u0435\u043d\u043d\u044f.\n"
-                "3\tzzz\tIgnored language.\n",
-                encoding="utf-8",
-            )
-            result = import_tatoeba_sentences(
-                input_path, output_dir=output_dir, mode="replace"
-            )
-            self.assertEqual(result["by_language"]["en"], 1)
-            self.assertEqual(result["by_language"]["uk"], 1)
-            self.assertTrue((output_dir / "en.txt").exists())
-        finally:
-            if temp_dir.exists():
-                shutil.rmtree(temp_dir)
-
-    def test_external_tatoeba_importer_reads_tar_bz2(self):
-        temp_dir = Path("tests_tmp_external_import_tar")
-        if temp_dir.exists():
-            shutil.rmtree(temp_dir)
-        try:
-            temp_dir.mkdir()
-            source_path = temp_dir / "sentences.tsv"
-            archive_path = temp_dir / "sentences.tar.bz2"
-            output_dir = temp_dir / "raw"
-            source_path.write_text(
-                "1\teng\tThis is a real English sentence.\n"
-                "2\tfra\tCeci est une phrase francaise reelle.\n",
-                encoding="utf-8",
-            )
-            with tarfile.open(archive_path, "w:bz2") as archive:
-                archive.add(source_path, arcname="sentences.tsv")
-            result = import_tatoeba_sentences(
-                archive_path, output_dir=output_dir, mode="replace"
-            )
-            self.assertEqual(result["by_language"]["en"], 1)
-            self.assertEqual(result["by_language"]["fr"], 1)
-        finally:
-            if temp_dir.exists():
-                shutil.rmtree(temp_dir)
-
-    def test_real_data_pipeline_creates_benchmark_and_frequency(self):
-        temp_dir = Path("tests_tmp_real_pipeline")
-        if temp_dir.exists():
-            shutil.rmtree(temp_dir)
-        try:
-            temp_dir.mkdir()
-            input_path = temp_dir / "sentences.tsv"
-            input_path.write_text(
-                "\n".join(
-                    [
-                        "1\teng\tThis is an independent English benchmark sentence.",
-                        "2\teng\tThis English training sentence adds useful words.",
-                        "3\teng\tAnother English training sentence expands frequency.",
-                        "4\tfra\tCeci est une phrase francaise pour le benchmark.",
-                        "5\tfra\tCette phrase francaise ajoute des mots utiles.",
-                        "6\tfra\tEncore une phrase francaise pour la frequence.",
-                    ]
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            report = build_real_data_resources(
-                input_path,
-                raw_per_language=2,
-                benchmark_per_language=1,
-                frequency_words_per_language=10,
-                frequency_source_per_language=2,
-                min_length=10,
-                mode="replace",
-                run_model_steps=False,
-                raw_dir=temp_dir / "raw",
-                benchmark_path=temp_dir / "benchmark.jsonl",
-                frequency_dir=temp_dir / "frequency",
-                report_path=temp_dir / "report.json",
-            )
-            self.assertGreaterEqual(report["benchmark"]["rows"], 2)
-            self.assertGreaterEqual(report["frequency"]["by_language"]["en"], 1)
-            self.assertGreaterEqual(report["frequency"]["by_language"]["fr"], 1)
-        finally:
-            if temp_dir.exists():
-                shutil.rmtree(temp_dir)
-
     def test_character_profiles_explain_script_languages(self):
         profiles = generate_character_profiles()
         self.assertIn("uk", profiles)
@@ -335,7 +242,7 @@ class DetectorSmokeTests(unittest.TestCase):
 
     def test_api_pages_and_json_endpoints_work(self):
         client = app.test_client()
-        client.post("/admin/login", data={"password": "admin"})
+        client.post("/admin/login", data={"username": "admin", "password": "admin"})
         for path in (
             "/detect",
             "/admin",
