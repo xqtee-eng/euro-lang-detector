@@ -49,7 +49,7 @@ LINGUA_ENUM_BY_CODE = {spec["code"]: spec["lingua"] for spec in EUROPEAN_LANGUAG
 UNIQUE_CHAR_LANGUAGE_HINTS = {
     "uk": "їєґ",
     "be": "ў",
-    "pl": "łńśźż",
+    "pl": "łńśźżć",
     "cs": "ř",
     "sk": "ľĺô",
     "lt": "ėų",
@@ -86,9 +86,6 @@ LEXICAL_LANGUAGE_HINTS = {
         "gracias",
         "buenos días",
         "buenos dias",
-        "me gusta",
-        "este idioma",
-        "me gusta este idioma",
     ),
     "pt": (
         "olá",
@@ -106,8 +103,8 @@ LEXICAL_LANGUAGE_HINTS = {
         "dank je",
     ),
     "sv": (
-        "hej hur",
-        "hur mår du",
+        "hej",
+        "tack",
     ),
     "tr": (
         "merhaba",
@@ -117,6 +114,9 @@ LEXICAL_LANGUAGE_HINTS = {
     "be": (
         "добры дзень",
         "прывітанне",
+        "прывiтанне",
+        "прывет",
+        "прывіт",
         "гэта кароткі",
         "правяраем",
         "беларускай мове",
@@ -131,10 +131,6 @@ LEXICAL_LANGUAGE_HINTS = {
         "няма",
         "дзень",
         "беларус",
-        "размаўляць",
-        "чалавек",
-        "жыццё",
-        "краіна",
     ),
     "uk": (
         "привіт",
@@ -143,11 +139,6 @@ LEXICAL_LANGUAGE_HINTS = {
         "україн",
         "сьогодні",
         "немає",
-        "мовою",
-        "людина",
-        "життя",
-        "країна",
-        "розмовляти",
     ),
     "ru": (
         "привет",
@@ -156,14 +147,11 @@ LEXICAL_LANGUAGE_HINTS = {
         "как дела",
         "сегодня",
         "здравствуйте",
-        "человек",
-        "жизнь",
-        "страна",
-        "говорить",
     ),
     "nb": (
         "bokmål",
         "bokmål i",
+        "hvordan går",
         "norsk bokmål",
     ),
     "nn": (
@@ -172,18 +160,15 @@ LEXICAL_LANGUAGE_HINTS = {
         "dette er ei",
     ),
     "hr": (
-        "ovdje",
-        "hrvatski",
-        "hrvatska",
-        "lijep dan",
-        "dobar svijet",
+        "hrvatskom",
+        "sustav",
+        "bok,",
+        "bok kako",
     ),
     "bs": (
-        "bosanski",
-        "bosanska",
-        "hvala",
-        "molim",
-        "pomoć",
+        "bosanskom",
+        "bosanskom jeziku",
+        "testiramo sistem",
     ),
     "sl": (
         "slovenskem jeziku",
@@ -197,21 +182,6 @@ LEXICAL_LANGUAGE_HINTS = {
         "aquest",
         "català",
         "catala",
-    ),
-    "sr": (
-        "ovde",
-        "srpski",
-        "srpska",
-        "govorimo srpski",
-        "lep dan",
-        "dobar svet",
-        "srpska rečenica",
-        "ovo je srpska",
-    ),
-    "da": (
-        "hej hvordan",
-        "hvordan går det",
-        "hej hvordan går det",
     ),
 }
 

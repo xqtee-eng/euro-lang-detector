@@ -73,6 +73,14 @@ from src.storage import (
     resolve_active_learning_item,
     rollback_model_to_run,
     storage_summary,
+    verify_user,
+    create_password_request,
+    list_users,
+    add_user,
+    update_user,
+    delete_user,
+    list_forgot_passwords,
+    clear_forgot_passwords,
 )
 from src.train import train
 from src.word_lexicon import (
@@ -145,18 +153,46 @@ def admin_required(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
         if admin_authenticated():
-            return fn(*args, **kwargs)
+            from src.config import ADMIN_USERNAME
+            role = session.get("admin_role")
+            username = session.get("admin_username")
+            if role == "admin" or username == ADMIN_USERNAME:
+                return fn(*args, **kwargs)
         if wants_json_response():
-            return jsonify({"error": "Admin authentication required."}), 401
-        return redirect(f"/admin/login?next={request.path}")
+            return jsonify({"error": "Administrative write access required."}), 403
+        return redirect("/admin")
+    return wrapper
 
+
+def super_admin_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        if admin_authenticated():
+            from src.config import ADMIN_USERNAME
+            role = session.get("admin_role")
+            username = session.get("admin_username")
+            if role in ("admin", "super_admin") or username == ADMIN_USERNAME:
+                return fn(*args, **kwargs)
+        if wants_json_response():
+            return jsonify({"error": "Administrator privileges required."}), 403
+        return redirect("/admin")
     return wrapper
 
 
 def page(title, body, area="public"):
     if area == "admin":
+        from src.config import ADMIN_USERNAME
+        role = session.get("admin_role")
+        username = session.get("admin_username")
+        is_super = (role == "admin" or username == ADMIN_USERNAME)
+        
         nav_items = [
             ("/admin", "Dashboard", "layout-dashboard"),
+        ]
+        if is_super:
+            nav_items.append(("/admin/users", "Admin Manager", "users"))
+            
+        nav_items.extend([
             ("/quality", "Quality", "check-circle"),
             ("/benchmark", "Benchmark", "gauge"),
             ("/groups", "Close Languages", "copy"),
@@ -174,14 +210,12 @@ def page(title, body, area="public"):
             ("/safety", "Safety Policy", "shield"),
             ("/detect", "View Public App", "external-link"),
             ("/admin/logout", "Logout", "log-out"),
-        ]
+        ])
         shell_class = "admin-shell"
         eyebrow = "Admin console"
     else:
         nav_items = [
             ("/detect", "Detector", "search"),
-            ("/api-docs", "API Docs", "code"),
-            ("/safety", "Safety Policy", "shield"),
             ("/admin", "Admin Login", "lock"),
         ]
         shell_class = "public-shell"
@@ -191,6 +225,18 @@ def page(title, body, area="public"):
         f'<a href="{href}" class="{"active" if request.path == href else ""}" title="{label}"><i data-lucide="{icon}"></i> <span>{label}</span></a>'
         for href, label, icon in nav_items
     )
+    
+    stats_html = ""
+    if area == "admin":
+        stats_html = """
+    <div style="margin-top: 24px; padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);">
+      <div class="muted" style="font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:12px;">System Stats</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:12px;">
+        <div style="display:flex; justify-content:space-between;"><span>Lexicon:</span> <span style="color:var(--accent)" id="stat-lexicon">...</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>Names:</span> <span style="color:var(--accent)" id="stat-names">...</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>Database:</span> <span style="color:var(--muted)" id="stat-db">...</span></div>
+      </div>
+    </div>"""
 
     template = """
 <!doctype html>
@@ -203,30 +249,41 @@ def page(title, body, area="public"):
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg: #030712; 
-      --panel-bg: rgba(17, 24, 39, 0.7); 
-      --panel-border: rgba(255, 255, 255, 0.08);
-      --ink: #f9fafb; --muted: #9ca3af; 
-      --accent: #3b82f6; --accent-hover: #60a5fa; --accent-soft: rgba(59, 130, 246, 0.15);
+      --bg: #080B11; 
+      --panel-bg: rgba(15, 23, 32, 0.75); 
+      --panel-border: rgba(255, 255, 255, 0.06);
+      --ink: #f3f4f6; --muted: #9ca3af; 
+      --accent: #8B5CF6; --accent-hover: #7C3AED; --accent-soft: rgba(139, 92, 246, 0.12);
       --bad: #ef4444; --warn: #f59e0b; --good: #10b981;
       --sidebar-width: 280px;
+      --input-bg: rgba(0, 0, 0, 0.3);
+      --input-focus-bg: rgba(0, 0, 0, 0.4);
+      --solid-input-bg: #0f172a;
+      --sidebar-bg: rgba(11, 15, 25, 0.8);
+      --shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
     :root.light {
-      --bg: #f8fafc; 
-      --panel-bg: rgba(255, 255, 255, 0.88); 
-      --panel-border: rgba(148, 163, 184, 0.2);
-      --ink: #0f172a; --muted: #64748b;
-      --accent: #2563eb; --accent-hover: #1d4ed8; --accent-soft: rgba(37, 99, 235, 0.08);
-      --sidebar-bg: rgba(255, 255, 255, 0.5);
-      --glass-tint: rgba(255, 255, 255, 0.7);
+      --bg: #F3F4F6; 
+      --panel-bg: rgba(255, 255, 255, 0.95); 
+      --panel-border: rgba(209, 213, 219, 0.5);
+      --ink: #111827; --muted: #6B7280;
+      --accent: #6D28D9; --accent-hover: #5B21B6; --accent-soft: rgba(109, 40, 217, 0.08);
+      --sidebar-bg: rgba(255, 255, 255, 0.9);
+      --input-bg: rgba(255, 255, 255, 0.9);
+      --input-focus-bg: #ffffff;
+      --solid-input-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
-    :root {
-      --sidebar-bg: rgba(15, 23, 42, 0.6);
-      --glass-tint: rgba(17, 24, 39, 0.7);
-      --shadow: 0 10px 40px -12px rgba(0,0,0,0.3);
-    }
-    .light { --shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+
     * { box-sizing: border-box; transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
+    
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+    html.light ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+    html.light ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
+
     body { 
       margin: 0; background: var(--bg); color: var(--ink); 
       font-family: "Inter", system-ui, sans-serif; line-height: 1.6; 
@@ -251,15 +308,17 @@ def page(title, body, area="public"):
     .sidebar nav a { 
       display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 12px; 
       color: var(--muted); font-size: 14px; font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+      text-decoration: none;
     }
     .sidebar nav a i { width: 20px; height: 20px; stroke-width: 2; opacity: 0.7; }
     .sidebar nav a:hover { background: var(--accent-soft); color: var(--ink); }
-    .sidebar nav a.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.2); }
+    .sidebar nav a.active { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--panel-border); }
     .sidebar nav a.active i { opacity: 1; }
     
     .main-content { 
       flex: 1; margin-left: var(--sidebar-width); padding: 50px 60px; 
-      max-width: 1400px; animation: fadeIn 0.6s ease-out;
+      max-width: 1400px; width: calc(100% - var(--sidebar-width));
+      animation: fadeIn 0.6s ease-out;
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     
@@ -272,11 +331,24 @@ def page(title, body, area="public"):
       backdrop-filter: blur(20px); 
       box-shadow: var(--shadow);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-x: auto;
     }
-    .panel:hover { transform: translateY(-2px); border-color: var(--accent-soft); }
+    .panel:hover { border-color: var(--accent-soft); }
     h3 { margin: 0 0 20px; font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
     
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .row, .toolbar { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .toolbar { margin-bottom: 24px; }
+    
+    .item {
+      background: var(--panel-bg); 
+      border: 1px solid var(--panel-border); 
+      border-radius: 20px; padding: 28px; margin-bottom: 24px; 
+      backdrop-filter: blur(20px); 
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .item:hover { border-color: var(--accent-soft); }
     
     button { 
       cursor: pointer; font-weight: 600; padding: 12px 22px; border-radius: 12px; 
@@ -284,24 +356,35 @@ def page(title, body, area="public"):
       color: var(--ink); display: inline-flex; align-items: center; gap: 10px; 
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; 
     }
-    button:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); box-shadow: 0 8px 20px -5px rgba(0,0,0,0.3); }
-    button.primary { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 15px -3px rgba(59, 130, 246, 0.4); }
-    button.primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.5); }
+    button:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); }
+    button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+    button.primary:hover { background: var(--accent-hover); }
     button.danger { color: var(--bad); border-color: rgba(239, 68, 68, 0.2); }
     button.danger:hover { background: rgba(239, 68, 68, 0.1); border-color: var(--bad); }
 
     input, select, textarea { 
-      background: rgba(0,0,0,0.3); border: 1px solid var(--panel-border); 
+      background: var(--input-bg); border: 1px solid var(--panel-border); 
       border-radius: 12px; padding: 12px 16px; color: var(--ink); 
       font-size: 14px; transition: all 0.3s;
     }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,0.4); box-shadow: 0 0 0 4px var(--accent-soft); }
+    input[type="file"] { padding: 8px 12px; }
+    input[type="file"]::file-selector-button {
+      cursor: pointer; font-weight: 600; padding: 6px 14px; border-radius: 8px; 
+      border: 1px solid var(--panel-border); background: rgba(255,255,255,0.05); 
+      color: var(--ink); margin-right: 10px; transition: all 0.3s;
+      font-size: 12px;
+    }
+    input[type="file"]::file-selector-button:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+    .light input[type="file"]::file-selector-button { background: rgba(0,0,0,0.05); }
+    .light input[type="file"]::file-selector-button:hover { background: rgba(0,0,0,0.1); }
+    select option { background-color: var(--solid-input-bg); color: var(--ink); }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: var(--input-focus-bg); box-shadow: 0 0 0 4px var(--accent-soft); }
 
     table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 16px; }
     th { text-align: left; padding: 16px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 800; border-bottom: 1px solid var(--panel-border); }
     td { padding: 16px; font-size: 14px; border-bottom: 1px solid var(--panel-border); }
     tr:last-child td { border-bottom: 0; }
-    tr:hover td { background: rgba(255, 255, 255, 0.03); }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
     .pill { padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     .pill.good { background: rgba(16, 185, 129, 0.1); color: var(--good); border: 1px solid rgba(16, 185, 129, 0.2); }
@@ -312,12 +395,12 @@ def page(title, body, area="public"):
     .status-dot.good { background: var(--good); }
     .status-dot.good::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--good); opacity: 0.3; animation: pulse 2s infinite; }
 
-    @media (max-width: 1024px) {
-      .sidebar { width: 90px; padding: 32px 12px; }
-      .sidebar .brand h1, .sidebar nav a span, .sidebar .muted, .sidebar .brand .eyebrow { display: none; }
-      .sidebar nav a { justify-content: center; padding: 16px; }
-      .main-content { margin-left: 90px; padding: 30px; }
+    /* Responsive Scaling */
+    @media (min-width: 1600px) {
+      .main-content { max-width: 1600px; }
     }
+    
+
   </style>
 </head>
 <body class="{{shell_class}}">
@@ -329,15 +412,10 @@ def page(title, body, area="public"):
     <nav>
       {{nav_html}}
     </nav>
-    <div style="margin-top: 24px; padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border);">
-      <div class="muted" style="font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:12px;">System Stats</div>
-      <div style="display:flex; flex-direction:column; gap:8px; font-size:12px;">
-        <div style="display:flex; justify-content:space-between;"><span>Lexicon:</span> <span style="color:var(--accent)" id="stat-lexicon">...</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>Names:</span> <span style="color:var(--accent)" id="stat-names">...</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>Database:</span> <span style="color:var(--muted)" id="stat-db">...</span></div>
-      </div>
+    <div id="sidebar-stats-wrapper">
+      {{stats_html}}
     </div>
-    <div style="margin-top: auto; padding: 16px 8px; border-top: 1px solid var(--panel-border);">
+    <div id="sidebar-footer" style="margin-top: auto; padding: 16px 8px; border-top: 1px solid var(--panel-border);">
       <button onclick="toggleTheme()" style="width:100%; justify-content:center; border-radius:8px; padding:8px;">
         <i data-lucide="sun"></i> <span style="margin-left:8px">Theme</span>
       </button>
@@ -408,6 +486,7 @@ def page(title, body, area="public"):
         .replace("{{nav_html}}", nav_html)
         .replace("{{shell_class}}", shell_class)
         .replace("{{eyebrow}}", eyebrow)
+        .replace("{{stats_html}}", stats_html)
     )
 
 
@@ -420,32 +499,385 @@ def login_form():
       <div class="panel" style="text-align:center;">
         <i data-lucide="lock" style="width:48px; height:48px; margin-bottom:16px; color:var(--accent);"></i>
         <h2 style="border:0; margin-bottom:24px;">Admin Access</h2>
-        <form action="/admin/login" method="POST" style="display:flex; flex-direction:column; gap:16px;">
-          <input type="password" name="password" placeholder="Enter Admin Password" autofocus required style="text-align:center; font-size:18px;">
+        
+        <form id="login-form" action="/admin/login" method="POST" style="display:flex; flex-direction:column; gap:16px;" autocomplete="off">
+          <input type="text" name="username" placeholder="Username" autofocus required style="text-align:center; font-size:16px;" autocomplete="off" onpaste="return false;">
+          
+          <div style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="admin-pass" name="password" placeholder="Password" required style="text-align:center; font-size:16px; width: 100%; padding-right: 40px;" autocomplete="new-password" onpaste="return false;">
+            <button type="button" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; color: var(--muted); padding: 0; display: flex; align-items: center;" onmousedown="togglePass(true)" onmouseup="togglePass(false)" onmouseleave="togglePass(false)" ontouchstart="togglePass(true)" ontouchend="togglePass(false)">
+              <i id="eye-closed" data-lucide="eye-off" style="width: 20px; height: 20px; display: block;"></i>
+              <i id="eye-open" data-lucide="eye" style="width: 20px; height: 20px; display: none;"></i>
+            </button>
+          </div>
+
           <input type="hidden" name="next" value="{{next}}">
           <button type="submit" class="primary" style="justify-content:center;">Unlock System</button>
+          <a href="#" onclick="toggleForget(true)" style="font-size:12px; color:var(--muted); text-decoration:none; margin-top:8px;">Forget password?</a>
         </form>
-        <div id="error" class="status" style="color:var(--bad); margin-top:16px;"></div>
+
+        <form id="forget-form" style="display:none; flex-direction:column; gap:16px;" autocomplete="off">
+          <div class="muted" style="font-size:14px; margin-bottom:8px;">Leave a message for the administrator/owner requesting a new password.</div>
+          <input type="text" id="forget-username" placeholder="Your Username" required style="text-align:center; font-size:16px;" autocomplete="off" onpaste="return false;">
+          <textarea id="forget-message" placeholder="Message (e.g. Please reset my password, John)" required style="font-size:14px; height: 100px; resize:none;"></textarea>
+          <button type="button" class="primary" onclick="requestReset()" style="justify-content:center;">Send Request</button>
+          <a href="#" onclick="toggleForget(false)" style="font-size:12px; color:var(--muted); text-decoration:none; margin-top:8px;">Back to Login</a>
+        </form>
+
+        <div id="auth-status" class="status" style="margin-top:16px; font-weight:600;"></div>
       </div>
-      <div class="muted" style="text-align:center;">Default password is <code>admin</code></div>
     </div>
+    <script>
+      function togglePass(show) {
+        const passInput = document.getElementById('admin-pass');
+        passInput.type = show ? 'text' : 'password';
+        document.getElementById('eye-open').style.display = show ? 'block' : 'none';
+        document.getElementById('eye-closed').style.display = show ? 'none' : 'block';
+      }
+
+      function toggleForget(show) {
+        document.getElementById('login-form').style.display = show ? 'none' : 'flex';
+        document.getElementById('forget-form').style.display = show ? 'flex' : 'none';
+        document.getElementById('auth-status').textContent = '';
+      }
+      
+      async function requestReset() {
+        const username = document.getElementById('forget-username').value;
+        const message = document.getElementById('forget-message').value;
+        const statusDiv = document.getElementById('auth-status');
+        
+        if (!username || !message) {
+          statusDiv.style.color = 'var(--bad)';
+          statusDiv.textContent = 'Please fill in all fields.';
+          return;
+        }
+        
+        try {
+          const response = await fetch('/admin/forget-password', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username: username, message: message})
+          });
+          
+          const text = await response.text();
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch(e) {
+            statusDiv.style.color = 'var(--bad)';
+            statusDiv.textContent = 'Server error (' + response.status + ').';
+            return;
+          }
+          
+          if (response.ok && data.ok) {
+            statusDiv.style.color = 'var(--good)';
+            statusDiv.textContent = 'Request sent to system owner!';
+            document.getElementById('forget-message').value = '';
+          } else {
+            statusDiv.style.color = 'var(--bad)';
+            statusDiv.textContent = data.error || 'Failed to send request.';
+          }
+        } catch (e) {
+          statusDiv.style.color = 'var(--bad)';
+          statusDiv.textContent = 'Network error.';
+        }
+      }
+    </script>
     """
     return page("Login", body.replace("{{next}}", request.args.get("next", "/admin")))
 
 
 @app.post("/admin/login")
 def login_action():
+    username = request.form.get("username")
     password = request.form.get("password")
-    if password and compare_digest(
-        password.encode("utf-8"), ADMIN_PASSWORD.encode("utf-8")
-    ):
+    if verify_user(username, password):
         session["admin_authenticated"] = True
+        session["admin_username"] = username
+        from src.storage import get_user_role
+        session["admin_role"] = get_user_role(username)
         session.permanent = True
         return redirect(request.form.get("next", "/admin"))
     return page(
         "Login",
-        "<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Access Denied</h2><p>Incorrect password.</p><a href='/admin/login'>Try again</a></div>",
+        f"<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Access Denied</h2><p>Incorrect username or password.</p><a href='/admin/login'>Try again</a></div>",
     )
+
+
+@app.post("/admin/forget-password")
+def forget_password_action():
+    payload = request.get_json(silent=True) or {}
+    username = str(payload.get("username", "")).strip()
+    message = str(payload.get("message", "")).strip()
+    if not username or not message:
+        return jsonify({"error": "Username and message are required."}), 400
+    create_password_request(username, message)
+    return jsonify({"ok": True})
+
+
+@app.get("/admin/users")
+@super_admin_required
+def admin_users_view():
+    return page(
+        "Admin Manager",
+        """
+    <div class="muted" style="margin-bottom: 16px;">Manage application administrators, security credentials, and password recovery triggers.</div>
+    
+    <div class="panel">
+      <h2>Create New Administrator</h2>
+      <div class="row">
+        <input type="text" id="new-username" placeholder="New Username" required autocomplete="off" style="font-size:16px;" onpaste="return false;">
+        <input type="password" id="new-password" placeholder="Temporary Password" required autocomplete="off" style="font-size:16px;" onpaste="return false;">
+        <select id="new-role">
+          <option value="reviewer">Reviewer (read/update only)</option>
+          <option value="admin">Super Admin (full permissions)</option>
+        </select>
+        <button class="primary" onclick="createUser()">Add User</button>
+      </div>
+      <div id="create-status" class="status"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Active Administrators</h2>
+      <div id="users-table-container"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Password Reset Requests</h2>
+      <div class="toolbar">
+        <button class="danger" onclick="clearRequests()">Clear All Requests</button>
+      </div>
+      <div id="requests-table-container" style="margin-top: 12px;"></div>
+    </div>
+
+    <script>
+      async function loadAll() {
+        const res = await fetch('/admin/users/api');
+        const data = await res.json();
+        renderUsers(data.users);
+        renderRequests(data.requests);
+      }
+
+      function renderUsers(users) {
+        const container = document.getElementById('users-table-container');
+        if (!users || !users.length) {
+          container.innerHTML = '<div class="muted">No additional admin accounts.</div>';
+          return;
+        }
+        let html = '<table><thead><tr><th>ID</th><th>Username</th><th>Role</th><th>Created At</th><th>Actions</th></tr></thead><tbody>';
+        users.forEach(u => {
+          html += `<tr>
+            <td>${u.id}</td>
+            <td><strong>${escapeHtml(u.username)}</strong></td>
+            <td>
+              ${u.role === 'admin' 
+                ? '<i data-lucide="shield" style="width:16px; height:16px; color:var(--good); vertical-align:middle; margin-right:6px;"></i> <span style="color:var(--good); font-weight:600;">admin</span>' 
+                : '<i data-lucide="eye" style="width:16px; height:16px; color:var(--accent); vertical-align:middle; margin-right:6px;"></i> <span style="color:var(--accent); font-weight:600;">reviewer</span>'
+              }
+            </td>
+            <td>${u.created_at}</td>
+            <td>
+              <button class="primary" onclick="promptUpdate(${u.id}, '${escapeHtml(u.username)}')">Edit</button>
+              <button class="danger" onclick="deleteUser(${u.id})">Delete</button>
+            </td>
+          </tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function renderRequests(reqs) {
+        const container = document.getElementById('requests-table-container');
+        if (!reqs || !reqs.length) {
+          container.innerHTML = '<div class="muted">No pending password reset requests.</div>';
+          return;
+        }
+        let html = '<table><thead><tr><th>Username</th><th>Message</th><th>Date</th><th>Actions</th></tr></thead><tbody>';
+        reqs.forEach(r => {
+          html += `<tr>
+            <td><strong>${escapeHtml(r.username)}</strong></td>
+            <td>${escapeHtml(r.message)}</td>
+            <td>${r.created_at}</td>
+            <td>
+              <button class="danger" onclick="clearRequests(${r.id})">Dismiss</button>
+            </td>
+          </tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+      }
+
+      async function createUser() {
+        const u = document.getElementById('new-username').value;
+        const p = document.getElementById('new-password').value;
+        const r = document.getElementById('new-role').value;
+        const status = document.getElementById('create-status');
+        if (!u || !p) { status.textContent = 'Fields cannot be empty'; return; }
+        
+        const res = await fetch('/admin/users/create', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({username: u, password: p, role: r})
+        });
+        const data = await res.json();
+        status.textContent = data.message || data.error;
+        if (res.ok) {
+          document.getElementById('new-username').value = '';
+          document.getElementById('new-password').value = '';
+          loadAll();
+        }
+      }
+
+      async function deleteUser(id) {
+        if(!confirm('Delete user profile?')) return;
+        const res = await fetch('/admin/users/delete/' + id, { method: 'DELETE' });
+        const data = await res.json();
+        if (!res.ok) alert(data.error);
+        loadAll();
+      }
+
+      async function clearRequests(id) {
+        const url = '/admin/users/requests/clear' + (id ? '?id=' + id : '');
+        await fetch(url, { method: 'DELETE' });
+        loadAll();
+      }
+
+      function promptUpdate(id, username) {
+        const newUsername = prompt('Enter new username for ' + username + ' (Leave empty to keep same):');
+        const pass = prompt('Enter new password for ' + username + ' (Leave empty to keep same):');
+        const role = prompt('Enter new role (reviewer / admin) for ' + username + ' (Leave empty to keep same):');
+        if (newUsername === null && pass === null && role === null) return;
+        
+        fetch('/admin/users/update', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            user_id: id, 
+            username: newUsername || undefined, 
+            password: pass || undefined, 
+            role: role || undefined
+          })
+        }).then(res => res.json()).then(data => {
+          if (data.error) alert(data.error);
+          loadAll();
+        });
+      }
+
+      function escapeHtml(value) {
+        return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+      }
+
+      loadAll();
+    </script>
+        """,
+        area="admin"
+    )
+
+
+@app.get("/admin/users/api")
+@super_admin_required
+def admin_users_data_api():
+    return jsonify({
+        "users": list_users(),
+        "requests": list_forgot_passwords()
+    })
+
+
+@app.post("/admin/users/create")
+@super_admin_required
+def admin_users_create_api():
+    from src.config import ADMIN_USERNAME
+    payload = request.get_json(silent=True) or {}
+    u = str(payload.get("username", "")).strip()
+    p = str(payload.get("password", "")).strip()
+    r = str(payload.get("role", "reviewer")).strip()
+    
+    is_owner = session.get("admin_username") == ADMIN_USERNAME
+    if not is_owner:
+        if r != "reviewer":
+            return jsonify({"error": "Admins can only create Reviewer accounts."}), 403
+            
+    if not u or not p:
+        return jsonify({"error": "Username and password required."}), 400
+    try:
+        add_user(u, p, r)
+        return jsonify({"ok": True, "message": "User created successfully."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.post("/admin/users/update")
+@super_admin_required
+def admin_users_update_api():
+    from src.config import ADMIN_USERNAME
+    payload = request.get_json(silent=True) or {}
+    u_id = payload.get("user_id")
+    u_name = payload.get("username")
+    p = payload.get("password")
+    r = payload.get("role")
+    if not u_id:
+        return jsonify({"error": "User ID required."}), 400
+        
+    is_owner = session.get("admin_username") == ADMIN_USERNAME
+    if not is_owner:
+        from src.storage import connect
+        with connect() as db:
+            row = db.execute("SELECT role, username FROM users WHERE id = ?", (u_id,)).fetchone()
+        if row:
+            if row["username"] == ADMIN_USERNAME or row["role"] == "admin":
+                return jsonify({"error": "Admins cannot update other Admins or the Owner."}), 403
+            if r and r != "reviewer":
+                return jsonify({"error": "Admins cannot promote users."}), 403
+                
+    try:
+        update_user(user_id=u_id, username=u_name, password=p, role=r)
+        return jsonify({"ok": True, "message": "User updated."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@app.post("/corpus/rebuild")
+@admin_required
+def corpus_rebuild_api():
+    try:
+        from src.build_dataset import build_dataset
+        from src.frequency import generate_frequency_lists, import_frequency_lists
+        
+        build_dataset()
+        generate_frequency_lists()
+        import_frequency_lists()
+        return jsonify({"ok": True, "message": "Corpus indexing rebuilt successfully."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.delete("/admin/users/delete/<int:user_id>")
+@super_admin_required
+def admin_users_delete_api(user_id):
+    from src.config import ADMIN_USERNAME
+    is_owner = session.get("admin_username") == ADMIN_USERNAME
+    if not is_owner:
+        from src.storage import connect
+        with connect() as db:
+            row = db.execute("SELECT role, username FROM users WHERE id = ?", (user_id,)).fetchone()
+        if row:
+            if row["username"] == ADMIN_USERNAME or row["role"] == "admin":
+                return jsonify({"error": "Admins cannot delete other Admins or the Owner."}), 403
+                
+    try:
+        delete_user(user_id)
+        return jsonify({"ok": True, "message": "User deleted."})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+@app.delete("/admin/users/requests/clear")
+@super_admin_required
+def admin_users_requests_clear_api():
+    req_id = request.args.get("id")
+    clear_forgot_passwords(request_id=req_id)
+    return jsonify({"ok": True})
 
 
 @app.get("/admin/logout")
@@ -518,6 +950,7 @@ def safety_page():
       <div class="muted">The detector may queue uncertain examples, but it does not train on guesses automatically.</div>
     </div>
         """,
+        area="admin",
     )
 
 
@@ -585,12 +1018,9 @@ def api_docs_page():
       <pre>Invoke-RestMethod -Method Post -Uri http://{APP_HOST}:{APP_PORT}/detect -ContentType "application/json" -Body '{{"text":"Bonjour","top_k":3}}'
 
 python examples/api_client.py "Bonjour tout le monde"</pre>
-      <div class="toolbar">
-        <a class="pill" href="/openapi.json">OpenAPI JSON</a>
-        <a class="pill" href="/health">Health</a>
-      </div>
     </div>
         """,
+        area="admin",
     )
 
 
@@ -635,10 +1065,11 @@ def quality_page():
         ],
     )
     body = f"""
+    <div class="muted" style="margin-bottom: 16px;">Analyzes overall dataset metrics, knowledge-base density, and general readiness markers.</div>
     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-      {_admin_card("Course Project Score", f"{scores['course_project']}/10", "target: 10/10")}
-      {_admin_card("AI Application Score", f"{scores['ai_application']}/10", "target: 7.5-8/10")}
-      {_admin_card("Data Readiness", f"{scores['data_readiness']}/10", "needs real corpus growth")}
+      {_admin_card("Course Project Score", f"{scores['course_project']}/10", "target: 9-10/10")}
+      {_admin_card("AI Application Score", f"{scores['ai_application']}/10", "target: 9-10/10")}
+      {_admin_card("Data Readiness", f"{scores['data_readiness']}/10", "target: 9-10/10")}
       {_admin_card("Benchmark", f"{report['benchmark']['accuracy']}", f"{report['benchmark']['correct']}/{report['benchmark']['samples']} correct")}
       {_admin_card("Character Profiles", report['character_profiles']['languages'], "alphabet/signature coverage")}
       {_admin_card("Dataset Rows", report['dataset']['total_rows'], f"min per language: {report['dataset']['min_rows_per_language']}")}
@@ -772,6 +1203,7 @@ def benchmark_page():
         ],
     )
     body = f"""
+    <div class="muted" style="margin-bottom: 16px;">Evaluates system accuracy against curated test categories (names, short words, scripts, and combined examples).</div>
     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
       {_admin_card("Benchmark Accuracy", report['accuracy'], f"{report['correct']}/{report['samples']} correct")}
       {_admin_card("Categories", len(report['by_category']), "single words, names, scripts, mixed text")}
@@ -964,7 +1396,7 @@ def frequency_page():
         <select id="freq-mode"><option value="replace">replace</option><option value="append">append</option></select>
         <input id="freq-file" type="file" accept=".tsv,.txt,text/plain">
       </div>
-      <textarea id="freq-text" style="margin-top:10px; min-height:90px" placeholder="word<TAB>frequency, one row per line"></textarea>
+      <textarea id="freq-text" placeholder="word&#9;frequency, one row per line" style="font-size: 18px; padding: 20px; width: 100%; height: 250px; resize: none; box-sizing: border-box; line-height: 1.5; font-family: inherit; margin-top: 10px;"></textarea>
       <div class="row" style="margin-top:12px">
         <button onclick="uploadFrequency()">Upload TSV</button>
         <button class="primary" onclick="runFrequency('/frequency/generate')">Generate from corpus</button>
@@ -1048,15 +1480,22 @@ def frequency_import_api():
 
 
 def _admin_card(label, value, note="", icon="activity"):
+    val_str = str(value)
+    font_size = "28px"
+    if len(val_str) > 10:
+        font_size = "22px"
+    if len(val_str) > 16:
+        font_size = "18px"
+        
     note_html = f"<div class='muted'>{escape(str(note))}</div>" if note else ""
     return (
-        "<div class='panel' style='display:flex; flex-direction:column; justify-content:center; align-items:flex-start;'>"
+        "<div class='panel' style='display:flex; flex-direction:column; justify-content:center; align-items:flex-start; overflow:hidden;'>"
         f"<div style='display:flex; justify-content:space-between; width:100%; margin-bottom:12px;'>"
         f"<div class='pill' style='background:rgba(59, 130, 246, 0.1); color:var(--accent); display:flex; align-items:center; gap:6px;'>"
         f"<i data-lucide='{icon}' style='width:14px; height:14px;'></i> {escape(str(label))}"
         "</div>"
         "</div>"
-        f"<div style='font-size:32px; font-weight:800; letter-spacing:-0.03em; margin-bottom:4px;'>{escape(str(value))}</div>"
+        f"<div style='font-size:{font_size}; font-weight:800; letter-spacing:-0.03em; margin-bottom:4px; white-space:nowrap;'>{escape(val_str)}</div>"
         f"{note_html}"
         "</div>"
     )
@@ -1090,8 +1529,13 @@ def _rows(items, columns):
             except (ValueError, TypeError):
                 pass
 
-            if isinstance(value, (dict, list)):
-                cell_content = f"<pre style='max-height:100px;font-size:11px'>{escape(json.dumps(value, ensure_ascii=False, indent=2))}</pre>"
+            if isinstance(value, list):
+                if all(isinstance(x, (str, int, float)) for x in value):
+                    cell_content = ", ".join(str(x) for x in value)
+                else:
+                    cell_content = f"<pre style='max-height:100px;font-size:11px;margin:0'>{escape(json.dumps(value, ensure_ascii=False))}</pre>"
+            elif isinstance(value, dict):
+                cell_content = f"<pre style='max-height:100px;font-size:11px;margin:0'>{escape(json.dumps(value, ensure_ascii=False, indent=2))}</pre>"
 
             cells.append(f"<td>{cell_content}</td>")
         output.append("<tr>" + "".join(cells) + "</tr>")
@@ -1170,12 +1614,7 @@ def admin_dashboard():
     )
 
     body = f"""
-    <div class="grid" style="grid-template-columns: 200px 1fr; gap: 24px;">
-      <div class="panel" style="text-align: center;">
-        <h2>Language Distribution</h2>
-        <div class="pie-chart"></div>
-        <div class="muted" style="margin-top: 8px;">Top language families by volume.</div>
-      </div>
+    <div class="grid" style="grid-template-columns: 1fr; gap: 24px;">
       <div class="panel">
       <h2>Pipeline Controls</h2>
       <div class="muted" style="margin-bottom: 16px;">Step-by-step system initialization and refinement.</div>
@@ -1189,7 +1628,7 @@ def admin_dashboard():
       <pre id="action-output" style="margin-top: 12px; font-size: 11px; max-height: 200px; overflow: auto; border-radius: 8px; background: rgba(0,0,0,0.05); padding: 12px; display: none;"></pre>
     </div>
     </div>
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
       {cards}
     </div>
     <div class="grid">
@@ -1434,19 +1873,36 @@ def admin_reset_api():
 
 @app.get("/detect")
 def detect_form():
+    samples = {
+        "UK": "Привіт, як твої справи?",
+        "BE": "Dobry дзень",
+        "CS": "Na nádraží čekáme na vlak",
+        "FR": "Bonjour tout le monde",
+        "DE": "Guten Tag, wie geht es Ihnen?",
+        "ES": "Hola, ¿cómo estás?",
+        "IT": "Ciao, come stai?",
+        "PL": "Cześć, jak się masz?",
+        "TR": "Merhaba, nasılsın?",
+        "EL": "Καλημέρα, πώς είστε;",
+    }
+    
+    buttons_html = ""
+    for code in ["UK", "BE", "CS", "FR", "DE", "ES", "IT"]:
+        text = samples.get(code, f"Test sentence for {code}")
+        buttons_html += f'<button onclick="sample(\'{text}\')">{code}</button>\n        '
+    
+    buttons_html += '<button onclick="sample(\'hello привіт bonjour\')">Mixed</button>'
+
     return page(
         "European Language Detector",
         """
-    <textarea id="text" autofocus placeholder="Type text here..." style="font-size: 18px; padding: 20px; min-height: 120px;">Bonjour tout le monde</textarea>
-    <div class="toolbar" style="margin: 20px 0 32px;">
+    <textarea id="text" autofocus placeholder="Type text here..." style="font-size: 18px; padding: 20px; width: 100%; height: 250px; resize: none; box-sizing: border-box; line-height: 1.5; font-family: inherit;">Bonjour tout le monde</textarea>
+    <div class="toolbar" style="margin: 20px 0 32px; flex-wrap: wrap;">
       <button class="primary" onclick="detect()"><i data-lucide="search"></i> Detect Language</button>
       <button onclick="analyze()"><i data-lucide="microscope"></i> Word Analysis</button>
-      <div style="margin-left: auto; display: flex; gap: 8px;">
+      <div style="width: 100%; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;">
         <span class="muted" style="align-self:center; font-size:12px;">Try:</span>
-        <button onclick="sample('Привіт, як твої справи?')">UK</button>
-        <button onclick="sample('Dobry дзень')">BE</button>
-        <button onclick="sample('Na nádraží čekáme na vlak')">CS</button>
-        <button onclick="sample('hello привіт bonjour')">Mixed</button>
+        {{buttons_html}}
       </div>
     </div>
     <section class="grid">
@@ -1473,11 +1929,10 @@ def detect_form():
       <div class="panel">
         <div class="row" style="justify-content: space-between; margin-bottom: 12px;">
           <h2 style="border:0; margin:0; font-size: 16px;">Details</h2>
-          <button onclick="toggleJson()" style="padding: 4px 8px; font-size: 11px;">Toggle JSON</button>
         </div>
         <div id="tokens"></div>
-        <div id="json-container" style="display: none; margin-top: 12px;">
-          <pre id="result" style="font-size: 11px; max-height: 300px;"></pre>
+        <div style="display: none;">
+          <pre id="result"></pre>
         </div>
       </div>
     </section>
@@ -1503,7 +1958,8 @@ def detect_form():
           const country = item.country ? ' - ' + item.country : '';
           const group = item.language_group ? ' <span class="pill warn">group ' + escapeHtml(item.language_group) + '</span>' : '';
           const ambiguous = item.ambiguous_group ? ' <span class="pill warn">ambiguous</span>' : '';
-          return '<div class="candidate"><strong><i data-lucide="map-pin" style="width:14px; height:14px; vertical-align:middle; margin-right:6px;"></i>' + escapeHtml(item.language + country) + '</strong><span>' + item.confidence + '</span>' + group + ambiguous + '</div>';
+          const score = item.count !== undefined ? item.count + ' word' + (item.count !== 1 ? 's' : '') : Number(item.confidence).toFixed(4);
+          return '<div class="candidate"><strong><i data-lucide="map-pin" style="width:14px; height:14px; vertical-align:middle; margin-right:6px;"></i>' + escapeHtml(item.language + country) + '</strong><span class="muted" style="margin-left: 8px;">' + score + '</span>' + group + ambiguous + '</div>';
         }).join('');
         lucide.createIcons();
       }
@@ -1513,7 +1969,17 @@ def detect_form():
           const bad = token.language === 'unknown' ? ' bad' : (token.reliability === 'low' ? ' warn' : '');
           const group = token.language_group ? ' / group ' + token.language_group + ' (' + (token.group_reliability || 'unknown') + ')' : '';
           const icon = token.source === 'lexicon' ? 'book' : (token.source === 'name' ? 'user' : 'hash');
-          return '<div class="token"><div class="token-line"><strong><i data-lucide="' + icon + '" style="width:14px; height:14px; vertical-align:middle; margin-right:6px; opacity:0.6;"></i>' + escapeHtml(token.text) + '</strong><span class="pill' + bad + '">' + escapeHtml(token.language) + '</span></div><div class="muted">' + escapeHtml(token.source || 'unknown') + ' / ' + escapeHtml(token.reason || token.entity_type || 'token') + ' / ' + token.confidence + escapeHtml(group) + '</div></div>';
+          
+          let detailText = '';
+          if (token.source === 'unknown') {
+            detailText = 'Not recognized in any language';
+          } else {
+            let engine = token.source === 'lingua' ? 'Lingua AI' : (token.source === 'lexicon' ? 'Local Lexicon' : (token.source === 'rule' ? 'Heuristics' : (token.source === 'name' ? 'Name Database' : token.source)));
+            let match = token.reason === 'exact_word' ? 'exact word' : (token.reason === 'word' ? 'word pattern' : (token.reason === 'keyboard_garbage' ? 'random typing' : (token.reason || token.entity_type || 'token').replace('_', ' ')));
+            detailText = 'Found by ' + engine + ' (' + match + ') &bull; ' + Math.round(token.confidence * 100) + '% confident';
+          }
+          
+          return '<div class="token"><div class="token-line"><strong><i data-lucide="' + icon + '" style="width:14px; height:14px; vertical-align:middle; margin-right:6px; opacity:0.6;"></i>' + escapeHtml(token.text) + '</strong><span class="pill' + bad + '">' + escapeHtml(token.language) + '</span></div><div class="muted">' + detailText + escapeHtml(group) + '</div></div>';
         }).join('');
         lucide.createIcons();
       }
@@ -1543,10 +2009,10 @@ def detect_form():
         const data = await response.json();
         document.getElementById('result').textContent = JSON.stringify(data, null, 2);
         document.getElementById('language-name').textContent = data.language || '--';
-        const entity = data.entity_type ? data.entity_type + ' - ' : '';
-        const group = data.language_group ? ' - group ' + data.language_group + ' (' + (data.group_reliability || 'unknown') + ')' : '';
-        const ambiguous = data.ambiguous_group ? ' - ambiguous group' : '';
-        document.getElementById('meta').textContent = entity + (data.source || 'unknown') + ' - ' + (data.reliability || 'unknown') + ' - confidence ' + (data.confidence ?? 0) + group + ambiguous;
+        const entity = data.entity_type ? data.entity_type + ' &bull; ' : '';
+        const group = data.language_group ? ' &bull; Group: ' + data.language_group + ' (' + (data.group_reliability || 'unknown') + ')' : '';
+        const ambiguous = data.ambiguous_group ? ' &bull; Ambiguous group' : '';
+        document.getElementById('meta').innerHTML = entity + 'Source: ' + (data.source || 'unknown') + ' &bull; Reliability: ' + (data.reliability || 'unknown') + ' &bull; Confidence: ' + Math.round((data.confidence ?? 0) * 100) + '%' + group + ambiguous;
         confidenceBar(data.confidence || 0);
         renderCandidates(data.name_candidates || data.candidates || []);
       }
@@ -1563,9 +2029,9 @@ def detect_form():
         const data = await response.json();
         document.getElementById('result').textContent = JSON.stringify(data, null, 2);
         document.getElementById('language-name').textContent = data.language || '--';
-        document.getElementById('meta').textContent = 'word analysis - coverage ' + data.coverage + ' - known ' + data.known_token_count + '/' + data.token_count;
+        document.getElementById('meta').textContent = 'Analyzed ' + data.token_count + ' words (' + data.known_token_count + ' recognized, ' + Math.round((data.coverage || 0) * 100) + '% coverage)';
         confidenceBar(data.coverage || 0);
-        renderCandidates(Object.entries(data.language_counts || {}).map(function(pair) { return {language: pair[0], confidence: pair[1]}; }));
+        renderCandidates(Object.entries(data.language_counts || {}).map(function(pair) { return {language: pair[0], count: pair[1]}; }));
         renderTokens(data.tokens || []);
       }
 
@@ -1585,7 +2051,7 @@ def detect_form():
         return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
       }
     </script>
-        """,
+        """.replace("{{buttons_html}}", buttons_html),
     )
 
 
@@ -1735,6 +2201,7 @@ def review_form():
     return page(
         "Review Unknown Texts",
         f"""
+    <div class="muted" style="margin-bottom: 16px;">Browse texts with no high-confidence classification match for human analysis.</div>
     <div class="toolbar">
       <button class="primary" onclick="loadItems()">Refresh</button>
       <button onclick="clearAll()">Clear visible unknowns</button>
@@ -1854,6 +2321,7 @@ def corpus_form():
     return page(
         "Corpus Manager",
         f"""
+    <div class="muted" style="margin-bottom: 16px;">Manage verified language text datasets used to compile training configurations.</div>
     <div class="panel">
       <div class="row">
         <select id="lang">{language_options()}</select>
@@ -1864,18 +2332,16 @@ def corpus_form():
         <button onclick="buildDataset()">Rebuild dataset/train/test</button>
         <button onclick="loadCorpus()">Refresh</button>
       </div>
-      <textarea id="text" style="margin-top:10px; min-height:100px" placeholder="Or paste reviewed sentences here, one per line"></textarea>
+      <textarea id="text" placeholder="Or paste reviewed sentences here, one per line" style="font-size: 18px; padding: 20px; width: 100%; height: 250px; resize: none; box-sizing: border-box; line-height: 1.5; font-family: inherit; margin-top: 10px;"></textarea>
       <div id="status" class="status"></div>
     </div>
-    <div class="grid">
-      <div class="panel">
-        <h2>Reviewed corpus files</h2>
-        <div id="files"></div>
-      </div>
-      <div class="panel">
-        <h2>Dataset stats</h2>
-        <pre id="dataset"></pre>
-      </div>
+    <div class="panel">
+      <h2>Reviewed corpus files</h2>
+      <div id="files"></div>
+    </div>
+    <div class="panel">
+      <h2>Dataset stats</h2>
+      <pre id="dataset"></pre>
     </div>
     <script>
       async function loadCorpus() {{
@@ -1885,7 +2351,7 @@ def corpus_form():
         const rows = (data.files || []).filter(function(item) {{ return item.exists || item.non_empty_lines > 0; }}).map(function(item) {{
           return '<tr><td>' + escapeHtml(item.language) + '</td><td>' + escapeHtml(item.name || '') + '</td><td>' + item.non_empty_lines + '</td><td>' + item.size + '</td><td><button onclick="previewCorpus(' + JSON.stringify(item.language).replaceAll('"', '&quot;') + ')">Preview</button></td></tr>';
         }}).join('');
-        document.getElementById('files').innerHTML = rows ? '<table><thead><tr><th>Lang</th><th>Name</th><th>Lines</th><th>Bytes</th><th></th></tr></thead><tbody>' + rows + '</tbody></table><pre id="preview" style="margin-top:12px"></pre>' : '<div class="empty">No corpus files yet.</div>';
+        document.getElementById('files').innerHTML = rows ? '<table><thead><tr><th>Lang</th><th>Name</th><th>Lines</th><th>Bytes</th><th></th></tr></thead><tbody>' + rows + '</tbody></table><div id="preview" style="margin-top:24px; display:none; background:rgba(0,0,0,0.2); padding:24px; border-radius:16px; border:1px solid var(--panel-border);"></div>' : '<div class="empty">No corpus files yet.</div>';
       }}
 
       async function uploadCorpus() {{
@@ -1934,7 +2400,21 @@ def corpus_form():
       async function previewCorpus(lang) {{
         const response = await fetch('/corpus/preview?lang=' + encodeURIComponent(lang));
         const data = await response.json();
-        document.getElementById('preview').textContent = JSON.stringify(data, null, 2);
+        const previewDiv = document.getElementById('preview');
+        previewDiv.style.display = 'block';
+        if (data.error) {{
+          previewDiv.innerHTML = '<div class="muted">' + escapeHtml(data.error) + '</div>';
+          return;
+        }}
+        let html = '<h3 style="margin-top:0; margin-bottom:16px;">Preview for ' + escapeHtml(lang.toUpperCase()) + '</h3>';
+        if (data.lines && data.lines.length) {{
+          html += '<ol style="padding-left:20px; margin:0; line-height:1.8;">' + data.lines.map(function(line) {{
+            return '<li style="margin-bottom:8px;">' + escapeHtml(line) + '</li>';
+          }}).join('') + '</ol>';
+        }} else {{
+          html += '<div class="muted">No lines found in this file.</div>';
+        }}
+        previewDiv.innerHTML = html;
       }}
 
       function escapeHtml(value) {{
@@ -2022,6 +2502,7 @@ def lexicon_form():
     return page(
         "Lexicon Manager",
         f"""
+    <div class="muted" style="margin-bottom: 16px;">Review and modify word lists used for deterministic matching of known terminology.</div>
     <div class="panel">
       <div class="row">
         <select id="lang">{language_options()}</select>
@@ -2033,16 +2514,14 @@ def lexicon_form():
         <input id="search" placeholder="search" oninput="loadLexicon()">
         <button onclick="loadLexicon()">Refresh</button>
       </div>
-      <textarea id="bulk" style="margin-top:10px; min-height:90px" placeholder="Paste many words here, one per line or separated by spaces"></textarea>
+      <textarea id="bulk" placeholder="Paste many words here, one per line or separated by spaces" style="font-size: 18px; padding: 20px; width: 100%; height: 250px; resize: none; box-sizing: border-box; line-height: 1.5; font-family: inherit; margin-top: 10px;"></textarea>
       <div class="row" style="margin-top:10px">
         <button onclick="importWords()">Import words</button>
         <span id="status" class="status"></span>
       </div>
     </div>
-    <div class="grid">
-      <div class="panel"><div id="lexicon"></div></div>
-      <div class="panel"><h2>Word knowledge</h2><pre id="word-analysis">{{}}</pre></div>
-    </div>
+    <div class="panel"><div id="lexicon"></div></div>
+    <div class="panel"><h2>Word knowledge</h2><pre id="word-analysis">{{}}</pre></div>
     <script>
       async function loadLexicon() {{
         const query = encodeURIComponent(document.getElementById('search').value.trim());
@@ -2185,6 +2664,7 @@ def names_form():
     return page(
         "Name Manager",
         f"""
+    <div class="muted" style="margin-bottom: 16px;">Manage person and location names for optimized contextual classification hints.</div>
     <div class="panel">
       <div class="row">
         <select id="lang">{language_options()}</select>
@@ -2198,10 +2678,8 @@ def names_form():
       </div>
       <div id="status" class="status"></div>
     </div>
-    <div class="grid">
-      <div class="panel"><div id="names"></div></div>
-      <div class="panel"><h2>Name knowledge</h2><pre id="name-analysis">{{}}</pre></div>
-    </div>
+    <div class="panel"><div id="names"></div></div>
+    <div class="panel"><h2>Name knowledge</h2><pre id="name-analysis">{{}}</pre></div>
     <script>
       async function loadNames() {{
         const query = encodeURIComponent(document.getElementById('search').value.trim());

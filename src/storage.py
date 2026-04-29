@@ -99,6 +99,15 @@ def init_db():
                 UNIQUE(name, language)
             );
 
+            CREATE TABLE IF NOT EXISTS dataset_corpus (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                text TEXT NOT NULL UNIQUE,
+                lang TEXT NOT NULL,
+                source TEXT NOT NULL DEFAULT 'raw',
+                split TEXT NOT NULL DEFAULT 'train',
+                created_at TEXT NOT NULL
+            );
+
             CREATE TABLE IF NOT EXISTS training_runs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 kind TEXT NOT NULL DEFAULT 'evaluate',
@@ -134,19 +143,138 @@ def init_db():
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
             );
+
+            CREATE TABLE IF NOT EXISTS forgot_passwords (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                message TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            );
             """)
-        db.execute(
-            """
-            INSERT OR IGNORE INTO users(username, role, created_at)
-            VALUES (?, ?, ?)
-            """,
-            ("local-admin", "admin", utc_now()),
-        )
+        _ensure_column(db, "users", "password", "TEXT")
+        
+        from src.config import ADMIN_PASSWORD, ADMIN_USERNAME
+        exists = db.execute("SELECT 1 FROM users WHERE username = ?", (ADMIN_USERNAME,)).fetchone()
+        if not exists:
+            db.execute(
+                "INSERT INTO users(username, role, password, created_at) VALUES (?, ?, ?, ?)",
+                (ADMIN_USERNAME, "admin", ADMIN_PASSWORD, utc_now()),
+            )
+        else:
+            db.execute("UPDATE users SET password = ?, role = 'admin' WHERE username = ?", (ADMIN_PASSWORD, ADMIN_USERNAME))
+
         _ensure_column(db, "training_runs", "model_snapshot_path", "TEXT")
         _ensure_column(db, "lexicon_words", "frequency", "INTEGER NOT NULL DEFAULT 1")
         _ensure_column(db, "lexicon_words", "notes", "TEXT NOT NULL DEFAULT ''")
         _ensure_column(db, "name_hints", "name_type", "TEXT NOT NULL DEFAULT 'person'")
         _ensure_column(db, "name_hints", "notes", "TEXT NOT NULL DEFAULT ''")
+
+
+def verify_user(username, password):
+    init_db()
+    if not username or not password:
+        return False
+    from hmac import compare_digest
+    with connect() as db:
+        row = db.execute("SELECT password FROM users WHERE username = ?", (str(username).strip(),)).fetchone()
+        if row and row["password"]:
+            return compare_digest(str(password).encode("utf-8"), str(row["password"]).encode("utf-8"))
+    return False
+
+
+def get_user_role(username):
+    init_db()
+    with connect() as db:
+        row = db.execute("SELECT role FROM users WHERE username = ?", (str(username).strip(),)).fetchone()
+        return row["role"] if row else None
+
+
+def create_password_request(username, message):
+    init_db()
+    with connect() as db:
+        db.execute(
+            "INSERT INTO forgot_passwords(username, message, created_at) VALUES (?, ?, ?)",
+            (str(username).strip(), str(message).strip(), utc_now())
+        )
+    return True
+
+
+def list_users():
+    init_db()
+    with connect() as db:
+        rows = db.execute("SELECT id, username, role, created_at FROM users ORDER BY created_at DESC").fetchall()
+        return [dict(r) for r in rows]
+
+
+def add_user(username, password, role="reviewer"):
+    init_db()
+    with connect() as db:
+        db.execute(
+            "INSERT INTO users(username, password, role, created_at) VALUES (?, ?, ?, ?)",
+            (str(username).strip(), str(password).strip(), str(role).strip(), utc_now())
+        )
+    return True
+
+
+def update_user(user_id, username=None, password=None, role=None):
+    init_db()
+    with connect() as db:
+        from src.config import ADMIN_USERNAME
+        row = db.execute("SELECT username FROM users WHERE id = ?", (user_id,)).fetchone()
+        if row and row["username"] == ADMIN_USERNAME:
+            if username and str(username).strip() != ADMIN_USERNAME:
+                raise ValueError("Cannot change the core system owner's username here. Change it in config.py.")
+            if role and str(role).strip() != "admin":
+                raise ValueError("Cannot demote the core system owner.")
+        
+        fields = []
+        params = []
+        if username:
+            fields.append("username = ?")
+            params.append(str(username).strip())
+        if password:
+            fields.append("password = ?")
+            params.append(str(password).strip())
+        if role:
+            fields.append("role = ?")
+            params.append(str(role).strip())
+            
+        if not fields:
+            return True
+            
+        params.append(user_id)
+        db.execute(f"UPDATE users SET {', '.join(fields)} WHERE id = ?", tuple(params))
+    return True
+
+
+def delete_user(user_id):
+    init_db()
+    with connect() as db:
+        from src.config import ADMIN_USERNAME
+        row = db.execute("SELECT username FROM users WHERE id = ?", (user_id,)).fetchone()
+        if not row:
+            return True
+        if row["username"] == ADMIN_USERNAME:
+            raise ValueError("Cannot delete the primary system owner account.")
+        db.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    return True
+
+
+def list_forgot_passwords():
+    init_db()
+    with connect() as db:
+        rows = db.execute("SELECT id, username, message, created_at FROM forgot_passwords ORDER BY created_at DESC").fetchall()
+        return [dict(r) for r in rows]
+
+
+def clear_forgot_passwords(request_id=None):
+    init_db()
+    with connect() as db:
+        if request_id:
+            db.execute("DELETE FROM forgot_passwords WHERE id = ?", (request_id,))
+        else:
+            db.execute("DELETE FROM forgot_passwords")
+    return True
 
 
 def _ensure_column(db, table, column, definition):
@@ -932,6 +1060,47 @@ def admin_dashboard_stats():
         "lexicon_by_language": lexicon_by_language,
         "names_by_language": names_by_language,
     }
+
+
+def bulk_upsert_dataset_corpus(rows):
+    init_db()
+    inserted = 0
+    with connect() as db:
+        for row in rows:
+            text = str(row.get("text", "")).strip()
+            lang = str(row.get("lang", "")).strip().lower()
+            source = str(row.get("source", "raw")).strip()
+            split = str(row.get("split", "train")).strip()
+            if not text or not lang:
+                continue
+            db.execute(
+                """
+                INSERT INTO dataset_corpus (text, lang, source, split, created_at)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(text) DO UPDATE SET
+                    lang = excluded.lang,
+                    source = excluded.source,
+                    split = excluded.split
+                """,
+                (text, lang, source, split, utc_now())
+            )
+            inserted += 1
+    return inserted
+
+
+def load_dataset_corpus():
+    init_db()
+    rows = []
+    with connect() as db:
+        cursor = db.execute("SELECT text, lang, source, split FROM dataset_corpus")
+        for r in cursor:
+            rows.append({
+                "text": r["text"],
+                "lang": r["lang"],
+                "source": r["source"],
+                "split": r["split"]
+            })
+    return rows
 
 
 def clear_review_storage(

@@ -518,165 +518,137 @@
   "be": {
     "language": "be",
     "name": "Belarusian",
-    "total_letters": 191483,
-    "alphabet_size": 30,
+    "total_letters": 2924,
+    "alphabet_size": 25,
     "top_characters": [
       {
         "char": "а",
-        "count": 31076,
-        "share": 0.1623
+        "count": 340,
+        "share": 0.1163
       },
       {
         "char": "р",
-        "count": 10968,
-        "share": 0.0573
-      },
-      {
-        "char": "к",
-        "count": 10511,
-        "share": 0.0549
-      },
-      {
-        "char": "у",
-        "count": 10511,
-        "share": 0.0549
-      },
-      {
-        "char": "в",
-        "count": 10054,
-        "share": 0.0525
-      },
-      {
-        "char": "с",
-        "count": 10054,
-        "share": 0.0525
-      },
-      {
-        "char": "е",
-        "count": 8226,
-        "share": 0.043
-      },
-      {
-        "char": "н",
-        "count": 7769,
-        "share": 0.0406
-      },
-      {
-        "char": "я",
-        "count": 6855,
-        "share": 0.0358
-      },
-      {
-        "char": "л",
-        "count": 6855,
-        "share": 0.0358
-      },
-      {
-        "char": "о",
-        "count": 6398,
-        "share": 0.0334
-      },
-      {
-        "char": "т",
-        "count": 6398,
-        "share": 0.0334
-      },
-      {
-        "char": "і",
-        "count": 6398,
-        "share": 0.0334
-      },
-      {
-        "char": "м",
-        "count": 6398,
-        "share": 0.0334
-      },
-      {
-        "char": "п",
-        "count": 5941,
-        "share": 0.031
-      },
-      {
-        "char": "д",
-        "count": 5484,
-        "share": 0.0286
+        "count": 204,
+        "share": 0.0698
       },
       {
         "char": "ы",
-        "count": 5027,
-        "share": 0.0263
+        "count": 204,
+        "share": 0.0698
       },
       {
-        "char": "б",
-        "count": 4113,
-        "share": 0.0215
+        "char": "в",
+        "count": 204,
+        "share": 0.0698
       },
       {
-        "char": "г",
-        "count": 4113,
-        "share": 0.0215
+        "char": "н",
+        "count": 170,
+        "share": 0.0581
       },
       {
-        "char": "ц",
-        "count": 4113,
-        "share": 0.0215
+        "char": "к",
+        "count": 170,
+        "share": 0.0581
+      },
+      {
+        "char": "с",
+        "count": 170,
+        "share": 0.0581
+      },
+      {
+        "char": "т",
+        "count": 170,
+        "share": 0.0581
+      },
+      {
+        "char": "м",
+        "count": 170,
+        "share": 0.0581
+      },
+      {
+        "char": "о",
+        "count": 136,
+        "share": 0.0465
+      },
+      {
+        "char": "е",
+        "count": 136,
+        "share": 0.0465
       },
       {
         "char": "э",
-        "count": 3656,
-        "share": 0.0191
+        "count": 136,
+        "share": 0.0465
       },
       {
-        "char": "ю",
-        "count": 3199,
-        "share": 0.0167
+        "char": "я",
+        "count": 102,
+        "share": 0.0349
       },
       {
-        "char": "ў",
-        "count": 3199,
-        "share": 0.0167
+        "char": "д",
+        "count": 68,
+        "share": 0.0233
+      },
+      {
+        "char": "б",
+        "count": 68,
+        "share": 0.0233
       },
       {
         "char": "з",
-        "count": 2742,
-        "share": 0.0143
+        "count": 68,
+        "share": 0.0233
+      },
+      {
+        "char": "п",
+        "count": 68,
+        "share": 0.0233
+      },
+      {
+        "char": "і",
+        "count": 68,
+        "share": 0.0233
+      },
+      {
+        "char": "у",
+        "count": 68,
+        "share": 0.0233
       },
       {
         "char": "ь",
-        "count": 2285,
-        "share": 0.0119
-      },
-      {
-        "char": "й",
-        "count": 2285,
-        "share": 0.0119
-      },
-      {
-        "char": "ч",
-        "count": 2285,
-        "share": 0.0119
-      },
-      {
-        "char": "ж",
-        "count": 1828,
-        "share": 0.0095
+        "count": 34,
+        "share": 0.0116
       },
       {
         "char": "ш",
-        "count": 1371,
-        "share": 0.0072
+        "count": 34,
+        "share": 0.0116
       },
       {
-        "char": "ё",
-        "count": 1371,
-        "share": 0.0072
+        "char": "г",
+        "count": 34,
+        "share": 0.0116
+      },
+      {
+        "char": "л",
+        "count": 34,
+        "share": 0.0116
+      },
+      {
+        "char": "й",
+        "count": 34,
+        "share": 0.0116
+      },
+      {
+        "char": "ч",
+        "count": 34,
+        "share": 0.0116
       }
     ],
-    "unique_characters": [
-      "ё",
-      "ў"
-    ],
-    "signature": "ёў"
+    "unique_characters": [],
+    "signature": ""
   },
   "bs": {
     "language": "bs",
@@ -3707,164 +3679,129 @@
   "ru": {
     "language": "ru",
     "name": "Russian",
-    "total_letters": 174472,
-    "alphabet_size": 30,
+    "total_letters": 3400,
+    "alphabet_size": 23,
     "top_characters": [
       {
-        "char": "о",
-        "count": 16984,
-        "share": 0.0973
-      },
-      {
         "char": "е",
-        "count": 15826,
-        "share": 0.0907
+        "count": 476,
+        "share": 0.14
       },
       {
-        "char": "и",
-        "count": 13124,
-        "share": 0.0752
-      },
-      {
-        "char": "т",
-        "count": 11966,
-        "share": 0.0686
-      },
-      {
-        "char": "с",
-        "count": 10808,
-        "share": 0.0619
-      },
-      {
-        "char": "а",
-        "count": 10036,
-        "share": 0.0575
-      },
-      {
-        "char": "н",
-        "count": 9650,
-        "share": 0.0553
+        "char": "о",
+        "count": 306,
+        "share": 0.09
       },
       {
         "char": "р",
-        "count": 8492,
-        "share": 0.0487
-      },
-      {
-        "char": "д",
-        "count": 7334,
-        "share": 0.042
+        "count": 238,
+        "share": 0.07
       },
       {
         "char": "к",
-        "count": 6948,
-        "share": 0.0398
+        "count": 238,
+        "share": 0.07
       },
       {
-        "char": "л",
-        "count": 6562,
-        "share": 0.0376
+        "char": "а",
+        "count": 204,
+        "share": 0.06
       },
       {
-        "char": "в",
-        "count": 6176,
-        "share": 0.0354
+        "char": "с",
+        "count": 204,
+        "share": 0.06
+      },
+      {
+        "char": "д",
+        "count": 170,
+        "share": 0.05
+      },
+      {
+        "char": "т",
+        "count": 170,
+        "share": 0.05
       },
       {
         "char": "я",
-        "count": 5790,
-        "share": 0.0332
+        "count": 170,
+        "share": 0.05
       },
       {
-        "char": "у",
-        "count": 4632,
-        "share": 0.0265
+        "char": "в",
+        "count": 136,
+        "share": 0.04
       },
       {
-        "char": "п",
-        "count": 4632,
-        "share": 0.0265
+        "char": "и",
+        "count": 136,
+        "share": 0.04
+      },
+      {
+        "char": "н",
+        "count": 136,
+        "share": 0.04
       },
       {
         "char": "м",
-        "count": 4632,
-        "share": 0.0265
-      },
-      {
-        "char": "ы",
-        "count": 3860,
-        "share": 0.0221
+        "count": 136,
+        "share": 0.04
       },
       {
         "char": "з",
-        "count": 3474,
-        "share": 0.0199
+        "count": 102,
+        "share": 0.03
+      },
+      {
+        "char": "у",
+        "count": 102,
+        "share": 0.03
+      },
+      {
+        "char": "л",
+        "count": 102,
+        "share": 0.03
+      },
+      {
+        "char": "п",
+        "count": 102,
+        "share": 0.03
+      },
+      {
+        "char": "ы",
+        "count": 102,
+        "share": 0.03
       },
       {
         "char": "й",
-        "count": 3088,
-        "share": 0.0177
-      },
-      {
-        "char": "г",
-        "count": 3088,
-        "share": 0.0177
-      },
-      {
-        "char": "ь",
-        "count": 3088,
-        "share": 0.0177
-      },
-      {
-        "char": "б",
-        "count": 2702,
-        "share": 0.0155
-      },
-      {
-        "char": "ж",
-        "count": 2316,
-        "share": 0.0133
-      },
-      {
-        "char": "ч",
-        "count": 1930,
-        "share": 0.0111
-      },
-      {
-        "char": "ю",
-        "count": 1930,
-        "share": 0.0111
-      },
-      {
-        "char": "х",
-        "count": 1544,
-        "share": 0.0088
-      },
-      {
-        "char": "ц",
-        "count": 1544,
-        "share": 0.0088
+        "count": 34,
+        "share": 0.01
       },
       {
         "char": "ш",
-        "count": 1158,
-        "share": 0.0066
+        "count": 34,
+        "share": 0.01
+      },
+      {
+        "char": "г",
+        "count": 34,
+        "share": 0.01
       },
       {
         "char": "э",
-        "count": 772,
-        "share": 0.0044
+        "count": 34,
+        "share": 0.01
       },
       {
-        "char": "ф",
-        "count": 386,
-        "share": 0.0022
+        "char": "ж",
+        "count": 34,
+        "share": 0.01
       }
     ],
     "unique_characters": [
-      "ф"
+      "ж"
     ],
-    "signature": "ф"
+    "signature": "ж"
   },
   "sr": {
     "language": "sr",
@@ -4573,166 +4510,136 @@
   "uk": {
     "language": "uk",
     "name": "Ukrainian",
-    "total_letters": 221645,
-    "alphabet_size": 31,
+    "total_letters": 3128,
+    "alphabet_size": 24,
     "top_characters": [
       {
         "char": "о",
-        "count": 23764,
-        "share": 0.1072
-      },
-      {
-        "char": "н",
-        "count": 16909,
-        "share": 0.0763
-      },
-      {
-        "char": "а",
-        "count": 14624,
-        "share": 0.066
-      },
-      {
-        "char": "и",
-        "count": 12796,
-        "share": 0.0577
-      },
-      {
-        "char": "в",
-        "count": 12796,
-        "share": 0.0577
-      },
-      {
-        "char": "р",
-        "count": 11882,
-        "share": 0.0536
-      },
-      {
-        "char": "і",
-        "count": 11425,
-        "share": 0.0515
-      },
-      {
-        "char": "с",
-        "count": 10968,
-        "share": 0.0495
-      },
-      {
-        "char": "у",
-        "count": 10511,
-        "share": 0.0474
-      },
-      {
-        "char": "т",
-        "count": 9597,
-        "share": 0.0433
-      },
-      {
-        "char": "к",
-        "count": 9140,
-        "share": 0.0412
-      },
-      {
-        "char": "д",
-        "count": 9140,
-        "share": 0.0412
+        "count": 340,
+        "share": 0.1087
       },
       {
         "char": "е",
-        "count": 7769,
-        "share": 0.0351
+        "count": 272,
+        "share": 0.087
+      },
+      {
+        "char": "р",
+        "count": 238,
+        "share": 0.0761
+      },
+      {
+        "char": "в",
+        "count": 238,
+        "share": 0.0761
+      },
+      {
+        "char": "н",
+        "count": 238,
+        "share": 0.0761
+      },
+      {
+        "char": "и",
+        "count": 204,
+        "share": 0.0652
+      },
+      {
+        "char": "к",
+        "count": 170,
+        "share": 0.0543
+      },
+      {
+        "char": "с",
+        "count": 170,
+        "share": 0.0543
       },
       {
         "char": "м",
-        "count": 7312,
-        "share": 0.033
+        "count": 170,
+        "share": 0.0543
       },
       {
-        "char": "ь",
-        "count": 5941,
-        "share": 0.0268
-      },
-      {
-        "char": "п",
-        "count": 5027,
-        "share": 0.0227
+        "char": "т",
+        "count": 136,
+        "share": 0.0435
       },
       {
         "char": "я",
-        "count": 5027,
-        "share": 0.0227
+        "count": 136,
+        "share": 0.0435
       },
       {
-        "char": "ю",
-        "count": 5027,
-        "share": 0.0227
+        "char": "п",
+        "count": 102,
+        "share": 0.0326
       },
       {
-        "char": "л",
-        "count": 5027,
-        "share": 0.0227
+        "char": "і",
+        "count": 102,
+        "share": 0.0326
       },
       {
-        "char": "б",
-        "count": 3656,
-        "share": 0.0165
+        "char": "а",
+        "count": 102,
+        "share": 0.0326
       },
       {
         "char": "ї",
-        "count": 3199,
-        "share": 0.0144
+        "count": 68,
+        "share": 0.0217
       },
       {
-        "char": "з",
-        "count": 3199,
-        "share": 0.0144
-      },
-      {
-        "char": "г",
-        "count": 2742,
-        "share": 0.0124
+        "char": "ь",
+        "count": 68,
+        "share": 0.0217
       },
       {
         "char": "ч",
-        "count": 2742,
-        "share": 0.0124
+        "count": 68,
+        "share": 0.0217
       },
       {
-        "char": "й",
-        "count": 2742,
-        "share": 0.0124
+        "char": "у",
+        "count": 68,
+        "share": 0.0217
       },
       {
-        "char": "ж",
-        "count": 2285,
-        "share": 0.0103
+        "char": "ю",
+        "count": 68,
+        "share": 0.0217
+      },
+      {
+        "char": "г",
+        "count": 34,
+        "share": 0.0109
+      },
+      {
+        "char": "д",
+        "count": 34,
+        "share": 0.0109
       },
       {
         "char": "ц",
-        "count": 1828,
-        "share": 0.0082
+        "count": 34,
+        "share": 0.0109
       },
       {
         "char": "є",
-        "count": 1371,
-        "share": 0.0062
+        "count": 34,
+        "share": 0.0109
       },
       {
-        "char": "щ",
-        "count": 1371,
-        "share": 0.0062
-      },
-      {
-        "char": "ш",
-        "count": 914,
-        "share": 0.0041
+        "char": "з",
+        "count": 34,
+        "share": 0.0109
       }
     ],
     "unique_characters": [
-      "щ",
+      "ю",
       "є",
       "ї"
     ],
-    "signature": "щєї"
+    "signature": "юєї"
   },
   "cy": {
     "language": "cy",

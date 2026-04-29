@@ -116,7 +116,7 @@ def evaluate(dataset_path=None, save_report=True):
         )
 
     if low_confidence:
-        print("\nWrong / low-confidence cases:")
+        print("\nReview / low-confidence cases:")
         for item in low_confidence[:100]:
             print(
                 f"  {item['text']!r} "

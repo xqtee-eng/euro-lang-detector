@@ -10,6 +10,7 @@ from src.config import (
     TRAIN_DATASET_PATH,
 )
 from src.european_languages import SUPPORTED_LANGUAGE_CODES
+from src.storage import bulk_upsert_dataset_corpus
 
 RAW_DATA_DIR = DATA_DIR / "raw"
 
@@ -98,6 +99,12 @@ def build_dataset(max_samples_per_language=5000, test_ratio=0.2, seed=42):
     train_rows.extend(train_only_rows)
     rng.shuffle(train_rows)
     output_rows = list(base_rows) + list(train_only_rows)
+
+    for r in train_rows:
+        r["split"] = "train"
+    for r in test_rows:
+        r["split"] = "test"
+    bulk_upsert_dataset_corpus(train_rows + test_rows)
 
     write_jsonl(DATASET_PATH, output_rows)
     write_jsonl(TRAIN_DATASET_PATH, train_rows)

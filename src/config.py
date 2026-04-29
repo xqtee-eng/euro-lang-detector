@@ -40,5 +40,6 @@ CLOSE_PACK_DIR = DATA_DIR / "close_pack"
 EVALUATION_REPORT_PATH = MODELS_DIR / "evaluation_report.json"
 DATABASE_PATH = DATA_DIR / "app.db"
 
+ADMIN_USERNAME = os.environ.get("ELD_ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.environ.get("ELD_ADMIN_PASSWORD", "admin")
-SECRET_KEY = os.environ.get("ELD_SECRET_KEY", "change-me-in-production")
+SECRET_KEY = os.environ.get("ELD_SECRET_KEY", "y5gX$jL7@mC2*zBq9hWvFpRdS")

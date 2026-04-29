@@ -6,6 +6,7 @@ from src.european_languages import (
     SCRIPT_RULES,
     UNIQUE_CHAR_LANGUAGE_HINTS,
 )
+from src.character_profiles import load_character_profiles
 
 LATIN_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿĀ-ſ]")
 CYRILLIC_RE = re.compile(r"[\u0400-\u04FF]")
@@ -19,6 +20,20 @@ COMMAND_HINTS = (
     "invoke-restmethod",
 )
 
+_DYNAMIC_CHAR_HINTS = None
+
+def _get_dynamic_char_hints():
+    global _DYNAMIC_CHAR_HINTS
+    if _DYNAMIC_CHAR_HINTS is None:
+        _DYNAMIC_CHAR_HINTS = {}
+        try:
+            profiles = load_character_profiles()
+            for lang, data in profiles.items():
+                if "unique_characters" in data and data["unique_characters"]:
+                    _DYNAMIC_CHAR_HINTS[lang] = data["unique_characters"]
+        except Exception:
+            pass
+    return _DYNAMIC_CHAR_HINTS
 
 def _contains_script(text, bounds):
     start, end = bounds
@@ -61,6 +76,7 @@ def detect_by_rules(text):
                 "matched_hint": matched_hint,
             }
 
+    # 1. Hardcoded high-confidence character hints
     for lang_code, chars in UNIQUE_CHAR_LANGUAGE_HINTS.items():
         if any(char in lowered for char in chars):
             return {
@@ -69,6 +85,17 @@ def detect_by_rules(text):
                 "source": "rule",
                 "reason": "unique_character",
             }
+            
+    # 2. Dynamically learned character hints are disabled because small corpora 
+    # assign common letters (like ž) to a single language incorrectly.
+    # for lang_code, chars in _get_dynamic_char_hints().items():
+    #     if any(char in lowered for char in chars):
+    #         return {
+    #             "language": lang_code,
+    #             "confidence": 0.95,
+    #             "source": "rule",
+    #             "reason": "learned_unique_character",
+    #         }
 
     for lang_code, (_, bounds) in SCRIPT_RULES.items():
         if _contains_script(lowered, bounds):
@@ -127,7 +154,7 @@ def is_keyboard_garbage(text):
         if len(letters) < 6:
             return False
 
-        vowels = sum(1 for char in letters if char in "aeiouаеєиіїоуюя")
+        vowels = sum(1 for char in letters if char in "aeiouyáéíóúýäëïöüâêîôûàèìòùãõåæøœąęėįųūаеєиіїоуюяэыё")
         vowel_ratio = vowels / len(letters)
 
         keyboard_runs = ("asdf", "qwer", "zxcv", "jkl", "ghj", "dfgh")

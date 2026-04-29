@@ -8,37 +8,46 @@ from src.storage import list_lexicon_rows, set_lexicon_word_enabled, upsert_lexi
 DISABLED_PATH = LEXICON_DIR / "_disabled.jsonl"
 
 STARTER_WORDS = {
-    "en": {"hello", "friend", "dog", "cat", "house", "world", "language", "word"},
-    "uk": {
-        "привіт",
-        "світ",
-        "мова",
-        "слово",
-        "речення",
-        "абетки",
-        "козак",
-        "коза",
-        "собака",
-        "паляниця",
-    },
-    "be": {
-        "добры",
-        "дзень",
-        "мова",
-        "слова",
-        "гэта",
-        "беларускай",
-        "вызначэння",
-        "коза",
-    },
-    "ru": {"привет", "мир", "язык", "слово", "предложение", "собака", "коза"},
-    "pl": {"dzien", "dzień", "slowo", "słowo", "jezyk", "język"},
-    "fr": {"bonjour", "merci", "monde", "langue", "mot"},
-    "de": {"hallo", "danke", "sprache", "wort"},
-    "it": {"ciao", "grazie", "lingua", "parola"},
-    "es": {"hola", "gracias", "idioma", "palabra"},
-    "pt": {"ola", "olá", "obrigado", "idioma", "palavra"},
-    "tr": {"merhaba", "dil", "kelime"},
+    "sq": {"përshëndetje", "faleminderit", "gjuhë", "fjalë"},
+    "hy": {"բարեւ", "շնորհակալություն", "լեզու", "բառ"},
+    "az": {"salam", "təşəkkür", "dil", "söz"},
+    "eu": {"kaixo", "eskerrik", "hizkuntza", "hitza"},
+    "be": {"добры", "дзень", "мова", "слова", "гэта", "беларускай", "вызначэння", "коза", "дзякуй", "вечар", "раніца", "людзі", "школа", "вада", "хлеб", "жыццё", "горад"},
+    "bs": {"zdravo", "hvala", "jezik", "riječ"},
+    "bg": {"здравейте", "благодаря", "език", "дума"},
+    "ca": {"hola", "gràcies", "llengua", "paraula"},
+    "hr": {"zdravo", "hvala", "jezik", "riječ"},
+    "cs": {"ahoj", "děkuji", "jazyk", "slovo"},
+    "da": {"hej", "tak", "sprog", "ord"},
+    "nl": {"hallo", "dank", "taal", "woord"},
+    "en": {"hello", "friend", "dog", "cat", "house", "world", "language", "word", "thank", "good", "morning", "night", "people", "time", "years", "school", "water", "food"},
+    "et": {"tere", "aitäh", "keel", "sõna"},
+    "fi": {"hei", "kiitos", "kieli", "sana"},
+    "fr": {"bonjour", "merci", "monde", "langue", "mot", "chien", "chat", "maison", "gens", "ecole", "eau", "pain", "vie", "ville"},
+    "ka": {"გამარჯობა", "გმადლობთ", "ენა", "სიტყვა"},
+    "de": {"hallo", "danke", "sprache", "wort", "hund", "katze", "haus", "morgen", "nacht", "leute", "schule", "wasser", "brot", "leben", "stadt"},
+    "el": {"γεια", "ευχαριστώ", "γλώσσα", "λέξη"},
+    "hu": {"szia", "köszönöm", "nyelv", "szó"},
+    "is": {"hæ", "takk", "tungumál", "orð"},
+    "ga": {"dia", "duit", "teanga", "focal"},
+    "it": {"ciao", "grazie", "lingua", "parola", "cane", "gatto", "casa", "mattina", "notte", "persone", "scuola", "acqua", "pane", "vita", "citta"},
+    "lv": {"sveiki", "paldies", "valoda", "vārds"},
+    "lt": {"labas", "ačiū", "kalba", "žodis"},
+    "mk": {"здраво", "благодарам", "јазик", "збор"},
+    "nb": {"hei", "takk", "språk", "ord"},
+    "nn": {"hei", "takk", "språk", "ord"},
+    "pl": {"dzien", "dzień", "slowo", "słowo", "jezyk", "język", "dziękuje", "dobry", "wieczór", "rano", "ludzie", "szkoła", "woda", "chleb", "życie", "miasto"},
+    "pt": {"ola", "olá", "obrigado", "idioma", "palavra", "cachorro", "gato", "casa", "manha", "noite", "pessoas", "escola", "agua", "pao", "vida", "cidade"},
+    "ro": {"salut", "mulțumesc", "limbă", "cuvânt"},
+    "ru": {"привет", "мир", "язык", "слово", "предложение", "собака", "коза", "спасибо", "хороший", "вечер", "утро", "люди", "школа", "вода", "хлеб", "жизнь", "город"},
+    "sr": {"здраво", "хвала", "језик", "реч"},
+    "sk": {"ahoj", "ďakujem", "jazyk", "slovo"},
+    "sl": {"zdravo", "hvala", "jezik", "beseda"},
+    "es": {"hola", "gracias", "idioma", "palabra", "perro", "gato", "casa", "mañana", "noche", "personas", "escuela", "agua", "pan", "vida", "ciudad"},
+    "sv": {"hej", "tack", "språk", "ord"},
+    "tr": {"merhaba", "dil", "kelime", "kopek", "kedi", "ev", "tesekkur", "sabah", "gece", "insanlar", "okul", "su", "ekmek", "hayat", "şehir"},
+    "uk": {"привіт", "світ", "мова", "слово", "речення", "абетки", "козак", "коза", "собака", "паляниця", "дякую", "добрий", "вечір", "ранок", "люди", "школа", "вода", "хліб", "життя", "місто"},
+    "cy": {"helo", "diolch", "iaith", "gair"},
 }
 
 
@@ -286,8 +295,37 @@ def detect_word(text):
             "candidates": [],
         }
 
-    languages = sorted(load_lexicons().get(word, []))
+    lex = load_lexicons()
+    languages = sorted(lex.get(word, []))
+    
     if not languages:
+        from src.ngram import generate_ngrams
+        best_match = None
+        best_score = 0.0
+        word_grams = set(generate_ngrams(word, n_min=3, n_max=3))
+        
+        if word_grams:
+            for stored_word in lex:
+                stored_grams = set(generate_ngrams(stored_word, n_min=3, n_max=3))
+                if not stored_grams:
+                    continue
+                score = len(word_grams & stored_grams) / len(word_grams | stored_grams)
+                if score > best_score:
+                    best_score = score
+                    best_match = stored_word
+                    
+        if best_match and best_score >= 0.70:
+            languages = sorted(lex[best_match])
+            confidence = round(best_score * 0.9, 4)
+            candidates = [{"language": lang, "confidence": confidence} for lang in languages]
+            return {
+                "language": languages[0] if len(languages) == 1 else "unknown",
+                "confidence": confidence,
+                "source": "lexicon",
+                "reason": "fuzzy_ngram_word",
+                "entity_type": "word",
+                "candidates": candidates,
+            }
         return None
 
     confidence = round(1 / len(languages), 4)

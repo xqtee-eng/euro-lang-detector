@@ -14,7 +14,7 @@ from src.rules import (
     is_short_ambiguous_cyrillic,
     is_single_cyrillic_proper_name,
 )
-from src.self_learning import queue_unknown
+from src.self_learning import queue_unknown, add_feedback_sample
 from src.storage import add_active_learning_item
 from src.word_lexicon import detect_word
 
@@ -84,14 +84,6 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             queue_unknown(original_text, details={"reason": "keyboard_garbage"})
         return _track_learning(result, record_unknown)
 
-    if has_mixed_latin_cyrillic(original_text):
-        result = _unknown_result(original_text)
-        result["source"] = "rule"
-        result["reason"] = "mixed_latin_cyrillic"
-        if record_unknown:
-            queue_unknown(original_text, details={"reason": "mixed_latin_cyrillic"})
-        return _track_learning(result, record_unknown)
-
     rule_result = detect_by_rules(original_text)
     if rule_result:
         return _finalize_result(
@@ -147,6 +139,24 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             )
         return _track_learning(result, record_unknown)
 
+    profile_language, profile_confidence = detect_with_profile(normalized)
+    profile_candidates = rank_languages(normalized, top_k=top_k)
+    
+    # 1. Fast path: Profile is very confident, skip heavy Lingua to boost performance
+    if profile_language and profile_confidence >= 0.85:
+        result = {
+            "text": original_text,
+            "language": profile_language,
+            "confidence": round(profile_confidence, 4),
+            "source": "profile",
+            "candidates": profile_candidates,
+        }
+        return _track_learning(
+            _finalize_result(refine_related_language_result(result, normalized)),
+            record_unknown,
+        )
+
+    # 2. Heavy path: Lingua detection
     language, confidence, candidates = detect_with_lingua(normalized, top_k=top_k)
     if language:
         result = {
@@ -156,19 +166,23 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             "source": "lingua",
             "candidates": candidates,
         }
+        
+        # 3. Autonomous AI Learning: The model learns strong predictions by itself
+        if record_unknown and confidence >= 0.95:
+            add_feedback_sample(original_text, language, source="auto_learned")
+            
         return _track_learning(
             _finalize_result(refine_related_language_result(result, normalized)),
             record_unknown,
         )
 
-    profile_language, profile_confidence = detect_with_profile(normalized)
-    profile_candidates = rank_languages(normalized, top_k=top_k)
+    # 4. Fallback path: Profile is weak, but we still use it if it meets minimum
     if profile_language and profile_confidence >= PROFILE_MIN_CONFIDENCE:
         result = {
             "text": original_text,
             "language": profile_language,
             "confidence": round(profile_confidence, 4),
-            "source": "profile",
+            "source": "profile_fallback",
             "candidates": profile_candidates,
         }
         return _track_learning(
