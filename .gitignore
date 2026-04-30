@@ -1,6 +1,4 @@
-﻿# =========================
 # Python
-# =========================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -17,48 +15,26 @@ venv/
 env/
 ENV/
 
-# =========================
 # Logs
-# =========================
 logs/
 *.log
 
-# =========================
-# Local data / runtime
-# =========================
-data/app.db
-data/*.sqlite
-data/*.db
-
-# Generated datasets / learning data
-data/unknown.jsonl
-data/feedback.jsonl
-data/resolved_unknown.jsonl
-
-# =========================
 # Cache
-# =========================
 .cache/
 .pytest_cache/
 .mypy_cache/
 
-# =========================
 # IDE / Editor
-# =========================
 .vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
 
-# =========================
 # OS
-# =========================
 .DS_Store
 Thumbs.db
 
-# =========================
 # Misc
-# =========================
 *.tmp
 *.bak
 *.swp

@@ -1,3 +1,22 @@
+{"text": "Привіт", "expected": "uk", "category": "short_greeting"}
+{"text": "Добры дзень", "expected": "be", "category": "short_greeting"}
+{"text": "Bonjour", "expected": "fr", "category": "short_greeting"}
+{"text": "Merhaba nasılsınız", "expected": "tr", "category": "phrase"}
+{"text": "Na nádraží čekáme na vlak", "expected": "cs", "category": "phrase"}
+{"text": "Liczenie owiec", "expected": "pl", "category": "phrase"}
+{"text": "sprache", "expected": "de", "category": "frequency_word"}
+{"text": "palabra", "expected": "es", "category": "frequency_word"}
+{"text": "kelime", "expected": "tr", "category": "frequency_word"}
+{"text": "language", "expected": "en", "category": "frequency_word"}
+{"text": "коза", "expected": "unknown", "category": "ambiguous_word"}
+{"text": "собака", "expected": "unknown", "category": "ambiguous_word"}
+{"text": "Анастасія", "expected": "unknown", "category": "ambiguous_name"}
+{"text": "Іван", "expected": "unknown", "category": "ambiguous_name"}
+{"text": "hello привіт bonjour", "expected": "unknown", "category": "mixed_text"}
+{"text": "python api/app.py", "expected": "unknown", "category": "non_language"}
+{"text": "ქართული ენა", "expected": "ka", "category": "script"}
+{"text": "Καλημέρα σας", "expected": "el", "category": "script"}
+{"text": "Բարեւ ձեզ", "expected": "hy", "category": "script"}
 {"text": "Jucer ovaj projekat košta više od hiljada eura odmah.", "expected": "bs", "category": "disambiguation"}
 {"text": "Sutra misliš da je to lahko? Nije nimalo lahko.", "expected": "bs", "category": "disambiguation"}
 {"text": "To je veoma lijep svijet.", "expected": "bs", "category": "disambiguation"}
@@ -88,3 +107,108 @@
 {"text": "Naravno, kafa je spremna, možemo je piti.", "expected": "sr", "category": "disambiguation"}
 {"text": "Ovo je najskuplja kafa koju sam ikada pio zar ne misliš tako?", "expected": "sr", "category": "disambiguation"}
 {"text": "Ujutro naš svet se brzo mijenja zar ne misliš tako?", "expected": "sr", "category": "disambiguation"}
+{"text":"friend","lang":"en"}
+{"text":"work","lang":"en"}
+{"text":"bank","lang":"unknown"}
+{"text":"data","lang":"unknown"}
+{"text":"plan","lang":"unknown"}
+{"text":"menu","lang":"unknown"}
+{"text":"hotel","lang":"unknown"}
+{"text":"taxi","lang":"unknown"}
+{"text":"qwertyuiop","lang":"unknown"}
+{"text":"asdfghjkl","lang":"unknown"}
+{"text":"zzzzzzzz","lang":"unknown"}
+{"text":"123456789","lang":"unknown"}
+{"text":"!!!???","lang":"unknown"}
+{"text":"python api/app.py","lang":"unknown"}
+{"text":"pip install flask","lang":"unknown"}
+{"text":"https://example.com","lang":"unknown"}
+{"text":"Dobry дзень","lang":"unknown"}
+{"text":"hello привет","lang":"unknown"}
+{"text":"привіт hello","lang":"unknown"}
+{"text":"привіт","lang":"uk"}
+{"text":"Привіт, як справи?","lang":"uk"}
+{"text":"Це українське речення.","lang":"uk"}
+{"text":"Мені подобається ця мова.","lang":"uk"}
+{"text":"Дякую за допомогу.","lang":"uk"}
+{"text":"копати","lang":"unknown"}
+{"text":"собака","lang":"unknown"}
+{"text":"місто","lang":"uk"}
+{"text":"українська мова","lang":"uk"}
+{"text":"привет","lang":"ru"}
+{"text":"Привет, как дела?","lang":"ru"}
+{"text":"Это русское предложение.","lang":"ru"}
+{"text":"Мне нравится этот язык.","lang":"ru"}
+{"text":"Спасибо за помощь.","lang":"ru"}
+{"text":"город","lang":"unknown"}
+{"text":"русский язык","lang":"ru"}
+{"text":"дзякуй","lang":"be"}
+{"text":"Добры дзень","lang":"be"}
+{"text":"Гэта беларуская мова.","lang":"be"}
+{"text":"Мне падабаецца гэты тэкст.","lang":"be"}
+{"text":"Hello, how are you?","lang":"en"}
+{"text":"This is an English sentence.","lang":"en"}
+{"text":"I like programming and technology.","lang":"en"}
+{"text":"The weather is nice today.","lang":"en"}
+{"text":"Hallo, wie geht es dir?","lang":"de"}
+{"text":"Das ist ein deutscher Satz.","lang":"de"}
+{"text":"Ich mag diese Sprache.","lang":"de"}
+{"text":"Vielen Dank für deine Hilfe.","lang":"de"}
+{"text":"Bonjour, comment ça va?","lang":"fr"}
+{"text":"Ceci est une phrase française.","lang":"fr"}
+{"text":"J'aime cette langue.","lang":"fr"}
+{"text":"Merci beaucoup pour votre aide.","lang":"fr"}
+{"text":"Hola, ¿cómo estás?","lang":"es"}
+{"text":"Esta es una frase en español.","lang":"es"}
+{"text":"Me gusta este idioma.","lang":"es"}
+{"text":"Muchas gracias por tu ayuda.","lang":"es"}
+{"text":"Ciao, come stai?","lang":"it"}
+{"text":"Questa è una frase italiana.","lang":"it"}
+{"text":"Mi piace questa lingua.","lang":"it"}
+{"text":"Grazie mille per il tuo aiuto.","lang":"it"}
+{"text":"Cześć, jak się masz?","lang":"pl"}
+{"text":"To jest polskie zdanie.","lang":"pl"}
+{"text":"Lubię ten język.","lang":"pl"}
+{"text":"Dziękuję za pomoc.","lang":"pl"}
+{"text":"Dobrý den, jak se máte?","lang":"cs"}
+{"text":"Toto je česká věta.","lang":"cs"}
+{"text":"Líbí se mi tento jazyk.","lang":"cs"}
+{"text":"Dobrý deň, ako sa máte?","lang":"sk"}
+{"text":"Toto je slovenská veta.","lang":"sk"}
+{"text":"Páči sa mi tento jazyk.","lang":"sk"}
+{"text":"Ovdje govorimo hrvatski.","lang":"hr"}
+{"text":"Ovo je hrvatska rečenica.","lang":"hr"}
+{"text":"Lijep dan i dobar svijet.","lang":"hr"}
+{"text":"Ovde govorimo srpski.","lang":"sr"}
+{"text":"Ovo je srpska rečenica.","lang":"sr"}
+{"text":"Lep dan i dobar svet.","lang":"sr"}
+{"text":"Ovdje govorimo bosanski.","lang":"bs"}
+{"text":"Ovo je bosanska rečenica.","lang":"bs"}
+{"text":"Hvala i molim za pomoć.","lang":"bs"}
+{"text":"Jeg liker dette språket.","lang":"nb"}
+{"text":"Dette er en norsk bokmål tekst.","lang":"nb"}
+{"text":"Jeg vet ikke hva du mener.","lang":"nb"}
+{"text":"Eg likar dette språket.","lang":"nn"}
+{"text":"Dette er ein nynorsk tekst.","lang":"nn"}
+{"text":"Eg veit ikkje kva du meiner.","lang":"nn"}
+{"text":"Merhaba, nasılsın?","lang":"tr"}
+{"text":"Bu Türkçe bir cümledir.","lang":"tr"}
+{"text":"Bu dili seviyorum.","lang":"tr"}
+{"text":"Γεια σου, πώς είσαι;","lang":"el"}
+{"text":"Αυτή είναι μια ελληνική πρόταση.","lang":"el"}
+{"text":"Olá, como vai?","lang":"pt"}
+{"text":"Esta é uma frase em português.","lang":"pt"}
+{"text":"Hej, hur mår du?","lang":"sv"}
+{"text":"Detta är en svensk mening.","lang":"sv"}
+{"text":"Hej, hvordan går det?","lang":"da"}
+{"text":"Dette er en dansk sætning.","lang":"da"}
+{"text":"Tere, kuidas läheb?","lang":"et"}
+{"text":"See on eestikeelne lause.","lang":"et"}
+{"text":"Labas, kaip sekasi?","lang":"lt"}
+{"text":"Tai lietuviškas sakinys.","lang":"lt"}
+{"text":"Sveiki, kā jums klājas?","lang":"lv"}
+{"text":"Šis ir latviešu teikums.","lang":"lv"}
+{"text":"Bună, ce mai faci?","lang":"ro"}
+{"text":"Aceasta este o propoziție românească.","lang":"ro"}
+{"text":"Szia, hogy vagy?","lang":"hu"}
+{"text":"Ez egy magyar mondat.","lang":"hu"}

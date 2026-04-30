@@ -350,9 +350,26 @@ The Frequency page creates `data/frequency/<lang>.tsv` files from reviewed
 corpus text and imports those words into SQLite lexicon knowledge:
 
 ```bash
-python -m src.frequency --generate --import-lexicon
-python -m src.seed_names
+python -m src.frequency --generate --import
+python -m src.seeding.seed_names
 ```
+
+## Security and Roles
+
+The system uses a 3-tier administrative hierarchy for secure management:
+
+1. **Owner**: Full access to all data and user management.
+2. **Admin (Super Admin)**: Can manage detector data and create/edit Reviewer accounts. Cannot modify other Admins or the Owner.
+3. **Viewer (Reviewer)**: Read-only access to reports and status. Cannot modify any data or users.
+
+The local default account is:
+
+```text
+Username: admin
+Password: admin
+```
+
+You can add, edit, or delete users via the `/admin` console (requires Owner or Admin privileges).
 
 You can also upload real external TSV lists from `/frequency`:
 
