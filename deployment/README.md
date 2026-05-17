@@ -2,12 +2,25 @@
 
 Recommended local production-style run:
 
+Windows PowerShell:
+
 ```powershell
 cd D:\euro-lang-detector
 python -m pip install -r requirements.txt
 $env:ELD_DEBUG="0"
 $env:ELD_ADMIN_PASSWORD="replace-with-strong-password"
 $env:ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
+python serve.py
+```
+
+Linux/macOS shell:
+
+```bash
+cd /path/to/euro-lang-detector
+python -m pip install -r requirements.txt
+export ELD_DEBUG=0
+export ELD_ADMIN_PASSWORD="replace-with-strong-password"
+export ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
 python serve.py
 ```
 
