@@ -41,26 +41,38 @@ EUROPEAN_LANGUAGE_SPECS = [
     {"code": "cy", "name": "Welsh", "lingua": "WELSH"},
 ]
 
+
+
 SUPPORTED_LANGUAGE_CODES = tuple(spec["code"] for spec in EUROPEAN_LANGUAGE_SPECS)
 LANGUAGE_NAME_BY_CODE = {spec["code"]: spec["name"] for spec in EUROPEAN_LANGUAGE_SPECS}
 LINGUA_ENUM_BY_CODE = {spec["code"]: spec["lingua"] for spec in EUROPEAN_LANGUAGE_SPECS}
 
-# Only use characters or scripts that are strong enough to decide immediately.
+# Unique characters that are strong hints for a specific language or a small group of languages.
 UNIQUE_CHAR_LANGUAGE_HINTS = {
-    "uk": "їєґ",
-    "be": "ў",
-    "pl": "łńśźżć",
-    "cs": "ř",
-    "sk": "ľĺô",
-    "lt": "ėų",
-    "lv": "ģķļņ",
-    "ro": "ăâîșț",
-    "de": "ß",
-    "ca": "·",
-    "mk": "ѓќѕ",
-    "sr": "ђћ",
-    "az": "ə",
+    "uk": "їєґ",           # Ukrainian
+    "be": "ў",             # Belarusian
+    "pl": "łńśźż",         # Polish (ć and others shared, keeping the most unique)
+    "cs": "řů",            # Czech
+    "sk": "ľĺôŕ",          # Slovak
+    "lt": "ėįų",           # Lithuanian (removed š, ž, č, ą, ę, ū)
+    "lv": "ģķļņŗŝ",        # Latvian (removed ā, ē, ī, ō, ū, š, ž)
+    "ro": "ăâîșț",         # Romanian
+    "de": "ß",             # German
+    "ca": "·",             # Catalan
+    "mk": "ѓќѕ",           # Macedonian
+    "sr": "ђћ",            # Serbian
+    "az": "ə",             # Azerbaijani
+    "hu": "őű",            # Hungarian
+    "is": "ðþ",            # Icelandic
+    "tr": "ğış",           # Turkish
+    "es": ["ñ¿¡"],           # Spanish
+    "pt": ["ã"],             # Portuguese (removed õ because shared with Estonian)
+    "et": ["õ"],             # Estonian
+    "el": "αβγδεζηθικλμνξοπρστυφχψω", # Greek
+    "hy": "աբգդեզէըթժլխծկհձղճմյնշոչպջռսվտրցւփքօֆ", # Armenian
+    "ka": "აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ", # Georgian
 }
+
 
 LEXICAL_LANGUAGE_HINTS = {
     "en": (

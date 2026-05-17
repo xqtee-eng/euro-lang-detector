@@ -26,17 +26,39 @@ def _build_input_profile(text):
 
 
 def rank_languages(text, top_k=3):
+    from src.character_profiles import load_character_profiles
+    
     profiles = load_profiles()
+    char_profiles = load_character_profiles()
     input_profile = _build_input_profile(text)
+    
     if not profiles or not input_profile:
         return []
 
+    text_lower = text.lower()
     ranked = []
     for language, profile in profiles.items():
+        score = cosine_similarity(input_profile, profile)
+        
+        # 3D Signal: Symbol-based boost using dynamic signatures
+        boost = 0
+        char_prof = char_profiles.get(language, {})
+        hints = char_prof.get("unique_characters", [])
+        
+        if hints:
+            found_hints = sum(1 for char in hints if char in text_lower)
+            if found_hints > 0:
+                # Significant boost for unique European characters
+                boost = 0.25 + (0.15 * min(found_hints, 4))
+        
+        confidence = min(1.0, score + boost)
+        
         ranked.append(
             {
                 "language": language,
-                "confidence": round(cosine_similarity(input_profile, profile), 4),
+                "confidence": round(float(confidence), 4),
+                "base_score": round(float(score), 4),
+                "boost": round(float(boost), 4) if boost > 0 else 0
             }
         )
 

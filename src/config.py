@@ -37,6 +37,7 @@ LEXICON_DIR = DATA_DIR / "lexicons"
 FREQUENCY_DIR = DATA_DIR / "frequency"
 NAME_DIR = DATA_DIR / "names"
 CLOSE_PACK_DIR = DATA_DIR / "close_pack"
+RAW_DATA_DIR = DATA_DIR / "raw"
 EVALUATION_REPORT_PATH = MODELS_DIR / "evaluation_report.json"
 DATABASE_PATH = DATA_DIR / "app.db"
 

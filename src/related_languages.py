@@ -9,6 +9,21 @@ RELATED_LANGUAGE_GROUPS = {
         "languages": ("nb", "nn"),
         "note": "Norwegian Bokmal and Nynorsk share much vocabulary; short text can be ambiguous.",
     },
+    "east_slavic": {
+        "name": "Ukrainian / Belarusian / Russian",
+        "languages": ("uk", "be", "ru"),
+        "note": "East Slavic languages share Cyrillic script and many cognates.",
+    },
+    "west_slavic": {
+        "name": "Czech / Slovak",
+        "languages": ("cs", "sk"),
+        "note": "Czech and Slovak are mutually intelligible and share many similar patterns.",
+    },
+    "baltic": {
+        "name": "Latvian / Lithuanian",
+        "languages": ("lv", "lt"),
+        "note": "Baltic languages share specific diacritics and grammatical roots.",
+    },
 }
 
 LANGUAGE_TO_GROUP = {

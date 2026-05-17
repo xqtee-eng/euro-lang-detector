@@ -59,10 +59,9 @@ def detect_with_lingua(text, top_k=3):
                 {"language": code, "confidence": round(float(value.value), 4)}
             )
 
-    language = detector.detect_language_of(text)
-    if language is None:
-        return None, 0.0, candidates
+    if not candidates:
+        return None, 0.0, []
 
-    code = _language_to_code(language)
-    confidence = candidates[0]["confidence"] if candidates else 0.0
-    return code, float(confidence), candidates
+    # The first candidate in the sorted confidence_values is the best match
+    best = candidates[0]
+    return best["language"], best["confidence"], candidates

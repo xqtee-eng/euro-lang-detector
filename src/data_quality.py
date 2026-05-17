@@ -183,7 +183,7 @@ def data_quality_report():
             "group_correct": benchmark.get("group_correct", benchmark["correct"]),
             "accuracy": benchmark["accuracy"],
             "group_accuracy": benchmark.get("group_accuracy", benchmark["accuracy"]),
-            "by_category": benchmark["by_category"],
+            "by_category": benchmark["categories"],
         },
         "character_profiles": {
             "languages": character_profiles["languages"],

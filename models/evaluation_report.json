@@ -1,328 +1,328 @@
 {
   "dataset": "D:\\euro-lang-detector\\data\\test.jsonl",
-  "samples": 320,
-  "correct": 318,
-  "group_correct": 320,
+  "samples": 3800,
+  "correct": 3631,
+  "group_correct": 3676,
   "unknown": 0,
-  "accuracy": 0.9938,
-  "group_accuracy": 1.0,
+  "accuracy": 0.9555,
+  "group_accuracy": 0.9674,
   "by_language": {
     "az": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "be": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "bg": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "bs": {
-      "samples": 8,
-      "correct": 6,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 0,
+      "group_correct": 45,
       "unknown": 0,
-      "accuracy": 0.75,
-      "group_accuracy": 1.0
+      "accuracy": 0.0,
+      "group_accuracy": 0.5625
     },
     "ca": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "cs": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "cy": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "da": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "de": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "el": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "en": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "es": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "et": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "eu": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "fi": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "fr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "ga": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "hr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 36,
+      "group_correct": 36,
       "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
+      "accuracy": 0.45,
+      "group_accuracy": 0.45
     },
     "hu": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "hy": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "is": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "it": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "ka": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "lt": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "lv": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "mk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "nb": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "nl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "nn": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "pl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "pt": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "ro": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "ru": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "sk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "sl": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 35,
+      "group_correct": 35,
       "unknown": 0,
-      "accuracy": 1.0,
-      "group_accuracy": 1.0
+      "accuracy": 0.4375,
+      "group_accuracy": 0.4375
     },
     "sq": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "sr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "sv": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "tr": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 100,
+      "correct": 100,
+      "group_correct": 100,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
     },
     "uk": {
-      "samples": 8,
-      "correct": 8,
-      "group_correct": 8,
+      "samples": 80,
+      "correct": 80,
+      "group_correct": 80,
       "unknown": 0,
       "accuracy": 1.0,
       "group_accuracy": 1.0
@@ -330,168 +330,1528 @@
   },
   "confusion": {
     "az": {
-      "az": 8
+      "az": 100
     },
     "be": {
-      "be": 8
+      "be": 100
     },
     "bg": {
-      "bg": 8
+      "bg": 80
     },
     "bs": {
-      "hr": 2,
-      "bs": 6
+      "hr": 45,
+      "sl": 35
     },
     "ca": {
-      "ca": 8
+      "ca": 100
     },
     "cs": {
-      "cs": 8
+      "cs": 100
     },
     "cy": {
-      "cy": 8
+      "cy": 80
     },
     "da": {
-      "da": 8
+      "da": 100
     },
     "de": {
-      "de": 8
+      "de": 100
     },
     "el": {
-      "el": 8
+      "el": 100
     },
     "en": {
-      "en": 8
+      "en": 100
     },
     "es": {
-      "es": 8
+      "es": 100
     },
     "et": {
-      "et": 8
+      "et": 100
     },
     "eu": {
-      "eu": 8
+      "eu": 100
     },
     "fi": {
-      "fi": 8
+      "fi": 100
     },
     "fr": {
-      "fr": 8
+      "fr": 80
     },
     "ga": {
-      "ga": 8
+      "ga": 100
     },
     "hr": {
-      "hr": 8
+      "sl": 44,
+      "hr": 36
     },
     "hu": {
-      "hu": 8
+      "hu": 100
     },
     "hy": {
-      "hy": 8
+      "hy": 80
     },
     "is": {
-      "is": 8
+      "is": 100
     },
     "it": {
-      "it": 8
+      "it": 100
     },
     "ka": {
-      "ka": 8
+      "ka": 100
     },
     "lt": {
-      "lt": 8
+      "lt": 100
     },
     "lv": {
-      "lv": 8
+      "lv": 80
     },
     "mk": {
-      "mk": 8
+      "mk": 100
     },
     "nb": {
-      "nb": 8
+      "nb": 100
     },
     "nl": {
-      "nl": 8
+      "nl": 100
     },
     "nn": {
-      "nn": 8
+      "nn": 100
     },
     "pl": {
-      "pl": 8
+      "pl": 100
     },
     "pt": {
-      "pt": 8
+      "pt": 100
     },
     "ro": {
-      "ro": 8
+      "ro": 100
     },
     "ru": {
-      "ru": 8
+      "ru": 100
     },
     "sk": {
-      "sk": 8
+      "sk": 100
     },
     "sl": {
-      "sl": 8
+      "sl": 35,
+      "hr": 45
     },
     "sq": {
-      "sq": 8
+      "sq": 100
     },
     "sr": {
-      "sr": 8
+      "sr": 80
     },
     "sv": {
-      "sv": 8
+      "sv": 100
     },
     "tr": {
-      "tr": 8
+      "tr": 100
     },
     "uk": {
-      "uk": 8
+      "uk": 80
     }
   },
   "low_confidence": [
     {
-      "text": "Dobar dan, kako ste danas?",
+      "text": "Da ne za kako.",
       "expected": "bs",
       "predicted": "hr",
-      "confidence": 0.8691,
-      "source": "lingua+related",
-      "reason": "related_classifier_refinement",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
       "language_group": "serbo_croatian",
       "group_reliability": "ambiguous",
       "ambiguous_group": true,
-      "related_margin": 0.0733,
+      "related_margin": 0.1219,
       "related_suggested_language": "hr",
-      "related_applied": true
+      "related_applied": false
     },
     {
-      "text": "Dobar dan, kako ste danas? Dobar dan, kako ste danas? Dobar dan, kako ste danas?",
+      "text": "Da ne za kako bilo oni.",
       "expected": "bs",
-      "predicted": "hr",
-      "confidence": 0.8538,
-      "source": "lingua+related",
-      "reason": "related_classifier_refinement",
-      "language_group": "serbo_croatian",
-      "group_reliability": "ambiguous",
-      "ambiguous_group": true,
-      "related_margin": 0.0727,
-      "related_suggested_language": "hr",
-      "related_applied": true
-    },
-    {
-      "text": "Goddag, hvordan har du det i dag? Goddag, hvordan har du det i dag?",
-      "expected": "da",
-      "predicted": "da",
-      "confidence": 0.4282,
-      "source": "lingua",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
       "reason": null,
       "language_group": null,
       "group_reliability": null,
       "ambiguous_group": false,
       "related_margin": null,
       "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9786,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "sl",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "hr",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.97,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.2424,
+      "related_suggested_language": "hr",
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako bilo oni njegov.",
+      "expected": "bs",
+      "predicted": "sl",
+      "confidence": 0.9541,
+      "source": "profile",
+      "reason": null,
+      "language_group": null,
+      "group_reliability": null,
+      "ambiguous_group": false,
+      "related_margin": null,
+      "related_suggested_language": null,
+      "related_applied": false
+    },
+    {
+      "text": "Da ne za kako.",
+      "expected": "bs",
+      "predicted": "hr",
+      "confidence": 0.9146,
+      "source": "profile",
+      "reason": null,
+      "language_group": "serbo_croatian",
+      "group_reliability": "ambiguous",
+      "ambiguous_group": true,
+      "related_margin": 0.1219,
+      "related_suggested_language": "hr",
       "related_applied": false
     }
   ]

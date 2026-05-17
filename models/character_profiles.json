@@ -2,108 +2,133 @@
   "sq": {
     "language": "sq",
     "name": "Albanian",
-    "total_letters": 2924,
-    "alphabet_size": 20,
+    "total_letters": 20963,
+    "alphabet_size": 25,
     "top_characters": [
       {
-        "char": "e",
-        "count": 612,
-        "share": 0.2093
-      },
-      {
-        "char": "s",
-        "count": 306,
-        "share": 0.1047
-      },
-      {
-        "char": "t",
-        "count": 272,
-        "share": 0.093
-      },
-      {
-        "char": "n",
-        "count": 238,
-        "share": 0.0814
-      },
-      {
-        "char": "h",
-        "count": 204,
-        "share": 0.0698
-      },
-      {
-        "char": "j",
-        "count": 204,
-        "share": 0.0698
+        "char": "ë",
+        "count": 2119,
+        "share": 0.1011
       },
       {
         "char": "i",
-        "count": 204,
-        "share": 0.0698
+        "count": 1786,
+        "share": 0.0852
       },
       {
-        "char": "u",
-        "count": 136,
-        "share": 0.0465
-      },
-      {
-        "char": "p",
-        "count": 102,
-        "share": 0.0349
+        "char": "e",
+        "count": 1705,
+        "share": 0.0813
       },
       {
         "char": "r",
-        "count": 102,
-        "share": 0.0349
-      },
-      {
-        "char": "o",
-        "count": 102,
-        "share": 0.0349
-      },
-      {
-        "char": "k",
-        "count": 102,
-        "share": 0.0349
-      },
-      {
-        "char": "g",
-        "count": 68,
-        "share": 0.0233
+        "count": 1410,
+        "share": 0.0673
       },
       {
         "char": "m",
-        "count": 68,
-        "share": 0.0233
+        "count": 1198,
+        "share": 0.0571
+      },
+      {
+        "char": "s",
+        "count": 1195,
+        "share": 0.057
+      },
+      {
+        "char": "n",
+        "count": 1173,
+        "share": 0.056
+      },
+      {
+        "char": "t",
+        "count": 1084,
+        "share": 0.0517
+      },
+      {
+        "char": "o",
+        "count": 1013,
+        "share": 0.0483
+      },
+      {
+        "char": "h",
+        "count": 896,
+        "share": 0.0427
+      },
+      {
+        "char": "a",
+        "count": 878,
+        "share": 0.0419
       },
       {
         "char": "d",
-        "count": 34,
-        "share": 0.0116
+        "count": 866,
+        "share": 0.0413
       },
       {
-        "char": "y",
-        "count": 34,
-        "share": 0.0116
+        "char": "u",
+        "count": 826,
+        "share": 0.0394
       },
       {
-        "char": "q",
-        "count": 34,
-        "share": 0.0116
+        "char": "k",
+        "count": 811,
+        "share": 0.0387
       },
       {
-        "char": "z",
-        "count": 34,
-        "share": 0.0116
+        "char": "j",
+        "count": 783,
+        "share": 0.0374
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0116
+        "char": "p",
+        "count": 663,
+        "share": 0.0316
       },
       {
         "char": "l",
-        "count": 34,
-        "share": 0.0116
+        "count": 500,
+        "share": 0.0239
+      },
+      {
+        "char": "v",
+        "count": 394,
+        "share": 0.0188
+      },
+      {
+        "char": "q",
+        "count": 353,
+        "share": 0.0168
+      },
+      {
+        "char": "b",
+        "count": 341,
+        "share": 0.0163
+      },
+      {
+        "char": "g",
+        "count": 337,
+        "share": 0.0161
+      },
+      {
+        "char": "y",
+        "count": 240,
+        "share": 0.0114
+      },
+      {
+        "char": "z",
+        "count": 162,
+        "share": 0.0077
+      },
+      {
+        "char": "f",
+        "count": 127,
+        "share": 0.0061
+      },
+      {
+        "char": "c",
+        "count": 103,
+        "share": 0.0049
       }
     ],
     "unique_characters": [],
@@ -112,297 +137,354 @@
   "hy": {
     "language": "hy",
     "name": "Armenian",
-    "total_letters": 2822,
-    "alphabet_size": 28,
+    "total_letters": 27190,
+    "alphabet_size": 46,
     "top_characters": [
       {
         "char": "ա",
-        "count": 374,
-        "share": 0.1325
-      },
-      {
-        "char": "ե",
-        "count": 306,
-        "share": 0.1084
-      },
-      {
-        "char": "ն",
-        "count": 238,
-        "share": 0.0843
-      },
-      {
-        "char": "ր",
-        "count": 204,
-        "share": 0.0723
+        "count": 3993,
+        "share": 0.1469
       },
       {
         "char": "ո",
-        "count": 204,
-        "share": 0.0723
+        "count": 3049,
+        "share": 0.1121
       },
       {
         "char": "ւ",
-        "count": 170,
-        "share": 0.0602
+        "count": 2474,
+        "share": 0.091
       },
       {
-        "char": "ս",
-        "count": 136,
-        "share": 0.0482
+        "char": "ն",
+        "count": 2086,
+        "share": 0.0767
       },
       {
-        "char": "ք",
-        "count": 102,
-        "share": 0.0361
+        "char": "ր",
+        "count": 1874,
+        "share": 0.0689
+      },
+      {
+        "char": "ե",
+        "count": 1433,
+        "share": 0.0527
       },
       {
         "char": "յ",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "վ",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "մ",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "ի",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "չ",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "կ",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "ճ",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "լ",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "զ",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "բ",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "պ",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "օ",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "խ",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "դ",
-        "count": 34,
-        "share": 0.012
+        "count": 1199,
+        "share": 0.0441
       },
       {
         "char": "թ",
-        "count": 34,
-        "share": 0.012
+        "count": 919,
+        "share": 0.0338
       },
       {
-        "char": "է",
-        "count": 34,
-        "share": 0.012
+        "char": "կ",
+        "count": 891,
+        "share": 0.0328
+      },
+      {
+        "char": "տ",
+        "count": 753,
+        "share": 0.0277
+      },
+      {
+        "char": "լ",
+        "count": 724,
+        "share": 0.0266
       },
       {
         "char": "հ",
-        "count": 34,
+        "count": 680,
+        "share": 0.025
+      },
+      {
+        "char": "ք",
+        "count": 662,
+        "share": 0.0243
+      },
+      {
+        "char": "մ",
+        "count": 644,
+        "share": 0.0237
+      },
+      {
+        "char": "գ",
+        "count": 540,
+        "share": 0.0199
+      },
+      {
+        "char": "ի",
+        "count": 538,
+        "share": 0.0198
+      },
+      {
+        "char": "շ",
+        "count": 503,
+        "share": 0.0185
+      },
+      {
+        "char": "ս",
+        "count": 404,
+        "share": 0.0149
+      },
+      {
+        "char": "խ",
+        "count": 402,
+        "share": 0.0148
+      },
+      {
+        "char": "ղ",
+        "count": 342,
+        "share": 0.0126
+      },
+      {
+        "char": "վ",
+        "count": 326,
         "share": 0.012
       },
       {
-        "char": "փ",
-        "count": 34,
-        "share": 0.012
+        "char": "ց",
+        "count": 266,
+        "share": 0.0098
       },
       {
-        "char": "ձ",
-        "count": 34,
-        "share": 0.012
+        "char": "պ",
+        "count": 266,
+        "share": 0.0098
       },
       {
-        "char": "ը",
-        "count": 34,
-        "share": 0.012
+        "char": "զ",
+        "count": 264,
+        "share": 0.0097
+      },
+      {
+        "char": "չ",
+        "count": 224,
+        "share": 0.0082
+      },
+      {
+        "char": "ռ",
+        "count": 186,
+        "share": 0.0068
+      },
+      {
+        "char": "բ",
+        "count": 159,
+        "share": 0.0058
+      },
+      {
+        "char": "ջ",
+        "count": 114,
+        "share": 0.0042
+      },
+      {
+        "char": "ժ",
+        "count": 110,
+        "share": 0.004
+      },
+      {
+        "char": "м",
+        "count": 104,
+        "share": 0.0038
       }
     ],
     "unique_characters": [
       "ա",
       "բ",
+      "գ",
       "դ",
       "ե",
       "զ",
-      "է",
       "ը",
       "թ",
+      "ժ",
       "ի",
       "լ",
       "խ",
+      "ծ",
       "կ",
       "հ",
       "ձ",
+      "ղ",
       "ճ",
       "մ",
       "յ",
       "ն",
+      "շ",
       "ո",
       "չ",
       "պ",
+      "ջ",
+      "ռ",
       "ս",
       "վ",
+      "տ",
       "ր",
+      "ց",
       "ւ",
-      "փ",
       "ք",
       "օ"
     ],
-    "signature": "աբդեզէըթիլխկհձճմյնոչ"
+    "signature": "աբգդեզըթժիլխծկհձղճմյ"
   },
   "az": {
     "language": "az",
     "name": "Azerbaijani",
-    "total_letters": 2856,
-    "alphabet_size": 22,
+    "total_letters": 20528,
+    "alphabet_size": 31,
     "top_characters": [
       {
+        "char": "ə",
+        "count": 2349,
+        "share": 0.1144
+      },
+      {
         "char": "i",
-        "count": 374,
-        "share": 0.131
+        "count": 2053,
+        "share": 0.1
       },
       {
         "char": "a",
-        "count": 306,
-        "share": 0.1071
-      },
-      {
-        "char": "n",
-        "count": 238,
-        "share": 0.0833
-      },
-      {
-        "char": "s",
-        "count": 170,
-        "share": 0.0595
-      },
-      {
-        "char": "l",
-        "count": 170,
-        "share": 0.0595
-      },
-      {
-        "char": "b",
-        "count": 170,
-        "share": 0.0595
+        "count": 1459,
+        "share": 0.0711
       },
       {
         "char": "m",
-        "count": 136,
-        "share": 0.0476
+        "count": 1217,
+        "share": 0.0593
       },
       {
-        "char": "ə",
-        "count": 136,
-        "share": 0.0476
+        "char": "k",
+        "count": 1085,
+        "share": 0.0529
       },
       {
-        "char": "r",
-        "count": 136,
-        "share": 0.0476
+        "char": "n",
+        "count": 1063,
+        "share": 0.0518
       },
       {
-        "char": "d",
-        "count": 136,
-        "share": 0.0476
-      },
-      {
-        "char": "ı",
-        "count": 136,
-        "share": 0.0476
-      },
-      {
-        "char": "c",
-        "count": 102,
-        "share": 0.0357
-      },
-      {
-        "char": "z",
-        "count": 102,
-        "share": 0.0357
+        "char": "l",
+        "count": 1002,
+        "share": 0.0488
       },
       {
         "char": "y",
-        "count": 102,
-        "share": 0.0357
-      },
-      {
-        "char": "u",
-        "count": 68,
-        "share": 0.0238
-      },
-      {
-        "char": "ü",
-        "count": 68,
-        "share": 0.0238
-      },
-      {
-        "char": "e",
-        "count": 68,
-        "share": 0.0238
-      },
-      {
-        "char": "q",
-        "count": 68,
-        "share": 0.0238
+        "count": 898,
+        "share": 0.0437
       },
       {
         "char": "t",
-        "count": 68,
-        "share": 0.0238
+        "count": 781,
+        "share": 0.038
+      },
+      {
+        "char": "s",
+        "count": 779,
+        "share": 0.0379
+      },
+      {
+        "char": "d",
+        "count": 734,
+        "share": 0.0358
+      },
+      {
+        "char": "ü",
+        "count": 612,
+        "share": 0.0298
+      },
+      {
+        "char": "r",
+        "count": 569,
+        "share": 0.0277
+      },
+      {
+        "char": "e",
+        "count": 568,
+        "share": 0.0277
+      },
+      {
+        "char": "b",
+        "count": 545,
+        "share": 0.0265
       },
       {
         "char": "g",
-        "count": 34,
-        "share": 0.0119
+        "count": 488,
+        "share": 0.0238
+      },
+      {
+        "char": "v",
+        "count": 476,
+        "share": 0.0232
       },
       {
         "char": "o",
-        "count": 34,
-        "share": 0.0119
+        "count": 462,
+        "share": 0.0225
+      },
+      {
+        "char": "u",
+        "count": 447,
+        "share": 0.0218
+      },
+      {
+        "char": "q",
+        "count": 439,
+        "share": 0.0214
+      },
+      {
+        "char": "ş",
+        "count": 416,
+        "share": 0.0203
+      },
+      {
+        "char": "c",
+        "count": 374,
+        "share": 0.0182
       },
       {
         "char": "x",
-        "count": 34,
-        "share": 0.0119
+        "count": 363,
+        "share": 0.0177
+      },
+      {
+        "char": "h",
+        "count": 285,
+        "share": 0.0139
+      },
+      {
+        "char": "ö",
+        "count": 283,
+        "share": 0.0138
+      },
+      {
+        "char": "ç",
+        "count": 198,
+        "share": 0.0096
+      },
+      {
+        "char": "ı",
+        "count": 198,
+        "share": 0.0096
+      },
+      {
+        "char": "z",
+        "count": 182,
+        "share": 0.0089
+      },
+      {
+        "char": "f",
+        "count": 107,
+        "share": 0.0052
+      },
+      {
+        "char": "p",
+        "count": 52,
+        "share": 0.0025
       }
     ],
     "unique_characters": [
@@ -413,103 +495,113 @@
   "eu": {
     "language": "eu",
     "name": "Basque",
-    "total_letters": 3468,
-    "alphabet_size": 19,
+    "total_letters": 25089,
+    "alphabet_size": 21,
     "top_characters": [
       {
         "char": "a",
-        "count": 646,
-        "share": 0.1863
-      },
-      {
-        "char": "z",
-        "count": 306,
-        "share": 0.0882
+        "count": 3993,
+        "share": 0.1592
       },
       {
         "char": "e",
-        "count": 306,
-        "share": 0.0882
-      },
-      {
-        "char": "r",
-        "count": 272,
-        "share": 0.0784
-      },
-      {
-        "char": "t",
-        "count": 272,
-        "share": 0.0784
+        "count": 2341,
+        "share": 0.0933
       },
       {
         "char": "i",
-        "count": 238,
-        "share": 0.0686
+        "count": 2206,
+        "share": 0.0879
       },
       {
         "char": "u",
-        "count": 238,
-        "share": 0.0686
-      },
-      {
-        "char": "k",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "o",
-        "count": 170,
-        "share": 0.049
-      },
-      {
-        "char": "s",
-        "count": 136,
-        "share": 0.0392
-      },
-      {
-        "char": "m",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "g",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "h",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "l",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "b",
-        "count": 68,
-        "share": 0.0196
+        "count": 2167,
+        "share": 0.0864
       },
       {
         "char": "n",
-        "count": 68,
-        "share": 0.0196
+        "count": 2011,
+        "share": 0.0802
       },
       {
-        "char": "x",
-        "count": 34,
-        "share": 0.0098
+        "char": "r",
+        "count": 1811,
+        "share": 0.0722
+      },
+      {
+        "char": "t",
+        "count": 1476,
+        "share": 0.0588
+      },
+      {
+        "char": "z",
+        "count": 1183,
+        "share": 0.0472
+      },
+      {
+        "char": "o",
+        "count": 1171,
+        "share": 0.0467
+      },
+      {
+        "char": "k",
+        "count": 1118,
+        "share": 0.0446
+      },
+      {
+        "char": "b",
+        "count": 1016,
+        "share": 0.0405
+      },
+      {
+        "char": "s",
+        "count": 866,
+        "share": 0.0345
+      },
+      {
+        "char": "d",
+        "count": 787,
+        "share": 0.0314
+      },
+      {
+        "char": "g",
+        "count": 752,
+        "share": 0.03
+      },
+      {
+        "char": "h",
+        "count": 706,
+        "share": 0.0281
+      },
+      {
+        "char": "l",
+        "count": 691,
+        "share": 0.0275
       },
       {
         "char": "p",
-        "count": 34,
-        "share": 0.0098
+        "count": 292,
+        "share": 0.0116
+      },
+      {
+        "char": "m",
+        "count": 220,
+        "share": 0.0088
+      },
+      {
+        "char": "j",
+        "count": 176,
+        "share": 0.007
+      },
+      {
+        "char": "f",
+        "count": 53,
+        "share": 0.0021
+      },
+      {
+        "char": "x",
+        "count": 53,
+        "share": 0.0021
       }
     ],
     "unique_characters": [],
@@ -518,233 +610,306 @@
   "be": {
     "language": "be",
     "name": "Belarusian",
-    "total_letters": 2924,
-    "alphabet_size": 25,
+    "total_letters": 23962,
+    "alphabet_size": 30,
     "top_characters": [
       {
         "char": "а",
-        "count": 340,
-        "share": 0.1163
+        "count": 4297,
+        "share": 0.1793
       },
       {
         "char": "р",
-        "count": 204,
-        "share": 0.0698
+        "count": 1304,
+        "share": 0.0544
       },
       {
-        "char": "ы",
-        "count": 204,
-        "share": 0.0698
-      },
-      {
-        "char": "в",
-        "count": 204,
-        "share": 0.0698
-      },
-      {
-        "char": "н",
-        "count": 170,
-        "share": 0.0581
-      },
-      {
-        "char": "к",
-        "count": 170,
-        "share": 0.0581
-      },
-      {
-        "char": "с",
-        "count": 170,
-        "share": 0.0581
-      },
-      {
-        "char": "т",
-        "count": 170,
-        "share": 0.0581
-      },
-      {
-        "char": "м",
-        "count": 170,
-        "share": 0.0581
+        "char": "ц",
+        "count": 1278,
+        "share": 0.0533
       },
       {
         "char": "о",
-        "count": 136,
-        "share": 0.0465
+        "count": 1213,
+        "share": 0.0506
       },
       {
-        "char": "е",
-        "count": 136,
-        "share": 0.0465
+        "char": "н",
+        "count": 1139,
+        "share": 0.0475
       },
       {
-        "char": "э",
-        "count": 136,
-        "share": 0.0465
+        "char": "в",
+        "count": 1083,
+        "share": 0.0452
       },
       {
         "char": "я",
-        "count": 102,
-        "share": 0.0349
+        "count": 1007,
+        "share": 0.042
       },
       {
         "char": "д",
-        "count": 68,
-        "share": 0.0233
+        "count": 996,
+        "share": 0.0416
       },
       {
-        "char": "б",
-        "count": 68,
-        "share": 0.0233
-      },
-      {
-        "char": "з",
-        "count": 68,
-        "share": 0.0233
-      },
-      {
-        "char": "п",
-        "count": 68,
-        "share": 0.0233
+        "char": "с",
+        "count": 985,
+        "share": 0.0411
       },
       {
         "char": "і",
-        "count": 68,
-        "share": 0.0233
+        "count": 928,
+        "share": 0.0387
       },
       {
-        "char": "у",
-        "count": 68,
-        "share": 0.0233
+        "char": "е",
+        "count": 835,
+        "share": 0.0348
       },
       {
-        "char": "ь",
-        "count": 34,
-        "share": 0.0116
-      },
-      {
-        "char": "ш",
-        "count": 34,
-        "share": 0.0116
-      },
-      {
-        "char": "г",
-        "count": 34,
-        "share": 0.0116
+        "char": "к",
+        "count": 834,
+        "share": 0.0348
       },
       {
         "char": "л",
-        "count": 34,
-        "share": 0.0116
+        "count": 831,
+        "share": 0.0347
       },
       {
-        "char": "й",
-        "count": 34,
-        "share": 0.0116
+        "char": "ь",
+        "count": 825,
+        "share": 0.0344
+      },
+      {
+        "char": "т",
+        "count": 808,
+        "share": 0.0337
+      },
+      {
+        "char": "ы",
+        "count": 796,
+        "share": 0.0332
+      },
+      {
+        "char": "м",
+        "count": 794,
+        "share": 0.0331
+      },
+      {
+        "char": "з",
+        "count": 597,
+        "share": 0.0249
+      },
+      {
+        "char": "п",
+        "count": 576,
+        "share": 0.024
+      },
+      {
+        "char": "у",
+        "count": 523,
+        "share": 0.0218
+      },
+      {
+        "char": "г",
+        "count": 523,
+        "share": 0.0218
+      },
+      {
+        "char": "б",
+        "count": 486,
+        "share": 0.0203
       },
       {
         "char": "ч",
-        "count": 34,
-        "share": 0.0116
+        "count": 360,
+        "share": 0.015
+      },
+      {
+        "char": "х",
+        "count": 201,
+        "share": 0.0084
+      },
+      {
+        "char": "ш",
+        "count": 191,
+        "share": 0.008
+      },
+      {
+        "char": "ж",
+        "count": 143,
+        "share": 0.006
+      },
+      {
+        "char": "ў",
+        "count": 141,
+        "share": 0.0059
+      },
+      {
+        "char": "э",
+        "count": 128,
+        "share": 0.0053
+      },
+      {
+        "char": "ё",
+        "count": 94,
+        "share": 0.0039
+      },
+      {
+        "char": "ю",
+        "count": 46,
+        "share": 0.0019
       }
     ],
-    "unique_characters": [],
-    "signature": ""
+    "unique_characters": [
+      "ё",
+      "ў"
+    ],
+    "signature": "ёў"
   },
   "bs": {
     "language": "bs",
     "name": "Bosnian",
-    "total_letters": 3128,
-    "alphabet_size": 18,
+    "total_letters": 23404,
+    "alphabet_size": 27,
     "top_characters": [
       {
         "char": "a",
-        "count": 510,
-        "share": 0.163
-      },
-      {
-        "char": "e",
-        "count": 340,
-        "share": 0.1087
+        "count": 3014,
+        "share": 0.1288
       },
       {
         "char": "o",
-        "count": 272,
-        "share": 0.087
-      },
-      {
-        "char": "n",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "k",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "s",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "r",
-        "count": 170,
-        "share": 0.0543
-      },
-      {
-        "char": "t",
-        "count": 170,
-        "share": 0.0543
+        "count": 2385,
+        "share": 0.1019
       },
       {
         "char": "i",
-        "count": 170,
-        "share": 0.0543
+        "count": 2068,
+        "share": 0.0884
+      },
+      {
+        "char": "e",
+        "count": 1589,
+        "share": 0.0679
+      },
+      {
+        "char": "t",
+        "count": 1373,
+        "share": 0.0587
       },
       {
         "char": "j",
-        "count": 136,
-        "share": 0.0435
-      },
-      {
-        "char": "z",
-        "count": 136,
-        "share": 0.0435
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.0326
-      },
-      {
-        "char": "m",
-        "count": 102,
-        "share": 0.0326
-      },
-      {
-        "char": "b",
-        "count": 68,
-        "share": 0.0217
+        "count": 1354,
+        "share": 0.0579
       },
       {
         "char": "v",
-        "count": 68,
-        "share": 0.0217
+        "count": 1325,
+        "share": 0.0566
       },
       {
-        "char": "c",
-        "count": 68,
-        "share": 0.0217
+        "char": "r",
+        "count": 1275,
+        "share": 0.0545
       },
       {
-        "char": "p",
-        "count": 68,
-        "share": 0.0217
+        "char": "n",
+        "count": 1170,
+        "share": 0.05
+      },
+      {
+        "char": "d",
+        "count": 1119,
+        "share": 0.0478
+      },
+      {
+        "char": "s",
+        "count": 1023,
+        "share": 0.0437
+      },
+      {
+        "char": "k",
+        "count": 914,
+        "share": 0.0391
+      },
+      {
+        "char": "m",
+        "count": 748,
+        "share": 0.032
+      },
+      {
+        "char": "l",
+        "count": 684,
+        "share": 0.0292
       },
       {
         "char": "u",
-        "count": 34,
-        "share": 0.0109
+        "count": 669,
+        "share": 0.0286
+      },
+      {
+        "char": "z",
+        "count": 455,
+        "share": 0.0194
+      },
+      {
+        "char": "g",
+        "count": 416,
+        "share": 0.0178
+      },
+      {
+        "char": "b",
+        "count": 399,
+        "share": 0.017
+      },
+      {
+        "char": "p",
+        "count": 383,
+        "share": 0.0164
+      },
+      {
+        "char": "ć",
+        "count": 228,
+        "share": 0.0097
+      },
+      {
+        "char": "č",
+        "count": 184,
+        "share": 0.0079
+      },
+      {
+        "char": "c",
+        "count": 178,
+        "share": 0.0076
+      },
+      {
+        "char": "ž",
+        "count": 164,
+        "share": 0.007
+      },
+      {
+        "char": "h",
+        "count": 131,
+        "share": 0.0056
+      },
+      {
+        "char": "ћ",
+        "count": 63,
+        "share": 0.0027
+      },
+      {
+        "char": "đ",
+        "count": 48,
+        "share": 0.0021
+      },
+      {
+        "char": "š",
+        "count": 45,
+        "share": 0.0019
       }
     ],
     "unique_characters": [],
@@ -753,103 +918,143 @@
   "bg": {
     "language": "bg",
     "name": "Bulgarian",
-    "total_letters": 2958,
-    "alphabet_size": 19,
+    "total_letters": 22603,
+    "alphabet_size": 27,
     "top_characters": [
       {
+        "char": "о",
+        "count": 2477,
+        "share": 0.1096
+      },
+      {
         "char": "а",
-        "count": 476,
-        "share": 0.1609
+        "count": 2272,
+        "share": 0.1005
       },
       {
         "char": "е",
-        "count": 408,
-        "share": 0.1379
-      },
-      {
-        "char": "т",
-        "count": 340,
-        "share": 0.1149
-      },
-      {
-        "char": "к",
-        "count": 272,
-        "share": 0.092
-      },
-      {
-        "char": "с",
-        "count": 238,
-        "share": 0.0805
-      },
-      {
-        "char": "з",
-        "count": 204,
-        "share": 0.069
-      },
-      {
-        "char": "н",
-        "count": 170,
-        "share": 0.0575
-      },
-      {
-        "char": "р",
-        "count": 136,
-        "share": 0.046
-      },
-      {
-        "char": "в",
-        "count": 136,
-        "share": 0.046
+        "count": 2108,
+        "share": 0.0933
       },
       {
         "char": "и",
-        "count": 136,
-        "share": 0.046
+        "count": 1549,
+        "share": 0.0685
+      },
+      {
+        "char": "т",
+        "count": 1481,
+        "share": 0.0655
+      },
+      {
+        "char": "в",
+        "count": 1419,
+        "share": 0.0628
+      },
+      {
+        "char": "р",
+        "count": 1327,
+        "share": 0.0587
+      },
+      {
+        "char": "с",
+        "count": 1200,
+        "share": 0.0531
+      },
+      {
+        "char": "н",
+        "count": 1077,
+        "share": 0.0476
       },
       {
         "char": "д",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "о",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "ъ",
-        "count": 68,
-        "share": 0.023
+        "count": 1012,
+        "share": 0.0448
       },
       {
         "char": "м",
-        "count": 68,
-        "share": 0.023
+        "count": 731,
+        "share": 0.0323
       },
       {
-        "char": "й",
-        "count": 34,
-        "share": 0.0115
-      },
-      {
-        "char": "б",
-        "count": 34,
-        "share": 0.0115
+        "char": "к",
+        "count": 717,
+        "share": 0.0317
       },
       {
         "char": "л",
-        "count": 34,
-        "share": 0.0115
+        "count": 653,
+        "share": 0.0289
       },
       {
-        "char": "г",
-        "count": 34,
-        "share": 0.0115
+        "char": "б",
+        "count": 601,
+        "share": 0.0266
+      },
+      {
+        "char": "з",
+        "count": 533,
+        "share": 0.0236
+      },
+      {
+        "char": "ъ",
+        "count": 498,
+        "share": 0.022
       },
       {
         "char": "п",
-        "count": 34,
-        "share": 0.0115
+        "count": 493,
+        "share": 0.0218
+      },
+      {
+        "char": "г",
+        "count": 449,
+        "share": 0.0199
+      },
+      {
+        "char": "я",
+        "count": 436,
+        "share": 0.0193
+      },
+      {
+        "char": "щ",
+        "count": 353,
+        "share": 0.0156
+      },
+      {
+        "char": "у",
+        "count": 351,
+        "share": 0.0155
+      },
+      {
+        "char": "ч",
+        "count": 304,
+        "share": 0.0134
+      },
+      {
+        "char": "ж",
+        "count": 214,
+        "share": 0.0095
+      },
+      {
+        "char": "ц",
+        "count": 157,
+        "share": 0.0069
+      },
+      {
+        "char": "ш",
+        "count": 79,
+        "share": 0.0035
+      },
+      {
+        "char": "ю",
+        "count": 61,
+        "share": 0.0027
+      },
+      {
+        "char": "х",
+        "count": 51,
+        "share": 0.0023
       }
     ],
     "unique_characters": [
@@ -860,208 +1065,300 @@
   "ca": {
     "language": "ca",
     "name": "Catalan",
-    "total_letters": 2788,
-    "alphabet_size": 19,
+    "total_letters": 23725,
+    "alphabet_size": 32,
     "top_characters": [
       {
-        "char": "e",
-        "count": 476,
-        "share": 0.1707
-      },
-      {
         "char": "a",
-        "count": 340,
-        "share": 0.122
+        "count": 2960,
+        "share": 0.1248
       },
       {
-        "char": "t",
-        "count": 340,
-        "share": 0.122
-      },
-      {
-        "char": "s",
-        "count": 238,
-        "share": 0.0854
-      },
-      {
-        "char": "l",
-        "count": 170,
-        "share": 0.061
-      },
-      {
-        "char": "c",
-        "count": 170,
-        "share": 0.061
-      },
-      {
-        "char": "u",
-        "count": 170,
-        "share": 0.061
-      },
-      {
-        "char": "o",
-        "count": 136,
-        "share": 0.0488
-      },
-      {
-        "char": "n",
-        "count": 136,
-        "share": 0.0488
-      },
-      {
-        "char": "m",
-        "count": 102,
-        "share": 0.0366
-      },
-      {
-        "char": "i",
-        "count": 102,
-        "share": 0.0366
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.0366
-      },
-      {
-        "char": "v",
-        "count": 68,
-        "share": 0.0244
+        "char": "e",
+        "count": 2532,
+        "share": 0.1067
       },
       {
         "char": "r",
-        "count": 68,
-        "share": 0.0244
+        "count": 2094,
+        "share": 0.0883
       },
       {
-        "char": "h",
-        "count": 34,
-        "share": 0.0122
+        "char": "t",
+        "count": 1896,
+        "share": 0.0799
       },
       {
-        "char": "q",
-        "count": 34,
-        "share": 0.0122
+        "char": "l",
+        "count": 1843,
+        "share": 0.0777
       },
       {
-        "char": "x",
-        "count": 34,
-        "share": 0.0122
+        "char": "i",
+        "count": 1625,
+        "share": 0.0685
+      },
+      {
+        "char": "n",
+        "count": 1379,
+        "share": 0.0581
+      },
+      {
+        "char": "o",
+        "count": 1340,
+        "share": 0.0565
+      },
+      {
+        "char": "u",
+        "count": 1165,
+        "share": 0.0491
+      },
+      {
+        "char": "s",
+        "count": 1013,
+        "share": 0.0427
+      },
+      {
+        "char": "c",
+        "count": 1003,
+        "share": 0.0423
       },
       {
         "char": "p",
-        "count": 34,
-        "share": 0.0122
+        "count": 825,
+        "share": 0.0348
+      },
+      {
+        "char": "m",
+        "count": 632,
+        "share": 0.0266
+      },
+      {
+        "char": "d",
+        "count": 513,
+        "share": 0.0216
+      },
+      {
+        "char": "b",
+        "count": 454,
+        "share": 0.0191
+      },
+      {
+        "char": "v",
+        "count": 383,
+        "share": 0.0161
       },
       {
         "char": "g",
-        "count": 34,
-        "share": 0.0122
+        "count": 351,
+        "share": 0.0148
+      },
+      {
+        "char": "ó",
+        "count": 306,
+        "share": 0.0129
+      },
+      {
+        "char": "f",
+        "count": 264,
+        "share": 0.0111
+      },
+      {
+        "char": "í",
+        "count": 177,
+        "share": 0.0075
+      },
+      {
+        "char": "q",
+        "count": 142,
+        "share": 0.006
+      },
+      {
+        "char": "h",
+        "count": 127,
+        "share": 0.0054
+      },
+      {
+        "char": "ò",
+        "count": 116,
+        "share": 0.0049
+      },
+      {
+        "char": "ç",
+        "count": 104,
+        "share": 0.0044
+      },
+      {
+        "char": "j",
+        "count": 103,
+        "share": 0.0043
+      },
+      {
+        "char": "è",
+        "count": 62,
+        "share": 0.0026
+      },
+      {
+        "char": "x",
+        "count": 62,
+        "share": 0.0026
+      },
+      {
+        "char": "w",
+        "count": 57,
+        "share": 0.0024
+      },
+      {
+        "char": "ã",
+        "count": 57,
+        "share": 0.0024
+      },
+      {
+        "char": "k",
+        "count": 49,
+        "share": 0.0021
       }
     ],
-    "unique_characters": [],
-    "signature": ""
+    "unique_characters": [
+      "ò"
+    ],
+    "signature": "ò"
   },
   "hr": {
     "language": "hr",
     "name": "Croatian",
-    "total_letters": 2958,
-    "alphabet_size": 19,
+    "total_letters": 23363,
+    "alphabet_size": 26,
     "top_characters": [
       {
         "char": "a",
-        "count": 476,
-        "share": 0.1609
-      },
-      {
-        "char": "e",
-        "count": 306,
-        "share": 0.1034
-      },
-      {
-        "char": "k",
-        "count": 272,
-        "share": 0.092
+        "count": 2978,
+        "share": 0.1275
       },
       {
         "char": "o",
-        "count": 238,
-        "share": 0.0805
-      },
-      {
-        "char": "s",
-        "count": 204,
-        "share": 0.069
-      },
-      {
-        "char": "t",
-        "count": 204,
-        "share": 0.069
-      },
-      {
-        "char": "n",
-        "count": 170,
-        "share": 0.0575
-      },
-      {
-        "char": "r",
-        "count": 170,
-        "share": 0.0575
-      },
-      {
-        "char": "v",
-        "count": 136,
-        "share": 0.046
-      },
-      {
-        "char": "j",
-        "count": 136,
-        "share": 0.046
+        "count": 2344,
+        "share": 0.1003
       },
       {
         "char": "i",
-        "count": 136,
-        "share": 0.046
+        "count": 2003,
+        "share": 0.0857
       },
       {
-        "char": "z",
-        "count": 136,
-        "share": 0.046
+        "char": "e",
+        "count": 1595,
+        "share": 0.0683
       },
       {
-        "char": "c",
-        "count": 68,
-        "share": 0.023
+        "char": "t",
+        "count": 1424,
+        "share": 0.061
       },
       {
-        "char": "m",
-        "count": 68,
-        "share": 0.023
+        "char": "v",
+        "count": 1415,
+        "share": 0.0606
       },
       {
-        "char": "u",
-        "count": 68,
-        "share": 0.023
+        "char": "j",
+        "count": 1389,
+        "share": 0.0595
       },
       {
-        "char": "p",
-        "count": 68,
-        "share": 0.023
+        "char": "r",
+        "count": 1304,
+        "share": 0.0558
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0115
+        "char": "n",
+        "count": 1169,
+        "share": 0.05
       },
       {
         "char": "d",
-        "count": 34,
-        "share": 0.0115
+        "count": 1066,
+        "share": 0.0456
+      },
+      {
+        "char": "s",
+        "count": 1049,
+        "share": 0.0449
+      },
+      {
+        "char": "k",
+        "count": 836,
+        "share": 0.0358
+      },
+      {
+        "char": "l",
+        "count": 724,
+        "share": 0.031
+      },
+      {
+        "char": "u",
+        "count": 694,
+        "share": 0.0297
+      },
+      {
+        "char": "m",
+        "count": 690,
+        "share": 0.0295
+      },
+      {
+        "char": "z",
+        "count": 481,
+        "share": 0.0206
+      },
+      {
+        "char": "p",
+        "count": 423,
+        "share": 0.0181
+      },
+      {
+        "char": "b",
+        "count": 416,
+        "share": 0.0178
+      },
+      {
+        "char": "g",
+        "count": 407,
+        "share": 0.0174
+      },
+      {
+        "char": "ć",
+        "count": 260,
+        "share": 0.0111
+      },
+      {
+        "char": "č",
+        "count": 189,
+        "share": 0.0081
+      },
+      {
+        "char": "c",
+        "count": 182,
+        "share": 0.0078
+      },
+      {
+        "char": "ž",
+        "count": 141,
+        "share": 0.006
       },
       {
         "char": "h",
-        "count": 34,
-        "share": 0.0115
+        "count": 96,
+        "share": 0.0041
+      },
+      {
+        "char": "đ",
+        "count": 48,
+        "share": 0.0021
+      },
+      {
+        "char": "š",
+        "count": 40,
+        "share": 0.0017
       }
     ],
     "unique_characters": [],
@@ -1070,347 +1367,427 @@
   "cs": {
     "language": "cs",
     "name": "Czech",
-    "total_letters": 2754,
-    "alphabet_size": 25,
+    "total_letters": 22757,
+    "alphabet_size": 33,
     "top_characters": [
       {
-        "char": "e",
-        "count": 306,
-        "share": 0.1111
+        "char": "o",
+        "count": 2668,
+        "share": 0.1172
       },
       {
         "char": "t",
-        "count": 306,
-        "share": 0.1111
+        "count": 1609,
+        "share": 0.0707
       },
       {
-        "char": "o",
-        "count": 204,
-        "share": 0.0741
+        "char": "e",
+        "count": 1556,
+        "share": 0.0684
       },
       {
         "char": "n",
-        "count": 170,
-        "share": 0.0617
-      },
-      {
-        "char": "s",
-        "count": 170,
-        "share": 0.0617
-      },
-      {
-        "char": "á",
-        "count": 170,
-        "share": 0.0617
-      },
-      {
-        "char": "r",
-        "count": 136,
-        "share": 0.0494
-      },
-      {
-        "char": "j",
-        "count": 136,
-        "share": 0.0494
+        "count": 1442,
+        "share": 0.0634
       },
       {
         "char": "a",
-        "count": 136,
-        "share": 0.0494
-      },
-      {
-        "char": "k",
-        "count": 136,
-        "share": 0.0494
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.037
-      },
-      {
-        "char": "m",
-        "count": 102,
-        "share": 0.037
+        "count": 1402,
+        "share": 0.0616
       },
       {
         "char": "v",
-        "count": 102,
-        "share": 0.037
+        "count": 1160,
+        "share": 0.051
       },
       {
-        "char": "z",
-        "count": 102,
-        "share": 0.037
+        "char": "s",
+        "count": 1090,
+        "share": 0.0479
       },
       {
-        "char": "ě",
-        "count": 68,
-        "share": 0.0247
+        "char": "l",
+        "count": 1033,
+        "share": 0.0454
       },
       {
-        "char": "y",
-        "count": 68,
-        "share": 0.0247
+        "char": "k",
+        "count": 918,
+        "share": 0.0403
+      },
+      {
+        "char": "d",
+        "count": 868,
+        "share": 0.0381
+      },
+      {
+        "char": "r",
+        "count": 811,
+        "share": 0.0356
       },
       {
         "char": "p",
-        "count": 68,
-        "share": 0.0247
+        "count": 773,
+        "share": 0.034
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "ý",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "č",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "š",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "i",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "u",
-        "count": 34,
-        "share": 0.0123
-      },
-      {
-        "char": "é",
-        "count": 34,
-        "share": 0.0123
+        "char": "c",
+        "count": 759,
+        "share": 0.0334
       },
       {
         "char": "í",
-        "count": 34,
-        "share": 0.0123
+        "count": 661,
+        "share": 0.029
+      },
+      {
+        "char": "i",
+        "count": 636,
+        "share": 0.0279
+      },
+      {
+        "char": "m",
+        "count": 636,
+        "share": 0.0279
+      },
+      {
+        "char": "á",
+        "count": 631,
+        "share": 0.0277
+      },
+      {
+        "char": "ě",
+        "count": 532,
+        "share": 0.0234
+      },
+      {
+        "char": "j",
+        "count": 515,
+        "share": 0.0226
+      },
+      {
+        "char": "u",
+        "count": 464,
+        "share": 0.0204
+      },
+      {
+        "char": "h",
+        "count": 414,
+        "share": 0.0182
+      },
+      {
+        "char": "z",
+        "count": 390,
+        "share": 0.0171
+      },
+      {
+        "char": "ž",
+        "count": 351,
+        "share": 0.0154
+      },
+      {
+        "char": "b",
+        "count": 312,
+        "share": 0.0137
+      },
+      {
+        "char": "ř",
+        "count": 258,
+        "share": 0.0113
+      },
+      {
+        "char": "č",
+        "count": 238,
+        "share": 0.0105
+      },
+      {
+        "char": "y",
+        "count": 197,
+        "share": 0.0087
+      },
+      {
+        "char": "ý",
+        "count": 142,
+        "share": 0.0062
+      },
+      {
+        "char": "š",
+        "count": 117,
+        "share": 0.0051
+      },
+      {
+        "char": "é",
+        "count": 48,
+        "share": 0.0021
       }
     ],
     "unique_characters": [
-      "ě"
+      "ď",
+      "ě",
+      "ř"
     ],
-    "signature": "ě"
+    "signature": "ďěř"
   },
   "da": {
     "language": "da",
     "name": "Danish",
-    "total_letters": 2958,
-    "alphabet_size": 20,
+    "total_letters": 19936,
+    "alphabet_size": 25,
     "top_characters": [
       {
         "char": "e",
-        "count": 442,
-        "share": 0.1494
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1149
+        "count": 2614,
+        "share": 0.1311
       },
       {
         "char": "d",
-        "count": 306,
-        "share": 0.1034
+        "count": 1634,
+        "share": 0.082
       },
       {
         "char": "n",
-        "count": 238,
-        "share": 0.0805
-      },
-      {
-        "char": "s",
-        "count": 238,
-        "share": 0.0805
-      },
-      {
-        "char": "g",
-        "count": 204,
-        "share": 0.069
+        "count": 1432,
+        "share": 0.0718
       },
       {
         "char": "r",
-        "count": 204,
-        "share": 0.069
+        "count": 1402,
+        "share": 0.0703
+      },
+      {
+        "char": "l",
+        "count": 1228,
+        "share": 0.0616
       },
       {
         "char": "a",
-        "count": 170,
-        "share": 0.0575
+        "count": 1217,
+        "share": 0.061
       },
       {
-        "char": "o",
-        "count": 136,
-        "share": 0.046
+        "char": "s",
+        "count": 1203,
+        "share": 0.0603
       },
       {
         "char": "i",
-        "count": 136,
-        "share": 0.046
+        "count": 1129,
+        "share": 0.0566
+      },
+      {
+        "char": "t",
+        "count": 979,
+        "share": 0.0491
+      },
+      {
+        "char": "o",
+        "count": 915,
+        "share": 0.0459
+      },
+      {
+        "char": "g",
+        "count": 901,
+        "share": 0.0452
+      },
+      {
+        "char": "v",
+        "count": 769,
+        "share": 0.0386
       },
       {
         "char": "k",
-        "count": 102,
+        "count": 687,
         "share": 0.0345
       },
       {
         "char": "h",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "v",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "p",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "l",
-        "count": 68,
-        "share": 0.023
-      },
-      {
-        "char": "u",
-        "count": 34,
-        "share": 0.0115
-      },
-      {
-        "char": "æ",
-        "count": 34,
-        "share": 0.0115
-      },
-      {
-        "char": "å",
-        "count": 34,
-        "share": 0.0115
-      },
-      {
-        "char": "y",
-        "count": 34,
-        "share": 0.0115
+        "count": 559,
+        "share": 0.028
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0115
+        "count": 543,
+        "share": 0.0272
+      },
+      {
+        "char": "u",
+        "count": 527,
+        "share": 0.0264
+      },
+      {
+        "char": "f",
+        "count": 495,
+        "share": 0.0248
+      },
+      {
+        "char": "j",
+        "count": 350,
+        "share": 0.0176
+      },
+      {
+        "char": "b",
+        "count": 314,
+        "share": 0.0158
+      },
+      {
+        "char": "æ",
+        "count": 267,
+        "share": 0.0134
+      },
+      {
+        "char": "å",
+        "count": 212,
+        "share": 0.0106
+      },
+      {
+        "char": "p",
+        "count": 194,
+        "share": 0.0097
+      },
+      {
+        "char": "y",
+        "count": 136,
+        "share": 0.0068
+      },
+      {
+        "char": "ø",
+        "count": 131,
+        "share": 0.0066
+      },
+      {
+        "char": "c",
+        "count": 98,
+        "share": 0.0049
       }
     ],
-    "unique_characters": [
-      "æ"
-    ],
-    "signature": "æ"
+    "unique_characters": [],
+    "signature": ""
   },
   "nl": {
     "language": "nl",
     "name": "Dutch",
-    "total_letters": 3026,
-    "alphabet_size": 18,
+    "total_letters": 23055,
+    "alphabet_size": 24,
     "top_characters": [
       {
         "char": "e",
-        "count": 544,
-        "share": 0.1798
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1124
+        "count": 3573,
+        "share": 0.155
       },
       {
         "char": "n",
-        "count": 340,
-        "share": 0.1124
-      },
-      {
-        "char": "a",
-        "count": 306,
-        "share": 0.1011
-      },
-      {
-        "char": "h",
-        "count": 204,
-        "share": 0.0674
-      },
-      {
-        "char": "o",
-        "count": 170,
-        "share": 0.0562
+        "count": 1862,
+        "share": 0.0808
       },
       {
         "char": "i",
-        "count": 170,
-        "share": 0.0562
+        "count": 1749,
+        "share": 0.0759
       },
       {
-        "char": "s",
-        "count": 170,
-        "share": 0.0562
+        "char": "a",
+        "count": 1679,
+        "share": 0.0728
       },
       {
-        "char": "l",
-        "count": 136,
-        "share": 0.0449
-      },
-      {
-        "char": "d",
-        "count": 136,
-        "share": 0.0449
+        "char": "o",
+        "count": 1537,
+        "share": 0.0667
       },
       {
         "char": "r",
-        "count": 136,
-        "share": 0.0449
+        "count": 1276,
+        "share": 0.0553
+      },
+      {
+        "char": "t",
+        "count": 1200,
+        "share": 0.052
+      },
+      {
+        "char": "l",
+        "count": 1174,
+        "share": 0.0509
+      },
+      {
+        "char": "d",
+        "count": 1139,
+        "share": 0.0494
       },
       {
         "char": "g",
-        "count": 102,
-        "share": 0.0337
+        "count": 1035,
+        "share": 0.0449
+      },
+      {
+        "char": "s",
+        "count": 902,
+        "share": 0.0391
       },
       {
         "char": "v",
-        "count": 68,
-        "share": 0.0225
+        "count": 790,
+        "share": 0.0343
       },
       {
-        "char": "k",
-        "count": 68,
-        "share": 0.0225
-      },
-      {
-        "char": "z",
-        "count": 34,
-        "share": 0.0112
+        "char": "h",
+        "count": 788,
+        "share": 0.0342
       },
       {
         "char": "w",
-        "count": 34,
-        "share": 0.0112
+        "count": 766,
+        "share": 0.0332
       },
       {
-        "char": "y",
-        "count": 34,
-        "share": 0.0112
+        "char": "k",
+        "count": 694,
+        "share": 0.0301
+      },
+      {
+        "char": "c",
+        "count": 517,
+        "share": 0.0224
+      },
+      {
+        "char": "u",
+        "count": 464,
+        "share": 0.0201
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0112
+        "count": 443,
+        "share": 0.0192
+      },
+      {
+        "char": "j",
+        "count": 384,
+        "share": 0.0167
+      },
+      {
+        "char": "z",
+        "count": 353,
+        "share": 0.0153
+      },
+      {
+        "char": "f",
+        "count": 267,
+        "share": 0.0116
+      },
+      {
+        "char": "p",
+        "count": 248,
+        "share": 0.0108
+      },
+      {
+        "char": "b",
+        "count": 136,
+        "share": 0.0059
+      },
+      {
+        "char": "ë",
+        "count": 79,
+        "share": 0.0034
       }
     ],
     "unique_characters": [],
@@ -1419,93 +1796,128 @@
   "en": {
     "language": "en",
     "name": "English",
-    "total_letters": 2924,
-    "alphabet_size": 17,
+    "total_letters": 20923,
+    "alphabet_size": 24,
     "top_characters": [
       {
         "char": "e",
-        "count": 476,
-        "share": 0.1628
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1163
-      },
-      {
-        "char": "s",
-        "count": 272,
-        "share": 0.093
-      },
-      {
-        "char": "n",
-        "count": 238,
-        "share": 0.0814
-      },
-      {
-        "char": "h",
-        "count": 204,
-        "share": 0.0698
+        "count": 2470,
+        "share": 0.1181
       },
       {
         "char": "o",
-        "count": 204,
-        "share": 0.0698
+        "count": 2152,
+        "share": 0.1029
+      },
+      {
+        "char": "t",
+        "count": 2057,
+        "share": 0.0983
+      },
+      {
+        "char": "n",
+        "count": 1366,
+        "share": 0.0653
       },
       {
         "char": "a",
-        "count": 204,
-        "share": 0.0698
+        "count": 1347,
+        "share": 0.0644
+      },
+      {
+        "char": "h",
+        "count": 1309,
+        "share": 0.0626
       },
       {
         "char": "i",
-        "count": 204,
-        "share": 0.0698
+        "count": 1223,
+        "share": 0.0585
       },
       {
-        "char": "l",
-        "count": 136,
-        "share": 0.0465
-      },
-      {
-        "char": "g",
-        "count": 136,
-        "share": 0.0465
+        "char": "s",
+        "count": 1107,
+        "share": 0.0529
       },
       {
         "char": "r",
-        "count": 102,
-        "share": 0.0349
+        "count": 1007,
+        "share": 0.0481
       },
       {
-        "char": "y",
-        "count": 102,
-        "share": 0.0349
-      },
-      {
-        "char": "w",
-        "count": 68,
-        "share": 0.0233
+        "char": "l",
+        "count": 940,
+        "share": 0.0449
       },
       {
         "char": "u",
-        "count": 68,
-        "share": 0.0233
+        "count": 935,
+        "share": 0.0447
       },
       {
-        "char": "d",
-        "count": 68,
-        "share": 0.0233
+        "char": "w",
+        "count": 746,
+        "share": 0.0357
       },
       {
         "char": "c",
-        "count": 68,
-        "share": 0.0233
+        "count": 617,
+        "share": 0.0295
+      },
+      {
+        "char": "y",
+        "count": 533,
+        "share": 0.0255
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0116
+        "count": 489,
+        "share": 0.0234
+      },
+      {
+        "char": "g",
+        "count": 397,
+        "share": 0.019
+      },
+      {
+        "char": "d",
+        "count": 396,
+        "share": 0.0189
+      },
+      {
+        "char": "p",
+        "count": 396,
+        "share": 0.0189
+      },
+      {
+        "char": "k",
+        "count": 378,
+        "share": 0.0181
+      },
+      {
+        "char": "v",
+        "count": 313,
+        "share": 0.015
+      },
+      {
+        "char": "f",
+        "count": 295,
+        "share": 0.0141
+      },
+      {
+        "char": "b",
+        "count": 291,
+        "share": 0.0139
+      },
+      {
+        "char": "j",
+        "count": 120,
+        "share": 0.0057
+      },
+      {
+        "char": "q",
+        "count": 39,
+        "share": 0.0019
       }
     ],
     "unique_characters": [],
@@ -1514,193 +1926,235 @@
   "et": {
     "language": "et",
     "name": "Estonian",
-    "total_letters": 2822,
-    "alphabet_size": 18,
+    "total_letters": 21434,
+    "alphabet_size": 23,
     "top_characters": [
       {
-        "char": "e",
-        "count": 748,
-        "share": 0.2651
+        "char": "a",
+        "count": 2444,
+        "share": 0.114
       },
       {
         "char": "s",
-        "count": 340,
-        "share": 0.1205
-      },
-      {
-        "char": "t",
-        "count": 306,
-        "share": 0.1084
+        "count": 2087,
+        "share": 0.0974
       },
       {
         "char": "i",
-        "count": 238,
-        "share": 0.0843
+        "count": 1874,
+        "share": 0.0874
       },
       {
-        "char": "l",
-        "count": 204,
-        "share": 0.0723
-      },
-      {
-        "char": "a",
-        "count": 170,
-        "share": 0.0602
-      },
-      {
-        "char": "k",
-        "count": 136,
-        "share": 0.0482
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0482
+        "char": "e",
+        "count": 1841,
+        "share": 0.0859
       },
       {
         "char": "u",
-        "count": 102,
-        "share": 0.0361
+        "count": 1682,
+        "share": 0.0785
       },
       {
-        "char": "ä",
-        "count": 68,
-        "share": 0.0241
+        "char": "t",
+        "count": 1317,
+        "share": 0.0614
       },
       {
-        "char": "n",
-        "count": 68,
-        "share": 0.0241
+        "char": "m",
+        "count": 1245,
+        "share": 0.0581
       },
       {
-        "char": "h",
-        "count": 68,
-        "share": 0.0241
+        "char": "l",
+        "count": 1136,
+        "share": 0.053
       },
       {
-        "char": "ü",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "r",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "d",
-        "count": 34,
-        "share": 0.012
-      },
-      {
-        "char": "b",
-        "count": 34,
-        "share": 0.012
+        "char": "k",
+        "count": 958,
+        "share": 0.0447
       },
       {
         "char": "o",
-        "count": 34,
-        "share": 0.012
+        "count": 924,
+        "share": 0.0431
+      },
+      {
+        "char": "n",
+        "count": 884,
+        "share": 0.0412
       },
       {
         "char": "v",
-        "count": 34,
-        "share": 0.012
+        "count": 715,
+        "share": 0.0334
+      },
+      {
+        "char": "r",
+        "count": 651,
+        "share": 0.0304
+      },
+      {
+        "char": "õ",
+        "count": 632,
+        "share": 0.0295
+      },
+      {
+        "char": "d",
+        "count": 541,
+        "share": 0.0252
+      },
+      {
+        "char": "g",
+        "count": 442,
+        "share": 0.0206
+      },
+      {
+        "char": "ö",
+        "count": 416,
+        "share": 0.0194
+      },
+      {
+        "char": "ä",
+        "count": 378,
+        "share": 0.0176
+      },
+      {
+        "char": "p",
+        "count": 342,
+        "share": 0.016
+      },
+      {
+        "char": "h",
+        "count": 337,
+        "share": 0.0157
+      },
+      {
+        "char": "b",
+        "count": 227,
+        "share": 0.0106
+      },
+      {
+        "char": "j",
+        "count": 193,
+        "share": 0.009
+      },
+      {
+        "char": "ü",
+        "count": 168,
+        "share": 0.0078
       }
     ],
-    "unique_characters": [],
-    "signature": ""
+    "unique_characters": [
+      "õ"
+    ],
+    "signature": "õ"
   },
   "fi": {
     "language": "fi",
     "name": "Finnish",
-    "total_letters": 2856,
-    "alphabet_size": 17,
+    "total_letters": 23986,
+    "alphabet_size": 20,
     "top_characters": [
       {
-        "char": "e",
-        "count": 408,
-        "share": 0.1429
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.119
-      },
-      {
-        "char": "ä",
-        "count": 306,
-        "share": 0.1071
-      },
-      {
-        "char": "n",
-        "count": 272,
-        "share": 0.0952
-      },
-      {
-        "char": "l",
-        "count": 238,
-        "share": 0.0833
+        "char": "a",
+        "count": 2736,
+        "share": 0.1141
       },
       {
         "char": "i",
-        "count": 204,
-        "share": 0.0714
+        "count": 2581,
+        "share": 0.1076
       },
       {
-        "char": "m",
-        "count": 204,
-        "share": 0.0714
+        "char": "t",
+        "count": 2082,
+        "share": 0.0868
       },
       {
         "char": "s",
-        "count": 204,
-        "share": 0.0714
+        "count": 1976,
+        "share": 0.0824
       },
       {
         "char": "u",
-        "count": 136,
-        "share": 0.0476
+        "count": 1914,
+        "share": 0.0798
       },
       {
-        "char": "o",
-        "count": 102,
-        "share": 0.0357
-      },
-      {
-        "char": "a",
-        "count": 102,
-        "share": 0.0357
-      },
-      {
-        "char": "h",
-        "count": 68,
-        "share": 0.0238
-      },
-      {
-        "char": "y",
-        "count": 68,
-        "share": 0.0238
+        "char": "ä",
+        "count": 1497,
+        "share": 0.0624
       },
       {
         "char": "k",
-        "count": 68,
-        "share": 0.0238
+        "count": 1442,
+        "share": 0.0601
       },
       {
-        "char": "j",
-        "count": 68,
-        "share": 0.0238
+        "char": "l",
+        "count": 1261,
+        "share": 0.0526
+      },
+      {
+        "char": "o",
+        "count": 1198,
+        "share": 0.0499
+      },
+      {
+        "char": "n",
+        "count": 1179,
+        "share": 0.0492
+      },
+      {
+        "char": "e",
+        "count": 1072,
+        "share": 0.0447
       },
       {
         "char": "v",
-        "count": 34,
-        "share": 0.0119
+        "count": 891,
+        "share": 0.0371
+      },
+      {
+        "char": "y",
+        "count": 882,
+        "share": 0.0368
+      },
+      {
+        "char": "h",
+        "count": 798,
+        "share": 0.0333
+      },
+      {
+        "char": "m",
+        "count": 697,
+        "share": 0.0291
+      },
+      {
+        "char": "p",
+        "count": 475,
+        "share": 0.0198
       },
       {
         "char": "r",
-        "count": 34,
-        "share": 0.0119
+        "count": 402,
+        "share": 0.0168
+      },
+      {
+        "char": "ö",
+        "count": 330,
+        "share": 0.0138
+      },
+      {
+        "char": "j",
+        "count": 290,
+        "share": 0.0121
+      },
+      {
+        "char": "d",
+        "count": 283,
+        "share": 0.0118
       }
     ],
     "unique_characters": [],
@@ -1709,258 +2163,321 @@
   "fr": {
     "language": "fr",
     "name": "French",
-    "total_letters": 3536,
-    "alphabet_size": 23,
+    "total_letters": 24253,
+    "alphabet_size": 30,
     "top_characters": [
       {
         "char": "e",
-        "count": 578,
-        "share": 0.1635
-      },
-      {
-        "char": "o",
-        "count": 306,
-        "share": 0.0865
-      },
-      {
-        "char": "n",
-        "count": 306,
-        "share": 0.0865
-      },
-      {
-        "char": "u",
-        "count": 306,
-        "share": 0.0865
-      },
-      {
-        "char": "s",
-        "count": 306,
-        "share": 0.0865
-      },
-      {
-        "char": "t",
-        "count": 272,
-        "share": 0.0769
-      },
-      {
-        "char": "a",
-        "count": 204,
-        "share": 0.0577
-      },
-      {
-        "char": "r",
-        "count": 170,
-        "share": 0.0481
-      },
-      {
-        "char": "c",
-        "count": 170,
-        "share": 0.0481
-      },
-      {
-        "char": "l",
-        "count": 136,
-        "share": 0.0385
-      },
-      {
-        "char": "d",
-        "count": 136,
-        "share": 0.0385
+        "count": 2723,
+        "share": 0.1123
       },
       {
         "char": "i",
-        "count": 136,
-        "share": 0.0385
+        "count": 2410,
+        "share": 0.0994
       },
       {
-        "char": "m",
-        "count": 102,
-        "share": 0.0288
+        "char": "o",
+        "count": 2247,
+        "share": 0.0926
       },
       {
-        "char": "j",
-        "count": 68,
-        "share": 0.0192
+        "char": "n",
+        "count": 1844,
+        "share": 0.076
       },
       {
-        "char": "h",
-        "count": 68,
-        "share": 0.0192
+        "char": "r",
+        "count": 1730,
+        "share": 0.0713
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0096
+        "char": "t",
+        "count": 1681,
+        "share": 0.0693
       },
       {
-        "char": "z",
-        "count": 34,
-        "share": 0.0096
+        "char": "a",
+        "count": 1645,
+        "share": 0.0678
       },
       {
-        "char": "v",
-        "count": 34,
-        "share": 0.0096
+        "char": "u",
+        "count": 1613,
+        "share": 0.0665
+      },
+      {
+        "char": "l",
+        "count": 1372,
+        "share": 0.0566
+      },
+      {
+        "char": "s",
+        "count": 1185,
+        "share": 0.0489
       },
       {
         "char": "p",
-        "count": 34,
-        "share": 0.0096
+        "count": 825,
+        "share": 0.034
+      },
+      {
+        "char": "v",
+        "count": 739,
+        "share": 0.0305
+      },
+      {
+        "char": "c",
+        "count": 684,
+        "share": 0.0282
+      },
+      {
+        "char": "é",
+        "count": 651,
+        "share": 0.0268
+      },
+      {
+        "char": "m",
+        "count": 637,
+        "share": 0.0263
+      },
+      {
+        "char": "d",
+        "count": 538,
+        "share": 0.0222
+      },
+      {
+        "char": "b",
+        "count": 370,
+        "share": 0.0153
       },
       {
         "char": "f",
-        "count": 34,
-        "share": 0.0096
-      },
-      {
-        "char": "ç",
-        "count": 34,
-        "share": 0.0096
-      },
-      {
-        "char": "y",
-        "count": 34,
-        "share": 0.0096
+        "count": 272,
+        "share": 0.0112
       },
       {
         "char": "g",
-        "count": 34,
-        "share": 0.0096
+        "count": 193,
+        "share": 0.008
+      },
+      {
+        "char": "h",
+        "count": 155,
+        "share": 0.0064
+      },
+      {
+        "char": "q",
+        "count": 154,
+        "share": 0.0063
+      },
+      {
+        "char": "x",
+        "count": 106,
+        "share": 0.0044
+      },
+      {
+        "char": "j",
+        "count": 104,
+        "share": 0.0043
+      },
+      {
+        "char": "ê",
+        "count": 60,
+        "share": 0.0025
+      },
+      {
+        "char": "y",
+        "count": 59,
+        "share": 0.0024
+      },
+      {
+        "char": "œ",
+        "count": 57,
+        "share": 0.0024
+      },
+      {
+        "char": "ë",
+        "count": 52,
+        "share": 0.0021
+      },
+      {
+        "char": "è",
+        "count": 51,
+        "share": 0.0021
+      },
+      {
+        "char": "ï",
+        "count": 49,
+        "share": 0.002
+      },
+      {
+        "char": "k",
+        "count": 47,
+        "share": 0.0019
       }
     ],
-    "unique_characters": [],
-    "signature": ""
+    "unique_characters": [
+      "ï",
+      "œ"
+    ],
+    "signature": "ïœ"
   },
   "ka": {
     "language": "ka",
     "name": "Georgian",
-    "total_letters": 2992,
-    "alphabet_size": 25,
+    "total_letters": 27154,
+    "alphabet_size": 37,
     "top_characters": [
       {
         "char": "ა",
-        "count": 442,
-        "share": 0.1477
-      },
-      {
-        "char": "ე",
-        "count": 340,
-        "share": 0.1136
-      },
-      {
-        "char": "ს",
-        "count": 272,
-        "share": 0.0909
-      },
-      {
-        "char": "ო",
-        "count": 238,
-        "share": 0.0795
-      },
-      {
-        "char": "მ",
-        "count": 204,
-        "share": 0.0682
-      },
-      {
-        "char": "რ",
-        "count": 204,
-        "share": 0.0682
+        "count": 5422,
+        "share": 0.1997
       },
       {
         "char": "ი",
-        "count": 170,
-        "share": 0.0568
+        "count": 2946,
+        "share": 0.1085
       },
       {
-        "char": "ნ",
-        "count": 170,
-        "share": 0.0568
+        "char": "ე",
+        "count": 1916,
+        "share": 0.0706
       },
       {
-        "char": "ბ",
-        "count": 136,
-        "share": 0.0455
+        "char": "რ",
+        "count": 1578,
+        "share": 0.0581
       },
       {
-        "char": "თ",
-        "count": 102,
-        "share": 0.0341
+        "char": "მ",
+        "count": 1564,
+        "share": 0.0576
       },
       {
-        "char": "დ",
-        "count": 102,
-        "share": 0.0341
-      },
-      {
-        "char": "გ",
-        "count": 68,
-        "share": 0.0227
+        "char": "ო",
+        "count": 1333,
+        "share": 0.0491
       },
       {
         "char": "ლ",
-        "count": 68,
-        "share": 0.0227
+        "count": 1295,
+        "share": 0.0477
       },
       {
-        "char": "წ",
-        "count": 68,
-        "share": 0.0227
+        "char": "ბ",
+        "count": 1127,
+        "share": 0.0415
+      },
+      {
+        "char": "თ",
+        "count": 987,
+        "share": 0.0363
       },
       {
         "char": "ვ",
-        "count": 68,
-        "share": 0.0227
+        "count": 980,
+        "share": 0.0361
       },
       {
-        "char": "ჯ",
-        "count": 34,
-        "share": 0.0114
+        "char": "ს",
+        "count": 957,
+        "share": 0.0352
+      },
+      {
+        "char": "ნ",
+        "count": 935,
+        "share": 0.0344
+      },
+      {
+        "char": "დ",
+        "count": 853,
+        "share": 0.0314
       },
       {
         "char": "ხ",
-        "count": 34,
-        "share": 0.0114
+        "count": 690,
+        "share": 0.0254
       },
       {
-        "char": "ღ",
-        "count": 34,
-        "share": 0.0114
-      },
-      {
-        "char": "კ",
-        "count": 34,
-        "share": 0.0114
-      },
-      {
-        "char": "ქ",
-        "count": 34,
-        "share": 0.0114
+        "char": "გ",
+        "count": 642,
+        "share": 0.0236
       },
       {
         "char": "უ",
-        "count": 34,
-        "share": 0.0114
+        "count": 473,
+        "share": 0.0174
       },
       {
-        "char": "ზ",
-        "count": 34,
-        "share": 0.0114
+        "char": "ყ",
+        "count": 363,
+        "share": 0.0134
       },
       {
-        "char": "ჩ",
-        "count": 34,
-        "share": 0.0114
+        "char": "წ",
+        "count": 350,
+        "share": 0.0129
       },
       {
         "char": "ც",
-        "count": 34,
-        "share": 0.0114
+        "count": 308,
+        "share": 0.0113
       },
       {
         "char": "ტ",
-        "count": 34,
-        "share": 0.0114
+        "count": 299,
+        "share": 0.011
+      },
+      {
+        "char": "კ",
+        "count": 280,
+        "share": 0.0103
+      },
+      {
+        "char": "ზ",
+        "count": 255,
+        "share": 0.0094
+      },
+      {
+        "char": "ქ",
+        "count": 206,
+        "share": 0.0076
+      },
+      {
+        "char": "ძ",
+        "count": 180,
+        "share": 0.0066
+      },
+      {
+        "char": "შ",
+        "count": 180,
+        "share": 0.0066
+      },
+      {
+        "char": "ფ",
+        "count": 172,
+        "share": 0.0063
+      },
+      {
+        "char": "ღ",
+        "count": 162,
+        "share": 0.006
+      },
+      {
+        "char": "и",
+        "count": 146,
+        "share": 0.0054
+      },
+      {
+        "char": "ш",
+        "count": 97,
+        "share": 0.0036
+      },
+      {
+        "char": "ჭ",
+        "count": 84,
+        "share": 0.0031
       }
     ],
     "unique_characters": [
@@ -1978,255 +2495,311 @@
       "მ",
       "ნ",
       "ო",
+      "პ",
       "რ",
       "ს",
       "ტ",
       "უ",
+      "ფ",
       "ქ",
       "ღ",
-      "ჩ",
+      "ყ",
+      "შ",
       "ც",
+      "ძ",
       "წ",
-      "ხ",
-      "ჯ"
+      "ჭ",
+      "ხ"
     ],
-    "signature": "აბგდევზთიკლმნორსტუქღ"
+    "signature": "აბგდევზთიკლმნოპრსტუფ"
   },
   "de": {
     "language": "de",
     "name": "German",
-    "total_letters": 3162,
-    "alphabet_size": 19,
+    "total_letters": 25122,
+    "alphabet_size": 24,
     "top_characters": [
       {
         "char": "e",
-        "count": 544,
-        "share": 0.172
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1075
-      },
-      {
-        "char": "s",
-        "count": 340,
-        "share": 0.1075
+        "count": 3941,
+        "share": 0.1569
       },
       {
         "char": "n",
-        "count": 272,
-        "share": 0.086
+        "count": 2385,
+        "share": 0.0949
       },
       {
-        "char": "u",
-        "count": 238,
-        "share": 0.0753
-      },
-      {
-        "char": "i",
-        "count": 204,
-        "share": 0.0645
-      },
-      {
-        "char": "r",
-        "count": 204,
-        "share": 0.0645
+        "char": "t",
+        "count": 1765,
+        "share": 0.0703
       },
       {
         "char": "a",
-        "count": 170,
-        "share": 0.0538
+        "count": 1689,
+        "share": 0.0672
+      },
+      {
+        "char": "i",
+        "count": 1656,
+        "share": 0.0659
+      },
+      {
+        "char": "r",
+        "count": 1469,
+        "share": 0.0585
+      },
+      {
+        "char": "s",
+        "count": 1354,
+        "share": 0.0539
       },
       {
         "char": "h",
-        "count": 170,
-        "share": 0.0538
+        "count": 1322,
+        "share": 0.0526
       },
       {
         "char": "g",
-        "count": 136,
-        "share": 0.043
+        "count": 1222,
+        "share": 0.0486
       },
       {
-        "char": "d",
-        "count": 102,
-        "share": 0.0323
-      },
-      {
-        "char": "z",
-        "count": 102,
-        "share": 0.0323
-      },
-      {
-        "char": "w",
-        "count": 68,
-        "share": 0.0215
-      },
-      {
-        "char": "k",
-        "count": 68,
-        "share": 0.0215
-      },
-      {
-        "char": "c",
-        "count": 68,
-        "share": 0.0215
+        "char": "u",
+        "count": 1137,
+        "share": 0.0453
       },
       {
         "char": "f",
-        "count": 34,
-        "share": 0.0108
+        "count": 967,
+        "share": 0.0385
       },
       {
-        "char": "y",
-        "count": 34,
-        "share": 0.0108
+        "char": "l",
+        "count": 959,
+        "share": 0.0382
+      },
+      {
+        "char": "c",
+        "count": 942,
+        "share": 0.0375
+      },
+      {
+        "char": "d",
+        "count": 736,
+        "share": 0.0293
+      },
+      {
+        "char": "o",
+        "count": 725,
+        "share": 0.0289
+      },
+      {
+        "char": "w",
+        "count": 622,
+        "share": 0.0248
+      },
+      {
+        "char": "b",
+        "count": 501,
+        "share": 0.0199
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0108
+        "count": 384,
+        "share": 0.0153
+      },
+      {
+        "char": "z",
+        "count": 382,
+        "share": 0.0152
+      },
+      {
+        "char": "k",
+        "count": 351,
+        "share": 0.014
+      },
+      {
+        "char": "v",
+        "count": 276,
+        "share": 0.011
       },
       {
         "char": "p",
-        "count": 34,
-        "share": 0.0108
+        "count": 151,
+        "share": 0.006
+      },
+      {
+        "char": "ü",
+        "count": 116,
+        "share": 0.0046
+      },
+      {
+        "char": "ß",
+        "count": 70,
+        "share": 0.0028
       }
     ],
-    "unique_characters": [],
-    "signature": ""
+    "unique_characters": [
+      "ß"
+    ],
+    "signature": "ß"
   },
   "el": {
     "language": "el",
     "name": "Greek",
-    "total_letters": 3298,
-    "alphabet_size": 25,
+    "total_letters": 23077,
+    "alphabet_size": 39,
     "top_characters": [
       {
         "char": "α",
-        "count": 408,
-        "share": 0.1237
-      },
-      {
-        "char": "σ",
-        "count": 340,
-        "share": 0.1031
-      },
-      {
-        "char": "μ",
-        "count": 238,
-        "share": 0.0722
-      },
-      {
-        "char": "τ",
-        "count": 238,
-        "share": 0.0722
-      },
-      {
-        "char": "η",
-        "count": 204,
-        "share": 0.0619
-      },
-      {
-        "char": "ε",
-        "count": 204,
-        "share": 0.0619
-      },
-      {
-        "char": "ν",
-        "count": 170,
-        "share": 0.0515
-      },
-      {
-        "char": "ι",
-        "count": 170,
-        "share": 0.0515
-      },
-      {
-        "char": "λ",
-        "count": 136,
-        "share": 0.0412
-      },
-      {
-        "char": "ρ",
-        "count": 136,
-        "share": 0.0412
+        "count": 2296,
+        "share": 0.0995
       },
       {
         "char": "ο",
-        "count": 136,
-        "share": 0.0412
+        "count": 1500,
+        "share": 0.065
       },
       {
-        "char": "κ",
-        "count": 102,
-        "share": 0.0309
+        "char": "τ",
+        "count": 1331,
+        "share": 0.0577
       },
       {
-        "char": "ώ",
-        "count": 102,
-        "share": 0.0309
+        "char": "ν",
+        "count": 1312,
+        "share": 0.0569
       },
       {
-        "char": "ς",
-        "count": 102,
-        "share": 0.0309
+        "char": "ι",
+        "count": 1158,
+        "share": 0.0502
       },
       {
-        "char": "π",
-        "count": 68,
-        "share": 0.0206
+        "char": "ε",
+        "count": 1135,
+        "share": 0.0492
+      },
+      {
+        "char": "ρ",
+        "count": 1085,
+        "share": 0.047
+      },
+      {
+        "char": "λ",
+        "count": 1080,
+        "share": 0.0468
+      },
+      {
+        "char": "σ",
+        "count": 996,
+        "share": 0.0432
+      },
+      {
+        "char": "η",
+        "count": 914,
+        "share": 0.0396
       },
       {
         "char": "ί",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "ή",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "υ",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "ύ",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "ά",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "γ",
-        "count": 68,
-        "share": 0.0206
-      },
-      {
-        "char": "έ",
-        "count": 34,
-        "share": 0.0103
+        "count": 898,
+        "share": 0.0389
       },
       {
         "char": "ό",
-        "count": 34,
-        "share": 0.0103
+        "count": 872,
+        "share": 0.0378
+      },
+      {
+        "char": "π",
+        "count": 858,
+        "share": 0.0372
+      },
+      {
+        "char": "μ",
+        "count": 699,
+        "share": 0.0303
+      },
+      {
+        "char": "έ",
+        "count": 689,
+        "share": 0.0299
+      },
+      {
+        "char": "ς",
+        "count": 676,
+        "share": 0.0293
+      },
+      {
+        "char": "κ",
+        "count": 630,
+        "share": 0.0273
+      },
+      {
+        "char": "ά",
+        "count": 623,
+        "share": 0.027
+      },
+      {
+        "char": "υ",
+        "count": 579,
+        "share": 0.0251
+      },
+      {
+        "char": "ω",
+        "count": 552,
+        "share": 0.0239
+      },
+      {
+        "char": "χ",
+        "count": 353,
+        "share": 0.0153
+      },
+      {
+        "char": "γ",
+        "count": 352,
+        "share": 0.0153
       },
       {
         "char": "δ",
-        "count": 34,
-        "share": 0.0103
+        "count": 320,
+        "share": 0.0139
       },
       {
-        "char": "ζ",
-        "count": 34,
-        "share": 0.0103
+        "char": "θ",
+        "count": 320,
+        "share": 0.0139
+      },
+      {
+        "char": "ύ",
+        "count": 273,
+        "share": 0.0118
+      },
+      {
+        "char": "ώ",
+        "count": 240,
+        "share": 0.0104
+      },
+      {
+        "char": "ή",
+        "count": 232,
+        "share": 0.0101
+      },
+      {
+        "char": "β",
+        "count": 229,
+        "share": 0.0099
+      },
+      {
+        "char": "ξ",
+        "count": 195,
+        "share": 0.0084
+      },
+      {
+        "char": "φ",
+        "count": 184,
+        "share": 0.008
       }
     ],
     "unique_characters": [
@@ -2235,16 +2808,19 @@
       "ή",
       "ί",
       "α",
+      "β",
       "γ",
       "δ",
       "ε",
       "ζ",
       "η",
+      "θ",
       "ι",
       "κ",
       "λ",
       "μ",
       "ν",
+      "ξ",
       "ο",
       "π",
       "ρ",
@@ -2252,368 +2828,467 @@
       "σ",
       "τ",
       "υ",
+      "φ",
+      "χ",
+      "ψ",
+      "ω",
       "ό",
       "ύ",
       "ώ"
     ],
-    "signature": "άέήίαγδεζηικλμνοπρςσ"
+    "signature": "άέήίαβγδεζηθικλμνξοπ"
   },
   "hu": {
     "language": "hu",
     "name": "Hungarian",
-    "total_letters": 2686,
-    "alphabet_size": 24,
+    "total_letters": 21439,
+    "alphabet_size": 32,
     "top_characters": [
       {
         "char": "e",
-        "count": 374,
-        "share": 0.1392
+        "count": 1722,
+        "share": 0.0803
       },
       {
         "char": "n",
-        "count": 238,
-        "share": 0.0886
-      },
-      {
-        "char": "a",
-        "count": 238,
-        "share": 0.0886
+        "count": 1666,
+        "share": 0.0777
       },
       {
         "char": "t",
-        "count": 170,
-        "share": 0.0633
-      },
-      {
-        "char": "y",
-        "count": 170,
-        "share": 0.0633
-      },
-      {
-        "char": "r",
-        "count": 170,
-        "share": 0.0633
-      },
-      {
-        "char": "v",
-        "count": 136,
-        "share": 0.0506
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0506
-      },
-      {
-        "char": "l",
-        "count": 136,
-        "share": 0.0506
-      },
-      {
-        "char": "o",
-        "count": 102,
-        "share": 0.038
-      },
-      {
-        "char": "g",
-        "count": 102,
-        "share": 0.038
-      },
-      {
-        "char": "z",
-        "count": 102,
-        "share": 0.038
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.038
+        "count": 1486,
+        "share": 0.0693
       },
       {
         "char": "s",
-        "count": 102,
-        "share": 0.038
+        "count": 1369,
+        "share": 0.0639
       },
       {
-        "char": "j",
-        "count": 68,
-        "share": 0.0253
+        "char": "l",
+        "count": 1361,
+        "share": 0.0635
+      },
+      {
+        "char": "a",
+        "count": 1282,
+        "share": 0.0598
+      },
+      {
+        "char": "g",
+        "count": 1101,
+        "share": 0.0514
+      },
+      {
+        "char": "m",
+        "count": 1050,
+        "share": 0.049
+      },
+      {
+        "char": "o",
+        "count": 1021,
+        "share": 0.0476
       },
       {
         "char": "i",
-        "count": 68,
-        "share": 0.0253
-      },
-      {
-        "char": "ó",
-        "count": 34,
-        "share": 0.0127
-      },
-      {
-        "char": "p",
-        "count": 34,
-        "share": 0.0127
-      },
-      {
-        "char": "h",
-        "count": 34,
-        "share": 0.0127
-      },
-      {
-        "char": "ö",
-        "count": 34,
-        "share": 0.0127
-      },
-      {
-        "char": "ü",
-        "count": 34,
-        "share": 0.0127
+        "count": 965,
+        "share": 0.045
       },
       {
         "char": "k",
-        "count": 34,
-        "share": 0.0127
+        "count": 958,
+        "share": 0.0447
       },
       {
-        "char": "f",
-        "count": 34,
-        "share": 0.0127
+        "char": "é",
+        "count": 919,
+        "share": 0.0429
+      },
+      {
+        "char": "r",
+        "count": 778,
+        "share": 0.0363
+      },
+      {
+        "char": "y",
+        "count": 678,
+        "share": 0.0316
+      },
+      {
+        "char": "á",
+        "count": 565,
+        "share": 0.0264
+      },
+      {
+        "char": "d",
+        "count": 547,
+        "share": 0.0255
+      },
+      {
+        "char": "z",
+        "count": 542,
+        "share": 0.0253
+      },
+      {
+        "char": "ö",
+        "count": 537,
+        "share": 0.025
+      },
+      {
+        "char": "v",
+        "count": 489,
+        "share": 0.0228
+      },
+      {
+        "char": "h",
+        "count": 329,
+        "share": 0.0153
+      },
+      {
+        "char": "j",
+        "count": 324,
+        "share": 0.0151
       },
       {
         "char": "ő",
-        "count": 34,
-        "share": 0.0127
+        "count": 291,
+        "share": 0.0136
+      },
+      {
+        "char": "f",
+        "count": 212,
+        "share": 0.0099
+      },
+      {
+        "char": "u",
+        "count": 211,
+        "share": 0.0098
+      },
+      {
+        "char": "c",
+        "count": 204,
+        "share": 0.0095
+      },
+      {
+        "char": "b",
+        "count": 192,
+        "share": 0.009
+      },
+      {
+        "char": "ú",
+        "count": 162,
+        "share": 0.0076
+      },
+      {
+        "char": "p",
+        "count": 132,
+        "share": 0.0062
+      },
+      {
+        "char": "ó",
+        "count": 125,
+        "share": 0.0058
+      },
+      {
+        "char": "ű",
+        "count": 89,
+        "share": 0.0042
       }
     ],
     "unique_characters": [
-      "ő"
+      "ő",
+      "ű"
     ],
-    "signature": "ő"
+    "signature": "őű"
   },
   "is": {
     "language": "is",
     "name": "Icelandic",
-    "total_letters": 3094,
-    "alphabet_size": 23,
+    "total_letters": 20908,
+    "alphabet_size": 31,
     "top_characters": [
       {
-        "char": "g",
-        "count": 272,
-        "share": 0.0879
-      },
-      {
-        "char": "n",
-        "count": 272,
-        "share": 0.0879
-      },
-      {
-        "char": "e",
-        "count": 272,
-        "share": 0.0879
+        "char": "r",
+        "count": 2313,
+        "share": 0.1106
       },
       {
         "char": "a",
-        "count": 238,
-        "share": 0.0769
+        "count": 2096,
+        "share": 0.1002
       },
       {
-        "char": "r",
-        "count": 238,
-        "share": 0.0769
-      },
-      {
-        "char": "t",
-        "count": 238,
-        "share": 0.0769
+        "char": "n",
+        "count": 1808,
+        "share": 0.0865
       },
       {
         "char": "i",
-        "count": 204,
-        "share": 0.0659
+        "count": 1227,
+        "share": 0.0587
       },
       {
         "char": "u",
-        "count": 204,
-        "share": 0.0659
+        "count": 1113,
+        "share": 0.0532
       },
       {
-        "char": "ð",
-        "count": 136,
-        "share": 0.044
+        "char": "e",
+        "count": 1002,
+        "share": 0.0479
       },
       {
-        "char": "s",
-        "count": 136,
-        "share": 0.044
+        "char": "t",
+        "count": 995,
+        "share": 0.0476
       },
       {
-        "char": "f",
-        "count": 102,
-        "share": 0.033
-      },
-      {
-        "char": "þ",
-        "count": 102,
-        "share": 0.033
-      },
-      {
-        "char": "ó",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "d",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "h",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "v",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "í",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "á",
-        "count": 68,
-        "share": 0.022
+        "char": "g",
+        "count": 970,
+        "share": 0.0464
       },
       {
         "char": "l",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "k",
-        "count": 68,
-        "share": 0.022
+        "count": 963,
+        "share": 0.0461
       },
       {
         "char": "m",
-        "count": 68,
+        "count": 915,
+        "share": 0.0438
+      },
+      {
+        "char": "s",
+        "count": 875,
+        "share": 0.0419
+      },
+      {
+        "char": "v",
+        "count": 815,
+        "share": 0.039
+      },
+      {
+        "char": "ð",
+        "count": 792,
+        "share": 0.0379
+      },
+      {
+        "char": "f",
+        "count": 655,
+        "share": 0.0313
+      },
+      {
+        "char": "k",
+        "count": 583,
+        "share": 0.0279
+      },
+      {
+        "char": "á",
+        "count": 461,
         "share": 0.022
       },
       {
+        "char": "j",
+        "count": 423,
+        "share": 0.0202
+      },
+      {
+        "char": "ó",
+        "count": 356,
+        "share": 0.017
+      },
+      {
+        "char": "h",
+        "count": 332,
+        "share": 0.0159
+      },
+      {
+        "char": "ö",
+        "count": 275,
+        "share": 0.0132
+      },
+      {
+        "char": "o",
+        "count": 257,
+        "share": 0.0123
+      },
+      {
+        "char": "í",
+        "count": 241,
+        "share": 0.0115
+      },
+      {
+        "char": "d",
+        "count": 235,
+        "share": 0.0112
+      },
+      {
+        "char": "b",
+        "count": 228,
+        "share": 0.0109
+      },
+      {
         "char": "ú",
-        "count": 34,
-        "share": 0.011
+        "count": 213,
+        "share": 0.0102
+      },
+      {
+        "char": "þ",
+        "count": 195,
+        "share": 0.0093
+      },
+      {
+        "char": "é",
+        "count": 183,
+        "share": 0.0088
       },
       {
         "char": "p",
-        "count": 34,
-        "share": 0.011
+        "count": 121,
+        "share": 0.0058
+      },
+      {
+        "char": "æ",
+        "count": 92,
+        "share": 0.0044
+      },
+      {
+        "char": "y",
+        "count": 88,
+        "share": 0.0042
       }
     ],
     "unique_characters": [
       "ð",
-      "ú",
       "þ"
     ],
-    "signature": "ðúþ"
+    "signature": "ðþ"
   },
   "ga": {
     "language": "ga",
     "name": "Irish",
-    "total_letters": 2890,
-    "alphabet_size": 18,
+    "total_letters": 23912,
+    "alphabet_size": 24,
     "top_characters": [
       {
         "char": "a",
-        "count": 578,
-        "share": 0.2
+        "count": 3294,
+        "share": 0.1378
       },
       {
         "char": "i",
-        "count": 374,
-        "share": 0.1294
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1176
-      },
-      {
-        "char": "n",
-        "count": 238,
-        "share": 0.0824
-      },
-      {
-        "char": "e",
-        "count": 204,
-        "share": 0.0706
-      },
-      {
-        "char": "g",
-        "count": 170,
-        "share": 0.0588
-      },
-      {
-        "char": "u",
-        "count": 136,
-        "share": 0.0471
-      },
-      {
-        "char": "s",
-        "count": 136,
-        "share": 0.0471
-      },
-      {
-        "char": "r",
-        "count": 136,
-        "share": 0.0471
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.0353
+        "count": 2229,
+        "share": 0.0932
       },
       {
         "char": "h",
-        "count": 102,
-        "share": 0.0353
+        "count": 1882,
+        "share": 0.0787
+      },
+      {
+        "char": "r",
+        "count": 1715,
+        "share": 0.0717
+      },
+      {
+        "char": "e",
+        "count": 1609,
+        "share": 0.0673
       },
       {
         "char": "c",
-        "count": 68,
-        "share": 0.0235
+        "count": 1590,
+        "share": 0.0665
+      },
+      {
+        "char": "n",
+        "count": 1474,
+        "share": 0.0616
+      },
+      {
+        "char": "t",
+        "count": 1340,
+        "share": 0.056
+      },
+      {
+        "char": "s",
+        "count": 1319,
+        "share": 0.0552
       },
       {
         "char": "o",
-        "count": 68,
-        "share": 0.0235
+        "count": 1115,
+        "share": 0.0466
       },
       {
         "char": "l",
-        "count": 68,
-        "share": 0.0235
-      },
-      {
-        "char": "á",
-        "count": 68,
-        "share": 0.0235
-      },
-      {
-        "char": "b",
-        "count": 34,
-        "share": 0.0118
+        "count": 919,
+        "share": 0.0384
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0118
+        "count": 805,
+        "share": 0.0337
+      },
+      {
+        "char": "d",
+        "count": 784,
+        "share": 0.0328
+      },
+      {
+        "char": "u",
+        "count": 672,
+        "share": 0.0281
+      },
+      {
+        "char": "á",
+        "count": 586,
+        "share": 0.0245
+      },
+      {
+        "char": "í",
+        "count": 509,
+        "share": 0.0213
+      },
+      {
+        "char": "g",
+        "count": 447,
+        "share": 0.0187
+      },
+      {
+        "char": "b",
+        "count": 438,
+        "share": 0.0183
+      },
+      {
+        "char": "ú",
+        "count": 336,
+        "share": 0.0141
+      },
+      {
+        "char": "f",
+        "count": 320,
+        "share": 0.0134
       },
       {
         "char": "ó",
-        "count": 34,
-        "share": 0.0118
+        "count": 287,
+        "share": 0.012
+      },
+      {
+        "char": "p",
+        "count": 117,
+        "share": 0.0049
+      },
+      {
+        "char": "é",
+        "count": 63,
+        "share": 0.0026
+      },
+      {
+        "char": "k",
+        "count": 62,
+        "share": 0.0026
       }
     ],
     "unique_characters": [],
@@ -2622,569 +3297,767 @@
   "it": {
     "language": "it",
     "name": "Italian",
-    "total_letters": 3366,
-    "alphabet_size": 19,
+    "total_letters": 24774,
+    "alphabet_size": 26,
     "top_characters": [
       {
-        "char": "i",
-        "count": 408,
-        "share": 0.1212
-      },
-      {
-        "char": "a",
-        "count": 408,
-        "share": 0.1212
+        "char": "o",
+        "count": 3194,
+        "share": 0.1289
       },
       {
         "char": "e",
-        "count": 340,
-        "share": 0.101
+        "count": 2921,
+        "share": 0.1179
       },
       {
-        "char": "o",
-        "count": 306,
-        "share": 0.0909
+        "char": "a",
+        "count": 2333,
+        "share": 0.0942
       },
       {
-        "char": "n",
-        "count": 272,
-        "share": 0.0808
-      },
-      {
-        "char": "t",
-        "count": 272,
-        "share": 0.0808
-      },
-      {
-        "char": "s",
-        "count": 238,
-        "share": 0.0707
-      },
-      {
-        "char": "l",
-        "count": 204,
-        "share": 0.0606
-      },
-      {
-        "char": "u",
-        "count": 136,
-        "share": 0.0404
-      },
-      {
-        "char": "g",
-        "count": 136,
-        "share": 0.0404
+        "char": "i",
+        "count": 2075,
+        "share": 0.0838
       },
       {
         "char": "r",
-        "count": 136,
-        "share": 0.0404
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0404
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.0303
-      },
-      {
-        "char": "b",
-        "count": 68,
-        "share": 0.0202
-      },
-      {
-        "char": "v",
-        "count": 68,
-        "share": 0.0202
-      },
-      {
-        "char": "c",
-        "count": 34,
-        "share": 0.0101
-      },
-      {
-        "char": "q",
-        "count": 34,
-        "share": 0.0101
-      },
-      {
-        "char": "è",
-        "count": 34,
-        "share": 0.0101
-      },
-      {
-        "char": "f",
-        "count": 34,
-        "share": 0.0101
-      }
-    ],
-    "unique_characters": [
-      "è"
-    ],
-    "signature": "è"
-  },
-  "lv": {
-    "language": "lv",
-    "name": "Latvian",
-    "total_letters": 3060,
-    "alphabet_size": 20,
-    "top_characters": [
-      {
-        "char": "s",
-        "count": 408,
-        "share": 0.1333
-      },
-      {
-        "char": "a",
-        "count": 306,
-        "share": 0.1
-      },
-      {
-        "char": "i",
-        "count": 272,
-        "share": 0.0889
-      },
-      {
-        "char": "e",
-        "count": 204,
-        "share": 0.0667
+        "count": 1892,
+        "share": 0.0764
       },
       {
         "char": "t",
-        "count": 204,
-        "share": 0.0667
-      },
-      {
-        "char": "l",
-        "count": 170,
-        "share": 0.0556
-      },
-      {
-        "char": "m",
-        "count": 170,
-        "share": 0.0556
-      },
-      {
-        "char": "d",
-        "count": 136,
-        "share": 0.0444
+        "count": 1658,
+        "share": 0.0669
       },
       {
         "char": "n",
-        "count": 136,
-        "share": 0.0444
-      },
-      {
-        "char": "k",
-        "count": 136,
-        "share": 0.0444
+        "count": 1523,
+        "share": 0.0615
       },
       {
         "char": "u",
-        "count": 136,
-        "share": 0.0444
-      },
-      {
-        "char": "š",
-        "count": 136,
-        "share": 0.0444
-      },
-      {
-        "char": "o",
-        "count": 136,
-        "share": 0.0444
-      },
-      {
-        "char": "ā",
-        "count": 102,
-        "share": 0.0333
-      },
-      {
-        "char": "j",
-        "count": 102,
-        "share": 0.0333
-      },
-      {
-        "char": "v",
-        "count": 102,
-        "share": 0.0333
-      },
-      {
-        "char": "ē",
-        "count": 102,
-        "share": 0.0333
-      },
-      {
-        "char": "b",
-        "count": 34,
-        "share": 0.0111
-      },
-      {
-        "char": "r",
-        "count": 34,
-        "share": 0.0111
-      },
-      {
-        "char": "ī",
-        "count": 34,
-        "share": 0.0111
-      }
-    ],
-    "unique_characters": [
-      "ā",
-      "ē",
-      "ī"
-    ],
-    "signature": "āēī"
-  },
-  "lt": {
-    "language": "lt",
-    "name": "Lithuanian",
-    "total_letters": 3196,
-    "alphabet_size": 22,
-    "top_characters": [
-      {
-        "char": "a",
-        "count": 510,
-        "share": 0.1596
-      },
-      {
-        "char": "i",
-        "count": 476,
-        "share": 0.1489
+        "count": 1169,
+        "share": 0.0472
       },
       {
         "char": "s",
-        "count": 272,
-        "share": 0.0851
-      },
-      {
-        "char": "t",
-        "count": 238,
-        "share": 0.0745
-      },
-      {
-        "char": "e",
-        "count": 204,
-        "share": 0.0638
-      },
-      {
-        "char": "n",
-        "count": 204,
-        "share": 0.0638
-      },
-      {
-        "char": "k",
-        "count": 204,
-        "share": 0.0638
+        "count": 1084,
+        "share": 0.0438
       },
       {
         "char": "l",
-        "count": 170,
-        "share": 0.0532
-      },
-      {
-        "char": "m",
-        "count": 170,
-        "share": 0.0532
-      },
-      {
-        "char": "b",
-        "count": 102,
-        "share": 0.0319
+        "count": 1061,
+        "share": 0.0428
       },
       {
         "char": "p",
-        "count": 102,
-        "share": 0.0319
+        "count": 876,
+        "share": 0.0354
       },
       {
-        "char": "o",
-        "count": 102,
-        "share": 0.0319
+        "char": "c",
+        "count": 827,
+        "share": 0.0334
       },
       {
         "char": "d",
-        "count": 68,
-        "share": 0.0213
-      },
-      {
-        "char": "r",
-        "count": 68,
-        "share": 0.0213
-      },
-      {
-        "char": "u",
-        "count": 68,
-        "share": 0.0213
-      },
-      {
-        "char": "š",
-        "count": 34,
-        "share": 0.0106
-      },
-      {
-        "char": "ė",
-        "count": 34,
-        "share": 0.0106
-      },
-      {
-        "char": "y",
-        "count": 34,
-        "share": 0.0106
+        "count": 789,
+        "share": 0.0318
       },
       {
         "char": "v",
-        "count": 34,
-        "share": 0.0106
+        "count": 641,
+        "share": 0.0259
       },
       {
-        "char": "ų",
-        "count": 34,
-        "share": 0.0106
+        "char": "g",
+        "count": 514,
+        "share": 0.0207
       },
       {
-        "char": "ž",
-        "count": 34,
-        "share": 0.0106
+        "char": "m",
+        "count": 495,
+        "share": 0.02
       },
       {
-        "char": "ą",
-        "count": 34,
-        "share": 0.0106
-      }
-    ],
-    "unique_characters": [
-      "ą",
-      "ė",
-      "ų",
-      "ž"
-    ],
-    "signature": "ąėųž"
-  },
-  "mk": {
-    "language": "mk",
-    "name": "Macedonian",
-    "total_letters": 3162,
-    "alphabet_size": 20,
-    "top_characters": [
-      {
-        "char": "а",
-        "count": 476,
-        "share": 0.1505
+        "char": "à",
+        "count": 399,
+        "share": 0.0161
       },
       {
-        "char": "е",
-        "count": 442,
-        "share": 0.1398
+        "char": "b",
+        "count": 310,
+        "share": 0.0125
       },
       {
-        "char": "к",
-        "count": 272,
-        "share": 0.086
+        "char": "z",
+        "count": 293,
+        "share": 0.0118
       },
       {
-        "char": "о",
-        "count": 238,
-        "share": 0.0753
+        "char": "f",
+        "count": 236,
+        "share": 0.0095
       },
       {
-        "char": "н",
-        "count": 204,
-        "share": 0.0645
+        "char": "q",
+        "count": 164,
+        "share": 0.0066
       },
       {
-        "char": "с",
-        "count": 204,
-        "share": 0.0645
+        "char": "h",
+        "count": 109,
+        "share": 0.0044
       },
       {
-        "char": "т",
-        "count": 204,
-        "share": 0.0645
+        "char": "w",
+        "count": 60,
+        "share": 0.0024
       },
       {
-        "char": "и",
-        "count": 204,
-        "share": 0.0645
+        "char": "k",
+        "count": 53,
+        "share": 0.0021
       },
       {
-        "char": "р",
-        "count": 170,
-        "share": 0.0538
+        "char": "ã",
+        "count": 51,
+        "share": 0.0021
       },
       {
-        "char": "д",
-        "count": 136,
-        "share": 0.043
-      },
-      {
-        "char": "з",
-        "count": 136,
-        "share": 0.043
-      },
-      {
-        "char": "м",
-        "count": 102,
-        "share": 0.0323
-      },
-      {
-        "char": "в",
-        "count": 68,
-        "share": 0.0215
-      },
-      {
-        "char": "ј",
-        "count": 68,
-        "share": 0.0215
-      },
-      {
-        "char": "п",
-        "count": 68,
-        "share": 0.0215
-      },
-      {
-        "char": "б",
-        "count": 34,
-        "share": 0.0108
-      },
-      {
-        "char": "ч",
-        "count": 34,
-        "share": 0.0108
-      },
-      {
-        "char": "ц",
-        "count": 34,
-        "share": 0.0108
-      },
-      {
-        "char": "г",
-        "count": 34,
-        "share": 0.0108
-      },
-      {
-        "char": "њ",
-        "count": 34,
-        "share": 0.0108
+        "char": "è",
+        "count": 47,
+        "share": 0.0019
       }
     ],
     "unique_characters": [],
     "signature": ""
   },
-  "nb": {
-    "language": "nb",
-    "name": "Norwegian Bokmal",
-    "total_letters": 3468,
-    "alphabet_size": 21,
+  "lv": {
+    "language": "lv",
+    "name": "Latvian",
+    "total_letters": 24400,
+    "alphabet_size": 36,
     "top_characters": [
       {
-        "char": "e",
-        "count": 510,
-        "share": 0.1471
-      },
-      {
-        "char": "n",
-        "count": 306,
-        "share": 0.0882
-      },
-      {
-        "char": "t",
-        "count": 306,
-        "share": 0.0882
-      },
-      {
-        "char": "r",
-        "count": 272,
-        "share": 0.0784
+        "char": "a",
+        "count": 3402,
+        "share": 0.1394
       },
       {
         "char": "i",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "o",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "g",
-        "count": 204,
-        "share": 0.0588
-      },
-      {
-        "char": "k",
-        "count": 204,
-        "share": 0.0588
+        "count": 2008,
+        "share": 0.0823
       },
       {
         "char": "s",
-        "count": 204,
-        "share": 0.0588
+        "count": 2000,
+        "share": 0.082
       },
       {
-        "char": "å",
-        "count": 170,
-        "share": 0.049
+        "char": "t",
+        "count": 1754,
+        "share": 0.0719
       },
       {
-        "char": "m",
-        "count": 136,
-        "share": 0.0392
-      },
-      {
-        "char": "h",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "v",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "a",
-        "count": 68,
-        "share": 0.0196
-      },
-      {
-        "char": "p",
-        "count": 68,
-        "share": 0.0196
+        "char": "e",
+        "count": 1587,
+        "share": 0.065
       },
       {
         "char": "b",
-        "count": 68,
-        "share": 0.0196
+        "count": 1236,
+        "share": 0.0507
+      },
+      {
+        "char": "r",
+        "count": 1227,
+        "share": 0.0503
+      },
+      {
+        "char": "ī",
+        "count": 1162,
+        "share": 0.0476
       },
       {
         "char": "l",
-        "count": 68,
-        "share": 0.0196
+        "count": 1065,
+        "share": 0.0436
+      },
+      {
+        "char": "d",
+        "count": 1005,
+        "share": 0.0412
+      },
+      {
+        "char": "v",
+        "count": 904,
+        "share": 0.037
+      },
+      {
+        "char": "u",
+        "count": 773,
+        "share": 0.0317
+      },
+      {
+        "char": "n",
+        "count": 753,
+        "share": 0.0309
+      },
+      {
+        "char": "k",
+        "count": 716,
+        "share": 0.0293
+      },
+      {
+        "char": "m",
+        "count": 659,
+        "share": 0.027
+      },
+      {
+        "char": "p",
+        "count": 551,
+        "share": 0.0226
+      },
+      {
+        "char": "ē",
+        "count": 550,
+        "share": 0.0225
+      },
+      {
+        "char": "z",
+        "count": 446,
+        "share": 0.0183
+      },
+      {
+        "char": "o",
+        "count": 413,
+        "share": 0.0169
+      },
+      {
+        "char": "c",
+        "count": 394,
+        "share": 0.0161
+      },
+      {
+        "char": "ā",
+        "count": 379,
+        "share": 0.0155
+      },
+      {
+        "char": "g",
+        "count": 336,
+        "share": 0.0138
       },
       {
         "char": "j",
-        "count": 68,
-        "share": 0.0196
+        "count": 282,
+        "share": 0.0116
+      },
+      {
+        "char": "ņ",
+        "count": 147,
+        "share": 0.006
+      },
+      {
+        "char": "š",
+        "count": 98,
+        "share": 0.004
+      },
+      {
+        "char": "у",
+        "count": 86,
+        "share": 0.0035
+      },
+      {
+        "char": "ļ",
+        "count": 55,
+        "share": 0.0023
+      },
+      {
+        "char": "ū",
+        "count": 55,
+        "share": 0.0023
+      },
+      {
+        "char": "ķ",
+        "count": 52,
+        "share": 0.0021
+      },
+      {
+        "char": "č",
+        "count": 47,
+        "share": 0.0019
+      }
+    ],
+    "unique_characters": [
+      "ā",
+      "ē",
+      "ī",
+      "ķ",
+      "ļ",
+      "ņ",
+      "ū"
+    ],
+    "signature": "āēīķļņū"
+  },
+  "lt": {
+    "language": "lt",
+    "name": "Lithuanian",
+    "total_letters": 26460,
+    "alphabet_size": 33,
+    "top_characters": [
+      {
+        "char": "a",
+        "count": 4063,
+        "share": 0.1536
+      },
+      {
+        "char": "i",
+        "count": 3330,
+        "share": 0.1259
+      },
+      {
+        "char": "s",
+        "count": 2653,
+        "share": 0.1003
+      },
+      {
+        "char": "t",
+        "count": 1818,
+        "share": 0.0687
+      },
+      {
+        "char": "e",
+        "count": 1322,
+        "share": 0.05
+      },
+      {
+        "char": "l",
+        "count": 1112,
+        "share": 0.042
+      },
+      {
+        "char": "m",
+        "count": 1070,
+        "share": 0.0404
+      },
+      {
+        "char": "k",
+        "count": 1058,
+        "share": 0.04
+      },
+      {
+        "char": "r",
+        "count": 1018,
+        "share": 0.0385
+      },
+      {
+        "char": "d",
+        "count": 979,
+        "share": 0.037
+      },
+      {
+        "char": "ė",
+        "count": 968,
+        "share": 0.0366
+      },
+      {
+        "char": "n",
+        "count": 953,
+        "share": 0.036
+      },
+      {
+        "char": "u",
+        "count": 943,
+        "share": 0.0356
+      },
+      {
+        "char": "g",
+        "count": 831,
+        "share": 0.0314
       },
       {
         "char": "y",
-        "count": 34,
-        "share": 0.0098
+        "count": 758,
+        "share": 0.0286
+      },
+      {
+        "char": "b",
+        "count": 690,
+        "share": 0.0261
+      },
+      {
+        "char": "v",
+        "count": 675,
+        "share": 0.0255
+      },
+      {
+        "char": "o",
+        "count": 644,
+        "share": 0.0243
+      },
+      {
+        "char": "p",
+        "count": 398,
+        "share": 0.015
+      },
+      {
+        "char": "j",
+        "count": 327,
+        "share": 0.0124
+      },
+      {
+        "char": "ž",
+        "count": 262,
+        "share": 0.0099
+      },
+      {
+        "char": "š",
+        "count": 88,
+        "share": 0.0033
+      },
+      {
+        "char": "у",
+        "count": 76,
+        "share": 0.0029
+      },
+      {
+        "char": "в",
+        "count": 58,
+        "share": 0.0022
+      },
+      {
+        "char": "č",
+        "count": 50,
+        "share": 0.0019
+      },
+      {
+        "char": "į",
+        "count": 48,
+        "share": 0.0018
+      },
+      {
+        "char": "c",
+        "count": 40,
+        "share": 0.0015
+      },
+      {
+        "char": "к",
+        "count": 38,
+        "share": 0.0014
+      },
+      {
+        "char": "л",
+        "count": 38,
+        "share": 0.0014
+      },
+      {
+        "char": "ь",
+        "count": 38,
+        "share": 0.0014
+      }
+    ],
+    "unique_characters": [
+      "ė",
+      "į"
+    ],
+    "signature": "ėį"
+  },
+  "mk": {
+    "language": "mk",
+    "name": "Macedonian",
+    "total_letters": 21979,
+    "alphabet_size": 33,
+    "top_characters": [
+      {
+        "char": "а",
+        "count": 3068,
+        "share": 0.1396
+      },
+      {
+        "char": "о",
+        "count": 2556,
+        "share": 0.1163
+      },
+      {
+        "char": "е",
+        "count": 1983,
+        "share": 0.0902
+      },
+      {
+        "char": "и",
+        "count": 1345,
+        "share": 0.0612
+      },
+      {
+        "char": "р",
+        "count": 1257,
+        "share": 0.0572
+      },
+      {
+        "char": "н",
+        "count": 1207,
+        "share": 0.0549
+      },
+      {
+        "char": "в",
+        "count": 1182,
+        "share": 0.0538
+      },
+      {
+        "char": "т",
+        "count": 1124,
+        "share": 0.0511
+      },
+      {
+        "char": "д",
+        "count": 1069,
+        "share": 0.0486
+      },
+      {
+        "char": "с",
+        "count": 1005,
+        "share": 0.0457
+      },
+      {
+        "char": "к",
+        "count": 863,
+        "share": 0.0393
+      },
+      {
+        "char": "м",
+        "count": 765,
+        "share": 0.0348
+      },
+      {
+        "char": "л",
+        "count": 594,
+        "share": 0.027
+      },
+      {
+        "char": "з",
+        "count": 507,
+        "share": 0.0231
+      },
+      {
+        "char": "г",
+        "count": 500,
+        "share": 0.0227
+      },
+      {
+        "char": "п",
+        "count": 496,
+        "share": 0.0226
+      },
+      {
+        "char": "у",
+        "count": 492,
+        "share": 0.0224
+      },
+      {
+        "char": "б",
+        "count": 481,
+        "share": 0.0219
+      },
+      {
+        "char": "ј",
+        "count": 309,
+        "share": 0.0141
+      },
+      {
+        "char": "ж",
+        "count": 295,
+        "share": 0.0134
+      },
+      {
+        "char": "ц",
+        "count": 200,
+        "share": 0.0091
+      },
+      {
+        "char": "ш",
+        "count": 191,
+        "share": 0.0087
+      },
+      {
+        "char": "ч",
+        "count": 97,
+        "share": 0.0044
+      },
+      {
+        "char": "ќ",
+        "count": 61,
+        "share": 0.0028
+      },
+      {
+        "char": "љ",
+        "count": 50,
+        "share": 0.0023
+      },
+      {
+        "char": "ѓ",
+        "count": 48,
+        "share": 0.0022
+      },
+      {
+        "char": "х",
+        "count": 47,
+        "share": 0.0021
+      },
+      {
+        "char": "њ",
+        "count": 42,
+        "share": 0.0019
+      },
+      {
+        "char": "s",
+        "count": 29,
+        "share": 0.0013
+      },
+      {
+        "char": "k",
+        "count": 29,
+        "share": 0.0013
+      }
+    ],
+    "unique_characters": [
+      "ѓ",
+      "ќ"
+    ],
+    "signature": "ѓќ"
+  },
+  "nb": {
+    "language": "nb",
+    "name": "Norwegian Bokmal",
+    "total_letters": 19335,
+    "alphabet_size": 25,
+    "top_characters": [
+      {
+        "char": "e",
+        "count": 2292,
+        "share": 0.1185
+      },
+      {
+        "char": "n",
+        "count": 1749,
+        "share": 0.0905
+      },
+      {
+        "char": "t",
+        "count": 1419,
+        "share": 0.0734
+      },
+      {
+        "char": "r",
+        "count": 1411,
+        "share": 0.073
+      },
+      {
+        "char": "i",
+        "count": 1300,
+        "share": 0.0672
+      },
+      {
+        "char": "a",
+        "count": 1264,
+        "share": 0.0654
+      },
+      {
+        "char": "s",
+        "count": 1207,
+        "share": 0.0624
+      },
+      {
+        "char": "l",
+        "count": 1053,
+        "share": 0.0545
+      },
+      {
+        "char": "d",
+        "count": 950,
+        "share": 0.0491
+      },
+      {
+        "char": "o",
+        "count": 762,
+        "share": 0.0394
+      },
+      {
+        "char": "v",
+        "count": 746,
+        "share": 0.0386
+      },
+      {
+        "char": "g",
+        "count": 731,
+        "share": 0.0378
+      },
+      {
+        "char": "k",
+        "count": 727,
+        "share": 0.0376
+      },
+      {
+        "char": "h",
+        "count": 611,
+        "share": 0.0316
       },
       {
         "char": "f",
-        "count": 34,
-        "share": 0.0098
+        "count": 477,
+        "share": 0.0247
+      },
+      {
+        "char": "m",
+        "count": 461,
+        "share": 0.0238
+      },
+      {
+        "char": "u",
+        "count": 459,
+        "share": 0.0237
+      },
+      {
+        "char": "å",
+        "count": 383,
+        "share": 0.0198
+      },
+      {
+        "char": "p",
+        "count": 305,
+        "share": 0.0158
+      },
+      {
+        "char": "j",
+        "count": 303,
+        "share": 0.0157
+      },
+      {
+        "char": "b",
+        "count": 285,
+        "share": 0.0147
+      },
+      {
+        "char": "y",
+        "count": 186,
+        "share": 0.0096
+      },
+      {
+        "char": "ø",
+        "count": 122,
+        "share": 0.0063
+      },
+      {
+        "char": "æ",
+        "count": 94,
+        "share": 0.0049
+      },
+      {
+        "char": "w",
+        "count": 38,
+        "share": 0.002
       }
     ],
     "unique_characters": [],
@@ -3193,113 +4066,133 @@
   "nn": {
     "language": "nn",
     "name": "Norwegian Nynorsk",
-    "total_letters": 3060,
-    "alphabet_size": 21,
+    "total_letters": 20121,
+    "alphabet_size": 25,
     "top_characters": [
       {
         "char": "e",
-        "count": 408,
-        "share": 0.1333
-      },
-      {
-        "char": "t",
-        "count": 306,
-        "share": 0.1
-      },
-      {
-        "char": "r",
-        "count": 272,
-        "share": 0.0889
+        "count": 2442,
+        "share": 0.1214
       },
       {
         "char": "n",
-        "count": 272,
-        "share": 0.0889
+        "count": 1587,
+        "share": 0.0789
       },
       {
-        "char": "s",
-        "count": 238,
-        "share": 0.0778
-      },
-      {
-        "char": "g",
-        "count": 204,
-        "share": 0.0667
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0667
-      },
-      {
-        "char": "i",
-        "count": 204,
-        "share": 0.0667
-      },
-      {
-        "char": "o",
-        "count": 170,
-        "share": 0.0556
-      },
-      {
-        "char": "k",
-        "count": 170,
-        "share": 0.0556
+        "char": "r",
+        "count": 1475,
+        "share": 0.0733
       },
       {
         "char": "a",
-        "count": 136,
-        "share": 0.0444
+        "count": 1450,
+        "share": 0.0721
       },
       {
-        "char": "p",
-        "count": 68,
-        "share": 0.0222
+        "char": "t",
+        "count": 1386,
+        "share": 0.0689
       },
       {
-        "char": "å",
-        "count": 68,
-        "share": 0.0222
+        "char": "i",
+        "count": 1354,
+        "share": 0.0673
       },
       {
-        "char": "y",
-        "count": 68,
-        "share": 0.0222
-      },
-      {
-        "char": "j",
-        "count": 68,
-        "share": 0.0222
+        "char": "s",
+        "count": 1144,
+        "share": 0.0569
       },
       {
         "char": "l",
-        "count": 34,
-        "share": 0.0111
+        "count": 1028,
+        "share": 0.0511
       },
       {
-        "char": "h",
-        "count": 34,
-        "share": 0.0111
+        "char": "d",
+        "count": 1009,
+        "share": 0.0501
       },
       {
-        "char": "u",
-        "count": 34,
-        "share": 0.0111
+        "char": "g",
+        "count": 947,
+        "share": 0.0471
+      },
+      {
+        "char": "o",
+        "count": 911,
+        "share": 0.0453
       },
       {
         "char": "v",
-        "count": 34,
-        "share": 0.0111
+        "count": 852,
+        "share": 0.0423
+      },
+      {
+        "char": "k",
+        "count": 818,
+        "share": 0.0407
       },
       {
         "char": "m",
-        "count": 34,
-        "share": 0.0111
+        "count": 546,
+        "share": 0.0271
+      },
+      {
+        "char": "u",
+        "count": 544,
+        "share": 0.027
+      },
+      {
+        "char": "h",
+        "count": 535,
+        "share": 0.0266
       },
       {
         "char": "f",
-        "count": 34,
-        "share": 0.0111
+        "count": 476,
+        "share": 0.0237
+      },
+      {
+        "char": "j",
+        "count": 471,
+        "share": 0.0234
+      },
+      {
+        "char": "å",
+        "count": 389,
+        "share": 0.0193
+      },
+      {
+        "char": "p",
+        "count": 289,
+        "share": 0.0144
+      },
+      {
+        "char": "b",
+        "count": 220,
+        "share": 0.0109
+      },
+      {
+        "char": "y",
+        "count": 127,
+        "share": 0.0063
+      },
+      {
+        "char": "ø",
+        "count": 43,
+        "share": 0.0021
+      },
+      {
+        "char": "w",
+        "count": 40,
+        "share": 0.002
+      },
+      {
+        "char": "æ",
+        "count": 38,
+        "share": 0.0019
       }
     ],
     "unique_characters": [],
@@ -3308,843 +4201,1086 @@
   "pl": {
     "language": "pl",
     "name": "Polish",
-    "total_letters": 3196,
-    "alphabet_size": 22,
+    "total_letters": 26832,
+    "alphabet_size": 30,
     "top_characters": [
       {
-        "char": "z",
-        "count": 272,
-        "share": 0.0851
-      },
-      {
-        "char": "i",
-        "count": 272,
-        "share": 0.0851
-      },
-      {
         "char": "a",
-        "count": 272,
-        "share": 0.0851
-      },
-      {
-        "char": "s",
-        "count": 272,
-        "share": 0.0851
-      },
-      {
-        "char": "e",
-        "count": 238,
-        "share": 0.0745
-      },
-      {
-        "char": "j",
-        "count": 204,
-        "share": 0.0638
-      },
-      {
-        "char": "k",
-        "count": 204,
-        "share": 0.0638
-      },
-      {
-        "char": "t",
-        "count": 204,
-        "share": 0.0638
+        "count": 2962,
+        "share": 0.1104
       },
       {
         "char": "o",
-        "count": 170,
-        "share": 0.0532
+        "count": 2591,
+        "share": 0.0966
       },
       {
-        "char": "y",
-        "count": 170,
-        "share": 0.0532
+        "char": "z",
+        "count": 1654,
+        "share": 0.0616
+      },
+      {
+        "char": "i",
+        "count": 1465,
+        "share": 0.0546
+      },
+      {
+        "char": "e",
+        "count": 1403,
+        "share": 0.0523
       },
       {
         "char": "d",
-        "count": 136,
-        "share": 0.0426
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0426
+        "count": 1402,
+        "share": 0.0523
       },
       {
         "char": "r",
-        "count": 102,
-        "share": 0.0319
+        "count": 1308,
+        "share": 0.0487
       },
       {
-        "char": "ę",
-        "count": 102,
-        "share": 0.0319
-      },
-      {
-        "char": "n",
-        "count": 102,
-        "share": 0.0319
+        "char": "s",
+        "count": 1255,
+        "share": 0.0468
       },
       {
         "char": "w",
-        "count": 68,
+        "count": 1170,
+        "share": 0.0436
+      },
+      {
+        "char": "p",
+        "count": 1115,
+        "share": 0.0416
+      },
+      {
+        "char": "c",
+        "count": 1004,
+        "share": 0.0374
+      },
+      {
+        "char": "k",
+        "count": 917,
+        "share": 0.0342
+      },
+      {
+        "char": "t",
+        "count": 903,
+        "share": 0.0337
+      },
+      {
+        "char": "n",
+        "count": 843,
+        "share": 0.0314
+      },
+      {
+        "char": "j",
+        "count": 802,
+        "share": 0.0299
+      },
+      {
+        "char": "y",
+        "count": 791,
+        "share": 0.0295
+      },
+      {
+        "char": "m",
+        "count": 717,
+        "share": 0.0267
+      },
+      {
+        "char": "ł",
+        "count": 706,
+        "share": 0.0263
+      },
+      {
+        "char": "ś",
+        "count": 654,
+        "share": 0.0244
+      },
+      {
+        "char": "l",
+        "count": 571,
         "share": 0.0213
       },
       {
         "char": "u",
-        "count": 68,
-        "share": 0.0213
+        "count": 537,
+        "share": 0.02
       },
       {
-        "char": "p",
-        "count": 68,
-        "share": 0.0213
-      },
-      {
-        "char": "ń",
-        "count": 34,
-        "share": 0.0106
-      },
-      {
-        "char": "b",
-        "count": 34,
-        "share": 0.0106
+        "char": "ć",
+        "count": 506,
+        "share": 0.0189
       },
       {
         "char": "ó",
-        "count": 34,
-        "share": 0.0106
+        "count": 342,
+        "share": 0.0127
       },
       {
-        "char": "l",
-        "count": 34,
-        "share": 0.0106
+        "char": "ż",
+        "count": 260,
+        "share": 0.0097
+      },
+      {
+        "char": "ę",
+        "count": 221,
+        "share": 0.0082
+      },
+      {
+        "char": "ń",
+        "count": 207,
+        "share": 0.0077
+      },
+      {
+        "char": "b",
+        "count": 191,
+        "share": 0.0071
+      },
+      {
+        "char": "g",
+        "count": 144,
+        "share": 0.0054
+      },
+      {
+        "char": "ą",
+        "count": 127,
+        "share": 0.0047
+      },
+      {
+        "char": "h",
+        "count": 64,
+        "share": 0.0024
       }
     ],
     "unique_characters": [
+      "ą",
       "ę",
-      "ń"
+      "ł",
+      "ń",
+      "ś",
+      "ż"
     ],
-    "signature": "ęń"
+    "signature": "ąęłńśż"
   },
   "pt": {
     "language": "pt",
     "name": "Portuguese",
-    "total_letters": 3128,
-    "alphabet_size": 24,
+    "total_letters": 25135,
+    "alphabet_size": 31,
     "top_characters": [
       {
+        "char": "a",
+        "count": 3172,
+        "share": 0.1262
+      },
+      {
         "char": "e",
-        "count": 408,
-        "share": 0.1304
+        "count": 2713,
+        "share": 0.1079
       },
       {
         "char": "o",
-        "count": 374,
-        "share": 0.1196
-      },
-      {
-        "char": "a",
-        "count": 306,
-        "share": 0.0978
-      },
-      {
-        "char": "s",
-        "count": 306,
-        "share": 0.0978
-      },
-      {
-        "char": "t",
-        "count": 306,
-        "share": 0.0978
-      },
-      {
-        "char": "m",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0652
-      },
-      {
-        "char": "i",
-        "count": 136,
-        "share": 0.0435
-      },
-      {
-        "char": "c",
-        "count": 136,
-        "share": 0.0435
-      },
-      {
-        "char": "u",
-        "count": 136,
-        "share": 0.0435
+        "count": 2689,
+        "share": 0.107
       },
       {
         "char": "r",
-        "count": 102,
-        "share": 0.0326
+        "count": 1923,
+        "share": 0.0765
       },
       {
-        "char": "ê",
-        "count": 68,
-        "share": 0.0217
+        "char": "i",
+        "count": 1631,
+        "share": 0.0649
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0109
+        "char": "d",
+        "count": 1429,
+        "share": 0.0569
       },
       {
-        "char": "v",
-        "count": 34,
-        "share": 0.0109
+        "char": "s",
+        "count": 1229,
+        "share": 0.0489
       },
       {
-        "char": "á",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "h",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "j",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "é",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "f",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "p",
-        "count": 34,
-        "share": 0.0109
-      },
-      {
-        "char": "g",
-        "count": 34,
-        "share": 0.0109
+        "char": "u",
+        "count": 1174,
+        "share": 0.0467
       },
       {
         "char": "n",
-        "count": 34,
-        "share": 0.0109
+        "count": 1143,
+        "share": 0.0455
       },
       {
-        "char": "ç",
-        "count": 34,
-        "share": 0.0109
+        "char": "t",
+        "count": 1060,
+        "share": 0.0422
+      },
+      {
+        "char": "l",
+        "count": 902,
+        "share": 0.0359
+      },
+      {
+        "char": "c",
+        "count": 872,
+        "share": 0.0347
+      },
+      {
+        "char": "m",
+        "count": 861,
+        "share": 0.0343
+      },
+      {
+        "char": "p",
+        "count": 630,
+        "share": 0.0251
+      },
+      {
+        "char": "b",
+        "count": 544,
+        "share": 0.0216
+      },
+      {
+        "char": "g",
+        "count": 498,
+        "share": 0.0198
+      },
+      {
+        "char": "v",
+        "count": 444,
+        "share": 0.0177
       },
       {
         "char": "ã",
-        "count": 34,
-        "share": 0.0109
+        "count": 379,
+        "share": 0.0151
+      },
+      {
+        "char": "ç",
+        "count": 378,
+        "share": 0.015
+      },
+      {
+        "char": "h",
+        "count": 322,
+        "share": 0.0128
+      },
+      {
+        "char": "f",
+        "count": 228,
+        "share": 0.0091
+      },
+      {
+        "char": "í",
+        "count": 180,
+        "share": 0.0072
+      },
+      {
+        "char": "q",
+        "count": 174,
+        "share": 0.0069
+      },
+      {
+        "char": "é",
+        "count": 112,
+        "share": 0.0045
+      },
+      {
+        "char": "z",
+        "count": 101,
+        "share": 0.004
+      },
+      {
+        "char": "j",
+        "count": 84,
+        "share": 0.0033
+      },
+      {
+        "char": "k",
+        "count": 60,
+        "share": 0.0024
+      },
+      {
+        "char": "w",
+        "count": 54,
+        "share": 0.0021
+      },
+      {
+        "char": "á",
+        "count": 53,
+        "share": 0.0021
+      },
+      {
+        "char": "ó",
+        "count": 48,
+        "share": 0.0019
       }
     ],
-    "unique_characters": [
-      "ã",
-      "ê"
-    ],
-    "signature": "ãê"
+    "unique_characters": [],
+    "signature": ""
   },
   "ro": {
     "language": "ro",
     "name": "Romanian",
-    "total_letters": 3298,
-    "alphabet_size": 20,
+    "total_letters": 22976,
+    "alphabet_size": 27,
     "top_characters": [
       {
         "char": "e",
-        "count": 374,
-        "share": 0.1134
-      },
-      {
-        "char": "i",
-        "count": 340,
-        "share": 0.1031
-      },
-      {
-        "char": "t",
-        "count": 340,
-        "share": 0.1031
+        "count": 2779,
+        "share": 0.121
       },
       {
         "char": "a",
-        "count": 306,
-        "share": 0.0928
-      },
-      {
-        "char": "s",
-        "count": 272,
-        "share": 0.0825
-      },
-      {
-        "char": "u",
-        "count": 204,
-        "share": 0.0619
-      },
-      {
-        "char": "m",
-        "count": 204,
-        "share": 0.0619
-      },
-      {
-        "char": "n",
-        "count": 136,
-        "share": 0.0412
-      },
-      {
-        "char": "ă",
-        "count": 136,
-        "share": 0.0412
-      },
-      {
-        "char": "c",
-        "count": 136,
-        "share": 0.0412
-      },
-      {
-        "char": "o",
-        "count": 136,
-        "share": 0.0412
+        "count": 2014,
+        "share": 0.0877
       },
       {
         "char": "r",
-        "count": 136,
-        "share": 0.0412
+        "count": 1851,
+        "share": 0.0806
       },
       {
-        "char": "b",
-        "count": 102,
-        "share": 0.0309
+        "char": "t",
+        "count": 1774,
+        "share": 0.0772
       },
       {
-        "char": "z",
-        "count": 102,
-        "share": 0.0309
+        "char": "i",
+        "count": 1703,
+        "share": 0.0741
       },
       {
-        "char": "l",
-        "count": 102,
-        "share": 0.0309
+        "char": "u",
+        "count": 1655,
+        "share": 0.072
       },
       {
-        "char": "ț",
-        "count": 68,
-        "share": 0.0206
+        "char": "c",
+        "count": 1561,
+        "share": 0.0679
+      },
+      {
+        "char": "n",
+        "count": 1425,
+        "share": 0.062
+      },
+      {
+        "char": "o",
+        "count": 1313,
+        "share": 0.0571
       },
       {
         "char": "p",
-        "count": 68,
-        "share": 0.0206
+        "count": 923,
+        "share": 0.0402
+      },
+      {
+        "char": "ă",
+        "count": 803,
+        "share": 0.0349
+      },
+      {
+        "char": "m",
+        "count": 721,
+        "share": 0.0314
+      },
+      {
+        "char": "s",
+        "count": 704,
+        "share": 0.0306
+      },
+      {
+        "char": "l",
+        "count": 642,
+        "share": 0.0279
       },
       {
         "char": "d",
-        "count": 68,
-        "share": 0.0206
+        "count": 623,
+        "share": 0.0271
       },
       {
-        "char": "î",
-        "count": 34,
-        "share": 0.0103
+        "char": "v",
+        "count": 422,
+        "share": 0.0184
+      },
+      {
+        "char": "ț",
+        "count": 368,
+        "share": 0.016
       },
       {
         "char": "â",
-        "count": 34,
-        "share": 0.0103
+        "count": 354,
+        "share": 0.0154
+      },
+      {
+        "char": "b",
+        "count": 344,
+        "share": 0.015
+      },
+      {
+        "char": "f",
+        "count": 283,
+        "share": 0.0123
+      },
+      {
+        "char": "g",
+        "count": 208,
+        "share": 0.0091
+      },
+      {
+        "char": "ș",
+        "count": 173,
+        "share": 0.0075
+      },
+      {
+        "char": "z",
+        "count": 122,
+        "share": 0.0053
+      },
+      {
+        "char": "h",
+        "count": 76,
+        "share": 0.0033
+      },
+      {
+        "char": "j",
+        "count": 51,
+        "share": 0.0022
+      },
+      {
+        "char": "k",
+        "count": 44,
+        "share": 0.0019
+      },
+      {
+        "char": "î",
+        "count": 40,
+        "share": 0.0017
       }
     ],
     "unique_characters": [
       "â",
       "î",
       "ă",
+      "ș",
       "ț"
     ],
-    "signature": "âîăț"
+    "signature": "âîășț"
   },
   "ru": {
     "language": "ru",
     "name": "Russian",
-    "total_letters": 3400,
-    "alphabet_size": 23,
+    "total_letters": 24519,
+    "alphabet_size": 30,
     "top_characters": [
       {
-        "char": "е",
-        "count": 476,
-        "share": 0.14
-      },
-      {
         "char": "о",
-        "count": 306,
-        "share": 0.09
+        "count": 3293,
+        "share": 0.1343
       },
       {
-        "char": "р",
-        "count": 238,
-        "share": 0.07
-      },
-      {
-        "char": "к",
-        "count": 238,
-        "share": 0.07
+        "char": "е",
+        "count": 2041,
+        "share": 0.0832
       },
       {
         "char": "а",
-        "count": 204,
-        "share": 0.06
-      },
-      {
-        "char": "с",
-        "count": 204,
-        "share": 0.06
-      },
-      {
-        "char": "д",
-        "count": 170,
-        "share": 0.05
+        "count": 1950,
+        "share": 0.0795
       },
       {
         "char": "т",
-        "count": 170,
-        "share": 0.05
+        "count": 1821,
+        "share": 0.0743
       },
       {
-        "char": "я",
-        "count": 170,
-        "share": 0.05
-      },
-      {
-        "char": "в",
-        "count": 136,
-        "share": 0.04
-      },
-      {
-        "char": "и",
-        "count": 136,
-        "share": 0.04
+        "char": "с",
+        "count": 1378,
+        "share": 0.0562
       },
       {
         "char": "н",
-        "count": 136,
-        "share": 0.04
+        "count": 1218,
+        "share": 0.0497
       },
       {
-        "char": "м",
-        "count": 136,
-        "share": 0.04
+        "char": "ь",
+        "count": 1207,
+        "share": 0.0492
       },
       {
-        "char": "з",
-        "count": 102,
-        "share": 0.03
+        "char": "р",
+        "count": 1196,
+        "share": 0.0488
       },
       {
-        "char": "у",
-        "count": 102,
-        "share": 0.03
+        "char": "в",
+        "count": 1191,
+        "share": 0.0486
+      },
+      {
+        "char": "и",
+        "count": 1144,
+        "share": 0.0467
+      },
+      {
+        "char": "д",
+        "count": 1078,
+        "share": 0.044
       },
       {
         "char": "л",
-        "count": 102,
-        "share": 0.03
-      },
-      {
-        "char": "п",
-        "count": 102,
-        "share": 0.03
-      },
-      {
-        "char": "ы",
-        "count": 102,
-        "share": 0.03
-      },
-      {
-        "char": "й",
-        "count": 34,
-        "share": 0.01
-      },
-      {
-        "char": "ш",
-        "count": 34,
-        "share": 0.01
-      },
-      {
-        "char": "г",
-        "count": 34,
-        "share": 0.01
-      },
-      {
-        "char": "э",
-        "count": 34,
-        "share": 0.01
-      },
-      {
-        "char": "ж",
-        "count": 34,
-        "share": 0.01
-      }
-    ],
-    "unique_characters": [
-      "ж"
-    ],
-    "signature": "ж"
-  },
-  "sr": {
-    "language": "sr",
-    "name": "Serbian",
-    "total_letters": 3026,
-    "alphabet_size": 20,
-    "top_characters": [
-      {
-        "char": "а",
-        "count": 476,
-        "share": 0.1573
-      },
-      {
-        "char": "е",
-        "count": 340,
-        "share": 0.1124
-      },
-      {
-        "char": "о",
-        "count": 238,
-        "share": 0.0787
+        "count": 996,
+        "share": 0.0406
       },
       {
         "char": "к",
-        "count": 238,
-        "share": 0.0787
-      },
-      {
-        "char": "с",
-        "count": 238,
-        "share": 0.0787
-      },
-      {
-        "char": "р",
-        "count": 204,
-        "share": 0.0674
-      },
-      {
-        "char": "н",
-        "count": 170,
-        "share": 0.0562
-      },
-      {
-        "char": "т",
-        "count": 170,
-        "share": 0.0562
-      },
-      {
-        "char": "и",
-        "count": 170,
-        "share": 0.0562
-      },
-      {
-        "char": "з",
-        "count": 136,
-        "share": 0.0449
-      },
-      {
-        "char": "д",
-        "count": 102,
-        "share": 0.0337
-      },
-      {
-        "char": "ј",
-        "count": 102,
-        "share": 0.0337
-      },
-      {
-        "char": "п",
-        "count": 102,
-        "share": 0.0337
-      },
-      {
-        "char": "м",
-        "count": 102,
-        "share": 0.0337
-      },
-      {
-        "char": "в",
-        "count": 68,
-        "share": 0.0225
-      },
-      {
-        "char": "б",
-        "count": 34,
-        "share": 0.0112
-      },
-      {
-        "char": "ч",
-        "count": 34,
-        "share": 0.0112
-      },
-      {
-        "char": "ц",
-        "count": 34,
-        "share": 0.0112
+        "count": 724,
+        "share": 0.0295
       },
       {
         "char": "у",
-        "count": 34,
+        "count": 595,
+        "share": 0.0243
+      },
+      {
+        "char": "б",
+        "count": 589,
+        "share": 0.024
+      },
+      {
+        "char": "м",
+        "count": 562,
+        "share": 0.0229
+      },
+      {
+        "char": "з",
+        "count": 499,
+        "share": 0.0204
+      },
+      {
+        "char": "п",
+        "count": 413,
+        "share": 0.0168
+      },
+      {
+        "char": "ч",
+        "count": 411,
+        "share": 0.0168
+      },
+      {
+        "char": "г",
+        "count": 401,
+        "share": 0.0164
+      },
+      {
+        "char": "я",
+        "count": 372,
+        "share": 0.0152
+      },
+      {
+        "char": "ы",
+        "count": 274,
         "share": 0.0112
       },
       {
-        "char": "њ",
-        "count": 34,
-        "share": 0.0112
+        "char": "ж",
+        "count": 230,
+        "share": 0.0094
+      },
+      {
+        "char": "ш",
+        "count": 194,
+        "share": 0.0079
+      },
+      {
+        "char": "х",
+        "count": 193,
+        "share": 0.0079
+      },
+      {
+        "char": "щ",
+        "count": 189,
+        "share": 0.0077
+      },
+      {
+        "char": "й",
+        "count": 153,
+        "share": 0.0062
+      },
+      {
+        "char": "ц",
+        "count": 124,
+        "share": 0.0051
+      },
+      {
+        "char": "ю",
+        "count": 47,
+        "share": 0.0019
+      },
+      {
+        "char": "э",
+        "count": 36,
+        "share": 0.0015
       }
     ],
     "unique_characters": [],
     "signature": ""
   },
-  "sk": {
-    "language": "sk",
-    "name": "Slovak",
-    "total_letters": 2856,
-    "alphabet_size": 24,
+  "sr": {
+    "language": "sr",
+    "name": "Serbian",
+    "total_letters": 21990,
+    "alphabet_size": 28,
     "top_characters": [
       {
-        "char": "e",
-        "count": 374,
-        "share": 0.131
+        "char": "а",
+        "count": 2974,
+        "share": 0.1352
       },
       {
-        "char": "a",
-        "count": 272,
-        "share": 0.0952
+        "char": "о",
+        "count": 2380,
+        "share": 0.1082
       },
       {
-        "char": "t",
-        "count": 272,
-        "share": 0.0952
+        "char": "и",
+        "count": 1907,
+        "share": 0.0867
       },
       {
-        "char": "o",
-        "count": 238,
-        "share": 0.0833
+        "char": "е",
+        "count": 1561,
+        "share": 0.071
       },
       {
-        "char": "s",
-        "count": 204,
-        "share": 0.0714
+        "char": "т",
+        "count": 1340,
+        "share": 0.0609
       },
       {
-        "char": "n",
-        "count": 204,
-        "share": 0.0714
+        "char": "в",
+        "count": 1337,
+        "share": 0.0608
       },
       {
-        "char": "k",
-        "count": 136,
-        "share": 0.0476
+        "char": "р",
+        "count": 1279,
+        "share": 0.0582
       },
       {
-        "char": "v",
-        "count": 136,
-        "share": 0.0476
+        "char": "д",
+        "count": 1057,
+        "share": 0.0481
       },
       {
-        "char": "d",
-        "count": 102,
-        "share": 0.0357
+        "char": "н",
+        "count": 958,
+        "share": 0.0436
       },
       {
-        "char": "r",
-        "count": 102,
-        "share": 0.0357
+        "char": "с",
+        "count": 955,
+        "share": 0.0434
       },
       {
-        "char": "m",
-        "count": 102,
-        "share": 0.0357
+        "char": "к",
+        "count": 899,
+        "share": 0.0409
       },
       {
-        "char": "á",
-        "count": 102,
-        "share": 0.0357
+        "char": "м",
+        "count": 747,
+        "share": 0.034
       },
       {
-        "char": "j",
-        "count": 102,
-        "share": 0.0357
+        "char": "у",
+        "count": 597,
+        "share": 0.0271
       },
       {
-        "char": "z",
-        "count": 102,
-        "share": 0.0357
+        "char": "з",
+        "count": 503,
+        "share": 0.0229
       },
       {
-        "char": "i",
-        "count": 68,
-        "share": 0.0238
+        "char": "л",
+        "count": 470,
+        "share": 0.0214
       },
       {
-        "char": "y",
-        "count": 68,
-        "share": 0.0238
+        "char": "ј",
+        "count": 421,
+        "share": 0.0191
       },
       {
-        "char": "b",
-        "count": 34,
-        "share": 0.0119
+        "char": "г",
+        "count": 401,
+        "share": 0.0182
       },
       {
-        "char": "ý",
-        "count": 34,
-        "share": 0.0119
+        "char": "б",
+        "count": 381,
+        "share": 0.0173
       },
       {
-        "char": "ň",
-        "count": 34,
-        "share": 0.0119
+        "char": "п",
+        "count": 341,
+        "share": 0.0155
       },
       {
-        "char": "l",
-        "count": 34,
-        "share": 0.0119
+        "char": "ћ",
+        "count": 283,
+        "share": 0.0129
       },
       {
-        "char": "č",
-        "count": 34,
-        "share": 0.0119
+        "char": "њ",
+        "count": 259,
+        "share": 0.0118
       },
       {
-        "char": "u",
-        "count": 34,
-        "share": 0.0119
+        "char": "ц",
+        "count": 206,
+        "share": 0.0094
       },
       {
-        "char": "é",
-        "count": 34,
-        "share": 0.0119
+        "char": "ч",
+        "count": 196,
+        "share": 0.0089
       },
       {
-        "char": "p",
-        "count": 34,
-        "share": 0.0119
+        "char": "љ",
+        "count": 188,
+        "share": 0.0085
+      },
+      {
+        "char": "ж",
+        "count": 143,
+        "share": 0.0065
+      },
+      {
+        "char": "ш",
+        "count": 83,
+        "share": 0.0038
+      },
+      {
+        "char": "х",
+        "count": 77,
+        "share": 0.0035
+      },
+      {
+        "char": "ђ",
+        "count": 47,
+        "share": 0.0021
       }
     ],
     "unique_characters": [
-      "ň"
+      "ђ"
     ],
-    "signature": "ň"
+    "signature": "ђ"
+  },
+  "sk": {
+    "language": "sk",
+    "name": "Slovak",
+    "total_letters": 22540,
+    "alphabet_size": 34,
+    "top_characters": [
+      {
+        "char": "o",
+        "count": 2506,
+        "share": 0.1112
+      },
+      {
+        "char": "e",
+        "count": 2211,
+        "share": 0.0981
+      },
+      {
+        "char": "a",
+        "count": 1930,
+        "share": 0.0856
+      },
+      {
+        "char": "i",
+        "count": 1300,
+        "share": 0.0577
+      },
+      {
+        "char": "n",
+        "count": 1165,
+        "share": 0.0517
+      },
+      {
+        "char": "r",
+        "count": 1163,
+        "share": 0.0516
+      },
+      {
+        "char": "v",
+        "count": 1163,
+        "share": 0.0516
+      },
+      {
+        "char": "s",
+        "count": 1045,
+        "share": 0.0464
+      },
+      {
+        "char": "d",
+        "count": 958,
+        "share": 0.0425
+      },
+      {
+        "char": "k",
+        "count": 896,
+        "share": 0.0398
+      },
+      {
+        "char": "c",
+        "count": 780,
+        "share": 0.0346
+      },
+      {
+        "char": "t",
+        "count": 746,
+        "share": 0.0331
+      },
+      {
+        "char": "l",
+        "count": 735,
+        "share": 0.0326
+      },
+      {
+        "char": "p",
+        "count": 729,
+        "share": 0.0323
+      },
+      {
+        "char": "ť",
+        "count": 702,
+        "share": 0.0311
+      },
+      {
+        "char": "á",
+        "count": 579,
+        "share": 0.0257
+      },
+      {
+        "char": "m",
+        "count": 548,
+        "share": 0.0243
+      },
+      {
+        "char": "z",
+        "count": 467,
+        "share": 0.0207
+      },
+      {
+        "char": "h",
+        "count": 445,
+        "share": 0.0197
+      },
+      {
+        "char": "b",
+        "count": 391,
+        "share": 0.0173
+      },
+      {
+        "char": "j",
+        "count": 336,
+        "share": 0.0149
+      },
+      {
+        "char": "u",
+        "count": 286,
+        "share": 0.0127
+      },
+      {
+        "char": "ž",
+        "count": 252,
+        "share": 0.0112
+      },
+      {
+        "char": "ľ",
+        "count": 249,
+        "share": 0.011
+      },
+      {
+        "char": "y",
+        "count": 179,
+        "share": 0.0079
+      },
+      {
+        "char": "ú",
+        "count": 139,
+        "share": 0.0062
+      },
+      {
+        "char": "č",
+        "count": 134,
+        "share": 0.0059
+      },
+      {
+        "char": "š",
+        "count": 132,
+        "share": 0.0059
+      },
+      {
+        "char": "ň",
+        "count": 103,
+        "share": 0.0046
+      },
+      {
+        "char": "ý",
+        "count": 97,
+        "share": 0.0043
+      }
+    ],
+    "unique_characters": [
+      "ľ",
+      "ť"
+    ],
+    "signature": "ľť"
   },
   "sl": {
     "language": "sl",
     "name": "Slovene",
-    "total_letters": 3094,
-    "alphabet_size": 19,
+    "total_letters": 24109,
+    "alphabet_size": 25,
     "top_characters": [
       {
-        "char": "e",
-        "count": 476,
-        "share": 0.1538
+        "char": "o",
+        "count": 2557,
+        "share": 0.1061
       },
       {
         "char": "a",
-        "count": 340,
-        "share": 0.1099
+        "count": 2521,
+        "share": 0.1046
       },
       {
-        "char": "k",
-        "count": 306,
-        "share": 0.0989
-      },
-      {
-        "char": "s",
-        "count": 238,
-        "share": 0.0769
-      },
-      {
-        "char": "o",
-        "count": 204,
-        "share": 0.0659
-      },
-      {
-        "char": "n",
-        "count": 170,
-        "share": 0.0549
-      },
-      {
-        "char": "t",
-        "count": 170,
-        "share": 0.0549
-      },
-      {
-        "char": "z",
-        "count": 170,
-        "share": 0.0549
-      },
-      {
-        "char": "r",
-        "count": 136,
-        "share": 0.044
-      },
-      {
-        "char": "j",
-        "count": 136,
-        "share": 0.044
-      },
-      {
-        "char": "v",
-        "count": 136,
-        "share": 0.044
+        "char": "e",
+        "count": 2520,
+        "share": 0.1045
       },
       {
         "char": "i",
-        "count": 136,
-        "share": 0.044
+        "count": 1914,
+        "share": 0.0794
       },
       {
-        "char": "d",
-        "count": 102,
-        "share": 0.033
+        "char": "v",
+        "count": 1525,
+        "share": 0.0633
       },
       {
-        "char": "m",
-        "count": 102,
-        "share": 0.033
-      },
-      {
-        "char": "p",
-        "count": 102,
-        "share": 0.033
-      },
-      {
-        "char": "u",
-        "count": 68,
-        "share": 0.022
-      },
-      {
-        "char": "b",
-        "count": 34,
-        "share": 0.011
+        "char": "n",
+        "count": 1282,
+        "share": 0.0532
       },
       {
         "char": "l",
-        "count": 34,
-        "share": 0.011
+        "count": 1208,
+        "share": 0.0501
+      },
+      {
+        "char": "d",
+        "count": 1199,
+        "share": 0.0497
+      },
+      {
+        "char": "t",
+        "count": 1190,
+        "share": 0.0494
+      },
+      {
+        "char": "r",
+        "count": 1180,
+        "share": 0.0489
+      },
+      {
+        "char": "s",
+        "count": 1040,
+        "share": 0.0431
+      },
+      {
+        "char": "j",
+        "count": 1027,
+        "share": 0.0426
+      },
+      {
+        "char": "k",
+        "count": 983,
+        "share": 0.0408
+      },
+      {
+        "char": "z",
+        "count": 602,
+        "share": 0.025
+      },
+      {
+        "char": "p",
+        "count": 589,
+        "share": 0.0244
+      },
+      {
+        "char": "b",
+        "count": 455,
+        "share": 0.0189
+      },
+      {
+        "char": "m",
+        "count": 436,
+        "share": 0.0181
+      },
+      {
+        "char": "č",
+        "count": 431,
+        "share": 0.0179
+      },
+      {
+        "char": "u",
+        "count": 399,
+        "share": 0.0165
+      },
+      {
+        "char": "g",
+        "count": 290,
+        "share": 0.012
+      },
+      {
+        "char": "ž",
+        "count": 242,
+        "share": 0.01
+      },
+      {
+        "char": "c",
+        "count": 218,
+        "share": 0.009
+      },
+      {
+        "char": "h",
+        "count": 175,
+        "share": 0.0073
       },
       {
         "char": "š",
-        "count": 34,
-        "share": 0.011
+        "count": 86,
+        "share": 0.0036
+      },
+      {
+        "char": "ч",
+        "count": 40,
+        "share": 0.0017
       }
     ],
     "unique_characters": [],
@@ -4153,235 +5289,298 @@
   "es": {
     "language": "es",
     "name": "Spanish",
-    "total_letters": 3162,
-    "alphabet_size": 22,
+    "total_letters": 24294,
+    "alphabet_size": 31,
     "top_characters": [
       {
-        "char": "e",
-        "count": 476,
-        "share": 0.1505
-      },
-      {
-        "char": "s",
-        "count": 408,
-        "share": 0.129
-      },
-      {
         "char": "a",
-        "count": 340,
-        "share": 0.1075
+        "count": 3065,
+        "share": 0.1262
+      },
+      {
+        "char": "e",
+        "count": 2489,
+        "share": 0.1025
       },
       {
         "char": "o",
-        "count": 306,
-        "share": 0.0968
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0645
-      },
-      {
-        "char": "t",
-        "count": 204,
-        "share": 0.0645
-      },
-      {
-        "char": "n",
-        "count": 170,
-        "share": 0.0538
-      },
-      {
-        "char": "c",
-        "count": 136,
-        "share": 0.043
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.043
-      },
-      {
-        "char": "i",
-        "count": 136,
-        "share": 0.043
+        "count": 2345,
+        "share": 0.0965
       },
       {
         "char": "r",
-        "count": 102,
-        "share": 0.0323
+        "count": 2112,
+        "share": 0.0869
       },
       {
-        "char": "b",
-        "count": 68,
-        "share": 0.0215
+        "char": "i",
+        "count": 1589,
+        "share": 0.0654
+      },
+      {
+        "char": "n",
+        "count": 1550,
+        "share": 0.0638
+      },
+      {
+        "char": "c",
+        "count": 1245,
+        "share": 0.0512
+      },
+      {
+        "char": "d",
+        "count": 1174,
+        "share": 0.0483
       },
       {
         "char": "u",
-        "count": 68,
-        "share": 0.0215
+        "count": 1171,
+        "share": 0.0482
       },
       {
-        "char": "ó",
-        "count": 68,
-        "share": 0.0215
+        "char": "t",
+        "count": 1036,
+        "share": 0.0426
       },
       {
-        "char": "p",
-        "count": 68,
-        "share": 0.0215
+        "char": "s",
+        "count": 986,
+        "share": 0.0406
       },
       {
         "char": "l",
-        "count": 68,
-        "share": 0.0215
+        "count": 975,
+        "share": 0.0401
       },
       {
-        "char": "í",
-        "count": 34,
-        "share": 0.0108
+        "char": "p",
+        "count": 695,
+        "share": 0.0286
       },
       {
-        "char": "á",
-        "count": 34,
-        "share": 0.0108
+        "char": "m",
+        "count": 644,
+        "share": 0.0265
+      },
+      {
+        "char": "b",
+        "count": 591,
+        "share": 0.0243
+      },
+      {
+        "char": "g",
+        "count": 423,
+        "share": 0.0174
       },
       {
         "char": "h",
-        "count": 34,
-        "share": 0.0108
+        "count": 319,
+        "share": 0.0131
       },
       {
-        "char": "y",
-        "count": 34,
-        "share": 0.0108
+        "char": "ó",
+        "count": 281,
+        "share": 0.0116
+      },
+      {
+        "char": "v",
+        "count": 245,
+        "share": 0.0101
+      },
+      {
+        "char": "z",
+        "count": 222,
+        "share": 0.0091
       },
       {
         "char": "f",
-        "count": 34,
-        "share": 0.0108
+        "count": 206,
+        "share": 0.0085
       },
       {
-        "char": "ñ",
-        "count": 34,
-        "share": 0.0108
+        "char": "y",
+        "count": 162,
+        "share": 0.0067
+      },
+      {
+        "char": "j",
+        "count": 155,
+        "share": 0.0064
+      },
+      {
+        "char": "í",
+        "count": 143,
+        "share": 0.0059
+      },
+      {
+        "char": "q",
+        "count": 109,
+        "share": 0.0045
+      },
+      {
+        "char": "é",
+        "count": 69,
+        "share": 0.0028
+      },
+      {
+        "char": "x",
+        "count": 69,
+        "share": 0.0028
+      },
+      {
+        "char": "ã",
+        "count": 65,
+        "share": 0.0027
+      },
+      {
+        "char": "k",
+        "count": 59,
+        "share": 0.0024
+      },
+      {
+        "char": "w",
+        "count": 53,
+        "share": 0.0022
       }
     ],
-    "unique_characters": [
-      "ñ"
-    ],
-    "signature": "ñ"
+    "unique_characters": [],
+    "signature": ""
   },
   "sv": {
     "language": "sv",
     "name": "Swedish",
-    "total_letters": 2822,
-    "alphabet_size": 21,
+    "total_letters": 19466,
+    "alphabet_size": 26,
     "top_characters": [
       {
-        "char": "e",
-        "count": 306,
-        "share": 0.1084
-      },
-      {
-        "char": "r",
-        "count": 272,
-        "share": 0.0964
+        "char": "a",
+        "count": 2129,
+        "share": 0.1094
       },
       {
         "char": "t",
-        "count": 272,
-        "share": 0.0964
+        "count": 1724,
+        "share": 0.0886
       },
       {
-        "char": "i",
-        "count": 238,
-        "share": 0.0843
-      },
-      {
-        "char": "d",
-        "count": 204,
-        "share": 0.0723
+        "char": "r",
+        "count": 1499,
+        "share": 0.077
       },
       {
         "char": "n",
-        "count": 204,
-        "share": 0.0723
+        "count": 1427,
+        "share": 0.0733
+      },
+      {
+        "char": "e",
+        "count": 1325,
+        "share": 0.0681
+      },
+      {
+        "char": "l",
+        "count": 1240,
+        "share": 0.0637
+      },
+      {
+        "char": "i",
+        "count": 999,
+        "share": 0.0513
       },
       {
         "char": "s",
-        "count": 204,
-        "share": 0.0723
+        "count": 946,
+        "share": 0.0486
       },
       {
         "char": "g",
-        "count": 170,
-        "share": 0.0602
+        "count": 894,
+        "share": 0.0459
       },
       {
-        "char": "a",
-        "count": 170,
-        "share": 0.0602
-      },
-      {
-        "char": "m",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "å",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "k",
-        "count": 102,
-        "share": 0.0361
-      },
-      {
-        "char": "o",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "u",
-        "count": 68,
-        "share": 0.0241
-      },
-      {
-        "char": "p",
-        "count": 68,
-        "share": 0.0241
+        "char": "d",
+        "count": 870,
+        "share": 0.0447
       },
       {
         "char": "v",
-        "count": 68,
-        "share": 0.0241
+        "count": 774,
+        "share": 0.0398
       },
       {
-        "char": "f",
-        "count": 68,
-        "share": 0.0241
+        "char": "k",
+        "count": 725,
+        "share": 0.0372
+      },
+      {
+        "char": "o",
+        "count": 719,
+        "share": 0.0369
       },
       {
         "char": "h",
-        "count": 34,
-        "share": 0.012
+        "count": 603,
+        "share": 0.031
+      },
+      {
+        "char": "m",
+        "count": 569,
+        "share": 0.0292
       },
       {
         "char": "ä",
-        "count": 34,
+        "count": 498,
+        "share": 0.0256
+      },
+      {
+        "char": "f",
+        "count": 447,
+        "share": 0.023
+      },
+      {
+        "char": "å",
+        "count": 428,
+        "share": 0.022
+      },
+      {
+        "char": "u",
+        "count": 417,
+        "share": 0.0214
+      },
+      {
+        "char": "p",
+        "count": 330,
+        "share": 0.017
+      },
+      {
+        "char": "b",
+        "count": 273,
+        "share": 0.014
+      },
+      {
+        "char": "j",
+        "count": 234,
         "share": 0.012
       },
       {
         "char": "y",
-        "count": 34,
-        "share": 0.012
+        "count": 148,
+        "share": 0.0076
       },
       {
         "char": "ö",
-        "count": 34,
-        "share": 0.012
+        "count": 143,
+        "share": 0.0073
+      },
+      {
+        "char": "w",
+        "count": 55,
+        "share": 0.0028
+      },
+      {
+        "char": "æ",
+        "count": 50,
+        "share": 0.0026
       }
     ],
     "unique_characters": [],
@@ -4390,118 +5589,148 @@
   "tr": {
     "language": "tr",
     "name": "Turkish",
-    "total_letters": 2618,
-    "alphabet_size": 22,
+    "total_letters": 21549,
+    "alphabet_size": 28,
     "top_characters": [
       {
         "char": "a",
-        "count": 238,
-        "share": 0.0909
-      },
-      {
-        "char": "i",
-        "count": 238,
-        "share": 0.0909
+        "count": 2251,
+        "share": 0.1045
       },
       {
         "char": "e",
-        "count": 204,
-        "share": 0.0779
+        "count": 2217,
+        "share": 0.1029
       },
       {
-        "char": "s",
-        "count": 204,
-        "share": 0.0779
-      },
-      {
-        "char": "r",
-        "count": 170,
-        "share": 0.0649
-      },
-      {
-        "char": "ı",
-        "count": 170,
-        "share": 0.0649
-      },
-      {
-        "char": "l",
-        "count": 170,
-        "share": 0.0649
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0519
-      },
-      {
-        "char": "b",
-        "count": 136,
-        "share": 0.0519
-      },
-      {
-        "char": "n",
-        "count": 136,
-        "share": 0.0519
-      },
-      {
-        "char": "t",
-        "count": 136,
-        "share": 0.0519
-      },
-      {
-        "char": "u",
-        "count": 102,
-        "share": 0.039
-      },
-      {
-        "char": "ü",
-        "count": 102,
-        "share": 0.039
-      },
-      {
-        "char": "d",
-        "count": 102,
-        "share": 0.039
-      },
-      {
-        "char": "g",
-        "count": 68,
-        "share": 0.026
-      },
-      {
-        "char": "z",
-        "count": 68,
-        "share": 0.026
+        "char": "i",
+        "count": 1782,
+        "share": 0.0827
       },
       {
         "char": "k",
-        "count": 68,
-        "share": 0.026
+        "count": 1664,
+        "share": 0.0772
       },
       {
-        "char": "h",
-        "count": 34,
-        "share": 0.013
+        "char": "n",
+        "count": 1149,
+        "share": 0.0533
       },
       {
-        "char": "ç",
-        "count": 34,
-        "share": 0.013
+        "char": "l",
+        "count": 1108,
+        "share": 0.0514
       },
       {
-        "char": "c",
-        "count": 34,
-        "share": 0.013
+        "char": "m",
+        "count": 1052,
+        "share": 0.0488
+      },
+      {
+        "char": "r",
+        "count": 1022,
+        "share": 0.0474
+      },
+      {
+        "char": "ü",
+        "count": 907,
+        "share": 0.0421
+      },
+      {
+        "char": "t",
+        "count": 861,
+        "share": 0.04
+      },
+      {
+        "char": "d",
+        "count": 816,
+        "share": 0.0379
       },
       {
         "char": "y",
-        "count": 34,
-        "share": 0.013
+        "count": 729,
+        "share": 0.0338
+      },
+      {
+        "char": "s",
+        "count": 699,
+        "share": 0.0324
+      },
+      {
+        "char": "u",
+        "count": 683,
+        "share": 0.0317
       },
       {
         "char": "o",
-        "count": 34,
-        "share": 0.013
+        "count": 651,
+        "share": 0.0302
+      },
+      {
+        "char": "g",
+        "count": 585,
+        "share": 0.0271
+      },
+      {
+        "char": "b",
+        "count": 574,
+        "share": 0.0266
+      },
+      {
+        "char": "ş",
+        "count": 531,
+        "share": 0.0246
+      },
+      {
+        "char": "ç",
+        "count": 435,
+        "share": 0.0202
+      },
+      {
+        "char": "v",
+        "count": 379,
+        "share": 0.0176
+      },
+      {
+        "char": "h",
+        "count": 318,
+        "share": 0.0148
+      },
+      {
+        "char": "ı",
+        "count": 286,
+        "share": 0.0133
+      },
+      {
+        "char": "c",
+        "count": 237,
+        "share": 0.011
+      },
+      {
+        "char": "p",
+        "count": 195,
+        "share": 0.009
+      },
+      {
+        "char": "ö",
+        "count": 172,
+        "share": 0.008
+      },
+      {
+        "char": "ğ",
+        "count": 107,
+        "share": 0.005
+      },
+      {
+        "char": "z",
+        "count": 93,
+        "share": 0.0043
+      },
+      {
+        "char": "f",
+        "count": 46,
+        "share": 0.0021
       }
     ],
     "unique_characters": [],
@@ -4510,242 +5739,276 @@
   "uk": {
     "language": "uk",
     "name": "Ukrainian",
-    "total_letters": 3128,
-    "alphabet_size": 24,
+    "total_letters": 23533,
+    "alphabet_size": 31,
     "top_characters": [
       {
+        "char": "а",
+        "count": 2673,
+        "share": 0.1136
+      },
+      {
         "char": "о",
-        "count": 340,
-        "share": 0.1087
-      },
-      {
-        "char": "е",
-        "count": 272,
-        "share": 0.087
-      },
-      {
-        "char": "р",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "в",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "н",
-        "count": 238,
-        "share": 0.0761
-      },
-      {
-        "char": "и",
-        "count": 204,
-        "share": 0.0652
-      },
-      {
-        "char": "к",
-        "count": 170,
-        "share": 0.0543
-      },
-      {
-        "char": "с",
-        "count": 170,
-        "share": 0.0543
-      },
-      {
-        "char": "м",
-        "count": 170,
-        "share": 0.0543
+        "count": 2341,
+        "share": 0.0995
       },
       {
         "char": "т",
-        "count": 136,
-        "share": 0.0435
+        "count": 1618,
+        "share": 0.0688
       },
       {
-        "char": "я",
-        "count": 136,
-        "share": 0.0435
+        "char": "и",
+        "count": 1329,
+        "share": 0.0565
       },
       {
-        "char": "п",
-        "count": 102,
-        "share": 0.0326
+        "char": "в",
+        "count": 1322,
+        "share": 0.0562
       },
       {
         "char": "і",
-        "count": 102,
-        "share": 0.0326
+        "count": 1218,
+        "share": 0.0518
       },
       {
-        "char": "а",
-        "count": 102,
-        "share": 0.0326
+        "char": "н",
+        "count": 1216,
+        "share": 0.0517
       },
       {
-        "char": "ї",
-        "count": 68,
-        "share": 0.0217
+        "char": "р",
+        "count": 1153,
+        "share": 0.049
       },
       {
-        "char": "ь",
-        "count": 68,
-        "share": 0.0217
-      },
-      {
-        "char": "ч",
-        "count": 68,
-        "share": 0.0217
-      },
-      {
-        "char": "у",
-        "count": 68,
-        "share": 0.0217
-      },
-      {
-        "char": "ю",
-        "count": 68,
-        "share": 0.0217
-      },
-      {
-        "char": "г",
-        "count": 34,
-        "share": 0.0109
+        "char": "с",
+        "count": 1026,
+        "share": 0.0436
       },
       {
         "char": "д",
-        "count": 34,
-        "share": 0.0109
+        "count": 1002,
+        "share": 0.0426
       },
       {
-        "char": "ц",
-        "count": 34,
-        "share": 0.0109
+        "char": "л",
+        "count": 933,
+        "share": 0.0396
       },
       {
-        "char": "є",
-        "count": 34,
-        "share": 0.0109
+        "char": "к",
+        "count": 754,
+        "share": 0.032
+      },
+      {
+        "char": "е",
+        "count": 727,
+        "share": 0.0309
+      },
+      {
+        "char": "м",
+        "count": 725,
+        "share": 0.0308
+      },
+      {
+        "char": "я",
+        "count": 644,
+        "share": 0.0274
+      },
+      {
+        "char": "п",
+        "count": 617,
+        "share": 0.0262
+      },
+      {
+        "char": "у",
+        "count": 562,
+        "share": 0.0239
+      },
+      {
+        "char": "б",
+        "count": 532,
+        "share": 0.0226
+      },
+      {
+        "char": "ь",
+        "count": 531,
+        "share": 0.0226
+      },
+      {
+        "char": "г",
+        "count": 373,
+        "share": 0.0159
       },
       {
         "char": "з",
-        "count": 34,
+        "count": 363,
+        "share": 0.0154
+      },
+      {
+        "char": "ж",
+        "count": 315,
+        "share": 0.0134
+      },
+      {
+        "char": "ч",
+        "count": 257,
         "share": 0.0109
+      },
+      {
+        "char": "й",
+        "count": 246,
+        "share": 0.0105
+      },
+      {
+        "char": "ц",
+        "count": 226,
+        "share": 0.0096
+      },
+      {
+        "char": "х",
+        "count": 210,
+        "share": 0.0089
+      },
+      {
+        "char": "є",
+        "count": 159,
+        "share": 0.0068
+      },
+      {
+        "char": "ш",
+        "count": 144,
+        "share": 0.0061
+      },
+      {
+        "char": "ї",
+        "count": 143,
+        "share": 0.0061
+      },
+      {
+        "char": "ю",
+        "count": 97,
+        "share": 0.0041
       }
     ],
     "unique_characters": [
-      "ю",
       "є",
       "ї"
     ],
-    "signature": "юєї"
+    "signature": "єї"
   },
   "cy": {
     "language": "cy",
     "name": "Welsh",
-    "total_letters": 2584,
-    "alphabet_size": 20,
+    "total_letters": 22959,
+    "alphabet_size": 21,
     "top_characters": [
       {
-        "char": "y",
-        "count": 306,
-        "share": 0.1184
-      },
-      {
         "char": "d",
-        "count": 306,
-        "share": 0.1184
-      },
-      {
-        "char": "e",
-        "count": 204,
-        "share": 0.0789
+        "count": 3098,
+        "share": 0.1349
       },
       {
         "char": "a",
-        "count": 204,
-        "share": 0.0789
+        "count": 2153,
+        "share": 0.0938
       },
       {
-        "char": "r",
-        "count": 204,
-        "share": 0.0789
+        "char": "e",
+        "count": 1781,
+        "share": 0.0776
       },
       {
-        "char": "h",
-        "count": 170,
-        "share": 0.0658
-      },
-      {
-        "char": "i",
-        "count": 170,
-        "share": 0.0658
-      },
-      {
-        "char": "m",
-        "count": 136,
-        "share": 0.0526
-      },
-      {
-        "char": "o",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "s",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "t",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "f",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "g",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "n",
-        "count": 102,
-        "share": 0.0395
-      },
-      {
-        "char": "c",
-        "count": 68,
-        "share": 0.0263
-      },
-      {
-        "char": "w",
-        "count": 68,
-        "share": 0.0263
+        "char": "y",
+        "count": 1632,
+        "share": 0.0711
       },
       {
         "char": "l",
-        "count": 34,
-        "share": 0.0132
+        "count": 1570,
+        "share": 0.0684
+      },
+      {
+        "char": "i",
+        "count": 1515,
+        "share": 0.066
+      },
+      {
+        "char": "w",
+        "count": 1383,
+        "share": 0.0602
+      },
+      {
+        "char": "n",
+        "count": 1383,
+        "share": 0.0602
+      },
+      {
+        "char": "r",
+        "count": 1373,
+        "share": 0.0598
+      },
+      {
+        "char": "o",
+        "count": 876,
+        "share": 0.0382
+      },
+      {
+        "char": "t",
+        "count": 875,
+        "share": 0.0381
+      },
+      {
+        "char": "h",
+        "count": 843,
+        "share": 0.0367
+      },
+      {
+        "char": "c",
+        "count": 714,
+        "share": 0.0311
+      },
+      {
+        "char": "f",
+        "count": 709,
+        "share": 0.0309
+      },
+      {
+        "char": "g",
+        "count": 590,
+        "share": 0.0257
+      },
+      {
+        "char": "s",
+        "count": 580,
+        "share": 0.0253
+      },
+      {
+        "char": "m",
+        "count": 504,
+        "share": 0.022
       },
       {
         "char": "u",
-        "count": 34,
-        "share": 0.0132
-      },
-      {
-        "char": "p",
-        "count": 34,
-        "share": 0.0132
+        "count": 484,
+        "share": 0.0211
       },
       {
         "char": "b",
-        "count": 34,
-        "share": 0.0132
+        "count": 453,
+        "share": 0.0197
+      },
+      {
+        "char": "p",
+        "count": 393,
+        "share": 0.0171
+      },
+      {
+        "char": "k",
+        "count": 50,
+        "share": 0.0022
       }
     ],
     "unique_characters": [],

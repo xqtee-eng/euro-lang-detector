@@ -29,7 +29,7 @@ def utc_now():
 @contextmanager
 def connect():
     DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    connection = sqlite3.connect(DATABASE_PATH)
+    connection = sqlite3.connect(DATABASE_PATH, timeout=30.0)
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
     try:
@@ -45,8 +45,11 @@ def init_db():
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL UNIQUE,
-                role TEXT NOT NULL DEFAULT 'reviewer',
-                created_at TEXT NOT NULL
+                email TEXT,
+                role TEXT NOT NULL DEFAULT 'viewer',
+                created_by INTEGER,
+                created_at TEXT NOT NULL,
+                FOREIGN KEY (created_by) REFERENCES users (id) ON UPDATE CASCADE ON DELETE SET NULL
             );
 
             CREATE TABLE IF NOT EXISTS unknown_texts (
@@ -98,6 +101,11 @@ def init_db():
                 updated_at TEXT NOT NULL,
                 UNIQUE(name, language)
             );
+
+            CREATE INDEX IF NOT EXISTS idx_lexicon_word ON lexicon_words(word);
+            CREATE INDEX IF NOT EXISTS idx_lexicon_lang ON lexicon_words(language);
+            CREATE INDEX IF NOT EXISTS idx_names_name ON name_hints(name);
+            CREATE INDEX IF NOT EXISTS idx_names_lang ON name_hints(language);
 
             CREATE TABLE IF NOT EXISTS dataset_corpus (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -158,16 +166,18 @@ def init_db():
         if not exists:
             db.execute(
                 "INSERT INTO users(username, role, password, created_at) VALUES (?, ?, ?, ?)",
-                (ADMIN_USERNAME, "admin", ADMIN_PASSWORD, utc_now()),
+                (ADMIN_USERNAME, "owner", ADMIN_PASSWORD, utc_now()),
             )
         else:
-            db.execute("UPDATE users SET password = ?, role = 'admin' WHERE username = ?", (ADMIN_PASSWORD, ADMIN_USERNAME))
+            # Upgrade existing admin to owner if they match the config username
+            db.execute("UPDATE users SET role = 'owner' WHERE username = ?", (ADMIN_USERNAME,))
 
         _ensure_column(db, "training_runs", "model_snapshot_path", "TEXT")
         _ensure_column(db, "lexicon_words", "frequency", "INTEGER NOT NULL DEFAULT 1")
         _ensure_column(db, "lexicon_words", "notes", "TEXT NOT NULL DEFAULT ''")
         _ensure_column(db, "name_hints", "name_type", "TEXT NOT NULL DEFAULT 'person'")
         _ensure_column(db, "name_hints", "notes", "TEXT NOT NULL DEFAULT ''")
+        resequence_all_tables(db)
 
 
 def verify_user(username, password):
@@ -176,11 +186,17 @@ def verify_user(username, password):
         return False
     from hmac import compare_digest
     with connect() as db:
-        row = db.execute("SELECT password FROM users WHERE username = ?", (str(username).strip(),)).fetchone()
+        row = db.execute("SELECT password FROM users WHERE username = ? OR email = ?", (str(username).strip(), str(username).strip())).fetchone()
         if row and row["password"]:
             return compare_digest(str(password).encode("utf-8"), str(row["password"]).encode("utf-8"))
     return False
 
+
+def get_user_by_username(username):
+    init_db()
+    with connect() as db:
+        row = db.execute("SELECT id, username, email, role, created_by, created_at FROM users WHERE username = ? OR email = ?", (str(username).strip(), str(username).strip())).fetchone()
+        return dict(row) if row else None
 
 def get_user_role(username):
     init_db()
@@ -202,21 +218,21 @@ def create_password_request(username, message):
 def list_users():
     init_db()
     with connect() as db:
-        rows = db.execute("SELECT id, username, role, created_at FROM users ORDER BY created_at DESC").fetchall()
+        rows = db.execute("SELECT id, username, email, role, created_by, created_at FROM users ORDER BY created_at DESC").fetchall()
         return [dict(r) for r in rows]
 
 
-def add_user(username, password, role="reviewer"):
+def add_user(username, password, role="viewer", email=None, created_by=None):
     init_db()
     with connect() as db:
         db.execute(
-            "INSERT INTO users(username, password, role, created_at) VALUES (?, ?, ?, ?)",
-            (str(username).strip(), str(password).strip(), str(role).strip(), utc_now())
+            "INSERT INTO users(username, password, email, role, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+            (str(username).strip(), str(password).strip(), email, str(role).strip(), created_by, utc_now())
         )
     return True
 
 
-def update_user(user_id, username=None, password=None, role=None):
+def update_user(user_id, username=None, password=None, role=None, email=None):
     init_db()
     with connect() as db:
         from src.config import ADMIN_USERNAME
@@ -224,7 +240,7 @@ def update_user(user_id, username=None, password=None, role=None):
         if row and row["username"] == ADMIN_USERNAME:
             if username and str(username).strip() != ADMIN_USERNAME:
                 raise ValueError("Cannot change the core system owner's username here. Change it in config.py.")
-            if role and str(role).strip() != "admin":
+            if role and str(role).strip() != "owner":
                 raise ValueError("Cannot demote the core system owner.")
         
         fields = []
@@ -238,6 +254,9 @@ def update_user(user_id, username=None, password=None, role=None):
         if role:
             fields.append("role = ?")
             params.append(str(role).strip())
+        if email:
+            fields.append("email = ?")
+            params.append(str(email).strip())
             
         if not fields:
             return True
@@ -257,7 +276,37 @@ def delete_user(user_id):
         if row["username"] == ADMIN_USERNAME:
             raise ValueError("Cannot delete the primary system owner account.")
         db.execute("DELETE FROM users WHERE id = ?", (user_id,))
+        resequence_all_tables(db)
     return True
+
+def resequence_all_tables(db):
+    tables = [
+        "users", "unknown_texts", "feedback_samples", "lexicon_words", 
+        "name_hints", "dataset_corpus", "training_runs", 
+        "active_learning_items", "forgot_passwords"
+    ]
+    for table in tables:
+        _resequence_ids(db, table)
+
+def _resequence_ids(db, table_name):
+    # Check if table exists
+    exists = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table_name,)).fetchone()
+    if not exists: return
+
+    rows = db.execute(f"SELECT id FROM {table_name} ORDER BY id ASC").fetchall()
+    if not rows:
+        db.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = ?", (table_name,))
+        return
+
+    # Update IDs to be sequential
+    for i, row in enumerate(rows, start=1):
+        if row['id'] != i:
+            # We use a temporary negative ID to avoid conflicts if needed, 
+            # but simple sequential update is usually fine if we go in order
+            db.execute(f"UPDATE {table_name} SET id = ? WHERE id = ?", (i, row['id']))
+    
+    # Reset autoincrement counter
+    db.execute("UPDATE sqlite_sequence SET seq = ? WHERE name = ?", (len(rows), table_name))
 
 
 def list_forgot_passwords():
@@ -274,6 +323,7 @@ def clear_forgot_passwords(request_id=None):
             db.execute("DELETE FROM forgot_passwords WHERE id = ?", (request_id,))
         else:
             db.execute("DELETE FROM forgot_passwords")
+        resequence_all_tables(db)
     return True
 
 
@@ -588,6 +638,55 @@ def upsert_name_hint(
     }
 
 
+def bulk_upsert_name_hints(rows):
+    init_db()
+    now = utc_now()
+    prepared = []
+    for row in rows:
+        name = str(row.get("name") or "").strip().lower()
+        language = str(row.get("language") or "").strip().lower()
+        if not name or not language:
+            continue
+        prepared.append(
+            (
+                name,
+                language,
+                str(row.get("country") or "").strip(),
+                float(row.get("confidence") or 0.9),
+                str(row.get("name_type") or "person").strip(),
+                int(bool(row.get("enabled", True))),
+                str(row.get("source") or "user").strip(),
+                str(row.get("notes") or "").strip(),
+                now,
+                now,
+            )
+        )
+
+    if not prepared:
+        return 0
+
+    with connect() as db:
+        db.executemany(
+            """
+            INSERT INTO name_hints (
+                name, language, country, confidence, name_type, 
+                enabled, source, notes, created_at, updated_at
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(name, language) DO UPDATE SET
+                country=excluded.country,
+                confidence=excluded.confidence,
+                name_type=excluded.name_type,
+                enabled=excluded.enabled,
+                source=excluded.source,
+                notes=excluded.notes,
+                updated_at=excluded.updated_at
+            """,
+            prepared,
+        )
+        return len(prepared)
+
+
 def set_name_hint_enabled(name, language, enabled):
     init_db()
     name = str(name or "").strip().lower()
@@ -890,7 +989,8 @@ def clear_active_learning_items(include_resolved=False):
             cursor = db.execute(
                 "DELETE FROM active_learning_items WHERE status = 'active'"
             )
-    return cursor.rowcount
+        resequence_all_tables(db)
+        return cursor.rowcount
 
 
 def storage_summary():
@@ -953,6 +1053,7 @@ def admin_dashboard_stats():
             for row in db.execute("""
                 SELECT text, count, details_json, status, action, updated_at
                 FROM unknown_texts
+                WHERE status = 'active'
                 ORDER BY updated_at DESC
                 LIMIT 10
                 """)
@@ -1119,6 +1220,7 @@ def clear_review_storage(
                 db.execute("DELETE FROM active_learning_items")
             else:
                 db.execute("DELETE FROM active_learning_items WHERE status = 'active'")
+        resequence_all_tables(db)
     after = storage_summary()
     return {"before": before, "after": after}
 
@@ -1161,6 +1263,7 @@ def import_jsonl_backup(force=False):
             add_feedback(text, lang, source=row.get("source", "jsonl"))
 
     if LEXICON_DIR.exists():
+        all_lex_rows = []
         for path in LEXICON_DIR.glob("*.txt"):
             if path.name.startswith("_"):
                 continue
@@ -1169,31 +1272,28 @@ def import_jsonl_backup(force=False):
                 for line in handle:
                     word = line.strip().lower()
                     if word and not word.startswith("#"):
-                        upsert_lexicon_word(
-                            language, word, enabled=True, source="jsonl"
-                        )
+                        all_lex_rows.append({"language": language, "word": word, "source": "jsonl"})
+        if all_lex_rows:
+            bulk_upsert_lexicon_words(all_lex_rows)
 
     if NAME_DIR.exists():
+        all_name_rows = []
         for path in NAME_DIR.glob("*.jsonl"):
             if path.name.startswith("_"):
                 continue
             with open(path, "r", encoding="utf-8") as handle:
                 for line in handle:
                     line = line.strip()
-                    if not line:
-                        continue
+                    if not line: continue
                     try:
                         row = json.loads(line)
-                    except json.JSONDecodeError:
-                        continue
-                    upsert_name_hint(
-                        row.get("name", ""),
-                        row.get("language", path.stem),
-                        country=row.get("country", ""),
-                        confidence=row.get("confidence", 0.9),
-                        enabled=True,
-                        source="jsonl",
-                    )
+                        all_name_rows.append({**row, "source": "jsonl"})
+                    except: continue
+        if all_name_rows:
+            bulk_upsert_name_hints(all_name_rows)
+
+    _set_meta("jsonl_imported_v1", "1")
+    return {"skipped": False, **storage_summary()}
     _set_meta("jsonl_imported_v1", "1")
     return {"skipped": False, **storage_summary()}
 
@@ -1306,3 +1406,45 @@ def reset_application_data():
     # Re-initialize DB
     init_db()
     return {"ok": True, "message": "Application data has been reset."}
+def export_full_backup():
+    init_db()
+    tables = ["lexicon_words", "name_hints", "feedback_samples", "active_learning_items"]
+    backup = {}
+    with connect() as db:
+        for table in tables:
+            rows = db.execute(f"SELECT * FROM {table}").fetchall()
+            backup[table] = [dict(r) for r in rows]
+    return backup
+
+
+def import_full_backup(data):
+    init_db()
+    stats = {}
+    with connect() as db:
+        for table, rows in data.items():
+            if not rows: continue
+            # Clear table before import
+            db.execute(f"DELETE FROM {table}")
+            
+            # Prepare columns
+            columns = rows[0].keys()
+            placeholders = ", ".join(["?"] * len(columns))
+            sql = f"INSERT INTO {table} ({', '.join(columns)}) VALUES ({placeholders})"
+            
+            batch = [tuple(row[col] for col in columns) for row in rows]
+            db.executemany(sql, batch)
+            stats[table] = len(batch)
+            
+        resequence_all_tables(db)
+    return stats
+
+
+def wipe_table(table_name):
+    valid_tables = ["lexicon_words", "name_hints", "feedback_samples", "active_learning_items", "unknown_texts"]
+    if table_name not in valid_tables:
+        raise ValueError(f"Invalid table to wipe: {table_name}")
+    
+    with connect() as db:
+        db.execute(f"DELETE FROM {table_name}")
+        _resequence_ids(db, table_name)
+    return True

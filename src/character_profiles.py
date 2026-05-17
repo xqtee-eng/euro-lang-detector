@@ -62,11 +62,22 @@ def generate_character_profiles(top_n=30):
     return profiles
 
 
+_CHARACTER_PROFILES_CACHE = None
+
 def load_character_profiles():
+    global _CHARACTER_PROFILES_CACHE
+    if _CHARACTER_PROFILES_CACHE is not None:
+        return _CHARACTER_PROFILES_CACHE
     if not CHARACTER_PROFILE_PATH.exists():
-        return generate_character_profiles()
+        _CHARACTER_PROFILES_CACHE = generate_character_profiles()
+        return _CHARACTER_PROFILES_CACHE
     with open(CHARACTER_PROFILE_PATH, "r", encoding="utf-8") as handle:
-        return json.load(handle)
+        _CHARACTER_PROFILES_CACHE = json.load(handle)
+        return _CHARACTER_PROFILES_CACHE
+
+def clear_character_profiles_cache():
+    global _CHARACTER_PROFILES_CACHE
+    _CHARACTER_PROFILES_CACHE = None
 
 
 def character_profile_summary():
@@ -115,3 +126,9 @@ def character_candidates(text, top_k=5):
     return sorted(candidates, key=lambda item: item["score"], reverse=True)[
         : max(1, int(top_k or 5))
     ]
+
+
+if __name__ == "__main__":
+    print("[*] Generating character profiles...")
+    generate_character_profiles()
+    print("[*] Done.")

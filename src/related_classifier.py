@@ -69,6 +69,45 @@ MANUAL_GROUP_MARKERS = {
             {"kind": "token", "value": "sjølv", "weight": 0.06},
         ],
     },
+    "east_slavic": {
+        "uk": [
+            {"kind": "token", "value": "привіт", "weight": 0.08},
+            {"kind": "token", "value": "дякую", "weight": 0.08},
+            {"kind": "token", "value": "україна", "weight": 0.10},
+            {"kind": "substring", "value": "цьо", "weight": 0.05},
+        ],
+        "be": [
+            {"kind": "token", "value": "прывітанне", "weight": 0.09},
+            {"kind": "token", "value": "дзякуй", "weight": 0.09},
+            {"kind": "token", "value": "беларусь", "weight": 0.10},
+        ],
+        "ru": [
+            {"kind": "token", "value": "привет", "weight": 0.08},
+            {"kind": "token", "value": "спасибо", "weight": 0.08},
+            {"kind": "token", "value": "россия", "weight": 0.10},
+        ],
+    },
+    "west_slavic": {
+        "cs": [
+            {"kind": "token", "value": "dobrý", "weight": 0.06},
+            {"kind": "token", "value": "den", "weight": 0.05},
+        ],
+        "sk": [
+            {"kind": "token", "value": "dobrý", "weight": 0.06},
+            {"kind": "token", "value": "deň", "weight": 0.07},
+        ],
+    },
+    "baltic": {
+        "lv": [
+            {"kind": "token", "value": "labdien", "weight": 0.08},
+            {"kind": "token", "value": "paldies", "weight": 0.08},
+        ],
+        "lt": [
+            {"kind": "token", "value": "laba", "weight": 0.06},
+            {"kind": "token", "value": "diena", "weight": 0.06},
+            {"kind": "token", "value": "ačiū", "weight": 0.09},
+        ],
+    },
 }
 
 
@@ -401,7 +440,28 @@ def train_related_classifiers(dataset_path=TRAIN_DATASET_PATH, save_path=RELATED
 
 
 def rank_related_languages(text, group_id, top_k=3):
+    """
+    Performs high-precision classification within a specific group of related languages.
+    
+    This function uses a '3D-Signal' approach:
+    1. Token-based Markers: Checks for specific words that only exist in one language of the group.
+    2. N-Gram Sub-Profiles: Compares the text against specialized profiles trained only for this group.
+    3. Heuristics: Applies manual weights for known linguistic differences (e.g., 'ovde' vs 'ovdje').
+    
+    The classification results include a 'margin' which is later used in 
+    refine_related_language_result to determine if the result is confident 
+    enough to override the initial language detection.
+
+    Args:
+        text (str): The text to classify.
+        group_id (str): The ID of the related language group (e.g., 'east_slavic').
+        top_k (int): Number of top candidates to return.
+        
+    Returns:
+        list: A list of ranked candidate dictionaries containing confidence scores.
+    """
     profiles = load_related_profiles().get(group_id, {})
+    lowered = clean_text(text)
     input_profile = _input_profile(text)
     input_token_profile = _token_profile([text])
     script = _dominant_script(text)
@@ -441,6 +501,17 @@ def rank_related_languages(text, group_id, top_k=3):
                 score += 0.08
             if language == "nb" and any(token in input_token_profile for token in {"ikke", "jeg", "hva", "vi", "dere"}):
                 score += 0.08
+        elif group_id == "east_slavic":
+            if language == "uk" and any(char in lowered for char in "їєґ"):
+                score += 0.15
+            elif language == "be" and any(char in lowered for char in "ў"):
+                score += 0.15
+            elif language == "ru" and any(char in lowered for char in "ыъэ"):
+                score += 0.12
+            
+            # Shared 'і' between UK and BE
+            if language in {"uk", "be"} and "і" in lowered:
+                score += 0.05
 
         score += _marker_bonus(language, text, group_id, marker_map=marker_map)
 

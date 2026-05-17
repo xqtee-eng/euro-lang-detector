@@ -1,11 +1,22 @@
 import argparse
 import json
+import sys
 from collections import Counter, defaultdict
 
 from src.config import DATASET_PATH, EVALUATION_REPORT_PATH, TEST_DATASET_PATH
 from src.hybrid import smart_detect_details
 from src.related_languages import same_related_group
 from src.storage import record_training_run
+
+
+def configure_console_encoding():
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if stream and hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except ValueError:
+                pass
 
 
 def _default_dataset_path():
@@ -115,18 +126,6 @@ def evaluate(dataset_path=None, save_report=True):
             f"group_accuracy={stats['group_accuracy']:.4f} unknown={stats['unknown']}"
         )
 
-    if low_confidence:
-        print("\nReview / low-confidence cases:")
-        for item in low_confidence[:100]:
-            print(
-                f"  {item['text']!r} "
-                f"expected={item['expected']} "
-                f"got={item['predicted']} "
-                f"confidence={item['confidence']} "
-                f"source={item['source']} "
-                f"reason={item['reason']}"
-            )
-
     if save_report:
         EVALUATION_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
         with open(EVALUATION_REPORT_PATH, "w", encoding="utf-8") as handle:
@@ -142,10 +141,23 @@ def evaluate(dataset_path=None, save_report=True):
             notes=f"Evaluated {dataset_path}",
         )
 
+    if low_confidence:
+        print("\nReview / low-confidence cases:")
+        for item in low_confidence[:100]:
+            print(
+                f"  {item['text']!r} "
+                f"expected={item['expected']} "
+                f"got={item['predicted']} "
+                f"confidence={item['confidence']} "
+                f"source={item['source']} "
+                f"reason={item['reason']}"
+            )
+
     return accuracy
 
 
 def main():
+    configure_console_encoding()
     parser = argparse.ArgumentParser(description="Evaluate the detector.")
     parser.add_argument(
         "--dataset", default=None, help="Optional path to a jsonl dataset."

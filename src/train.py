@@ -1,20 +1,35 @@
 import json
 from collections import defaultdict
 
-from src.config import DATASET_PATH, TRAIN_DATASET_PATH
+from src.config import DATASET_PATH, TRAIN_DATASET_PATH, MODEL_PATH, PROFILE_SIZE
 from src.european_languages import SUPPORTED_LANGUAGE_CODES
 from src.ngram import build_profile
 from src.preprocessing import clean_text
-from src.config import MODEL_PATH
 from src.profiles import save_profiles
 from src.related_classifier import train_related_classifiers
 from src.storage import create_model_snapshot, record_training_run
 
 
 def train(dataset_path=None, kind="train", notes=""):
-    dataset_path = dataset_path or (
-        TRAIN_DATASET_PATH if TRAIN_DATASET_PATH.exists() else DATASET_PATH
-    )
+    if dataset_path is None:
+        dataset_path = TRAIN_DATASET_PATH
+    """
+    Trains the language detection engine by building n-gram profiles from a dataset.
+    
+    This process includes:
+    1. Loading and cleaning training samples for each supported language.
+    2. Generating frequency-based n-gram profiles (up to PROFILE_SIZE).
+    3. Persisting the main profiles and creating a versioned model snapshot.
+    4. Training specialized classifiers for related language groups (Slavic, Baltic, etc.).
+    
+    Args:
+        dataset_path (Path, optional): Path to the training JSONL file.
+        kind (str): Label for the training run (e.g., 'train', 'retrain').
+        notes (str): Optional audit notes for the training history.
+        
+    Returns:
+        dict: The generated n-gram profiles mapped by language code.
+    """
     language_texts = defaultdict(list)
 
     if not dataset_path.exists():
@@ -31,7 +46,7 @@ def train(dataset_path=None, kind="train", notes=""):
 
     profiles = {}
     for language, texts in sorted(language_texts.items()):
-        profiles[language] = build_profile(texts)
+        profiles[language] = build_profile(texts, size=PROFILE_SIZE)
         print(f"Trained {language}: {len(texts)} samples")
 
     if not profiles:

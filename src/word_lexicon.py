@@ -3,146 +3,46 @@ from functools import lru_cache
 
 from src.config import LEXICON_DIR
 from src.rules import WORD_RE
-from src.storage import list_lexicon_rows, set_lexicon_word_enabled, upsert_lexicon_word
+from src.storage import list_lexicon_rows, set_lexicon_word_enabled, upsert_lexicon_word, connect
 
-DISABLED_PATH = LEXICON_DIR / "_disabled.jsonl"
+LEXICON_STARTER_PATH = LEXICON_DIR.parent / "defaults" / "lexicon_starter.json"
 
-STARTER_WORDS = {
-    "sq": {"përshëndetje", "faleminderit", "gjuhë", "fjalë"},
-    "hy": {"բարեւ", "շնորհակալություն", "լեզու", "բառ"},
-    "az": {"salam", "təşəkkür", "dil", "söz"},
-    "eu": {"kaixo", "eskerrik", "hizkuntza", "hitza"},
-    "be": {"добры", "дзень", "мова", "слова", "гэта", "беларускай", "вызначэння", "коза", "дзякуй", "вечар", "раніца", "людзі", "школа", "вада", "хлеб", "жыццё", "горад"},
-    "bs": {"zdravo", "hvala", "jezik", "riječ"},
-    "bg": {"здравейте", "благодаря", "език", "дума"},
-    "ca": {"hola", "gràcies", "llengua", "paraula"},
-    "hr": {"zdravo", "hvala", "jezik", "riječ"},
-    "cs": {"ahoj", "děkuji", "jazyk", "slovo"},
-    "da": {"hej", "tak", "sprog", "ord"},
-    "nl": {"hallo", "dank", "taal", "woord"},
-    "en": {"hello", "friend", "dog", "cat", "house", "world", "language", "word", "thank", "good", "morning", "night", "people", "time", "years", "school", "water", "food"},
-    "et": {"tere", "aitäh", "keel", "sõna"},
-    "fi": {"hei", "kiitos", "kieli", "sana"},
-    "fr": {"bonjour", "merci", "monde", "langue", "mot", "chien", "chat", "maison", "gens", "ecole", "eau", "pain", "vie", "ville"},
-    "ka": {"გამარჯობა", "გმადლობთ", "ენა", "სიტყვა"},
-    "de": {"hallo", "danke", "sprache", "wort", "hund", "katze", "haus", "morgen", "nacht", "leute", "schule", "wasser", "brot", "leben", "stadt"},
-    "el": {"γεια", "ευχαριστώ", "γλώσσα", "λέξη"},
-    "hu": {"szia", "köszönöm", "nyelv", "szó"},
-    "is": {"hæ", "takk", "tungumál", "orð"},
-    "ga": {"dia", "duit", "teanga", "focal"},
-    "it": {"ciao", "grazie", "lingua", "parola", "cane", "gatto", "casa", "mattina", "notte", "persone", "scuola", "acqua", "pane", "vita", "citta"},
-    "lv": {"sveiki", "paldies", "valoda", "vārds"},
-    "lt": {"labas", "ačiū", "kalba", "žodis"},
-    "mk": {"здраво", "благодарам", "јазик", "збор"},
-    "nb": {"hei", "takk", "språk", "ord"},
-    "nn": {"hei", "takk", "språk", "ord"},
-    "pl": {"dzien", "dzień", "slowo", "słowo", "jezyk", "język", "dziękuje", "dobry", "wieczór", "rano", "ludzie", "szkoła", "woda", "chleb", "życie", "miasto"},
-    "pt": {"ola", "olá", "obrigado", "idioma", "palavra", "cachorro", "gato", "casa", "manha", "noite", "pessoas", "escola", "agua", "pao", "vida", "cidade"},
-    "ro": {"salut", "mulțumesc", "limbă", "cuvânt"},
-    "ru": {"привет", "мир", "язык", "слово", "предложение", "собака", "коза", "спасибо", "хороший", "вечер", "утро", "люди", "школа", "вода", "хлеб", "жизнь", "город"},
-    "sr": {"здраво", "хвала", "језик", "реч"},
-    "sk": {"ahoj", "ďakujem", "jazyk", "slovo"},
-    "sl": {"zdravo", "hvala", "jezik", "beseda"},
-    "es": {"hola", "gracias", "idioma", "palabra", "perro", "gato", "casa", "mañana", "noche", "personas", "escuela", "agua", "pan", "vida", "ciudad"},
-    "sv": {"hej", "tack", "språk", "ord"},
-    "tr": {"merhaba", "dil", "kelime", "kopek", "kedi", "ev", "tesekkur", "sabah", "gece", "insanlar", "okul", "su", "ekmek", "hayat", "şehir"},
-    "uk": {"привіт", "світ", "мова", "слово", "речення", "абетки", "козак", "коза", "собака", "паляниця", "дякую", "добрий", "вечір", "ранок", "люди", "школа", "вода", "хліб", "життя", "місто"},
-    "cy": {"helo", "diolch", "iaith", "gair"},
-}
+@lru_cache(maxsize=1)
+def load_starter_words():
+    if not LEXICON_STARTER_PATH.exists():
+        return {}
+    try:
+        with open(LEXICON_STARTER_PATH, "r", encoding="utf-8") as h:
+            data = json.load(h)
+            return {lang: set(words) for lang, words in data.items()}
+    except:
+        return {}
 
+STARTER_WORDS = load_starter_words()
 
 def _normalize_word(word):
     return str(word or "").strip().lower()
 
-
-def _read_disabled():
-    if not DISABLED_PATH.exists():
-        return set()
-
-    disabled = set()
-    with open(DISABLED_PATH, "r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                row = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            language = str(row.get("lang", "")).strip().lower()
-            word = _normalize_word(row.get("word", ""))
-            if language and word:
-                disabled.add((language, word))
-    return disabled
-
-
-def _write_disabled(disabled):
-    LEXICON_DIR.mkdir(parents=True, exist_ok=True)
-    with open(DISABLED_PATH, "w", encoding="utf-8") as handle:
-        for language, word in sorted(disabled):
-            handle.write(
-                json.dumps({"lang": language, "word": word}, ensure_ascii=False) + "\n"
-            )
-
-
-def _read_user_words(language):
-    path = LEXICON_DIR / f"{language}.txt"
-    if not path.exists():
-        return set()
-    with open(path, "r", encoding="utf-8") as handle:
-        return {
-            _normalize_word(line)
-            for line in handle
-            if _normalize_word(line) and not line.strip().startswith("#")
-        }
-
-
-def _write_user_words(language, words):
-    LEXICON_DIR.mkdir(parents=True, exist_ok=True)
-    path = LEXICON_DIR / f"{language}.txt"
-    with open(path, "w", encoding="utf-8") as handle:
-        for word in sorted(words):
-            handle.write(word + "\n")
-
-
 @lru_cache(maxsize=1)
 def load_lexicons():
-    disabled = _read_disabled()
-    lexicons = {}
-
-    for language, words in STARTER_WORDS.items():
-        lexicons[language] = {
-            word for word in words if (language, word) not in disabled
-        }
-
-    if LEXICON_DIR.exists():
-        for path in LEXICON_DIR.glob("*.txt"):
-            if path.name.startswith("_"):
-                continue
-            language = path.stem.lower()
-            words = lexicons.setdefault(language, set())
-            for word in _read_user_words(language):
-                if (language, word) not in disabled:
-                    words.add(word)
-
-    for row in list_lexicon_rows(enabled_only=False):
-        language = row["language"]
-        word = row["word"]
-        if row["enabled"]:
-            lexicons.setdefault(language, set()).add(word)
-        else:
-            lexicons.setdefault(language, set()).discard(word)
-
+    """
+    Loads all enabled lexicon words from the database.
+    This is the single source of truth for the detector.
+    """
     index = {}
-    for language, words in lexicons.items():
-        for word in words:
-            index.setdefault(word, set()).add(language)
+    # Fetch all enabled words from DB
+    rows = list_lexicon_rows(enabled_only=True)
+    for row in rows:
+        word = row["word"]
+        language = row["language"]
+        index.setdefault(word, set()).add(language)
+    
+    # Optional: If DB is empty, we could fallback to STARTER_WORDS, 
+    # but it's better to force a Seed/Import.
     return index
-
 
 def clear_lexicon_cache():
     load_lexicons.cache_clear()
-
 
 def list_lexicon_words(query="", language=None):
     query = _normalize_word(query)
@@ -162,49 +62,49 @@ def list_lexicon_words(query="", language=None):
         for item_language, words in sorted(words_by_language.items())
     }
 
-
 def list_lexicon_entries(query="", language=None):
     query = _normalize_word(query)
     language = str(language or "").strip().lower()
-    index = load_lexicons()
-    stored = {
-        (row["language"], row["word"]): row
-        for row in list_lexicon_rows(
-            query=query, language=language or None, enabled_only=True
-        )
-    }
+    
+    rows = list_lexicon_rows(
+        query=query, language=language or None, enabled_only=True
+    )
+    
     entries = []
-    for word, languages in sorted(index.items()):
-        if query and query not in word:
-            continue
-        selected_languages = sorted(
-            item_language
-            for item_language in languages
-            if not language or item_language == language
-        )
-        for item_language in selected_languages:
-            meta = stored.get((item_language, word), {})
-            entries.append(
-                {
-                    "word": word,
-                    "language": item_language,
-                    "frequency": int(meta.get("frequency", 1) or 1),
-                    "source": meta.get("source", "starter"),
-                    "notes": meta.get("notes", ""),
-                    "languages": sorted(languages),
-                    "ambiguous": len(languages) > 1,
-                }
-            )
+    for row in rows:
+        entries.append({
+            "word": row["word"],
+            "language": row["language"],
+            "frequency": row.get("frequency", 1),
+            "source": row.get("source", "db"),
+            "notes": row.get("notes", ""),
+            "ambiguous": False, # Could be determined by checking index
+        })
     return entries
-
 
 def analyze_word_knowledge(word):
     value = _normalize_word(word)
     if not value:
-        return {"word": "", "known": False, "ambiguous": False, "languages": []}
-    languages = sorted(load_lexicons().get(value, []))
-    entries = list_lexicon_entries(query=value)
-    entries = [entry for entry in entries if entry["word"] == value]
+        return {"word": "", "known": False, "ambiguous": False, "languages": [], "entries": []}
+    
+    index = load_lexicons()
+    languages = sorted(list(index.get(value, [])))
+    
+    entries = []
+    if languages:
+        with connect() as db:
+            rows = db.execute(
+                "SELECT language, frequency, source, enabled FROM lexicon_words WHERE word = ?",
+                (value,)
+            ).fetchall()
+            for row in rows:
+                entries.append({
+                    "language": row["language"],
+                    "frequency": row["frequency"],
+                    "source": row["source"],
+                    "enabled": bool(row["enabled"])
+                })
+    
     return {
         "word": value,
         "known": bool(languages),
@@ -213,6 +113,33 @@ def analyze_word_knowledge(word):
         "entries": entries,
     }
 
+def detect_word(text):
+    value = _normalize_word(text)
+    words = WORD_RE.findall(value)
+    if not words:
+        return None
+
+    index = load_lexicons()
+    scores = {}
+    for word in words:
+        langs = index.get(word, [])
+        for lang in langs:
+            scores[lang] = scores.get(lang, 0) + 1
+    
+    if not scores:
+        return None
+        
+    sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    top_lang, top_score = sorted_scores[0]
+    
+    return {
+        "language": top_lang if len(sorted_scores) == 1 or sorted_scores[0][1] > sorted_scores[1][1] else "unknown",
+        "confidence": min(0.99, 0.4 + (top_score * 0.1)),
+        "source": "lexicon",
+        "reason": f"matched_{top_score}_words",
+        "entity_type": "word",
+        "scores": scores
+    }
 
 def add_lexicon_word(language, word, frequency=1, notes=""):
     language = str(language or "").strip().lower()
@@ -220,9 +147,6 @@ def add_lexicon_word(language, word, frequency=1, notes=""):
     if not language or not word:
         raise ValueError("Language and word are required.")
 
-    disabled = _read_disabled()
-    disabled.discard((language, word))
-    _write_disabled(disabled)
     upsert_lexicon_word(
         language,
         word,
@@ -231,127 +155,31 @@ def add_lexicon_word(language, word, frequency=1, notes=""):
         frequency=frequency,
         notes=notes,
     )
-
-    words = _read_user_words(language)
-    words.add(word)
-    _write_user_words(language, words)
-
     clear_lexicon_cache()
     return {
         "language": language,
         "word": word,
         "frequency": max(1, int(frequency or 1)),
-        "path": str(LEXICON_DIR / f"{language}.txt"),
     }
-
-
-def import_lexicon_words(language, words_text):
-    words = [
-        _normalize_word(match.group(0))
-        for match in WORD_RE.finditer(str(words_text or ""))
-    ]
-    saved = []
-    for word in dict.fromkeys(words):
-        saved.append(add_lexicon_word(language, word))
-    return saved
-
 
 def delete_lexicon_word(language, word):
     language = str(language or "").strip().lower()
     word = _normalize_word(word)
-    if not language or not word:
-        raise ValueError("Language and word are required.")
-
-    words = _read_user_words(language)
-    if word in words:
-        words.remove(word)
-        _write_user_words(language, words)
-
-    disabled = _read_disabled()
-    disabled.add((language, word))
-    _write_disabled(disabled)
     set_lexicon_word_enabled(language, word, enabled=False)
     clear_lexicon_cache()
     return {"language": language, "word": word}
 
-
-def detect_word(text):
-    value = _normalize_word(text)
-    words = WORD_RE.findall(value)
-    if len(words) != 1:
-        return None
-
-    word = words[0]
-
-    AMBIGUOUS_WORDS = {"data", "menu", "bank", "plan", "hotel", "taxi", "город"}
-
-    if word in AMBIGUOUS_WORDS:
-        return {
-            "language": "unknown",
-            "confidence": 0.0,
-            "source": "lexicon",
-            "reason": "ambiguous_word",
-            "entity_type": "word",
-            "candidates": [],
-        }
-
-    lex = load_lexicons()
-    languages = sorted(lex.get(word, []))
-    
-    if not languages:
-        from src.ngram import generate_ngrams
-        best_match = None
-        best_score = 0.0
-        word_grams = set(generate_ngrams(word, n_min=3, n_max=3))
-        
-        if word_grams:
-            for stored_word in lex:
-                stored_grams = set(generate_ngrams(stored_word, n_min=3, n_max=3))
-                if not stored_grams:
-                    continue
-                score = len(word_grams & stored_grams) / len(word_grams | stored_grams)
-                if score > best_score:
-                    best_score = score
-                    best_match = stored_word
-                    
-        if best_match and best_score >= 0.70:
-            languages = sorted(lex[best_match])
-            confidence = round(best_score * 0.9, 4)
-            candidates = [{"language": lang, "confidence": confidence} for lang in languages]
-            return {
-                "language": languages[0] if len(languages) == 1 else "unknown",
-                "confidence": confidence,
-                "source": "lexicon",
-                "reason": "fuzzy_ngram_word",
-                "entity_type": "word",
-                "candidates": candidates,
-            }
-        return None
-
-    confidence = round(1 / len(languages), 4)
-    candidates = [
-        {
-            "language": language,
-            "confidence": confidence,
-        }
-        for language in languages
+def import_lexicon_words(language, words_text):
+    words = [
+        _normalize_word(match.group(0))
+        for match in WORD_RE.finditer(words_text)
+        if _normalize_word(match.group(0))
     ]
-
-    if len(languages) == 1:
-        return {
-            "language": languages[0],
-            "confidence": 0.96,
-            "source": "lexicon",
-            "reason": "exact_word",
-            "entity_type": "word",
-            "candidates": candidates,
-        }
-
-    return {
-        "language": "unknown",
-        "confidence": confidence,
-        "source": "lexicon",
-        "reason": "ambiguous_word",
-        "entity_type": "word",
-        "candidates": candidates,
-    }
+    unique_words = sorted(list(set(words)))
+    
+    from src.storage import bulk_upsert_lexicon_words
+    rows = [{"language": language, "word": w, "source": "import"} for w in unique_words]
+    bulk_upsert_lexicon_words(rows)
+    
+    clear_lexicon_cache()
+    return [{"word": w, "language": language} for w in unique_words]
