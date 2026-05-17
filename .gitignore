@@ -19,6 +19,14 @@ ENV/
 logs/
 *.log
 
+# Runtime/generated project data
+backups/
+data/unknown.jsonl
+data/resolved_unknown.jsonl
+models/snapshots/*.profiles.json
+tests_tmp_*/
+tests_tmp_*.sqlite
+
 # Cache
 .cache/
 .pytest_cache/

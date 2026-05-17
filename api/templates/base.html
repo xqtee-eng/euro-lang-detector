@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/></svg>">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function setTheme(theme) {
+      const root = document.documentElement;
+
+      if (theme === 'system') {
+        const mqDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const mqLight = window.matchMedia('(prefers-color-scheme: light)');
+
+        if (mqDark.matches) {
+          root.classList.remove('light');
+        } else if (mqLight.matches) {
+          root.classList.add('light');
+        } else {
+          // No preference detected? Default to DARK for premium ELD feel.
+          root.classList.remove('light');
+        }
+        localStorage.removeItem('theme');
+      } else {
+        root.classList.toggle('light', theme === 'light');
+        localStorage.setItem('theme', theme);
+      }
+      updateThemeButtons();
+    }
+
+    function updateThemeButtons() {
+      const theme = localStorage.getItem('theme') || 'system';
+      const btns = document.querySelectorAll('.theme-btn');
+      if (btns.length === 0) {
+        document.addEventListener('DOMContentLoaded', updateThemeButtons, { once: true });
+        return;
+      }
+      btns.forEach(btn => btn.classList.remove('active'));
+      const btn = document.getElementById('theme-' + theme);
+      if (btn) btn.classList.add('active');
+    }
+
+    // Listen for system theme changes (react to both light and dark transitions)
+    ['(prefers-color-scheme: dark)', '(prefers-color-scheme: light)'].forEach(query => {
+      window.matchMedia(query).addEventListener('change', () => {
+        if (!localStorage.getItem('theme')) {
+          setTheme('system');
+        }
+      });
+    });
+
+    // Initialize immediately
+    (function () {
+      const savedTheme = localStorage.getItem('theme') || 'system';
+      setTheme(savedTheme);
+    })();
+
+    // Sidebar Scroll Persistence
+    document.addEventListener('DOMContentLoaded', () => {
+      const nav = document.querySelector('.sidebar nav');
+      if (nav) {
+        const savedPos = sessionStorage.getItem('sidebar-scroll');
+        if (savedPos) {
+          nav.scrollTop = savedPos;
+        } else {
+          const active = nav.querySelector('a.active');
+          if (active) active.scrollIntoView({ block: 'center' });
+        }
+
+        nav.addEventListener('scroll', () => {
+          sessionStorage.setItem('sidebar-scroll', nav.scrollTop);
+        }, { passive: true });
+      }
+    });
+  </script>
+</head>
+
+<body class="{{ shell_class }}">
+  <aside class="sidebar">
+    <div class="brand" style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--panel-border);">
+      <div class="eyebrow"
+        style="color:var(--accent); font-weight:800; font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px;">
+        {{ eyebrow }}</div>
+      <h1
+        style="font-family:'Outfit'; font-size:18px; font-weight:800; margin:0; color:var(--ink); display:flex; align-items:center; gap:8px;">
+        <i data-lucide="shield" style="width:18px; height:18px;"></i>
+        <span>ELD SYSTEM</span>
+      </h1>
+    </div>
+    <nav>
+      {{ nav_html | safe }}
+    </nav>
+    <div id="sidebar-stats-wrapper">
+      {{ stats_html | safe }}
+    </div>
+    <div id="sidebar-footer" style="margin-top: 32px; padding: 24px 0 0; border-top: 1px solid var(--panel-border);">
+      <div class="theme-switcher"
+        style="display:flex; background:var(--input-bg); padding:4px; border-radius:14px; border:1px solid var(--panel-border); justify-content:center;">
+        <button onclick="setTheme('light')" class="theme-btn" id="theme-light" title="Light Theme"
+          style="flex:1; background:none; border:none; padding:8px; border-radius:10px; box-shadow:none; justify-content:center;">
+          <i data-lucide="sun" style="width:16px; height:16px;"></i>
+        </button>
+        <button onclick="setTheme('dark')" class="theme-btn" id="theme-dark" title="Dark Theme"
+          style="flex:1; background:none; border:none; padding:8px; border-radius:10px; box-shadow:none; justify-content:center;">
+          <i data-lucide="moon" style="width:16px; height:16px;"></i>
+        </button>
+        <button onclick="setTheme('system')" class="theme-btn" id="theme-system" title="System Theme"
+          style="flex:1; background:none; border:none; padding:8px; border-radius:10px; box-shadow:none; justify-content:center;">
+          <i data-lucide="monitor" style="width:16px; height:16px;"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="top-row">
+      <div class="page-title" style="display:flex; align-items:center; gap:20px;">
+        <i data-lucide="{{ favicon_icon }}" style="width:40px; height:40px; color:var(--accent);"></i>
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="row muted"
+        style="font-size:12px; font-weight:700; display:flex; align-items:center; background:var(--panel-bg); padding: 8px 20px; border-radius: 20px; border: 1px solid var(--panel-border); gap: 10px;">
+        <i data-lucide="languages" style="width:14px; height:14px; color:var(--good);"></i>
+        <span>40 Languages &bull; Engine Online</span>
+      </div>
+    </div>
+
+    {{ body | safe }}
+  </main>
+
+  <script id="lang-names-data" type="application/json">
+    {{ language_names_json | safe }}
+  </script>
+  <script>
+    window.LANG_NAMES = JSON.parse(document.getElementById('lang-names-data').textContent);
+  </script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>

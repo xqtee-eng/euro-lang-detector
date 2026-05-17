@@ -8,7 +8,13 @@ $env:ELD_PORT = "$Port"
 $env:ELD_DEBUG = "0"
 
 if (-not $env:ELD_ADMIN_PASSWORD) {
-    Write-Host "[WARN] ELD_ADMIN_PASSWORD is not set. The app will use the local default password."
+    Write-Error "ELD_ADMIN_PASSWORD is required when ELD_DEBUG=0."
+    exit 1
+}
+
+if (-not $env:ELD_SECRET_KEY) {
+    Write-Error "ELD_SECRET_KEY is required when ELD_DEBUG=0."
+    exit 1
 }
 
 python serve.py

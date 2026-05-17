@@ -1,4 +1,7 @@
 import json
+import hashlib
+import hmac
+import secrets
 import shutil
 import sqlite3
 from contextlib import contextmanager
@@ -21,9 +24,101 @@ from src.config import (
 )
 from src.utils import fast_count_lines, read_jsonl_gen, write_jsonl
 
+PASSWORD_HASH_ALGORITHM = "pbkdf2_sha256"
+PASSWORD_HASH_ITERATIONS = 260000
+AUTO_LEARNED_FEEDBACK_SOURCE = "auto_learned"
+
 
 def utc_now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _hash_password(password):
+    value = str(password or "")
+    salt = secrets.token_hex(16)
+    digest = hashlib.pbkdf2_hmac(
+        "sha256",
+        value.encode("utf-8"),
+        salt.encode("ascii"),
+        PASSWORD_HASH_ITERATIONS,
+    ).hex()
+    return (
+        f"{PASSWORD_HASH_ALGORITHM}$"
+        f"{PASSWORD_HASH_ITERATIONS}${salt}${digest}"
+    )
+
+
+def _is_password_hash(value):
+    return str(value or "").startswith(f"{PASSWORD_HASH_ALGORITHM}$")
+
+
+def _verify_password(password, stored_password):
+    stored = str(stored_password or "")
+    if not stored:
+        return False
+
+    if not _is_password_hash(stored):
+        return hmac.compare_digest(
+            str(password or "").encode("utf-8"),
+            stored.encode("utf-8"),
+        )
+
+    try:
+        algorithm, iterations, salt, expected = stored.split("$", 3)
+        if algorithm != PASSWORD_HASH_ALGORITHM:
+            return False
+        digest = hashlib.pbkdf2_hmac(
+            "sha256",
+            str(password or "").encode("utf-8"),
+            salt.encode("ascii"),
+            int(iterations),
+        ).hex()
+    except (TypeError, ValueError):
+        return False
+
+    return hmac.compare_digest(digest, expected)
+
+
+def _migrate_plaintext_passwords(db):
+    rows = db.execute(
+        "SELECT id, password FROM users WHERE password IS NOT NULL AND password != ''"
+    ).fetchall()
+    for row in rows:
+        if _is_password_hash(row["password"]):
+            continue
+        db.execute(
+            "UPDATE users SET password = ? WHERE id = ?",
+            (_hash_password(row["password"]), row["id"]),
+        )
+
+
+def _migrate_known_data_fixes(db):
+    bad_bosnian_night = db.execute(
+        "SELECT id FROM lexicon_words WHERE language = ? AND word = ?",
+        ("bs", "noћ"),
+    ).fetchone()
+    if not bad_bosnian_night:
+        return
+
+    correct_bosnian_night = db.execute(
+        "SELECT id FROM lexicon_words WHERE language = ? AND word = ?",
+        ("bs", "noć"),
+    ).fetchone()
+    if correct_bosnian_night:
+        db.execute(
+            "DELETE FROM lexicon_words WHERE language = ? AND word = ?",
+            ("bs", "noћ"),
+        )
+        return
+
+    db.execute(
+        """
+        UPDATE lexicon_words
+        SET word = ?, updated_at = ?
+        WHERE language = ? AND word = ?
+        """,
+        ("noć", utc_now(), "bs", "noћ"),
+    )
 
 
 @contextmanager
@@ -166,11 +261,18 @@ def init_db():
         if not exists:
             db.execute(
                 "INSERT INTO users(username, role, password, created_at) VALUES (?, ?, ?, ?)",
-                (ADMIN_USERNAME, "owner", ADMIN_PASSWORD, utc_now()),
+                (ADMIN_USERNAME, "owner", _hash_password(ADMIN_PASSWORD), utc_now()),
             )
         else:
             # Upgrade existing admin to owner if they match the config username
             db.execute("UPDATE users SET role = 'owner' WHERE username = ?", (ADMIN_USERNAME,))
+
+        _migrate_plaintext_passwords(db)
+        _migrate_known_data_fixes(db)
+        db.execute(
+            "DELETE FROM feedback_samples WHERE source = ?",
+            (AUTO_LEARNED_FEEDBACK_SOURCE,),
+        )
 
         _ensure_column(db, "training_runs", "model_snapshot_path", "TEXT")
         _ensure_column(db, "lexicon_words", "frequency", "INTEGER NOT NULL DEFAULT 1")
@@ -184,11 +286,18 @@ def verify_user(username, password):
     init_db()
     if not username or not password:
         return False
-    from hmac import compare_digest
     with connect() as db:
-        row = db.execute("SELECT password FROM users WHERE username = ? OR email = ?", (str(username).strip(), str(username).strip())).fetchone()
-        if row and row["password"]:
-            return compare_digest(str(password).encode("utf-8"), str(row["password"]).encode("utf-8"))
+        row = db.execute(
+            "SELECT id, password FROM users WHERE username = ? OR email = ?",
+            (str(username).strip(), str(username).strip()),
+        ).fetchone()
+        if row and _verify_password(password, row["password"]):
+            if not _is_password_hash(row["password"]):
+                db.execute(
+                    "UPDATE users SET password = ? WHERE id = ?",
+                    (_hash_password(password), row["id"]),
+                )
+            return True
     return False
 
 
@@ -227,7 +336,14 @@ def add_user(username, password, role="viewer", email=None, created_by=None):
     with connect() as db:
         db.execute(
             "INSERT INTO users(username, password, email, role, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-            (str(username).strip(), str(password).strip(), email, str(role).strip(), created_by, utc_now())
+            (
+                str(username).strip(),
+                _hash_password(password),
+                email,
+                str(role).strip(),
+                created_by,
+                utc_now(),
+            )
         )
     return True
 
@@ -250,7 +366,7 @@ def update_user(user_id, username=None, password=None, role=None, email=None):
             params.append(str(username).strip())
         if password:
             fields.append("password = ?")
-            params.append(str(password).strip())
+            params.append(_hash_password(password))
         if role:
             fields.append("role = ?")
             params.append(str(role).strip())
@@ -291,7 +407,8 @@ def resequence_all_tables(db):
 def _resequence_ids(db, table_name):
     # Check if table exists
     exists = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (table_name,)).fetchone()
-    if not exists: return
+    if not exists:
+        return
 
     rows = db.execute(f"SELECT id FROM {table_name} ORDER BY id ASC").fetchall()
     if not rows:
@@ -437,6 +554,10 @@ def resolve_unknowns(texts=None, action="resolved"):
 
 def add_feedback(text, lang, source="manual"):
     init_db()
+    source = str(source or "manual").strip().lower()
+    if source == AUTO_LEARNED_FEEDBACK_SOURCE:
+        return False
+
     with connect() as db:
         db.execute(
             """
@@ -450,6 +571,7 @@ def add_feedback(text, lang, source="manual"):
                 utc_now(),
             ),
         )
+    return True
 
 
 def list_feedback(unpromoted_only=False):
@@ -1284,11 +1406,13 @@ def import_jsonl_backup(force=False):
             with open(path, "r", encoding="utf-8") as handle:
                 for line in handle:
                     line = line.strip()
-                    if not line: continue
+                    if not line:
+                        continue
                     try:
                         row = json.loads(line)
                         all_name_rows.append({**row, "source": "jsonl"})
-                    except: continue
+                    except json.JSONDecodeError:
+                        continue
         if all_name_rows:
             bulk_upsert_name_hints(all_name_rows)
 
@@ -1422,7 +1546,8 @@ def import_full_backup(data):
     stats = {}
     with connect() as db:
         for table, rows in data.items():
-            if not rows: continue
+            if not rows:
+                continue
             # Clear table before import
             db.execute(f"DELETE FROM {table}")
             

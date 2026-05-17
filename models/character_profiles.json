@@ -873,8 +873,8 @@
       },
       {
         "char": "ć",
-        "count": 228,
-        "share": 0.0097
+        "count": 286,
+        "share": 0.0122
       },
       {
         "char": "č",
@@ -897,11 +897,6 @@
         "share": 0.0056
       },
       {
-        "char": "ћ",
-        "count": 63,
-        "share": 0.0027
-      },
-      {
         "char": "đ",
         "count": 48,
         "share": 0.0021
@@ -910,6 +905,11 @@
         "char": "š",
         "count": 45,
         "share": 0.0019
+      },
+      {
+        "char": "ћ",
+        "count": 5,
+        "share": 0.0002
       }
     ],
     "unique_characters": [],

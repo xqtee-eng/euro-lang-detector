@@ -8,13 +8,12 @@ from src.related_classifier import refine_related_language_result
 from src.related_languages import enrich_related_language_result
 from src.rules import (
     detect_by_rules,
-    has_mixed_latin_cyrillic,
     is_command_like,
     is_keyboard_garbage,
     is_short_ambiguous_cyrillic,
     is_single_cyrillic_proper_name,
 )
-from src.self_learning import queue_unknown, add_feedback_sample
+from src.self_learning import queue_unknown
 from src.storage import add_active_learning_item
 from src.word_lexicon import detect_word
 
@@ -167,10 +166,6 @@ def smart_detect_details(text, top_k=3, record_unknown=True):
             "candidates": candidates,
         }
         
-        # 3. Autonomous AI Learning: The model learns strong predictions by itself
-        if record_unknown and confidence >= 0.95:
-            add_feedback_sample(original_text, language, source="auto_learned")
-            
         return _track_learning(
             _finalize_result(refine_related_language_result(result, normalized)),
             record_unknown,

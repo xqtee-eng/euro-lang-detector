@@ -173,7 +173,7 @@ For production, set:
 
 ```powershell
 $env:ELD_ADMIN_PASSWORD="replace-with-strong-password"
-$env:ELD_SECRET_KEY="replace-with-random-secret"
+$env:ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
 ```
 
 Useful pages:
@@ -429,7 +429,7 @@ ELD_DATA_DIR=data
 ELD_MODELS_DIR=models
 ELD_DEBUG=0
 ELD_ADMIN_PASSWORD=replace-with-strong-password
-ELD_SECRET_KEY=replace-with-random-secret
+ELD_SECRET_KEY=replace-with-random-secret-at-least-32-chars
 ```
 
 See `deployment/README.md` and `.env.example`.

@@ -518,7 +518,7 @@ def rank_related_languages(text, group_id, top_k=3):
         ranked.append(
             {
                 "language": language,
-                "confidence": round(max(0.0, score), 4),
+                "confidence": round(min(1.0, max(0.0, score)), 4),
                 "char_confidence": round(float(char_score), 4),
                 "token_confidence": round(float(token_score), 4),
                 "script": profile.get("script") if isinstance(profile, dict) else None,
@@ -566,7 +566,10 @@ def refine_related_language_result(result, text):
     ):
         original_language = language
         result["language"] = best["language"]
-        result["confidence"] = max(float(result.get("confidence", 0.0) or 0.0), float(best["confidence"]))
+        result["confidence"] = min(
+            1.0,
+            max(float(result.get("confidence", 0.0) or 0.0), float(best["confidence"])),
+        )
         result["source"] = f"{result.get('source', 'detector')}+related"
         result["reason"] = "related_classifier_refinement"
         result["original_language"] = original_language

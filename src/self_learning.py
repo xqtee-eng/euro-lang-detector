@@ -2,6 +2,7 @@ import json
 
 from src.config import DATASET_PATH, TRAIN_DATASET_PATH
 from src.storage import (
+    AUTO_LEARNED_FEEDBACK_SOURCE,
     add_feedback,
     add_unknown,
     clear_review_storage as clear_review_storage_db,
@@ -69,7 +70,11 @@ def add_feedback_sample(text, lang, source="manual"):
 
 
 def promote_feedback_samples():
-    rows = list_feedback(unpromoted_only=True)
+    rows = [
+        row
+        for row in list_feedback(unpromoted_only=True)
+        if row.get("source") != AUTO_LEARNED_FEEDBACK_SOURCE
+    ]
     if not rows:
         return 0
 

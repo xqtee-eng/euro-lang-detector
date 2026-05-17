@@ -15,7 +15,7 @@ def load_starter_words():
         with open(LEXICON_STARTER_PATH, "r", encoding="utf-8") as h:
             data = json.load(h)
             return {lang: set(words) for lang, words in data.items()}
-    except:
+    except (OSError, json.JSONDecodeError):
         return {}
 
 STARTER_WORDS = load_starter_words()
@@ -131,12 +131,20 @@ def detect_word(text):
         
     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
     top_lang, top_score = sorted_scores[0]
+    ambiguous_top_score = (
+        len(sorted_scores) > 1 and sorted_scores[0][1] == sorted_scores[1][1]
+    )
+
+    if ambiguous_top_score and len(words) > 1:
+        return None
     
     return {
-        "language": top_lang if len(sorted_scores) == 1 or sorted_scores[0][1] > sorted_scores[1][1] else "unknown",
-        "confidence": min(0.99, 0.4 + (top_score * 0.1)),
+        "language": "unknown" if ambiguous_top_score else top_lang,
+        "confidence": (
+            0.0 if ambiguous_top_score else min(0.99, 0.4 + (top_score * 0.1))
+        ),
         "source": "lexicon",
-        "reason": f"matched_{top_score}_words",
+        "reason": "ambiguous_word" if ambiguous_top_score else f"matched_{top_score}_words",
         "entity_type": "word",
         "scores": scores
     }

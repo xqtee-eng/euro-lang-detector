@@ -1,5 +1,4 @@
 import shutil
-import tarfile
 import unittest
 from pathlib import Path
 
@@ -16,7 +15,7 @@ from src.related_classifier import train_related_classifiers
 
 from src.word_lexicon import list_lexicon_words, add_lexicon_word, load_lexicons
 from src.name_detector import load_name_hints
-from src.storage import init_db
+from src.storage import add_user, connect, init_db, list_feedback, verify_user
 import src.storage
 
 UKRAINIAN_GREETING = "\u041f\u0440\u0438\u0432\u0456\u0442, \u044f\u043a \u0442\u0432\u043e\u0457 \u0441\u043f\u0440\u0430\u0432\u0438?"
@@ -46,7 +45,20 @@ class DetectorSmokeTests(unittest.TestCase):
             cls.test_db_path.unlink()
             
         cls.original_db_path = src.storage.DATABASE_PATH
+        cls.original_unknown_path = src.storage.UNKNOWN_PATH
+        cls.original_feedback_path = src.storage.FEEDBACK_PATH
+        cls.original_resolved_unknown_path = src.storage.RESOLVED_UNKNOWN_PATH
         src.storage.DATABASE_PATH = cls.test_db_path
+
+        cls.test_storage_dir = Path("tests_tmp_storage")
+        if cls.test_storage_dir.exists():
+            shutil.rmtree(cls.test_storage_dir)
+        cls.test_storage_dir.mkdir()
+        src.storage.UNKNOWN_PATH = cls.test_storage_dir / "unknown.jsonl"
+        src.storage.FEEDBACK_PATH = cls.test_storage_dir / "feedback.jsonl"
+        src.storage.RESOLVED_UNKNOWN_PATH = (
+            cls.test_storage_dir / "resolved_unknown.jsonl"
+        )
         
         # Initialize isolated DB and wipe caches
         init_db()
@@ -60,10 +72,15 @@ class DetectorSmokeTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         src.storage.DATABASE_PATH = cls.original_db_path
+        src.storage.UNKNOWN_PATH = cls.original_unknown_path
+        src.storage.FEEDBACK_PATH = cls.original_feedback_path
+        src.storage.RESOLVED_UNKNOWN_PATH = cls.original_resolved_unknown_path
         load_lexicons.cache_clear()
         load_name_hints.cache_clear()
         if cls.test_db_path.exists():
             cls.test_db_path.unlink()
+        if cls.test_storage_dir.exists():
+            shutil.rmtree(cls.test_storage_dir)
             
     def test_empty_text_returns_unknown(self):
         self.assertEqual(smart_detect(""), "unknown")
@@ -125,6 +142,36 @@ class DetectorSmokeTests(unittest.TestCase):
                 self.assertEqual(result["language"], language)
                 self.assertEqual(result["reason"], "exact_phrase_hint")
 
+    def test_high_confidence_detection_does_not_create_feedback(self):
+        before = len(list_feedback())
+        result = smart_detect_details(
+            "This is an official announcement for all citizens."
+        )
+        self.assertNotEqual(result["language"], "unknown")
+        self.assertEqual(len(list_feedback()), before)
+
+    def test_feedback_endpoint_records_manual_feedback(self):
+        response = app.test_client().post(
+            "/feedback",
+            json={"text": "This is a reviewed correction.", "lang": "en"},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(
+            any(row["source"] == "manual" for row in list_feedback())
+        )
+
+    def test_user_passwords_are_hashed_and_verified(self):
+        add_user("TestUser", "Strong1!", role="viewer")
+        with connect() as db:
+            row = db.execute(
+                "SELECT password FROM users WHERE username = ?",
+                ("TestUser",),
+            ).fetchone()
+        self.assertIsNotNone(row)
+        self.assertNotEqual(row["password"], "Strong1!")
+        self.assertTrue(str(row["password"]).startswith("pbkdf2_sha256$"))
+        self.assertTrue(verify_user("TestUser", "Strong1!"))
+
     def test_related_language_group_is_reported_for_close_languages(self):
         result = smart_detect_details(
             "Ovo je jednostavna recenica za testiranje jezika.",
@@ -136,6 +183,17 @@ class DetectorSmokeTests(unittest.TestCase):
         self.assertEqual(result["group_reliability"], "ambiguous")
         self.assertTrue(result["ambiguous_group"])
         self.assertEqual(result["possible_languages"], ["bs", "hr", "sr"])
+        self.assertLessEqual(result["confidence"], 1.0)
+
+    def test_ambiguous_multiword_lexicon_falls_through_to_models(self):
+        for word in ("zajednica", "kultura"):
+            add_lexicon_word("bs", word)
+            add_lexicon_word("hr", word)
+
+        result = smart_detect_details("zajednica kultura", record_unknown=False)
+        self.assertFalse(
+            result["source"] == "lexicon" and result["language"] == "unknown"
+        )
 
     def test_word_analyzer_detects_mixed_tokens(self):
         result = analyze_words("hello \u043f\u0440\u0438\u0432\u0456\u0442 bonjour")
