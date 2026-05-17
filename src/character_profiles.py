@@ -1,5 +1,6 @@
 import json
 from collections import Counter
+from pathlib import Path
 
 from src.build_dataset import RAW_DATA_DIR
 from src.config import MODELS_DIR
@@ -26,7 +27,9 @@ def _count_raw_language(language):
     return counts
 
 
-def generate_character_profiles(top_n=30):
+def generate_character_profiles(top_n=30, save=True, save_path=None):
+    global _CHARACTER_PROFILES_CACHE
+
     language_counts = {
         language: _count_raw_language(language) for language in SUPPORTED_LANGUAGE_CODES
     }
@@ -56,9 +59,12 @@ def generate_character_profiles(top_n=30):
             "signature": "".join(unique_chars[:20]),
         }
 
-    CHARACTER_PROFILE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(CHARACTER_PROFILE_PATH, "w", encoding="utf-8") as handle:
-        json.dump(profiles, handle, ensure_ascii=False, indent=2)
+    _CHARACTER_PROFILES_CACHE = profiles
+    if save:
+        target_path = CHARACTER_PROFILE_PATH if save_path is None else Path(save_path)
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(target_path, "w", encoding="utf-8") as handle:
+            json.dump(profiles, handle, ensure_ascii=False, indent=2)
     return profiles
 
 

@@ -774,7 +774,7 @@
     "language": "bs",
     "name": "Bosnian",
     "total_letters": 23404,
-    "alphabet_size": 27,
+    "alphabet_size": 26,
     "top_characters": [
       {
         "char": "a",
@@ -873,8 +873,8 @@
       },
       {
         "char": "ć",
-        "count": 286,
-        "share": 0.0122
+        "count": 291,
+        "share": 0.0124
       },
       {
         "char": "č",
@@ -905,11 +905,6 @@
         "char": "š",
         "count": 45,
         "share": 0.0019
-      },
-      {
-        "char": "ћ",
-        "count": 5,
-        "share": 0.0002
       }
     ],
     "unique_characters": [],
@@ -4984,9 +4979,10 @@
       }
     ],
     "unique_characters": [
-      "ђ"
+      "ђ",
+      "ћ"
     ],
-    "signature": "ђ"
+    "signature": "ђћ"
   },
   "sk": {
     "language": "sk",

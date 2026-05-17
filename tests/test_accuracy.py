@@ -234,7 +234,7 @@ class DetectorSmokeTests(unittest.TestCase):
         self.assertGreater(report["samples"], 10)
 
     def test_character_profiles_explain_script_languages(self):
-        profiles = generate_character_profiles()
+        profiles = generate_character_profiles(save=False)
         self.assertIn("uk", profiles)
         self.assertTrue(character_candidates(GEORGIAN_TEXT))
 
