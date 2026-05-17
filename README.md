@@ -213,6 +213,10 @@ The main application state is stored in:
 data/app.db
 ```
 
+This SQLite file is local runtime state and is intentionally not tracked in Git.
+Create it with `python -m src.db_manage init`, then import versioned JSONL,
+lexicon, and name files with `python -m src.db_manage import-jsonl`.
+
 The database contains:
 
 ```text

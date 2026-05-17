@@ -21,6 +21,8 @@ logs/
 
 # Runtime/generated project data
 backups/
+data/app.db
+data/app.db-*
 data/unknown.jsonl
 data/resolved_unknown.jsonl
 models/snapshots/*.profiles.json
