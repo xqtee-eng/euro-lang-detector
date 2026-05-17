@@ -42,6 +42,7 @@ python -m src.db_manage init
 python -m src.db_manage import-jsonl
 
 export ELD_DEBUG=0
+export ELD_ADMIN_USERNAME="admin"
 export ELD_ADMIN_PASSWORD="replace-with-strong-password"
 export ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
 
@@ -61,6 +62,16 @@ http://127.0.0.1:5000/admin
 
 The SQLite runtime database `data/app.db` is not tracked in Git. The
 `src.db_manage init` command creates it locally.
+
+If you change `ELD_ADMIN_USERNAME` or `ELD_ADMIN_PASSWORD` after the database
+was already created, recreate the local database so the initial owner account is
+created with the new credentials:
+
+```bash
+rm data/app.db
+python -m src.db_manage init
+python -m src.db_manage import-jsonl
+```
 
 ## Recommended Run Order
 
@@ -409,6 +420,20 @@ The local default account is:
 Username: admin
 Password: admin
 ```
+
+Production mode (`ELD_DEBUG=0`) rejects the default `admin` password. Set a
+non-default password and a random secret key before starting the server:
+
+```bash
+export ELD_ADMIN_USERNAME="admin"
+export ELD_ADMIN_PASSWORD="replace-with-strong-password"
+export ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
+```
+
+`ELD_ADMIN_USERNAME` is optional; if you do not set it, the username is
+`admin`. If the SQLite database already exists, changing these variables does
+not rename or reset the existing account. Recreate `data/app.db` or update the
+user from `/admin`.
 
 You can add, edit, or delete users via the `/admin` console (requires Owner or Admin privileges).
 
