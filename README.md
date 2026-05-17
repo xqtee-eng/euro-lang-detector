@@ -25,6 +25,43 @@ See `data/languages.txt` for the code-to-name list.
 python -m pip install -r requirements.txt
 ```
 
+## Linux / Codespaces Quick Start
+
+On a Linux machine or in GitHub Codespaces:
+
+```bash
+git clone https://github.com/xqtee-eng/euro-lang-detector.git
+cd euro-lang-detector
+
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+python -m src.db_manage init
+python -m src.db_manage import-jsonl
+
+export ELD_DEBUG=0
+export ELD_ADMIN_PASSWORD="replace-with-strong-password"
+export ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
+
+python serve.py
+```
+
+In GitHub Codespaces, create the codespace from the repository page and start
+from the `python -m venv .venv` command because the repository is already
+checked out. Open the forwarded port `5000` when Codespaces shows it.
+
+Local URLs:
+
+```text
+http://127.0.0.1:5000/detect
+http://127.0.0.1:5000/admin
+```
+
+The SQLite runtime database `data/app.db` is not tracked in Git. The
+`src.db_manage init` command creates it locally.
+
 ## Recommended Run Order
 
 Create starter data, build train/test files, train, and evaluate:
