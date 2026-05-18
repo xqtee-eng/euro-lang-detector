@@ -1,10 +1,9 @@
 import json
-import os
 import uuid
 from functools import wraps
 from flask import render_template, request, session, redirect, jsonify
 from src.european_languages import EUROPEAN_LANGUAGE_SPECS
-from src.config import ADMIN_PASSWORD
+from src.config import ADMIN_PASSWORD, PUBLIC_BASE_URL
 
 SERVER_RUN_ID = str(uuid.uuid4())
 
@@ -40,20 +39,34 @@ def wants_json_response():
         or request.accept_mimetypes.best == "application/json"
     )
 
+def public_href(href):
+    if not PUBLIC_BASE_URL:
+        return href
+    if not href.startswith("/") or href.startswith("//"):
+        return href
+    return f"{PUBLIC_BASE_URL}{href}"
+
 def is_valid_credentials(text, min_len=3, is_password=False):
-    if not text: return False, "Cannot be empty."
+    if not text:
+        return False, "Cannot be empty."
     if len(text) < min_len:
         return False, f"Must be at least {min_len} characters long."
     if any(ord(c) > 127 for c in text):
         return False, "Only Latin (English) characters are allowed."
     if is_password:
-        if not any(c.isupper() for c in text): return False, "Missing Uppercase (A-Z)."
-        if not any(c.islower() for c in text): return False, "Missing Lowercase (a-z)."
-        if not any(c.isdigit() for c in text): return False, "Missing Digit (0-9)."
-        if not any(not c.isalnum() for c in text): return False, "Missing Special Character (symbol)."
+        if not any(c.isupper() for c in text):
+            return False, "Missing Uppercase (A-Z)."
+        if not any(c.islower() for c in text):
+            return False, "Missing Lowercase (a-z)."
+        if not any(c.isdigit() for c in text):
+            return False, "Missing Digit (0-9)."
+        if not any(not c.isalnum() for c in text):
+            return False, "Missing Special Character (symbol)."
     else:
-        if not any(c.isupper() for c in text): return False, "Username must have at least one Uppercase letter."
-        if not any(c.islower() for c in text): return False, "Username must have at least one Lowercase letter."
+        if not any(c.isupper() for c in text):
+            return False, "Username must have at least one Uppercase letter."
+        if not any(c.islower() for c in text):
+            return False, "Username must have at least one Lowercase letter."
     return True, ""
 
 def admin_required(fn):
@@ -142,7 +155,7 @@ def page(title, body, area="public"):
         eyebrow = "Public App"
 
     nav_html = "\n      ".join(
-        f'<a href="{href}" class="{"active" if request.path == href or (href == "/admin" and request.path == "/admin/login") else ""}" title="{label}"><i data-lucide="{icon}"></i> <span>{label}</span></a>'
+        f'<a href="{public_href(href)}" class="{"active" if request.path == href or (href == "/admin" and request.path == "/admin/login") else ""}" title="{label}"><i data-lucide="{icon}"></i> <span>{label}</span></a>'
         for href, label, icon in nav_items
     )
 

@@ -2,7 +2,7 @@ import shutil
 import unittest
 from pathlib import Path
 
-import api.app as api_app
+import api.utils as api_utils
 from api.app import app
 from src.analyzer import analyze_words
 from src.benchmark import run_benchmark
@@ -161,37 +161,20 @@ class DetectorSmokeTests(unittest.TestCase):
             any(row["source"] == "manual" for row in list_feedback())
         )
 
-    def test_local_preview_redirects_to_public_base_url(self):
-        original_public_base_url = api_app.PUBLIC_BASE_URL
-        api_app.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+    def test_public_href_uses_public_base_url_for_relative_paths(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
         try:
-            response = app.test_client().get(
-                "/admin",
-                base_url="http://127.0.0.1:5000",
-            )
-            self.assertEqual(response.status_code, 302)
             self.assertEqual(
-                response.headers["Location"],
+                api_utils.public_href("/admin"),
                 "https://demo-5000.app.github.dev/admin",
             )
-        finally:
-            api_app.PUBLIC_BASE_URL = original_public_base_url
-
-    def test_forwarded_public_host_does_not_redirect_to_itself(self):
-        original_public_base_url = api_app.PUBLIC_BASE_URL
-        api_app.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
-        try:
-            response = app.test_client().get(
-                "/admin",
-                base_url="http://127.0.0.1:5000",
-                headers={"X-Forwarded-Host": "demo-5000.app.github.dev"},
-            )
-            self.assertEqual(response.status_code, 302)
             self.assertEqual(
-                response.headers["Location"], "/admin/login?next=/admin"
+                api_utils.public_href("https://example.com/admin"),
+                "https://example.com/admin",
             )
         finally:
-            api_app.PUBLIC_BASE_URL = original_public_base_url
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
 
     def test_user_passwords_are_hashed_and_verified(self):
         add_user("TestUser", "Strong1!", role="viewer")
