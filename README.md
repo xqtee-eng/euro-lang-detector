@@ -457,8 +457,27 @@ export ELD_SECRET_KEY="replace-with-random-secret-at-least-32-chars"
 
 `ELD_ADMIN_USERNAME` is optional; if you do not set it, the username is
 `admin`. If the SQLite database already exists, changing these variables does
-not rename or reset the existing account. Recreate `data/app.db` or update the
-user from `/admin`.
+not rename or reset the existing owner account. For a fresh demo environment,
+stop the server, remove `data/app.db`, set the new owner credentials, and run
+the database setup again:
+
+```bash
+rm -f data/app.db
+export ELD_ADMIN_USERNAME="owner-name"
+export ELD_ADMIN_PASSWORD="owner-password"
+python -m src.db_manage init
+python -m src.db_manage import-jsonl
+```
+
+The primary owner account cannot be deleted or demoted from the Admin Manager.
+Use the Admin Manager to create additional `super_admin` or `viewer` accounts
+for other people.
+
+Other users can access the app while the server process is running. The public
+detector page does not require login; admin pages require a valid account. In
+Codespaces, make port `5000` public if you want people outside your GitHub
+session to open the forwarded `app.github.dev` URL. The owner does not need to
+stay logged in, but the terminal running `python serve.py` must stay alive.
 
 You can add, edit, or delete users via the `/admin` console (requires Owner or Admin privileges).
 
