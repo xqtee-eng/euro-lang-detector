@@ -211,6 +211,38 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
+    def test_login_get_redirects_localhost_to_public_url_when_configured(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+        try:
+            response = app.test_client().get(
+                "/admin/login?reason=session_expired",
+                base_url="http://127.0.0.1:5000",
+            )
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(
+                response.headers["Location"],
+                "https://demo-5000.app.github.dev/admin/login?reason=session_expired",
+            )
+        finally:
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
+
+    def test_admin_guard_redirects_unauthenticated_users_to_public_url(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+        try:
+            response = app.test_client().get(
+                "/admin",
+                base_url="http://127.0.0.1:5000",
+            )
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(
+                response.headers["Location"],
+                "https://demo-5000.app.github.dev/admin/login?next=/admin",
+            )
+        finally:
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
+
     def test_login_page_uses_versioned_static_assets(self):
         response = app.test_client().get("/admin/login")
         self.assertEqual(response.status_code, 200)

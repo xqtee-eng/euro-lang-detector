@@ -1,6 +1,7 @@
 import sys
 from datetime import timedelta
 from pathlib import Path
+from urllib.parse import quote
 from flask import Flask, redirect, session, jsonify, request
 
 # Add ROOT_DIR to sys.path
@@ -11,7 +12,10 @@ if str(ROOT_DIR) not in sys.path:
 from src.config import SECRET_KEY, APP_HOST, APP_PORT, APP_DEBUG
 from src.app_logging import get_app_logger
 from src.lingua_detector import get_detector
-from api.utils import admin_authenticated, wants_json_response, PUBLIC_PATHS, SERVER_RUN_ID
+from api.utils import (
+    admin_authenticated, wants_json_response, PUBLIC_PATHS, SERVER_RUN_ID,
+    public_href,
+)
 
 # Blueprints
 from api.routes.admin import admin_bp
@@ -34,7 +38,7 @@ def require_admin_auth():
             session.clear()
             if wants_json_response():
                 return jsonify({"error": "Session expired or server restarted. Please login again."}), 401
-            return redirect("/admin/login?reason=session_expired")
+            return redirect(public_href("/admin/login?reason=session_expired"))
 
     if request.path in PUBLIC_PATHS:
         return None
@@ -49,7 +53,7 @@ def require_admin_auth():
     if wants_json_response():
         return jsonify({"error": "Admin authentication required."}), 401
         
-    return redirect(f"/admin/login?next={request.path}")
+    return redirect(public_href(f"/admin/login?next={quote(request.path, safe='/')}"))
 
 # Register Blueprints
 app.register_blueprint(admin_bp)
