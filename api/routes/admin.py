@@ -58,6 +58,40 @@ def login_form():
       @keyframes shake {{ 0%, 100% {{ transform: translateX(0); }} 25% {{ transform: translateX(-8px); }} 75% {{ transform: translateX(8px); }} }}
       .shake {{ animation: shake 0.4s ease-in-out; }}
     </style>
+    <script>
+      window.handleLogin = async function(e) {{
+        e.preventDefault();
+        const form = e.target;
+        const status = document.getElementById('auth-status');
+        if (status) {{
+          status.textContent = 'Authenticating...';
+          status.style.color = 'var(--accent)';
+        }}
+        try {{
+          const res = await fetch(form.action, {{
+            method: 'POST',
+            headers: {{'Accept': 'application/json'}},
+            body: new FormData(form)
+          }});
+          const data = await res.json();
+          if (res.ok) {{
+            window.location.assign(data.next || '/admin');
+            return;
+          }}
+          if (status) {{
+            status.textContent = data.error || 'Login failed.';
+            status.style.color = 'var(--bad)';
+          }}
+          form.classList.add('shake');
+          setTimeout(() => form.classList.remove('shake'), 400);
+        }} catch (err) {{
+          if (status) {{
+            status.textContent = 'Network error.';
+            status.style.color = 'var(--bad)';
+          }}
+        }}
+      }};
+    </script>
     """
     return page("Admin Login", body)
 

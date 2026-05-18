@@ -10,7 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v=static_version) }}">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -143,7 +143,7 @@
   <script>
     window.LANG_NAMES = JSON.parse(document.getElementById('lang-names-data').textContent);
   </script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js', v=static_version) }}"></script>
 </body>
 
 </html>

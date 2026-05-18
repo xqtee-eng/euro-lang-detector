@@ -2,7 +2,7 @@ import json
 import uuid
 from functools import wraps
 from urllib.parse import urlsplit
-from flask import render_template, request, session, redirect, jsonify
+from flask import has_request_context, render_template, request, session, redirect, jsonify
 from src.european_languages import EUROPEAN_LANGUAGE_SPECS
 from src.config import ADMIN_PASSWORD, PUBLIC_BASE_URL
 
@@ -41,11 +41,29 @@ def wants_json_response():
     )
 
 def public_href(href):
-    if not PUBLIC_BASE_URL:
+    public_base_url = request_public_base_url()
+    if not public_base_url:
         return href
     if not href.startswith("/") or href.startswith("//"):
         return href
-    return f"{PUBLIC_BASE_URL}{href}"
+    return f"{public_base_url}{href}"
+
+def request_public_base_url():
+    if PUBLIC_BASE_URL:
+        return PUBLIC_BASE_URL
+    if not has_request_context():
+        return ""
+
+    forwarded_host = request.headers.get("X-Forwarded-Host", "")
+    host = (forwarded_host or request.host or "").split(",", maxsplit=1)[0].strip()
+    if not host.endswith(".app.github.dev"):
+        return ""
+
+    forwarded_proto = request.headers.get("X-Forwarded-Proto", "")
+    proto = (forwarded_proto or request.scheme or "https").split(",", maxsplit=1)[0].strip()
+    if proto not in {"http", "https"}:
+        proto = "https"
+    return f"{proto}://{host}"
 
 def safe_next_path(value, default="/admin"):
     path = str(value or "").strip()
@@ -194,6 +212,7 @@ def page(title, body, area="public"):
         nav_html=nav_html,
         stats_html=stats_html,
         favicon_icon=current_icon,
+        static_version=SERVER_RUN_ID,
         language_specs=EUROPEAN_LANGUAGE_SPECS,
         language_names_json=json.dumps({s['code'].upper(): s['name'] for s in EUROPEAN_LANGUAGE_SPECS})
     )

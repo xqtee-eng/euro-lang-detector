@@ -193,6 +193,32 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
+    def test_login_returns_current_codespaces_host_when_public_url_is_missing(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = ""
+        try:
+            response = app.test_client().post(
+                "/admin/login",
+                base_url="https://demo-5000.app.github.dev",
+                data={"username": "admin", "password": "admin", "next": "/admin"},
+                headers={"Accept": "application/json"},
+            )
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(
+                response.json["next"],
+                "https://demo-5000.app.github.dev/admin",
+            )
+        finally:
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
+
+    def test_login_page_uses_versioned_static_assets(self):
+        response = app.test_client().get("/admin/login")
+        self.assertEqual(response.status_code, 200)
+        html = response.get_data(as_text=True)
+        self.assertIn("/static/js/app.js?v=", html)
+        self.assertIn("/static/css/main.css?v=", html)
+        self.assertIn("window.handleLogin = async function", html)
+
     def test_login_rejects_absolute_next_url(self):
         original_public_base_url = api_utils.PUBLIC_BASE_URL
         api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
