@@ -55,7 +55,16 @@ checked out. Open the forwarded port `5000` when Codespaces shows it. Do not
 open `localhost:5000` in your local desktop browser unless you are running the
 server on your own computer; for Codespaces, use the generated
 `https://<codespace-name>-5000.app.github.dev/...` URL or the `Open in Browser`
-button in the Codespaces `Ports` tab.
+button in the Codespaces `Ports` tab. When running inside Codespaces, the app
+auto-detects the forwarded URL and redirects local preview requests such as
+`http://127.0.0.1:5000/admin` to the matching `app.github.dev` URL.
+
+For other hosted environments, set `ELD_PUBLIC_URL` if you want local preview
+links to redirect to a canonical public URL:
+
+```bash
+export ELD_PUBLIC_URL="https://your-public-domain.example"
+```
 
 For a temporary Codespaces demo with the default `admin/admin` login, use debug
 mode instead of production mode:

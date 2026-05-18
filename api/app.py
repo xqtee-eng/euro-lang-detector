@@ -1,6 +1,7 @@
 import sys
 from datetime import timedelta
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 from flask import Flask, redirect, session, jsonify, request
 
 # Add ROOT_DIR to sys.path
@@ -8,7 +9,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from src.config import SECRET_KEY, APP_HOST, APP_PORT, APP_DEBUG
+from src.config import SECRET_KEY, APP_HOST, APP_PORT, APP_DEBUG, PUBLIC_BASE_URL
 from src.app_logging import get_app_logger
 from src.lingua_detector import get_detector
 from api.utils import admin_authenticated, wants_json_response, PUBLIC_PATHS, SERVER_RUN_ID
@@ -24,6 +25,30 @@ app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
 logger = get_app_logger()
+
+LOCAL_PREVIEW_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0"}
+
+
+@app.before_request
+def redirect_local_preview_to_public_url():
+    if not PUBLIC_BASE_URL or request.method not in {"GET", "HEAD"}:
+        return None
+
+    request_host = request.host.split(":", 1)[0].lower()
+    if request_host not in LOCAL_PREVIEW_HOSTS:
+        return None
+
+    public_url = urlsplit(PUBLIC_BASE_URL)
+    target = urlunsplit(
+        (
+            public_url.scheme,
+            public_url.netloc,
+            request.path,
+            request.query_string.decode("utf-8"),
+            "",
+        )
+    )
+    return redirect(target, code=302)
 
 # Global Auth Middleware
 @app.before_request

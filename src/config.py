@@ -50,6 +50,26 @@ ADMIN_PASSWORD = os.environ.get("ELD_ADMIN_PASSWORD", DEFAULT_ADMIN_PASSWORD)
 SECRET_KEY = os.environ.get("ELD_SECRET_KEY", DEFAULT_SECRET_KEY)
 
 
+def _clean_public_url(value):
+    return str(value or "").strip().rstrip("/")
+
+
+def _codespaces_public_url():
+    codespace_name = os.environ.get("CODESPACE_NAME", "").strip()
+    forwarding_domain = os.environ.get(
+        "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN", ""
+    ).strip()
+    if not codespace_name or not forwarding_domain:
+        return ""
+    return f"https://{codespace_name}-{APP_PORT}.{forwarding_domain}"
+
+
+PUBLIC_BASE_URL = (
+    _clean_public_url(os.environ.get("ELD_PUBLIC_URL"))
+    or _codespaces_public_url()
+)
+
+
 def production_mode():
     return APP_ENV in {"prod", "production"} or not APP_DEBUG
 
