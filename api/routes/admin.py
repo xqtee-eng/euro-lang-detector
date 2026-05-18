@@ -1,11 +1,10 @@
 import random
 import string
-from urllib.parse import urlsplit
 from flask import Blueprint, request, jsonify, session, redirect
 from api.utils import (
     page, admin_required, super_admin_required, owner_required, 
     admin_authenticated, wants_json_response, is_valid_credentials,
-    SERVER_RUN_ID, public_href, request_public_base_url, safe_next_path
+    SERVER_RUN_ID, public_href, safe_next_path
 )
 from src.storage import (
     get_user_by_username, verify_user, create_password_request,
@@ -15,18 +14,8 @@ from src.storage import (
 
 admin_bp = Blueprint('admin', __name__)
 
-def current_path_with_query():
-    if not request.query_string:
-        return request.path
-    return f"{request.path}?{request.query_string.decode('utf-8', errors='ignore')}"
-
 @admin_bp.route("/admin/login", methods=["GET"])
 def login_form():
-    public_base_url = request_public_base_url()
-    public_host = urlsplit(public_base_url).netloc if public_base_url else ""
-    if public_host and request.host != public_host:
-        return redirect(public_href(current_path_with_query()))
-
     next_path = safe_next_path(request.args.get("next", "/admin"))
     if admin_authenticated():
         return redirect(public_href(next_path))

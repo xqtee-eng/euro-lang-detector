@@ -211,7 +211,7 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
-    def test_login_get_redirects_localhost_to_public_url_when_configured(self):
+    def test_login_get_serves_page_without_public_url_redirect_loop(self):
         original_public_base_url = api_utils.PUBLIC_BASE_URL
         api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
         try:
@@ -219,11 +219,10 @@ class DetectorSmokeTests(unittest.TestCase):
                 "/admin/login?reason=session_expired",
                 base_url="http://127.0.0.1:5000",
             )
-            self.assertEqual(response.status_code, 302)
-            self.assertEqual(
-                response.headers["Location"],
-                "https://demo-5000.app.github.dev/admin/login?reason=session_expired",
-            )
+            self.assertEqual(response.status_code, 200)
+            html = response.get_data(as_text=True)
+            self.assertIn("window.ELD_PUBLIC_BASE_URL", html)
+            self.assertIn("https://demo-5000.app.github.dev", html)
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
