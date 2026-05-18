@@ -176,7 +176,7 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
-    def test_login_returns_public_next_url_when_configured(self):
+    def test_login_returns_same_origin_next_path_when_public_url_is_configured(self):
         original_public_base_url = api_utils.PUBLIC_BASE_URL
         api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
         try:
@@ -188,12 +188,12 @@ class DetectorSmokeTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(
                 response.json["next"],
-                "https://demo-5000.app.github.dev/admin",
+                "/admin",
             )
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
-    def test_login_returns_current_codespaces_host_when_public_url_is_missing(self):
+    def test_login_returns_same_origin_next_path_for_codespaces_requests(self):
         original_public_base_url = api_utils.PUBLIC_BASE_URL
         api_utils.PUBLIC_BASE_URL = ""
         try:
@@ -206,7 +206,7 @@ class DetectorSmokeTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(
                 response.json["next"],
-                "https://demo-5000.app.github.dev/admin",
+                "/admin",
             )
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
@@ -218,6 +218,13 @@ class DetectorSmokeTests(unittest.TestCase):
         self.assertIn("/static/js/app.js?v=", html)
         self.assertIn("/static/css/main.css?v=", html)
         self.assertIn("window.handleLogin = async function", html)
+        self.assertIn("sameOriginAdminTarget", html)
+
+    def test_login_script_blocks_stale_localhost_redirect_targets(self):
+        script = Path("api/static/js/app.js").read_text(encoding="utf-8")
+        self.assertIn("function sameOriginAdminTarget", script)
+        self.assertIn("target.origin === window.location.origin", script)
+        self.assertIn("target.pathname.startsWith('/admin')", script)
 
     def test_login_rejects_absolute_next_url(self):
         original_public_base_url = api_utils.PUBLIC_BASE_URL
@@ -235,7 +242,7 @@ class DetectorSmokeTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(
                 response.json["next"],
-                "https://demo-5000.app.github.dev/admin",
+                "/admin",
             )
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url

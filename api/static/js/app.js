@@ -4,6 +4,18 @@
 
 // --- Global Utilities ---
 
+function sameOriginAdminTarget(value) {
+    try {
+        const target = new URL(value || '/admin', window.location.origin);
+        if (target.origin === window.location.origin && target.pathname.startsWith('/admin')) {
+            return target.pathname + target.search + target.hash;
+        }
+    } catch (err) {
+        // Fall back to the admin dashboard if a stale or malformed target appears.
+    }
+    return '/admin';
+}
+
 function setupCustomSelects() {
     document.querySelectorAll('select:not(.custom-select-hidden)').forEach(select => {
         const wrapper = document.createElement('div');
@@ -771,7 +783,7 @@ window.handleLogin = async function(e) {
         
         if (res.ok) {
             const data = await res.json();
-            window.location.href = data.next || '/admin';
+            window.location.href = sameOriginAdminTarget(data.next || formData.get('next'));
         } else {
             const data = await res.json();
             status.textContent = data.error || 'Login failed.';

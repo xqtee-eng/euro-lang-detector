@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify, session, redirect
 from api.utils import (
     page, admin_required, super_admin_required, owner_required, 
     admin_authenticated, wants_json_response, is_valid_credentials,
-    SERVER_RUN_ID, public_href, safe_next_path
+    SERVER_RUN_ID, safe_next_path
 )
 from src.storage import (
     get_user_by_username, verify_user, create_password_request,
@@ -18,7 +18,7 @@ admin_bp = Blueprint('admin', __name__)
 def login_form():
     next_path = safe_next_path(request.args.get("next", "/admin"))
     if admin_authenticated():
-        return redirect(public_href(next_path))
+        return redirect(next_path)
     body = f"""
     <div style="max-width: 400px; margin: 100px auto;">
       <div class="panel" style="text-align:center;">
@@ -63,6 +63,15 @@ def login_form():
         e.preventDefault();
         const form = e.target;
         const status = document.getElementById('auth-status');
+        const sameOriginAdminTarget = function(value) {{
+          try {{
+            const target = new URL(value || '/admin', window.location.origin);
+            if (target.origin === window.location.origin && target.pathname.startsWith('/admin')) {{
+              return target.pathname + target.search + target.hash;
+            }}
+          }} catch (err) {{}}
+          return '/admin';
+        }};
         if (status) {{
           status.textContent = 'Authenticating...';
           status.style.color = 'var(--accent)';
@@ -75,7 +84,8 @@ def login_form():
           }});
           const data = await res.json();
           if (res.ok) {{
-            window.location.assign(data.next || '/admin');
+            const fallback = new FormData(form).get('next') || '/admin';
+            window.location.assign(sameOriginAdminTarget(data.next || fallback));
             return;
           }}
           if (status) {{
@@ -119,7 +129,7 @@ def login_action():
         session["admin_role"] = user["role"]
         session["server_run_id"] = SERVER_RUN_ID
         session.permanent = True
-        next_url = public_href(safe_next_path(request.form.get("next", "/admin")))
+        next_url = safe_next_path(request.form.get("next", "/admin"))
         if is_ajax:
             return jsonify({"ok": True, "next": next_url})
         return redirect(next_url)
