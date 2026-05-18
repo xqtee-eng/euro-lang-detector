@@ -142,6 +142,7 @@
   </script>
   <script>
     window.LANG_NAMES = JSON.parse(document.getElementById('lang-names-data').textContent);
+    window.ELD_PUBLIC_BASE_URL = {{ public_base_url|tojson }};
   </script>
   <script src="{{ url_for('static', filename='js/app.js', v=static_version) }}"></script>
 </body>

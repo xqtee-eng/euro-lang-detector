@@ -212,6 +212,7 @@ def page(title, body, area="public"):
         nav_html=nav_html,
         stats_html=stats_html,
         favicon_icon=current_icon,
+        public_base_url=request_public_base_url(),
         static_version=SERVER_RUN_ID,
         language_specs=EUROPEAN_LANGUAGE_SPECS,
         language_names_json=json.dumps({s['code'].upper(): s['name'] for s in EUROPEAN_LANGUAGE_SPECS})
