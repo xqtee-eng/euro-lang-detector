@@ -76,6 +76,7 @@ export ELD_DEBUG=1
 export ELD_ADMIN_USERNAME="admin"
 export ELD_ADMIN_PASSWORD="admin"
 export ELD_SECRET_KEY="dev-only-secret-key-at-least-32-chars"
+export ELD_PUBLIC_URL="https://${CODESPACE_NAME}-5000.app.github.dev"
 ```
 
 Local URLs:

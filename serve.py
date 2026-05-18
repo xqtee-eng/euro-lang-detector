@@ -1,5 +1,5 @@
 from api.app import app
-from src.config import APP_HOST, APP_PORT
+from src.config import APP_HOST, APP_PORT, PUBLIC_BASE_URL
 
 
 def main():
@@ -11,6 +11,8 @@ def main():
         return
 
     print(f"Serving European Language Detector on http://{APP_HOST}:{APP_PORT}")
+    if PUBLIC_BASE_URL:
+        print(f"Public URL: {PUBLIC_BASE_URL}")
     serve(app, host=APP_HOST, port=APP_PORT)
 
 

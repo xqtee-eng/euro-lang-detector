@@ -57,7 +57,7 @@ def _clean_public_url(value):
 def _codespaces_public_url():
     codespace_name = os.environ.get("CODESPACE_NAME", "").strip()
     forwarding_domain = os.environ.get(
-        "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN", ""
+        "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN", "app.github.dev"
     ).strip()
     if not codespace_name or not forwarding_domain:
         return ""
