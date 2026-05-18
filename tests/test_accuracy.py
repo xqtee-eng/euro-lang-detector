@@ -177,6 +177,22 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_app.PUBLIC_BASE_URL = original_public_base_url
 
+    def test_forwarded_public_host_does_not_redirect_to_itself(self):
+        original_public_base_url = api_app.PUBLIC_BASE_URL
+        api_app.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+        try:
+            response = app.test_client().get(
+                "/admin",
+                base_url="http://127.0.0.1:5000",
+                headers={"X-Forwarded-Host": "demo-5000.app.github.dev"},
+            )
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(
+                response.headers["Location"], "/admin/login?next=/admin"
+            )
+        finally:
+            api_app.PUBLIC_BASE_URL = original_public_base_url
+
     def test_user_passwords_are_hashed_and_verified(self):
         add_user("TestUser", "Strong1!", role="viewer")
         with connect() as db:

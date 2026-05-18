@@ -29,16 +29,33 @@ logger = get_app_logger()
 LOCAL_PREVIEW_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0"}
 
 
+def _forwarded_host():
+    host = request.headers.get("X-Forwarded-Host", "").split(",", 1)[0].strip()
+    if host:
+        return host.lower()
+
+    forwarded = request.headers.get("Forwarded", "")
+    for part in forwarded.split(";"):
+        key, _, value = part.strip().partition("=")
+        if key.lower() == "host" and value:
+            return value.strip('"').lower()
+    return ""
+
+
 @app.before_request
 def redirect_local_preview_to_public_url():
     if not PUBLIC_BASE_URL or request.method not in {"GET", "HEAD"}:
+        return None
+
+    public_url = urlsplit(PUBLIC_BASE_URL)
+    public_host = public_url.netloc.lower()
+    if request.host.lower() == public_host or _forwarded_host() == public_host:
         return None
 
     request_host = request.host.split(":", 1)[0].lower()
     if request_host not in LOCAL_PREVIEW_HOSTS:
         return None
 
-    public_url = urlsplit(PUBLIC_BASE_URL)
     target = urlunsplit(
         (
             public_url.scheme,
