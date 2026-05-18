@@ -1,6 +1,7 @@
 import json
 import uuid
 from functools import wraps
+from urllib.parse import urlsplit
 from flask import render_template, request, session, redirect, jsonify
 from src.european_languages import EUROPEAN_LANGUAGE_SPECS
 from src.config import ADMIN_PASSWORD, PUBLIC_BASE_URL
@@ -45,6 +46,13 @@ def public_href(href):
     if not href.startswith("/") or href.startswith("//"):
         return href
     return f"{PUBLIC_BASE_URL}{href}"
+
+def safe_next_path(value, default="/admin"):
+    path = str(value or "").strip()
+    parsed = urlsplit(path)
+    if parsed.scheme or parsed.netloc or not path.startswith("/") or path.startswith("//"):
+        return default
+    return path
 
 def is_valid_credentials(text, min_len=3, is_password=False):
     if not text:

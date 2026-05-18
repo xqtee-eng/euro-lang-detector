@@ -176,6 +176,44 @@ class DetectorSmokeTests(unittest.TestCase):
         finally:
             api_utils.PUBLIC_BASE_URL = original_public_base_url
 
+    def test_login_returns_public_next_url_when_configured(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+        try:
+            response = app.test_client().post(
+                "/admin/login",
+                data={"username": "admin", "password": "admin", "next": "/admin"},
+                headers={"Accept": "application/json"},
+            )
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(
+                response.json["next"],
+                "https://demo-5000.app.github.dev/admin",
+            )
+        finally:
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
+
+    def test_login_rejects_absolute_next_url(self):
+        original_public_base_url = api_utils.PUBLIC_BASE_URL
+        api_utils.PUBLIC_BASE_URL = "https://demo-5000.app.github.dev"
+        try:
+            response = app.test_client().post(
+                "/admin/login",
+                data={
+                    "username": "admin",
+                    "password": "admin",
+                    "next": "http://localhost:5000/admin",
+                },
+                headers={"Accept": "application/json"},
+            )
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(
+                response.json["next"],
+                "https://demo-5000.app.github.dev/admin",
+            )
+        finally:
+            api_utils.PUBLIC_BASE_URL = original_public_base_url
+
     def test_user_passwords_are_hashed_and_verified(self):
         add_user("TestUser", "Strong1!", role="viewer")
         with connect() as db:

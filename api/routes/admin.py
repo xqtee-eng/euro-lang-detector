@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify, session, redirect
 from api.utils import (
     page, admin_required, super_admin_required, owner_required, 
     admin_authenticated, wants_json_response, is_valid_credentials,
-    language_options, SERVER_RUN_ID
+    SERVER_RUN_ID, public_href, safe_next_path
 )
 from src.storage import (
     get_user_by_username, verify_user, create_password_request,
@@ -16,8 +16,9 @@ admin_bp = Blueprint('admin', __name__)
 
 @admin_bp.route("/admin/login", methods=["GET"])
 def login_form():
+    next_path = safe_next_path(request.args.get("next", "/admin"))
     if admin_authenticated():
-        return redirect(request.args.get("next", "/admin"))
+        return redirect(public_href(next_path))
     body = f"""
     <div style="max-width: 400px; margin: 100px auto;">
       <div class="panel" style="text-align:center;">
@@ -35,7 +36,7 @@ def login_form():
             </button>
           </div>
 
-          <input type="hidden" name="next" value="{request.args.get("next", "/admin")}">
+          <input type="hidden" name="next" value="{next_path}">
           <button type="submit" class="primary" style="justify-content:center;">Unlock System</button>
           <a href="#" onclick="toggleForget(true)" style="font-size:12px; color:var(--muted); text-decoration:none; margin-top:8px;">Forget password?</a>
         </form>
@@ -68,8 +69,14 @@ def login_action():
     user = get_user_by_username(username)
     if not user:
         err = "This identity does not exist in the ELD PRO matrix."
-        if is_ajax: return jsonify({"error": err}), 404
-        return page("Admin Login", f"<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Identity Unknown</h2><p>{{err}}</p><a href='/admin/login'>Try again</a></div>")
+        if is_ajax:
+            return jsonify({"error": err}), 404
+        return page(
+            "Admin Login",
+            "<div class='panel' style='max-width:400px; margin:100px auto; "
+            "text-align:center;'><h2 style='color:var(--bad)'>Identity "
+            f"Unknown</h2><p>{err}</p><a href='/admin/login'>Try again</a></div>",
+        )
 
     if verify_user(username, password):
         session["admin_authenticated"] = True
@@ -78,13 +85,20 @@ def login_action():
         session["admin_role"] = user["role"]
         session["server_run_id"] = SERVER_RUN_ID
         session.permanent = True
+        next_url = public_href(safe_next_path(request.form.get("next", "/admin")))
         if is_ajax:
-            return jsonify({"ok": True, "next": request.form.get("next", "/admin")})
-        return redirect(request.form.get("next", "/admin"))
+            return jsonify({"ok": True, "next": next_url})
+        return redirect(next_url)
     
     err = "Incorrect password for this identity."
-    if is_ajax: return jsonify({"error": err}), 401
-    return page("Admin Login", f"<div class='panel' style='max-width:400px; margin:100px auto; text-align:center;'><h2 style='color:var(--bad)'>Access Denied</h2><p>{{err}}</p><a href='/admin/login'>Try again</a></div>")
+    if is_ajax:
+        return jsonify({"error": err}), 401
+    return page(
+        "Admin Login",
+        "<div class='panel' style='max-width:400px; margin:100px auto; "
+        "text-align:center;'><h2 style='color:var(--bad)'>Access "
+        f"Denied</h2><p>{err}</p><a href='/admin/login'>Try again</a></div>",
+    )
 
 @admin_bp.route("/admin/logout")
 def logout():
@@ -102,7 +116,9 @@ def forget_password_action():
 
     user = get_user_by_username(username)
     if not user:
-        return jsonify({"error": f"Identity '{{username}}' does not exist in the ELD PRO matrix."}), 404
+        return jsonify({
+            "error": f"Identity '{username}' does not exist in the ELD PRO matrix."
+        }), 404
         
     create_password_request(user["username"], message)
     return jsonify({"ok": True})
@@ -261,16 +277,18 @@ def api_create_user():
     r = data.get("role", "viewer").strip()
     
     ok, err = is_valid_credentials(u)
-    if not ok: return jsonify({"error": err}), 400
+    if not ok:
+        return jsonify({"error": err}), 400
     ok, err = is_valid_credentials(p, is_password=True)
-    if not ok: return jsonify({"error": err}), 400
+    if not ok:
+        return jsonify({"error": err}), 400
 
     if session.get("admin_role") == "super_admin" and r != "viewer":
         return jsonify({"error": "Super Admins can only create Viewer accounts."}), 403
 
     try:
         # Corrected argument order: username, password, role, email
-        new_u = add_user(u, p, r, e, created_by=session.get("admin_id"))
+        add_user(u, p, r, e, created_by=session.get("admin_id"))
         return jsonify({"ok": True, "user": True})
     except Exception as exc:
         return jsonify({"error": str(exc)}), 500
@@ -285,7 +303,8 @@ def api_update_user():
     r = data.get("role", "viewer").strip()
     
     user = next((u for u in list_users() if str(u["id"]) == str(user_id)), None)
-    if not user: return jsonify({"error": "User not found"}), 404
+    if not user:
+        return jsonify({"error": "User not found"}), 404
     
     current_role = session.get("admin_role")
     current_id = session.get("admin_id")
@@ -303,7 +322,8 @@ def api_update_user():
 @admin_required
 def api_delete_user(user_id):
     user = next((u for u in list_users() if str(u["id"]) == str(user_id)), None)
-    if not user: return jsonify({"error": "User not found"}), 404
+    if not user:
+        return jsonify({"error": "User not found"}), 404
     
     current_role = session.get("admin_role")
     current_id = session.get("admin_id")
@@ -333,4 +353,3 @@ def api_generate_password():
     chars = string.ascii_letters + string.digits + "!@#$%^&*"
     passwd = "".join(random.choice(chars) for _ in range(16))
     return jsonify({"password": passwd})
-
